@@ -16,4 +16,8 @@ public class Tower {
 	public void shoot(Unit[] unit){
 		
 	}
+	
+	public Position getPosition(){
+		return null;
+	}
 }
