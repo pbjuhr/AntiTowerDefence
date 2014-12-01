@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="com.jaap.antitowerdefence.level.Level" project="AntiTowerDefence" 
     file="/AntiTowerDefence/src/com/jaap/antitowerdefence/level/Level.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1506" y="432"/>    
+    <position height="-1" width="-1" x="1533" y="361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="antiTowerDefence.TowerPlacerAI" project="AntiTowerDefence" 
     file="/AntiTowerDefence/src/antiTowerDefence/TowerPlacerAI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1687" y="432"/>    
+    <position height="-1" width="-1" x="1751" y="392"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="antiTowerDefence.AntiTowerDefenceGame" project="AntiTowerDefence" 
     file="/AntiTowerDefence/src/antiTowerDefence/AntiTowerDefenceGame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1882" y="432"/>    
+    <position height="-1" width="-1" x="1967" y="414"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="com.jaap.antitowerdefence.level.LevelReader" project="AntiTowerDefence" 
     file="/AntiTowerDefence/src/com/jaap/antitowerdefence/level/LevelReader.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2096" y="432"/>    
+    <position height="-1" width="-1" x="2056" y="676"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -209,113 +209,109 @@
     </display>  
   </class>  
   <generalization id="24">    
-    <end type="SOURCE" refId="23"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <association id="25">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="26" name="towerPlacer"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="28">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <association id="29">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="30" name="theLevel"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="33" name="position"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
+      <attribute id="26" name="position">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="35">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <generalization id="36">    
-    <end type="SOURCE" refId="12"/>    
+  <generalization id="28">    
+    <end type="SOURCE" refId="22"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="37">    
+  <generalization id="29">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="30">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="31" name="pathHistory">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="38" name="game"/>      
-      <multiplicity id="39" minimum="0" maximum="1"/>    
+      <attribute id="34" name="game">        
+        <position height="0" width="0" x="85" y="-18"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="0" width="0" x="85" y="-18"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="40">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <association id="41">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="42" name="pathHistory"/>      
-      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="45">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="46">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="47" name="theLevelReader"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="49">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="51">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="52" name="position"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="54">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="55">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="56">    
+  <generalization id="36">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <association id="57">    
+  <association id="37">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="58" name="position"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
+      <attribute id="38" name="position">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <realization id="41">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="43">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <realization id="45">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <realization id="47">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="48">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="49" name="position">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
