@@ -30,6 +30,10 @@ public class LevelReader {
     public int getNrOfTowers(int currentLevel) {
 
     }
+   
+    public boolean[] hasUnits(int currenLevel){
+	
+    }
     
     public int getNrOfLevels(){
 	return nrOfLevels;
