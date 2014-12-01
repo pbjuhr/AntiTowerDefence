@@ -1,5 +1,5 @@
-package antiTowerDefence;
-import unit.Unit;
+package com.jaap.antitowerdefence.antiTowerDefence;
+import com.jaap.antitowerdefence.unit.Unit;
 
 
 public class Tower {

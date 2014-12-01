@@ -1,6 +1,6 @@
-package unit;
+package com.jaap.antitowerdefence.unit;
 
-import antiTowerDefence.Position;
+import com.jaap.antitowerdefence.antiTowerDefence.Position;
 
 public abstract class Unit {
 

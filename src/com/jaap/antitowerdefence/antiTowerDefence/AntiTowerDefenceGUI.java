@@ -1,4 +1,4 @@
-package antiTowerDefence;
+package com.jaap.antitowerdefence.antiTowerDefence;
 
 public class AntiTowerDefenceGUI {
 

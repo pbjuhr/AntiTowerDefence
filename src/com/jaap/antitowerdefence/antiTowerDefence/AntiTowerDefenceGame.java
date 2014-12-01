@@ -1,4 +1,4 @@
-package antiTowerDefence;
+package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.util.ArrayList;
 

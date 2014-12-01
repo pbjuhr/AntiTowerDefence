@@ -1,6 +1,6 @@
-package terrain;
+package com.jaap.antitowerdefence.terrain;
 
-import antiTowerDefence.Position;
+import com.jaap.antitowerdefence.antiTowerDefence.Position;
 
 
 public abstract class Terrain {

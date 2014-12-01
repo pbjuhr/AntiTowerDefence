@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author andreasbolzyk
- *
- */
-package antiTowerDefence;

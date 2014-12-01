@@ -10,8 +10,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="antiTowerDefence.AntiTowerDefenceGUI" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/AntiTowerDefenceGUI.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceGUI" 
+    project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefenceGUI.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="879" y="138"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +21,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="antiTowerDefence.TowerPlacerAI" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/TowerPlacerAI.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.TowerPlacerAI" 
+    project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/TowerPlacerAI.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1751" y="392"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +32,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="terrain.Terrain" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/Terrain.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="com.jaap.antitowerdefence.terrain.Terrain" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/Terrain.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1177" y="449"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +41,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="antiTowerDefence.AntiTowerDefenceController" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/AntiTowerDefenceController.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceController" 
+    project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefenceController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1825" y="159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +52,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="antiTowerDefence.Tower" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/Tower.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.Tower" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/Tower.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1480" y="626"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +62,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="terrain.Road" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/Road.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="com.jaap.antitowerdefence.terrain.Road" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/Road.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="748" y="731"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +71,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="antiTowerDefence.HighScoreDB" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/HighScoreDB.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.HighScoreDB" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/HighScoreDB.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1100" y="165"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,8 +90,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="unit.Unit" project="AntiTowerDefence" file="/AntiTowerDefence/src/unit/Unit.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="com.jaap.antitowerdefence.unit.Unit" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/unit/Unit.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1680" y="662"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -91,8 +99,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="11" language="java" name="terrain.LandOn" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/LandOn.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="11" language="java" name="com.jaap.antitowerdefence.terrain.LandOn" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/LandOn.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="738" y="866"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -100,8 +108,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="12" language="java" name="terrain.Start" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/Start.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="12" language="java" name="com.jaap.antitowerdefence.terrain.Start" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/Start.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1162" y="731"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -109,8 +117,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="antiTowerDefence.AntiTowerDefence" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/AntiTowerDefence.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="13" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefence" 
+    project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefence.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1507" y="147"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -118,8 +128,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="antiTowerDefence.AntiTowerDefenceGame" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/AntiTowerDefenceGame.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceGame" 
+    project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefenceGame.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1967" y="414"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -127,8 +139,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="antiTowerDefence.Position" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/antiTowerDefence/Position.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="15" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.Position" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/Position.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1471" y="890"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -136,8 +149,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="terrain.Grass" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/Grass.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="com.jaap.antitowerdefence.terrain.Grass" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/Grass.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1300" y="731"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -145,8 +158,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="terrain.Portal" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/Portal.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="com.jaap.antitowerdefence.terrain.Portal" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/Portal.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="886" y="731"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -163,8 +176,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="unit.FarmerUnit" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/unit/FarmerUnit.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="19" language="java" name="com.jaap.antitowerdefence.unit.FarmerUnit" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/unit/FarmerUnit.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1609" y="872"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -172,8 +185,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="unit.SoldierUnit" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/unit/SoldierUnit.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="20" language="java" name="com.jaap.antitowerdefence.unit.SoldierUnit" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/unit/SoldierUnit.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1749" y="872"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -181,8 +194,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="unit.TeleporterUnit" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/unit/TeleporterUnit.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="21" language="java" name="com.jaap.antitowerdefence.unit.TeleporterUnit" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/unit/TeleporterUnit.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1900" y="872"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -190,8 +203,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="terrain.Switch" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/Switch.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="22" language="java" name="com.jaap.antitowerdefence.terrain.Switch" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/Switch.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1024" y="731"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -199,8 +212,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="terrain.Goal" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/terrain/Goal.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="23" language="java" name="com.jaap.antitowerdefence.terrain.Goal" project="AntiTowerDefence" 
+    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/terrain/Goal.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="600" y="731"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -209,113 +222,113 @@
     </display>  
   </class>  
   <generalization id="24">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="25">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="26" name="position">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="29">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <realization id="29">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
   <association id="30">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="31" name="pathHistory">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="32" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="33">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="34" name="game">        
+      <attribute id="31" name="game">        
         <position height="0" width="0" x="85" y="-18"/>      
       </attribute>      
-      <multiplicity id="35" minimum="0" maximum="1">        
+      <multiplicity id="32" minimum="0" maximum="1">        
         <position height="0" width="0" x="85" y="-18"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="36">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <association id="37">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="38" name="position">        
+  <realization id="33">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="34">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="35" name="position">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="39" minimum="0" maximum="1">        
+      <multiplicity id="36" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="40">    
+  <realization id="37">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="38">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="39" name="position">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="43">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="44" name="position">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="45" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="47" name="pathHistory">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="50">    
     <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <realization id="41">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <realization id="45">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <generalization id="46">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <realization id="47">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <association id="48">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="49" name="position">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="50" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

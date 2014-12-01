@@ -1,9 +1,9 @@
 package com.jaap.antitowerdefence.level;
 
-import antiTowerDefence.Position;
-import antiTowerDefence.Tower;
-import terrain.Terrain;
-import unit.Unit;
+import com.jaap.antitowerdefence.antiTowerDefence.Position;
+import com.jaap.antitowerdefence.antiTowerDefence.Tower;
+import com.jaap.antitowerdefence.terrain.Terrain;
+import com.jaap.antitowerdefence.unit.Unit;
 
 public class Level {
 
@@ -14,7 +14,7 @@ public class Level {
     private Position startPosition;
     
     public Level(Terrain[][] map, LevelStats levelStats) {
-	// 1. Sätter map och stats
+	// 1. Sï¿½tter map och stats
 	// 2. Initierar towers och units
     }
     
@@ -27,20 +27,20 @@ public class Level {
     }
     
     public void updateMap() {
-	/* Efter units och towers har gjort sina “actions”, så går den i genom 
+	/* Efter units och towers har gjort sina ï¿½actionsï¿½, sï¿½ gï¿½r den i genom 
 	 * towers och units och kollar om torn eller gubbar tillkommit.
 	 */
     }
     
     public void alterTerrain(Terrain t, Position position) {
-	// Lägger till exempelvis en Portal på en väg
+	// Lï¿½gger till exempelvis en Portal pï¿½ en vï¿½g
     }
     
     public Unit[] getUnits() {
 	return units;
     }
     
-    //ONÖDIG FUNKTION??
+    //ONï¿½DIG FUNKTION??
     public Tower[] getTowers() {
 	return towers;
     }
