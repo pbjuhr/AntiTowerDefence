@@ -4,12 +4,7 @@ import com.jaap.antitowerdefence.level.*;
 
 public class AntiTowerDefenceController {
     
-    private int minTimeStep;
-    private int currentStep;
-    private int currentLevel;
-    private LevelReader theLevelReader;
-    private Level theLevel;
-    private TowerPlacerAI towerPlacer;
+    private AntiTowerDefenceGUI gui;
     private AntiTowerDefenceGame game;
 
     public AntiTowerDefenceController(String level) {
