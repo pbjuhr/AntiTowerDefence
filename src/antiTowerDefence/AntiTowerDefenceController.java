@@ -7,5 +7,13 @@ public class AntiTowerDefenceController {
 
     public AntiTowerDefenceController(String level) {
 	game = new AntiTowerDefenceGame(level);
+	gui = AntiTowerDefenceGUI();
+	
+	// Set listeners
     }
+    
+    private void setListeners() {
+	
+    }
+    
 }
