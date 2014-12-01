@@ -7,7 +7,7 @@ package antiTowerDefence;
 public class AntiTowerDefence {
 
     /**
-     * @param args, (optional) contain a levels xml file
+     * @param args, (optional) contain a levels xml-file
      */
     public static void main(String[] args) {
     	String levelFile = "levels.xml";
