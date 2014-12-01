@@ -4,3 +4,7 @@ bin/*
 /bin/*
 *.class
 *.class
+
+bin/antiTowerDefence/AntiTowerDefenceController.class
+
+bin/antiTowerDefence/AntiTowerDefenceController.class
