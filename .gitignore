@@ -1,7 +1,4 @@
-# Ignore bin folder
-bin/*
-/bin
-/bin/*
+# Ignore class files
 *.class
 *.class
 
