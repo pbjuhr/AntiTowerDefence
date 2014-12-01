@@ -1,12 +1,14 @@
 package unit;
 
+import antiTowerDefence.Position;
+
 public abstract class Unit {
 
 	private int speed;
 	private int health;
 	private int cost;
 	private String direction;
-	private Positon position;
+	private Position position;
 	private Position[] pathHistory 	// För att gubben inte skall gå bakåt
 	private boolean reachedGoal;
 
