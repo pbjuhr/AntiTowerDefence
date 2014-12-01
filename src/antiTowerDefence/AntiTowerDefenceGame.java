@@ -22,6 +22,7 @@ public class AntiTowerDefenceGame {
 	highScore = new HighScoreDB();
 	//currentLevel = new Level(theLevelReader.getMap(), theLevelReader.getPossibleTowerPositions());
 	//towerPlacer = new TowerPlacerAI(theLevelReader.get);
+	// new comments
     }
 
     public void newLevel() {
