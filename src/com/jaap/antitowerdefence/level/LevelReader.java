@@ -31,8 +31,9 @@ public class LevelReader {
 	return 1;
     }
    
-    public boolean[] hasUnits(int currenLevel){
-	
+    public boolean[] hasUnits(int currentLevel){
+	boolean[] array = {true, false};
+	return array;
     }
     
     public int getNrOfLevels(){
