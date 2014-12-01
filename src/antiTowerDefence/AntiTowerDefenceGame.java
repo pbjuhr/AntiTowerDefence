@@ -7,12 +7,17 @@ import com.jaap.antitowerdefence.level.LevelReader;
 
 public class AntiTowerDefenceGame {
 
+<<<<<<< HEAD
     private int minTimeStep = 1000; // 1 second
+=======
+    private int minTimeStep;
+>>>>>>> FETCH_HEAD
     private int currentStep;
     private int currentLevelNumber;
     private LevelReader theLevelReader;
     private Level currentLevel;
     private TowerPlacerAI towerPlacer;
+<<<<<<< HEAD
     private HighScoreDB highScore;
 
     public AntiTowerDefenceGame(String level){
@@ -63,5 +68,11 @@ public class AntiTowerDefenceGame {
     public ArrayList<String> getHighScore() {
 	return highScore.getScores();
     }
+=======
+
+    public AntiTowerDefenceGame(String level) {
+
+    }
+>>>>>>> FETCH_HEAD
 
 }
