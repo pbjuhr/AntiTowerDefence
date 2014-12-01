@@ -1,4 +1,4 @@
-package antiTowerDefence;
+package com.jaap.antitowerdefence.level;
 
 public class LevelStats {
 
