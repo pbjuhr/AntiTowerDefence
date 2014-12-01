@@ -6,7 +6,7 @@ public abstract class Unit {
 	private int health;
 	private int cost;
 	private String direction;
-	private Position position;
+	private Positon position;
 	private Position[] pathHistory 	// För att gubben inte skall gå bakåt
 	private boolean reachedGoal;
 
