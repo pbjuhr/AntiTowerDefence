@@ -35,8 +35,3 @@ public class LevelReader {
 	return nrOfLevels;
     }
 }
-
-/*
-getNrOfTowers():int
-
-*/
