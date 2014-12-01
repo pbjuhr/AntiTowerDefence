@@ -12,4 +12,8 @@ public class AntiTowerDefenceGame {
     private Level theLevel;
     private TowerPlacerAI towerPlacer;
     
+    public AntiTowerDefenceGame(String level){
+	
+    }
+    
 }
