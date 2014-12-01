@@ -14,7 +14,7 @@ public class LevelStats {
 
     // Eventuella variabler för antal döda units, köpta units och units som nått målet
     public void addScore(int score){
-	
+
     }
 
     public int getScore(){
