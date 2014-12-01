@@ -9,7 +9,7 @@ public abstract class Unit {
 	private int cost;
 	private String direction;
 	private Position position;
-	private Position[] pathHistory 	// För att gubben inte skall gå bakåt
+	private Position[] pathHistory;	// För att gubben inte skall gå bakåt
 	private boolean reachedGoal;
 
 	public void move(){
@@ -25,7 +25,7 @@ public abstract class Unit {
 	}
 	
 	// Return true if health <= 0
-	public position getPosition(){
+	public Position getPosition(){
 		return position;
 		
 	}
