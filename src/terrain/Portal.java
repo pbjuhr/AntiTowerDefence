@@ -1,5 +1,5 @@
 package terrain;
 
-public class Portal extends Terrain {
+public class Portal extends Terrain implements LandOn{
 
 }

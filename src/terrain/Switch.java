@@ -1,5 +1,5 @@
 package terrain;
 
-public class Switch extends Terrain {
+public class Switch extends Terrain implements LandOn{
 
 }
