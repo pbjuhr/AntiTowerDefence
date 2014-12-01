@@ -1,5 +1,5 @@
 package terrain;
 
-public class Goal extends Terrain implements LandOn{
+public class Goal extends Terrain implements LandOn {
 
 }
