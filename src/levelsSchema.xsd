@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/levelsSchema" xmlns:tns="http://www.example.org/levelsSchema" elementFormDefault="qualified">
+</schema>
+  <xs:element name="levels" type="levelsType"/>
+  <xs:complexType name="unitsType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="unit" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="positionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:byte" name="x" use="optional"/>
+        <xs:attribute type="xs:byte" name="y" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="grassType">
+    <xs:sequence>
+      <xs:element type="positionType" name="position" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="roadType">
+    <xs:sequence>
+      <xs:element type="positionType" name="position" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="startType">
+    <xs:sequence>
+      <xs:element type="positionType" name="position"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="goalType">
+    <xs:sequence>
+      <xs:element type="positionType" name="position"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="terrainType">
+    <xs:sequence>
+      <xs:element type="grassType" name="grass"/>
+      <xs:element type="roadType" name="road"/>
+      <xs:element type="startType" name="start"/>
+      <xs:element type="goalType" name="goal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="levelType">
+    <xs:sequence>
+      <xs:element type="xs:byte" name="towers"/>
+      <xs:element type="xs:short" name="credits"/>
+      <xs:element type="xs:byte" name="winScore"/>
+      <xs:element type="unitsType" name="units"/>
+      <xs:element type="terrainType" name="terrain"/>
+    </xs:sequence>
+    <xs:attribute type="xs:byte" name="levelNumber" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="levelsType">
+    <xs:sequence>
+      <xs:element type="levelType" name="level" maxOccurs="unbounded" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation> LEVEL 1  LEVEL 2 </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:byte" name="dimensionX"/>
+    <xs:attribute type="xs:byte" name="dimensionY"/>
+  </xs:complexType>
+</xs:schema>
