@@ -5,6 +5,11 @@ import java.io.File;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
+/**
+ * 
+ * @author Anna Osterlund, id10aod
+ *
+ */
 public class LevelReader {
 
     private File levelFile;
@@ -20,6 +25,7 @@ public class LevelReader {
     }
     
     public Position[] getPossibleTowerPositions(int currenLevel) {
+	//Läser av alla gräspositioner och lägger till
 	return null;
     }
     
