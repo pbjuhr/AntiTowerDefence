@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<levels dimensionX="20" dimensionY="15">
+<levels dimensionX="20" dimensionY="15" nrOfLevels="2">
 	
 	<!-- LEVEL 1 -->
 	<level levelNumber="1">
