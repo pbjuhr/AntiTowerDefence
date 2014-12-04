@@ -1,12 +1,12 @@
 package com.jaap.antitowerdefence.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.level.LevelReader;
 import com.jaap.antitowerdefence.level.LevelStats;
 
@@ -37,6 +37,20 @@ public class LevelReaderTest {
 	int nrLev = levelReader.getNrOfLevels();
 	System.out.println(nrLev);
 	assertEquals(nrLev, 2);
+    }
+    
+    @Test
+    public void testGetPossibleTowerPositions() {
+	Position[] possibleTowerPositions = 
+		levelReader.getPossibleTowerPositions(2);
+	assertNotNull(possibleTowerPositions);
+	int x;
+	int y;
+	for(int i = 0; i < possibleTowerPositions.length; i++) {
+	    x = possibleTowerPositions[i].getX();
+	    y = possibleTowerPositions[i].getY();
+	    System.out.println("X = "+x+" Y = "+y);
+	}
     }
 
 }
