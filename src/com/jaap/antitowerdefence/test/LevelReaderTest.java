@@ -2,6 +2,7 @@ package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -51,6 +52,13 @@ public class LevelReaderTest {
 	    y = possibleTowerPositions[i].getY();
 	    System.out.println("X = "+x+" Y = "+y);
 	}
+    }
+    
+    @Test
+    public void testGetNrOfTowers() {
+	assertNotNull(levelReader.getNrOfTowers(2));
+	assertTrue(levelReader.getNrOfTowers(2) != 0);
+	System.out.println("Towers = " + levelReader.getNrOfTowers(2));
     }
 
 }
