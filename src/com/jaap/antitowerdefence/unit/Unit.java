@@ -1,5 +1,7 @@
 package com.jaap.antitowerdefence.unit;
 
+import java.util.ArrayList;
+
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 
 public abstract class Unit {
@@ -9,11 +11,12 @@ public abstract class Unit {
     private int cost;
     private String direction;
     private Position position;
-    private Position[] pathHistory; // För att gubben inte skall gå bakåt
+    private ArrayList<Position> pathHistory; // För att gubben inte skall gå bakåt
     private boolean reachedGoal;
 
     public Unit() {
-
+	pathHistory = new ArrayList<Position>();
+	reachedGoal = false;
     }
 
     public void move() {
