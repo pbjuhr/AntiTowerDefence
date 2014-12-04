@@ -15,8 +15,6 @@ import javax.xml.validation.Validator;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -37,7 +35,7 @@ public class LevelReader {
     private int nrOfLevels; // nr of maps in file
     private int xDimension;
     private int yDimension;
-    
+
     public LevelReader(String levelFile) {
 	// 1. Skapar xml-lasaren med level-strangen
 	// 2. Kollar hur manga banor det finns och s√§tter nrOfLevels
@@ -47,14 +45,15 @@ public class LevelReader {
 	setNrOfLevels();
 	setLevelDimensions();
     }
-    
+
     private void validateLevelFile() {
-	
-	//Validerar XML-filen med validatorn
+
+	//Validerar XML-filen med validatorn 
+	// HANTERA OM EJ VALIDERING G≈R IGENOM!!
 	File schemaFile = new File("src/levelsSchema.xsd");
 	Source xmlLevelFile = new StreamSource(levelFile);
 	SchemaFactory schemaFactory = SchemaFactory
-		    .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 	Schema schema;
 	try {
 	    schema = schemaFactory.newSchema(schemaFile);
@@ -65,9 +64,9 @@ public class LevelReader {
 	} catch (IOException e) {
 	    System.out.println("Fel vid validering av filen");
 	}
-	
+
     }
-    
+
     private void parseLevelFile() {
 	//Initierar l‰saren med xml-filen
 	DocumentBuilder dBuilder;
@@ -82,31 +81,31 @@ public class LevelReader {
 	    System.out.println("Fel vid parsning");
 	}
     }
-    
+
     private void setNrOfLevels() {
 	Element levels = 
 		(Element)gameLevels.getElementsByTagName("levels").item(0);
 	nrOfLevels = Integer.parseInt(levels.getAttribute("nrOfLevels"));	
     }
-    
+
     private void setLevelDimensions() {
 	NodeList levels = gameLevels.getElementsByTagName("levels");
 	Element levelsInfo = (Element)levels.item(0);
 	xDimension = Integer.parseInt(levelsInfo.getAttribute("dimensionX"));
 	yDimension = Integer.parseInt(levelsInfo.getAttribute("dimensionY"));
     }
-    
+
     public Terrain[][] getMap(int currentLevel) {
 	Terrain[][] map = new Terrain[xDimension][yDimension];
-	
+
 	return map;
     }
-    
-  /*  public Position[] getPossibleTowerPositions(int currenLevel) {
+
+    /*  public Position[] getPossibleTowerPositions(int currenLevel) {
 	//L‰ser av alla gr‰spositioner och l‰gger till
-	
+
     }*/
-    
+
     public LevelStats getLevelStats(int currentLevel) {
 	LevelStats levelStats;
 	NodeList levels = gameLevels.getElementsByTagName("level");
@@ -128,15 +127,15 @@ public class LevelReader {
 	}
 	return null;
     }
-    
+
     /*public int getNrOfTowers(int currentLevel) {
-	
+
     }
-   
+
     public boolean[] hasUnits(int currentLevel){
-	
+
     }*/
-    
+
     public int getNrOfLevels(){
 	return nrOfLevels;
     }
