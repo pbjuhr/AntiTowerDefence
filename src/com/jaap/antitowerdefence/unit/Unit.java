@@ -12,7 +12,6 @@ public abstract class Unit extends Thread{
     protected String direction;
     protected Position position;
     private ArrayList<Position> pathHistory;
-
     private boolean reachedGoal;
 
     public Unit() {
@@ -22,11 +21,11 @@ public abstract class Unit extends Thread{
     
     public void run(){
 	while(true) {
-	    this.move();
+	    //this.move();
 	}
     }
     
-    public void move() {
+    public void move(Position[] neighbours) {
 	
     }
 
@@ -40,10 +39,9 @@ public abstract class Unit extends Thread{
 
     public Position getPosition() {
 	return position;
-
     }
 
-    public boolean hasReachedGoal() {
+    public boolean hasReachedGoal(Position goalPos) {
 	return true;
     }
 
