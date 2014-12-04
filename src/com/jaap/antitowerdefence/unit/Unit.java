@@ -11,24 +11,13 @@ public abstract class Unit {
     protected int cost;
     protected String direction;
     protected Position position;
-    private ArrayList<Position> pathHistory; // För att gubben inte skall gå bakåt
+    private ArrayList<Position> pathHistory; // För att gubben inte skall gå
+					     // bakåt
     private boolean reachedGoal;
 
     public Unit() {
 	pathHistory = new ArrayList<Position>();
 	reachedGoal = false;
-    }
-    
-    protected void setSpeed(int speed){
-	this.speed = speed;
-    }
-    
-    protected void setCost(int cost){
-	this.cost = cost;
-    }
-    
-    protected void setHealth(int health){
-	this.health = health;
     }
 
     public void move() {
@@ -40,10 +29,9 @@ public abstract class Unit {
     }
 
     public boolean isAlive() {
-	return true;
+	return (health <= 0);
     }
 
-    // Return true if health <= 0
     public Position getPosition() {
 	return position;
 

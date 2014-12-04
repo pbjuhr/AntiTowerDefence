@@ -4,8 +4,8 @@ public class TeleporterUnit extends Unit{
     
     public TeleporterUnit(){
 	super();
-	setSpeed(10);
-	setCost(300);
-	setHealth(50);
+	speed = 20;
+	cost = 200;
+	health = 70;
     }
 }
