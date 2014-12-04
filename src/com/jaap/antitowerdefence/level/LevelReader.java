@@ -21,9 +21,6 @@ import org.xml.sax.SAXException;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
-/*import com.jaap.antitowerdefence.antiTowerDefence.Position;
-import com.jaap.antitowerdefence.terrain.Terrain;*/
-
 /**
  * 
  * @author Anna Osterlund, id10aod
@@ -158,10 +155,22 @@ public class LevelReader {
 	return null;
     }
 
-    /*public int getNrOfTowers(int currentLevel) {
-
+    public int getNrOfTowers(int currentLevel) {
+	NodeList levels = gameLevels.getElementsByTagName("level");
+	Element level;
+	int nrOfTowers;
+	for(int i = 0; i < levels.getLength(); i++) {
+	    level = (Element)levels.item(i);
+	    if(Integer.parseInt(level.getAttribute("levelNumber")) == currentLevel) {
+		nrOfTowers = Integer.parseInt(level
+			.getElementsByTagName("towers")
+			.item(0).getTextContent());
+		return nrOfTowers;
+	    }
+	}
+	return 0;
     }
-
+/*
     public boolean[] hasUnits(int currentLevel){
 
     }*/
