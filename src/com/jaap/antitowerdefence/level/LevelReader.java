@@ -18,6 +18,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 /*import com.jaap.antitowerdefence.antiTowerDefence.Position;
@@ -101,10 +102,39 @@ public class LevelReader {
 	return map;
     }
 
-    /*  public Position[] getPossibleTowerPositions(int currenLevel) {
+    public Position[] getPossibleTowerPositions(int currentLevel) {
 	//Läser av alla gräspositioner och lägger till
+	Position[] possibleTowerPositions;
+	NodeList levels = gameLevels.getElementsByTagName("level");
+	NodeList positions;
+	Element level;
+	Element terrainGrass;
+	Element position;
+	int x;
+	int y;
+	int levelNr;
+	for(int i = 0; i < levels.getLength(); i++) {
+	    level = (Element)levels.item(i);
+	    levelNr = Integer.parseInt(level.getAttribute("levelNumber"));
+	    if( levelNr == currentLevel) {
+		terrainGrass = (Element)level
+			.getElementsByTagName("terrain").item(0);
+		terrainGrass = (Element)terrainGrass
+			.getElementsByTagName("grass").item(0);
+		positions = terrainGrass.getElementsByTagName("position");
+		possibleTowerPositions = new Position[positions.getLength()];
+		for(int m = 0; m < positions.getLength(); m++){
+		    position = (Element)positions.item(m);
+		    x = Integer.parseInt(position.getAttribute("x"));
+		    y = Integer.parseInt(position.getAttribute("y"));
+		    possibleTowerPositions[m] = new Position(x, y);
+		}
+		return possibleTowerPositions;
+	    }
+	}
+	return null;
 
-    }*/
+    }
 
     public LevelStats getLevelStats(int currentLevel) {
 	LevelStats levelStats;
