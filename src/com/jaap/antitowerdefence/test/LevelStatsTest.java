@@ -1,44 +1,67 @@
 package com.jaap.antitowerdefence.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
+import com.jaap.antitowerdefence.level.LevelStats;
+/**
+ * 
+ * @author Anna Österlund, id10aod
+ *
+ */
 public class LevelStatsTest {
 
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
+    private LevelStats levelstats;
+    @Before
+    public void setUp() throws Exception {
+	levelstats = new LevelStats(60, 500);
     }
 
     @Test
     public void testLevelStats() {
-	fail("Not yet implemented");
+	assertNotNull(levelstats);
     }
 
     @Test
     public void testAddScore() {
-	fail("Not yet implemented");
+	int oldScore;
+	int newScore;
+	oldScore = levelstats.getScore();
+	levelstats.addScore(30);
+	newScore = levelstats.getScore();
+	assertTrue((newScore - oldScore) == 30);
     }
 
     @Test
     public void testGetScore() {
-	fail("Not yet implemented");
+	levelstats.addScore(30);
+	assertTrue((levelstats.getScore()) == 30);
     }
 
     @Test
     public void testAddCredits() {
-	fail("Not yet implemented");
+	int oldCredits;
+	int newCredits;
+	oldCredits = levelstats.getCredits();
+	levelstats.addCredits(20);
+	newCredits = levelstats.getCredits();
+	System.out.println("Old = "+oldCredits);
+	System.out.println("New = "+newCredits);
+	assertTrue(newCredits > oldCredits);
     }
 
     @Test
     public void testGetCredits() {
-	fail("Not yet implemented");
+	assertTrue(levelstats.getCredits() == 500);
     }
 
     @Test
     public void testGetWinScore() {
-	fail("Not yet implemented");
+	assertTrue(levelstats.getWinScore() == 60);
     }
 
 }
