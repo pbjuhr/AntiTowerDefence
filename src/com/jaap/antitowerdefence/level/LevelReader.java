@@ -61,11 +61,9 @@ public class LevelReader {
 	    Validator levelValidator = schema.newValidator();
 	    levelValidator.validate(xmlLevelFile);
 	} catch (SAXException e) {
-	    // Fel på newSchema
-	    e.printStackTrace();
+	    System.out.println("Fel vid skapandet av nytt schema");
 	} catch (IOException e) {
-	    //Fel vid validering
-	    e.printStackTrace();
+	    System.out.println("Fel vid validering av filen");
 	}
 	
     }
@@ -79,18 +77,16 @@ public class LevelReader {
 	    gameLevels = dBuilder.parse(levelFile);
 	    gameLevels.getDocumentElement().normalize();
 	} catch (SAXException | IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    System.out.println("Fel vid skapandet av docBuilder");
 	} catch (ParserConfigurationException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    System.out.println("Fel vid parsning");
 	}
     }
     
     private void setNrOfLevels() {
-	NodeList levels = gameLevels.getElementsByTagName("levels");
-	Element levelsInfo = (Element) levels.item(0);
-	nrOfLevels = Integer.parseInt(levelsInfo.getAttribute("nrOfLevels"));	
+	Element levels = 
+		(Element)gameLevels.getElementsByTagName("levels").item(0);
+	nrOfLevels = Integer.parseInt(levels.getAttribute("nrOfLevels"));	
     }
     
     private void setLevelDimensions() {
@@ -109,13 +105,31 @@ public class LevelReader {
   /*  public Position[] getPossibleTowerPositions(int currenLevel) {
 	//Läser av alla gräspositioner och lägger till
 	
-    }
+    }*/
     
     public LevelStats getLevelStats(int currentLevel) {
-	
+	LevelStats levelStats;
+	NodeList levels = gameLevels.getElementsByTagName("level");
+	Element level;
+	int winScore;
+	int credits;
+	for(int i = 0; i < levels.getLength(); i++) {
+	    level = (Element)levels.item(i);
+	    if(Integer.parseInt(level.getAttribute("levelNumber")) == currentLevel) {
+		credits = Integer.parseInt(level
+			.getElementsByTagName("credits")
+			.item(0).getTextContent());
+		winScore = Integer.parseInt(level
+			.getElementsByTagName("winScore")
+			.item(0).getTextContent());
+		levelStats = new LevelStats(winScore, credits);
+		return levelStats;
+	    }
+	}
+	return null;
     }
     
-    public int getNrOfTowers(int currentLevel) {
+    /*public int getNrOfTowers(int currentLevel) {
 	
     }
    
