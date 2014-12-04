@@ -10,7 +10,7 @@ public class LevelStats {
     private int winScore;
     private int credits;
 
-    LevelStats(int winScore, int credits) {
+    public LevelStats(int winScore, int credits) {
 	this.winScore = winScore;
 	this.credits = credits;
 	score = 0;
