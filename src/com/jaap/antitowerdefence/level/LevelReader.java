@@ -25,22 +25,28 @@ import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 /**
+ * LevelReader.java
+ * 
+ * BESKRIVNING!!
  * 
  * @author Anna Osterlund, id10aod
  *
  */
 public class LevelReader {
 
-    private File levelFile;
-    private Document gameLevels;
-    NodeList levels;
-    private int nrOfLevels; // nr of maps in file
-    private int xDimension;
-    private int yDimension;
+    private File levelFile;		// xml-file containing game levels
+    private Document gameLevels;	// a parsed document of the game levels
+    private int nrOfLevels; 		// nr of maps in file
+    private int xDimension; 		// x-dimension of level maps
+    private int yDimension; 		// y-dimension of level maps
 
+    /**
+     * LevelReader constructor. Creates the xml-reader with the given file name.
+     * Validates ande parse the file. Sets nrOfLevels and the level maps 
+     * dimensions.
+     * @param levelFile - file containing valid Anti Tower Defence levels
+     */
     public LevelReader(String levelFile) {
-	// 1. Skapar xml-lasaren med level-strangen
-	// 2. Kollar hur manga banor det finns och s√§tter nrOfLevels
 	this.levelFile = new File(levelFile);
 	validateLevelFile();
 	parseLevelFile();
@@ -48,10 +54,15 @@ public class LevelReader {
 	setLevelDimensions();
     }
 
+    /**
+     * validateLevelFile uses a xml-schema, levelsSchema.xsd to validate the 
+     * current level file. This way only valid level files are used.
+     */
     private void validateLevelFile() {
 
-	//Validerar XML-filen med validatorn 
+	//TODO!!
 	// HANTERA OM EJ VALIDERING G≈R IGENOM!!
+	// och andra felmeddelanden
 	File schemaFile = new File("src/levelsSchema.xsd");
 	Source xmlLevelFile = new StreamSource(levelFile);
 	SchemaFactory schemaFactory = SchemaFactory
@@ -66,11 +77,16 @@ public class LevelReader {
 	} catch (IOException e) {
 	    System.out.println("Fel vid validering av filen");
 	}
-
     }
 
+    /**
+     * parseLevelFile uses a DocumentBuilder to parse the level file making
+     * it possible to read from the file.
+     */
     private void parseLevelFile() {
-	//Initierar l‰saren med xml-filen
+	//TODO!!
+	// HANTERA OM EJ VALIDERING G≈R IGENOM!!
+	// och andra felmeddelanden
 	DocumentBuilder dBuilder;
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	try {
@@ -84,12 +100,20 @@ public class LevelReader {
 	}
     }
 
+    /**
+     * setNrOfLevels extracts the nr of levels in the level file and sets
+     * the variable nrOfLevels.
+     */
     private void setNrOfLevels() {
 	Element levels = 
 		(Element)gameLevels.getElementsByTagName("levels").item(0);
 	nrOfLevels = Integer.parseInt(levels.getAttribute("nrOfLevels"));	
     }
 
+    /**
+     * setLevelDimensions extracts the x and y dimensions of the level maps 
+     * from the level file and sets the variables xDimension and yDimension.
+     */
     private void setLevelDimensions() {
 	NodeList levels = gameLevels.getElementsByTagName("levels");
 	Element levelsInfo = (Element)levels.item(0);
@@ -103,6 +127,11 @@ public class LevelReader {
 	return map;
     }*/
 
+    /**
+     * 
+     * @param currentLevel
+     * @return
+     */
     public Terrain[] getRoad(int currentLevel) {
 	Terrain[] road;
 	NodeList levels = gameLevels.getElementsByTagName("level");
@@ -138,6 +167,12 @@ public class LevelReader {
 	return null;
     }
 
+    /**
+     * 
+     * @param type
+     * @param position
+     * @return
+     */
     private Terrain addRoad(String type, Element position) {
 	Terrain road;
 	int x;
@@ -154,6 +189,12 @@ public class LevelReader {
 	}
 	return road;
     }
+    
+    /**
+     * 
+     * @param currentLevel
+     * @return
+     */
     public Position[] getPossibleTowerPositions(int currentLevel) {
 	//L‰ser av alla gr‰spositioner och l‰gger till
 	Position[] possibleTowerPositions;
@@ -183,9 +224,13 @@ public class LevelReader {
 	    }
 	}
 	return null;
-
     }
 
+    /**
+     * 
+     * @param currentLevel
+     * @return
+     */
     public LevelStats getLevelStats(int currentLevel) {
 	LevelStats levelStats;
 	NodeList levels = gameLevels.getElementsByTagName("level");
@@ -208,6 +253,11 @@ public class LevelReader {
 	return null;
     }
 
+    /**
+     * 
+     * @param currentLevel
+     * @return
+     */
     public int getNrOfTowers(int currentLevel) {
 	NodeList levels = gameLevels.getElementsByTagName("level");
 	Element level;
@@ -224,6 +274,11 @@ public class LevelReader {
 	return 0;
     }
 
+    /**
+     * 
+     * @param currentLevel
+     * @return
+     */
     public boolean[] hasUnits(int currentLevel){
 	boolean[] hasUnits = new boolean[3];
 	NodeList levels = gameLevels.getElementsByTagName("level");
@@ -253,6 +308,11 @@ public class LevelReader {
 	return null;
     }
 
+    /**
+     * 
+     * @param currentLevel
+     * @return
+     */
     public String[] getUnits(int currentLevel){
 	String[] hasUnits;
 	NodeList levels = gameLevels.getElementsByTagName("level");
@@ -277,15 +337,27 @@ public class LevelReader {
 	return null;
     }
 
+    /**
+     * getNrOfLevels provides the number of levels in the level file
+     * @return - number of levels in level file
+     */
     public int getNrOfLevels(){
 	return nrOfLevels;
     }
     
     //F÷R ATT KONSTRUERA MATRISEN (MAP)
+    /**
+     * getXDimension provides the x-dimension of the level maps
+     * @return x-dimension of level maps
+     */
     public int getXDimension() {
 	return xDimension;
     }
     
+    /**
+     * getYDimension provides the y-dimension of the level maps
+     * @return y-dimension of level maps
+     */
     public int getYDimension() {
 	return yDimension;
     }
