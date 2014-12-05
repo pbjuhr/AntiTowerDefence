@@ -3,7 +3,7 @@
   <xs:element name="levels">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="level" maxOccurs="unbounded" minOccurs="0">
+        <xs:element name="level" maxOccurs="unbounded" minOccurs="1">
           <xs:annotation>
             <xs:documentation>LEVEL 1  LEVEL 2</xs:documentation>
           </xs:annotation>
@@ -15,7 +15,7 @@
               <xs:element name="units">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element type="xs:string" name="unit" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element type="xs:string" name="unit" maxOccurs="unbounded" minOccurs="1"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -25,12 +25,12 @@
                     <xs:element name="grass">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="position" maxOccurs="unbounded" minOccurs="0">
+                          <xs:element name="position" maxOccurs="unbounded" minOccurs="1">
                             <xs:complexType>
                               <xs:simpleContent>
                                 <xs:extension base="xs:string">
-                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
-                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="x" use="required"/>
+                                  <xs:attribute type="xs:byte" name="y" use="required"/>
                                 </xs:extension>
                               </xs:simpleContent>
                             </xs:complexType>
@@ -41,12 +41,12 @@
                     <xs:element name="road">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="position" maxOccurs="unbounded" minOccurs="0">
+                          <xs:element name="position" maxOccurs="unbounded" minOccurs="1">
                             <xs:complexType>
                               <xs:simpleContent>
                                 <xs:extension base="xs:string">
-                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
-                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="x" use="required"/>
+                                  <xs:attribute type="xs:byte" name="y" use="required"/>
                                 </xs:extension>
                               </xs:simpleContent>
                             </xs:complexType>
@@ -61,8 +61,8 @@
                             <xs:complexType>
                               <xs:simpleContent>
                                 <xs:extension base="xs:string">
-                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
-                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="x" use="required"/>
+                                  <xs:attribute type="xs:byte" name="y" use="required"/>
                                 </xs:extension>
                               </xs:simpleContent>
                             </xs:complexType>
@@ -77,8 +77,8 @@
                             <xs:complexType>
                               <xs:simpleContent>
                                 <xs:extension base="xs:string">
-                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
-                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="x" use="required"/>
+                                  <xs:attribute type="xs:byte" name="y" use="required"/>
                                 </xs:extension>
                               </xs:simpleContent>
                             </xs:complexType>
@@ -90,13 +90,13 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute type="xs:byte" name="levelNumber" use="optional"/>
+            <xs:attribute type="xs:byte" name="levelNumber" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:attribute type="xs:byte" name="dimensionX"/>
-      <xs:attribute type="xs:byte" name="dimensionY"/>
-      <xs:attribute type="xs:byte" name="nrOfLevels"/>
+      <xs:attribute type="xs:byte" name="dimensionX" use="required"/>
+      <xs:attribute type="xs:byte" name="dimensionY" use="required"/>
+      <xs:attribute type="xs:byte" name="nrOfLevels" use="required"/>
     </xs:complexType>
   </xs:element>
 </xs:schema>
