@@ -14,7 +14,7 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
 /**
  * TestPosition.java
  * 
- * Creates an instance of Position and tests the functionallity
+ * Tests the functionality of the class Position.java
  * 
  * @author Anna Osterlund, id10aod
  *
