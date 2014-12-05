@@ -10,13 +10,15 @@ import org.junit.Test;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.level.LevelReader;
 import com.jaap.antitowerdefence.level.LevelStats;
+import com.jaap.antitowerdefence.terrain.Terrain;
 
 public class LevelReaderTest {
     static LevelReader levelReader;
+    static int level;
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
 	levelReader = new LevelReader("src/levels.xml");
-	
+	level = 1;
     }
 
     @Test
@@ -26,39 +28,59 @@ public class LevelReaderTest {
 
     @Test
     public void testGetLevelStats() {
-	LevelStats levelstats= levelReader.getLevelStats(1);
-	System.out.println("credits = "+levelstats.getCredits());
-	System.out.println("score = "+levelstats.getScore());
-	System.out.println("winScore = "+levelstats.getWinScore());
+	LevelStats levelstats= levelReader.getLevelStats(level);
 	assertNotNull(levelstats);
     }
 
     @Test
     public void testGetNrOfLevels() {
 	int nrLev = levelReader.getNrOfLevels();
-	System.out.println(nrLev);
 	assertEquals(nrLev, 2);
     }
     
     @Test
     public void testGetPossibleTowerPositions() {
 	Position[] possibleTowerPositions = 
-		levelReader.getPossibleTowerPositions(2);
+		levelReader.getPossibleTowerPositions(level);
 	assertNotNull(possibleTowerPositions);
-	int x;
-	int y;
-	for(int i = 0; i < possibleTowerPositions.length; i++) {
-	    x = possibleTowerPositions[i].getX();
-	    y = possibleTowerPositions[i].getY();
-	    System.out.println("X = "+x+" Y = "+y);
-	}
+	assertTrue(possibleTowerPositions.length > 0);
     }
     
     @Test
     public void testGetNrOfTowers() {
-	assertNotNull(levelReader.getNrOfTowers(2));
-	assertTrue(levelReader.getNrOfTowers(2) != 0);
-	System.out.println("Towers = " + levelReader.getNrOfTowers(2));
+	assertNotNull(levelReader.getNrOfTowers(level));
+	assertTrue(levelReader.getNrOfTowers(level) > 0);
     }
 
+    @Test
+    public void testGetUnits(){
+	String[] units = levelReader.getUnits(level);
+	assertNotNull(units);
+	assertTrue(units.length > 0);
+    }
+    
+    @Test
+    public void testHasUnits(){
+	boolean[] units = levelReader.hasUnits(level);
+	assertNotNull(units);
+	assertTrue(units.length > 0);
+    }
+    
+    @Test
+    public void testGetXDimension(){
+	int xDim = levelReader.getXDimension();
+	assertEquals(xDim, 20);
+    }
+    
+    @Test
+    public void testGetYDimension(){
+	int yDim = levelReader.getYDimension();
+	assertEquals(yDim, 15);
+    }
+    
+    @Test
+    public void testGetRoad(){
+	Terrain[] road = levelReader.getRoad(level);
+	assertNotNull(road);
+    }
 }
