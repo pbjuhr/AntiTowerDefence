@@ -8,28 +8,15 @@ package com.jaap.antitowerdefence.terrain;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 
 public abstract class Terrain {
-    private Position position;
-    private boolean buildable;
-    private boolean walkable;
+    protected Position position;
 
-    public Terrain(Position position, boolean buildable, boolean walkable) {
+    public Terrain(Position position) {
 	this.position = position;
-	this.buildable = buildable;
-	this.walkable = walkable;
     }
 
     public Position getPosition() {
 	return position;
     }
-
-    public boolean isBuildable() {
-	return buildable;
-    }
-
-    public boolean isWalkable() {
-	return walkable;
-    }
-
 }
 
 

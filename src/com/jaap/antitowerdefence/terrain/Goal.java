@@ -8,10 +8,19 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
  *
  */
 public class Goal extends Terrain implements LandOn {
+    private boolean walkable;
 
-    public Goal(Position position, boolean buildable, boolean walkable) {
-	super(position, buildable, walkable);
-	// TODO Auto-generated constructor stub
+    public Goal(Position position, boolean walkable) {
+	super(position);
+	this.walkable = walkable;
     }
 
+    public boolean isWalkable() {
+	return walkable;
+    }
+
+    /*
+     * TODO Need a interface method her to check if unit is on me. Need to now
+     * if unit is on my position
+     */
 }
