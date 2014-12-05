@@ -2,8 +2,9 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 public class AntiTowerDefenceGUI {
 
-    
-    
+    public AntiTowerDefenceGUI() {
+	//init
+    }
 //    Fönstret å menyn
 //    JFrame Highsores
 //    LayeredPanel gamePanel
@@ -16,5 +17,4 @@ public class AntiTowerDefenceGUI {
 //    getGuiElements()
 //    buildLowerPanel()
 
-    
 }
