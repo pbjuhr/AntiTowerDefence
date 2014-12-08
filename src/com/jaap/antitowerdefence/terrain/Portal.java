@@ -1,6 +1,7 @@
 package com.jaap.antitowerdefence.terrain;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
+import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * 
@@ -15,8 +16,22 @@ public class Portal extends Terrain implements LandOn {
 	this.buildable = false;
     }
 
-    public boolean isWalkable() {
-	return walkable;
+    @Override
+    public void setPostion(Unit unit) {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setReachGoal(Unit unit) {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setDirections(Unit unit) {
+	// TODO Auto-generated method stub
+
     }
 
     /*

@@ -14,5 +14,7 @@ public class Water extends Terrain {
 
     public Water(Position position) {
 	super(position);
+	walkable = false;
+	buildable = false;
     }
 }
