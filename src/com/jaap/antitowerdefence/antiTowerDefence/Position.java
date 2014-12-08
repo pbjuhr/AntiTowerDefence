@@ -54,4 +54,17 @@ public class Position {
     public void setY(int y) {
 	this.y = y;
     }
+    
+    /**
+     * distanceTo calculates the Manhattan/taxi cab distance between two
+     * positions
+     * @param position - the position to mesure the distance to.
+     * @return the distance to the position
+     */
+    public int distanceTo(Position position) {
+	// (avstånd = |x1 - x2| + |y1 - y2|)
+	int distance = ((Math.abs(position.getX() - x) + 
+				(Math.abs(position.getY() - y))));
+	return distance;
+    }
 }
