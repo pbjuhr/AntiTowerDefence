@@ -105,8 +105,7 @@ public abstract class Unit extends Thread {
     /**
      * sets the units position
      * 
-     * @param p
-     *            , the new position
+     * @param p, the new position
      */
     public void setPosition(Position p) {
 	position = p;
@@ -115,8 +114,7 @@ public abstract class Unit extends Thread {
     /**
      * Checks if the unit has reached the maps goal
      * 
-     * @param goalPos
-     *            , the goals position
+     * @param goalPos, the goals position
      * @return true, if the unit has reached the goal, otherwise false
      */
     public boolean hasReachedGoal(Position goalPos) {
@@ -126,8 +124,7 @@ public abstract class Unit extends Thread {
     /**
      * Sets the reached goal to true or false
      * 
-     * @param reachedGoal
-     *            , the new reached goal value
+     * @param reachedGoal, the new reached goal value
      */
     public void setReachedGoal(boolean reachedGoal) {
 	this.reachedGoal = reachedGoal;
@@ -136,16 +133,14 @@ public abstract class Unit extends Thread {
     /**
      * Sets the direction string
      * 
-     * @param newDirection
-     *            , string with new direction. Must be "north", "south", "east"
-     *            or "west"
+     * @param newDirection, string with new direction. Must be "north", "south",
+     * "east"or "west"
      */
     public void setDirection(String newDirection) {
-	if (newDirection != "north" || newDirection != "south"
-		|| newDirection != "east" || newDirection != "west") {
-	    return;
+	if (newDirection == "north" || newDirection == "south"
+		|| newDirection == "east" || newDirection == "west") {
+	    this.direction = newDirection;
 	}
-	this.direction = newDirection;
     }
 
     /**
