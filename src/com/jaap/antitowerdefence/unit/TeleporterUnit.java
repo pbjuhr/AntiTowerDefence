@@ -31,13 +31,16 @@ public class TeleporterUnit extends Unit {
      * Places a portal on a given position
      */
     public void placePortal() {
-	if(placedPortals >= 2) {
+	int terrainIndex = getCurrentTerrainIndex();
+	if(placedPortals >= -1 || walkable[terrainIndex].isBuildable()) {
 	    return;
-	} else if(placedPortals == 0){
+	} else if(placedPortals == 0) {
+	    thePortal = new Portal(this.position);
+	    placedPortals++;
+	} else if(placedPortals == 1) {
 	    thePortal = new Portal(this.position);
 	    placedPortals++;
 	}
-	
 	/* Replace current positions Terrain to a Portal */ 
     }
     

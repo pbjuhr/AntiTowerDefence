@@ -79,16 +79,16 @@ public abstract class Unit extends Thread {
     }
     
     /**
-     * Gets a terrain object with same position as the unit
-     * @return Terrain, the terrain object
+     * Gets a terrain object (with same position as the unit) index 
+     * @return i, the terrain objects index, or -1 if no object was found
      */
-    protected Terrain getCurrentTerrain(){
-	for(Terrain t : walkable){
-	    if(t.getPosition().equals(position)) {
-		return t;
+    protected int getCurrentTerrainIndex() {
+	for(int i = 0; i < walkable.length; i++){
+	    if(walkable[i].getPosition().equals(position)) {
+		return i;
 	    }
 	}
-	return null;
+	return -1;
     }
 
     /**
