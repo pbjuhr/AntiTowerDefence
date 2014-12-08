@@ -20,6 +20,15 @@ public abstract class Terrain {
     public Position getPosition() {
 	return position;
     }
+    
+    public boolean isBuildable(){
+	return buildable;
+    }
+    
+    public boolean isWalkable(){
+	return buildable;
+    }
+    
 }
 
 

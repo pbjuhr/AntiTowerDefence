@@ -10,13 +10,10 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
 public class Goal extends Terrain implements LandOn {
     private boolean walkable;
 
-    public Goal(Position position, boolean walkable) {
+    public Goal(Position position) {
 	super(position);
-	this.walkable = walkable;
-    }
-
-    public boolean isWalkable() {
-	return walkable;
+	walkable = true;
+	buildable = false;
     }
 
     /*

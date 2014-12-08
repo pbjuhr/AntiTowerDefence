@@ -12,10 +12,7 @@ public class Road extends Terrain {
     public Road(Position position) {
 	super(position);
 	this.walkable = true;
-	this.buildable = false;
+	this.buildable = true;
     }
 
-    public boolean isWalkable() {
-	return walkable;
-    }
 }

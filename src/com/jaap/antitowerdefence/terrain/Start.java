@@ -17,10 +17,6 @@ public class Start extends Terrain {
 	this.buildable = false;
     }
 
-    public boolean isWalkable() {
-	return walkable;
-    }
-
     //TODO Need a interface method definer her to check if unit is on me.
     
 }

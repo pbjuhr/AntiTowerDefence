@@ -12,12 +12,9 @@ public class Grass extends Terrain {
 
     private boolean buildable;
 
-    public Grass(Position position, boolean buildable) {
+    public Grass(Position position) {
 	super(position);
-	this.buildable = buildable;
-    }
-
-    public boolean isBuildable() {
-	return buildable;
+	buildable = true;
+	walkable = false;
     }
 }
