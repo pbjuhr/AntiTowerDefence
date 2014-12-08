@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.level.LevelReader;
 import com.jaap.antitowerdefence.level.LevelStats;
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -62,15 +61,15 @@ public class LevelReaderTest {
     }
     
     /**
-     * Checks thar getPossibleTowerPositions returns an array of Position that
+     * Checks thar getGrass returns an array of Terrain that
      * is not null or empty
      */
     @Test
-    public void testGetPossibleTowerPositions() {
-	Position[] possibleTowerPositions = 
-		levelReader.getPossibleTowerPositions(level);
-	assertNotNull(possibleTowerPositions);
-	assertTrue(possibleTowerPositions.length > 0);
+    public void testGetGrass() {
+	Terrain[] grass = 
+		levelReader.getGrass(level);
+	assertNotNull(grass);
+	assertTrue(grass.length > 0);
     }
     
     /**
@@ -91,17 +90,14 @@ public class LevelReaderTest {
 	assertNotNull(units);
 	assertTrue(units.length > 0);
     }
-    
-    /**
-     * Checks that hasUnits returns a boolean-array with a length > 0.
-     */
-    @Test
+
+ /*   @Test
     public void testHasUnits(){
 	boolean[] units = levelReader.hasUnits(level);
 	assertNotNull(units);
 	assertTrue(units.length > 0);
     }
-    
+    */
     /**
      * Checks that getXDimension the correct x-dimension value.
      */
