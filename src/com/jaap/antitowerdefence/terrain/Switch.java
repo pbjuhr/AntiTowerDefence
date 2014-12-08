@@ -1,5 +1,7 @@
 package com.jaap.antitowerdefence.terrain;
 
+import java.util.Random;
+
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
 
@@ -16,16 +18,29 @@ public class Switch extends Terrain implements LandOnInterface {
 	buildable = false;
     }
 
- 
-
     @Override
     public void landOn(Unit u) {
+	Direction.EAST.compareTo(Direction.EAST);
+	u.getDirection();
+	u.setDirection(Direction.getRandomDirection().toString());
 	// TODO Auto-generated method stub
-	
+
     }
 
-    /*
-     * TODO Need a interface method her to check if unit is on me. Need to now
-     * if unit is on my position
-     */
+    // Test of random
+    public static void main(String[] args) {
+	for (int i = 0; i < 10; i++) {
+	    System.out.println(Direction.getRandomDirection());
+	}
+    }
+}
+
+enum Direction {
+    NORTH, SOUTH, WEST, EAST;
+
+    public static Direction getRandomDirection() {
+	Random random = new Random();
+	return values()[random.nextInt(values().length)];
+    }
+
 }

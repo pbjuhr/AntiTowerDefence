@@ -1,7 +1,6 @@
 package com.jaap.antitowerdefence.terrain;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
-import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * 
@@ -14,10 +13,6 @@ public class Road extends Terrain {
 	super(position);
 	this.walkable = true;
 	this.buildable = true;
-    }
-    
-    public void landOn(Unit u){
-	//Do nothing
     }
 
 }
