@@ -8,7 +8,10 @@ package com.jaap.antitowerdefence.terrain;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 
 public abstract class Terrain {
+    
     protected Position position;
+    protected boolean walkable;
+    protected boolean buildable;
 
     public Terrain(Position position) {
 	this.position = position;

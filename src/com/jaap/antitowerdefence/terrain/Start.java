@@ -11,9 +11,10 @@ public class Start extends Terrain {
 
     private boolean walkable;
     
-    public Start(Position position, boolean walkable) {
+    public Start(Position position) {
 	super(position);
-	this.walkable = walkable;
+	this.walkable = true;
+	this.buildable = false;
     }
 
     public boolean isWalkable() {

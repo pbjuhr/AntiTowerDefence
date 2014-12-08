@@ -9,11 +9,10 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
  */
 public class Portal extends Terrain implements LandOn {
 
-    private boolean walkable;
-
-    public Portal(Position position, boolean walkable) {
+    public Portal(Position position) {
 	super(position);
-	this.walkable = walkable;
+	this.walkable = true;
+	this.buildable = false;
     }
 
     public boolean isWalkable() {

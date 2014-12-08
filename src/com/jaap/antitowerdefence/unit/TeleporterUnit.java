@@ -6,6 +6,7 @@
 package com.jaap.antitowerdefence.unit;
 
 import com.jaap.antitowerdefence.terrain.Portal;
+import com.jaap.antitowerdefence.terrain.Terrain;
 
 public class TeleporterUnit extends Unit {
     
@@ -17,20 +18,27 @@ public class TeleporterUnit extends Unit {
      * Runs super constructor and sets teleporters speed, cost, health and
      * portal variables
      */
-    public TeleporterUnit() {
-	super();
+    public TeleporterUnit(Terrain[] walkable) {
+	super(walkable);
 	speed = 20;
 	cost = 200;
 	health = 70;
-	thePortal = new Portal();
 	placedPortals = 0;
+	start();
     }
     
     /**
      * Places a portal on a given position
      */
     public void placePortal() {
-	placedPortals++;
+	if(placedPortals >= 2) {
+	    return;
+	} else if(placedPortals == 0){
+	    thePortal = new Portal(this.position);
+	    placedPortals++;
+	}
+	
+	/* Replace current positions Terrain to a Portal */ 
     }
     
     /**

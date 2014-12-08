@@ -9,11 +9,10 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
  */
 public class Road extends Terrain {
 
-    private boolean walkable;
-
-    public Road(Position position, boolean walkable) {
+    public Road(Position position) {
 	super(position);
-	this.walkable = walkable;
+	this.walkable = true;
+	this.buildable = false;
     }
 
     public boolean isWalkable() {
