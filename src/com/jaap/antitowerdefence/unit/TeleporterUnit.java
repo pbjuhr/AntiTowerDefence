@@ -31,7 +31,7 @@ public class TeleporterUnit extends Unit {
      * Places a portal on a given position
      */
     public void placePortal() {
-	int terrainIndex = getCurrentTerrainIndex();
+	int terrainIndex = getTerrainIndex(position);
 	if(placedPortals >= -1 || walkable[terrainIndex].isBuildable()) {
 	    return;
 	} else if(placedPortals == 0) {
