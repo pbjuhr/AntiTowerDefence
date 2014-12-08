@@ -5,9 +5,12 @@
  */
 package com.jaap.antitowerdefence.unit;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
+import com.jaap.antitowerdefence.terrain.LandOnInterface;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 public abstract class Unit extends Thread {
@@ -16,7 +19,7 @@ public abstract class Unit extends Thread {
     protected int speed; // The speed the unit walks in
     protected int health; // The unit's current health
     protected int cost; // How much the unit costs
-    protected int coolDown;
+    protected int animationSpeed;
     protected boolean hasMoved;
     protected String direction; // The units direction
     protected Position position; // The units current position
@@ -43,8 +46,13 @@ public abstract class Unit extends Thread {
 	    hasMoved = false;
 	    if (!isDead()) {
 		move();
-		// sleep(animationSpeed);
-		// Call landOn
+		try {
+		    sleep(animationSpeed);
+		} catch (InterruptedException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+		runLandOn(getTerrainIndex(this.position));
 	    } else {
 		break;
 	    }
@@ -93,6 +101,39 @@ public abstract class Unit extends Thread {
 	    setDirection("north");
 	}
     }
+    
+    /**
+     * Runs the LandOn method(if exists) on a given Terrain object
+     * @param currentPositionIndex, the terrain objects index in walkable
+     */
+    private void runLandOn(int currentPositionIndex) {
+	if(walkable[currentPositionIndex] instanceof LandOnInterface) {
+	    
+	    // Get the class LandOnInterface
+	    Class<?> landOnInterface = null;
+	    try {
+		landOnInterface = Class.forName("LandOnInterface");
+	    } catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	    }
+	    
+	    // Get the landOn method
+	    Method landOnMethod = null;
+	    try {
+		landOnMethod = landOnInterface.getMethod("landOn");
+	    } catch (NoSuchMethodException | SecurityException e1) {
+		e1.printStackTrace();
+	    }
+	    
+	    // Run the landOn method with the current Terrain object
+	    try {
+		landOnMethod.invoke(walkable[currentPositionIndex], this);
+	    } catch (IllegalAccessException | IllegalArgumentException
+		    | InvocationTargetException e2) {
+		e2.printStackTrace();
+	    }
+	}
+    }
 
     /**
      * The unit gets damaged and the health gets reduced by 20.
@@ -107,7 +148,7 @@ public abstract class Unit extends Thread {
      * @return true if the unit is dead, otherwise false
      */
     public boolean isDead() {
-	return (health <= 0);
+	return (this.health <= 0);
     }
 
     /**
@@ -132,7 +173,7 @@ public abstract class Unit extends Thread {
      * @return Position, the current position
      */
     public Position getPosition() {
-	return position;
+	return this.position;
     }
 
     /**
@@ -141,8 +182,8 @@ public abstract class Unit extends Thread {
      * @param p, the new position
      */
     public void setPosition(Position p) {
-	position.setX(p.getX());
-	position.setY(p.getY());
+	this.position.setX(p.getX());
+	this.position.setY(p.getY());
     }
 
     /**
