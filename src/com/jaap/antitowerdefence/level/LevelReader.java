@@ -225,7 +225,7 @@ public class LevelReader {
 		    position = (Element)positions.item(m);
 		    x = Integer.parseInt(position.getAttribute("x"));
 		    y = Integer.parseInt(position.getAttribute("y"));
-		    grass[m] = new Grass(new Position(x, y), true);
+		    grass[m] = new Grass(new Position(x, y));
 		}
 		return grass;
 	    }
