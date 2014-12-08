@@ -100,14 +100,13 @@ public abstract class Unit extends Thread {
     public Position getPosition() {
 	return position;
     }
-
     
     /**
-     * Gets the end portal position
-     * 
+     * sets the units position
+     * @param p, the new position
      */
-    public void setEndPortalPosition(Position p) {
-	endPortalPosition = p;
+    public void setPosition(Position p) {
+	position = p;
     }
     
     /**
