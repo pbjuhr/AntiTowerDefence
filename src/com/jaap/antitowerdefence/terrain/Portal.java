@@ -8,29 +8,43 @@ import com.jaap.antitowerdefence.unit.Unit;
  * @author Andreas Bolzyk id10abk
  *
  */
-public class Portal extends Terrain implements LandOn {
+public class Portal extends Terrain implements LandOnInterface {
+
+    // Position position
+    private Position posEndPortal;
+    // boolean hasTwin
+    private boolean hasEndPortal;
 
     public Portal(Position position) {
 	super(position);
 	this.walkable = true;
 	this.buildable = false;
+	hasEndPortal = false;
     }
 
     @Override
-    public void setPostion(Unit unit) {
+    public void landOn(Unit u) {
+
+	
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
-    public void setReachGoal(Unit unit) {
-	// TODO Auto-generated method stub
-
+    // setTwinPosition(Position pos):void
+    // setHasTwin(boolean hasTwin):void
+    public void setPosEndPortal(Position posEndPortal) {
+	this.posEndPortal = posEndPortal;
+	hasEndPortal = true;
     }
 
-    @Override
-    public void setDirections(Unit unit) {
-	// TODO Auto-generated method stub
+    // getTwinPosition():Position
+    public Position getPosEndPortal() {
+	return posEndPortal;
+    }
+
+    // hasTwin():boolean
+    public boolean hasEndPortal() {
+	return hasEndPortal;
 
     }
 

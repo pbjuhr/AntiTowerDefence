@@ -8,7 +8,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  * @author Andreas Bolzyk id10abk
  *
  */
-public class Goal extends Terrain implements LandOn {
+public class Goal extends Terrain implements LandOnInterface {
    
 
     public Goal(Position position) {
@@ -17,25 +17,12 @@ public class Goal extends Terrain implements LandOn {
 	buildable = false;
     }
 
-    
-
     @Override
-    public void setPostion(Unit unit) {
-	// TODO Auto-generated method stub
-	
+    public void landOn(Unit u){
+	u.setReachedGoal(true);
     }
 
-    @Override
-    public void setReachGoal(Unit unit) {
-	// TODO Auto-generated method stub
-	
-    }
 
-    @Override
-    public void setDirections(Unit unit) {
-	// TODO Auto-generated method stub
-	
-    }
 
     /*
      * TODO Need a interface method her to check if unit is on me. Need to now

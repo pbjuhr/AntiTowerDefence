@@ -7,13 +7,11 @@ import com.jaap.antitowerdefence.unit.Unit;
  * @author Andreas Bolzyk id10abk
  *
  */
-public interface LandOn {
+public interface LandOnInterface {
+    
+    public void landOn(Unit u);
 
-    public void setPostion(Unit unit);
 
-    public void setReachGoal(Unit unit);
-
-    public void setDirections(Unit unit);
 
     /*
      * TODO Need a interface method her to check if unit is on me. Need to now

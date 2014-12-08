@@ -8,7 +8,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  * @author Andreas Bolzyk id10abk
  *
  */
-public class Switch extends Terrain implements LandOn {
+public class Switch extends Terrain implements LandOnInterface {
 
     public Switch(Position position) {
 	super(position);
@@ -16,22 +16,12 @@ public class Switch extends Terrain implements LandOn {
 	buildable = false;
     }
 
-    @Override
-    public void setPostion(Unit unit) {
-	// TODO Auto-generated method stub
-
-    }
+ 
 
     @Override
-    public void setReachGoal(Unit unit) {
+    public void landOn(Unit u) {
 	// TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void setDirections(Unit unit) {
-	// TODO Auto-generated method stub
-
+	
     }
 
     /*
