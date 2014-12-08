@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Goal;
+import com.jaap.antitowerdefence.terrain.Grass;
 import com.jaap.antitowerdefence.terrain.Road;
 import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -27,13 +28,18 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 /**
  * LevelReader.java
  * 
- * BESKRIVNING!!
+ * A XML-reader that takes a level file (xml) for the game Anti Tower Defence, 
+ * checks if the file is valid and, if so, parse the file. The file is 
+ * validated with a xml-schema, "levelsSchema.xsd".The class contains functions 
+ * for retrieving information about the game levels. If the given xml-file is 
+ * not valid a ddeffault file is used.
  * 
  * @author Anna Osterlund, id10aod
  *
  */
 public class LevelReader {
 
+    /*Variables*/
     private File levelFile;		// xml-file containing game levels
     private Document gameLevels;	// a parsed document of the game levels
     private int nrOfLevels; 		// nr of maps in file
@@ -75,6 +81,9 @@ public class LevelReader {
 	} catch (SAXException e) {
 	    System.out.println("Fel vid skapandet av nytt schema");
 	} catch (IOException e) {
+	    /*Om levelfilen inte är korrekt så används defaultfilen 
+	     * "levels.xml"*/
+	    levelFile = new File("src/levels.xml");
 	    System.out.println("Fel vid validering av filen");
 	}
     }
@@ -121,25 +130,22 @@ public class LevelReader {
 	yDimension = Integer.parseInt(levelsInfo.getAttribute("dimensionY"));
     }
 
-    /*public Terrain[][] getMap(int currentLevel) {
-	Terrain[][] map = new Terrain[xDimension][yDimension];
-
-	return map;
-    }*/
-
     /**
-     * 
-     * @param currentLevel
-     * @return
+     * getRoad extracts all the walkable positions, road, start and goal, of a 
+     * given level from the level file. Constructs terrain objects using 
+     * these positions, saves the objects in a Terrain array and returns the 
+     * array.
+     * @param currentLevel - the level to extract the positions from
+     * @return an array with walkable Terrain objects or null
      */
     public Terrain[] getRoad(int currentLevel) {
 	Terrain[] road;
-	NodeList levels = gameLevels.getElementsByTagName("level");
 	NodeList positions;
 	Element level;
 	Element terrainRoad;
 	int n = 0;
 	int levelNr;
+	NodeList levels = gameLevels.getElementsByTagName("level");
 	for(int i = 0; i < levels.getLength(); i++) {
 	    level = (Element)levels.item(i);
 	    levelNr = Integer.parseInt(level.getAttribute("levelNumber"));
@@ -149,18 +155,17 @@ public class LevelReader {
 		positions = terrainRoad.getElementsByTagName("position");
 		road = new Terrain[(positions.getLength()+2)];
 		for(int m = 0; m < (positions.getLength()); m++){
-		    road[m] = addRoad("road", (Element)positions.item(m));
+		    road[m] = getRoadObject("road", (Element)positions.item(m));
 		    n = m;
-		    
 		}
 		terrainRoad = (Element)level
 			.getElementsByTagName("start").item(0);
 		positions = terrainRoad.getElementsByTagName("position");
-		road[n+1] = addRoad("start", (Element)positions.item(0));
+		road[n+1] = getRoadObject("start", (Element)positions.item(0));
 		terrainRoad = (Element)level
 			.getElementsByTagName("goal").item(0);
 		positions = terrainRoad.getElementsByTagName("position");
-		road[n+2] = addRoad("goal", (Element)positions.item(0));
+		road[n+2] = getRoadObject("goal", (Element)positions.item(0));
 		return road;
 	    }
 	}
@@ -168,12 +173,13 @@ public class LevelReader {
     }
 
     /**
-     * 
-     * @param type
-     * @param position
-     * @return
+     * getRoadObject creates and returns an instance of a Terrain object with 
+     * a given position and type.
+     * @param type - road, goal or start
+     * @param position - the position to give to the Terrain object
+     * @return - a Terrain object
      */
-    private Terrain addRoad(String type, Element position) {
+    private Terrain getRoadObject(String type, Element position) {
 	Terrain road;
 	int x;
 	int y;
@@ -181,24 +187,24 @@ public class LevelReader {
 	y = Integer.parseInt(position.getAttribute("y"));
 
 	if(type.equals("start")){
-	    road = new Start(new Position(x, y), false, true);
+	    road = new Start(new Position(x, y), true);
 	}else if(type.equals("goal")) {
-	    road = new Goal(new Position(x, y), false, true);
+	    road = new Goal(new Position(x, y), true);
 	}else {
-	    road = new Road(new Position(x, y), false, true);
+	    road = new Road(new Position(x, y), true);
 	}
 	return road;
     }
     
     /**
-     * 
-     * @param currentLevel
-     * @return
+     * getGrass extracts all the grass positions of a given level from the 
+     * level file. Constructs grass objects using these positions and saves the 
+     * objects in a Terrain array and returns the array.
+     * @param currentLevel - the level to extract the positions from
+     * @return an array of Grass objects or null
      */
-    public Position[] getPossibleTowerPositions(int currentLevel) {
-	//Läser av alla gräspositioner och lägger till
-	Position[] possibleTowerPositions;
-	NodeList levels = gameLevels.getElementsByTagName("level");
+    public Terrain[] getGrass(int currentLevel) {
+	Terrain[] grass;
 	NodeList positions;
 	Element level;
 	Element terrainGrass;
@@ -206,6 +212,7 @@ public class LevelReader {
 	int x;
 	int y;
 	int levelNr;
+	NodeList levels = gameLevels.getElementsByTagName("level");
 	for(int i = 0; i < levels.getLength(); i++) {
 	    level = (Element)levels.item(i);
 	    levelNr = Integer.parseInt(level.getAttribute("levelNumber"));
@@ -213,23 +220,26 @@ public class LevelReader {
 		terrainGrass = (Element)level
 			.getElementsByTagName("grass").item(0);
 		positions = terrainGrass.getElementsByTagName("position");
-		possibleTowerPositions = new Position[positions.getLength()];
+		grass = new Terrain[positions.getLength()];
 		for(int m = 0; m < positions.getLength(); m++){
 		    position = (Element)positions.item(m);
 		    x = Integer.parseInt(position.getAttribute("x"));
 		    y = Integer.parseInt(position.getAttribute("y"));
-		    possibleTowerPositions[m] = new Position(x, y);
+		    grass[m] = new Grass(new Position(x, y), true);
 		}
-		return possibleTowerPositions;
+		return grass;
 	    }
 	}
 	return null;
     }
 
     /**
-     * 
-     * @param currentLevel
-     * @return
+     * getLevelStats extracts the start conditions of a given level. It 
+     * constructs a LevelStat object with the extracte information and returns 
+     * this object.
+     * @param currentLevel - the level to extract information about
+     * @return - A LevelStat object containing the start conditions of the 
+     * level or null
      */
     public LevelStats getLevelStats(int currentLevel) {
 	LevelStats levelStats;
@@ -254,9 +264,10 @@ public class LevelReader {
     }
 
     /**
-     * 
-     * @param currentLevel
-     * @return
+     * gerNrOfTowers extracts information from the level file about the nr of 
+     * towers to be implemented in the given level.
+     * @param currentLevel - the level to extract information about
+     * @return - number of towers in the level
      */
     public int getNrOfTowers(int currentLevel) {
 	NodeList levels = gameLevels.getElementsByTagName("level");
@@ -264,22 +275,19 @@ public class LevelReader {
 	int nrOfTowers;
 	for(int i = 0; i < levels.getLength(); i++) {
 	    level = (Element)levels.item(i);
-	    if(Integer.parseInt(level.getAttribute("levelNumber")) == currentLevel) {
-		nrOfTowers = Integer.parseInt(level
-			.getElementsByTagName("towers")
-			.item(0).getTextContent());
+	    if(Integer.parseInt(
+		    level.getAttribute("levelNumber")) == currentLevel) {
+		
+		nrOfTowers = Integer.parseInt(
+			level.getElementsByTagName("towers").
+				item(0).getTextContent());
 		return nrOfTowers;
 	    }
 	}
 	return 0;
     }
 
-    /**
-     * 
-     * @param currentLevel
-     * @return
-     */
-    public boolean[] hasUnits(int currentLevel){
+/*    public boolean[] hasUnits(int currentLevel){
 	boolean[] hasUnits = new boolean[3];
 	NodeList levels = gameLevels.getElementsByTagName("level");
 	NodeList units;
@@ -307,11 +315,12 @@ public class LevelReader {
 	}
 	return null;
     }
-
+*/
     /**
-     * 
+     * getUnits extracts information from the level file about which units that 
+     * are are supposed to be implemented in the given level.
      * @param currentLevel
-     * @return
+     * @return - a string array of the units imlemented in the level or null
      */
     public String[] getUnits(int currentLevel){
 	String[] hasUnits;
@@ -321,7 +330,9 @@ public class LevelReader {
 	String unitName;
 	for(int i = 0; i < levels.getLength(); i++) {
 	    level = (Element)levels.item(i);
-	    if(Integer.parseInt(level.getAttribute("levelNumber")) == currentLevel) {
+	    if(Integer.parseInt(
+		    level.getAttribute("levelNumber")) == currentLevel) {
+		
 		units = level.getElementsByTagName("unit");
 		hasUnits = new String[units.getLength()];
 		for(int m = 0; m < units.getLength(); m++){
@@ -344,8 +355,7 @@ public class LevelReader {
     public int getNrOfLevels(){
 	return nrOfLevels;
     }
-    
-    //FÖR ATT KONSTRUERA MATRISEN (MAP)
+
     /**
      * getXDimension provides the x-dimension of the level maps
      * @return x-dimension of level maps
