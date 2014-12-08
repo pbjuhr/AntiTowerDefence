@@ -18,27 +18,27 @@ public class Level {
 	// 2. Initierar towers och units
     }
     
-    public void addUnit(Unit unit) {
+    /*public void addUnit(Unit unit) {
 	
-    }
+    }*/
     
-    public void setTowers(Tower[] towers) {
+    /*public void setTowers(Tower[] towers) {
 	
-    }
+    }*/
     
-    public void updateMap() {
+    //public void updateMap() {
 	/* Efter units och towers har gjort sina �actions�, s� g�r den i genom 
 	 * towers och units och kollar om torn eller gubbar tillkommit.
 	 */
-    }
+    //}
     
-    public void alterTerrain(Terrain t, Position position) {
+    //public void alterTerrain(Terrain t, Position position) {
 	// L�gger till exempelvis en Portal p� en v�g
-    }
+    //}
     
-    public Unit[] getUnits() {
+    /*public Unit[] getUnits() {
 	return units;
-    }
+    }*/
     
     //ON�DIG FUNKTION??
     public Tower[] getTowers() {
