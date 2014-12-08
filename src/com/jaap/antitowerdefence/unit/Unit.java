@@ -20,6 +20,7 @@ public abstract class Unit extends Thread {
     protected boolean hasWalked;
     protected String direction; // The units direction
     protected Position position; // The units current position
+    protected Position endPortalPosition;
     protected Terrain[] walkable;
     private ArrayList<Position> pathHistory; // the units visited positions
     private boolean reachedGoal; // Has the unit reached the goal
@@ -100,6 +101,16 @@ public abstract class Unit extends Thread {
 	return position;
     }
 
+    
+    /**
+     * Gets the units current position
+     * 
+     * @return Position, the current position
+     */
+    public void setEndPortalPosition(Position p) {
+	endPortalPosition = p;
+    }
+    
     /**
      * Checks if the unit has reached the maps goal
      * 
