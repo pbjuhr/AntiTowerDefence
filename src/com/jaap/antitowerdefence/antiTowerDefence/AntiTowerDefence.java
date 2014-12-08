@@ -11,7 +11,7 @@ public class AntiTowerDefence {
      */
     public static void main(String[] args) {
     	String levelFile = "levels.xml";
-	if (args.length < 0) {
+	if (args.length > 0) {
 	    levelFile = args[0];
 	}
     	new AntiTowerDefenceController(levelFile);
