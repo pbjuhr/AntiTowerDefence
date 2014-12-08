@@ -9,14 +9,12 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
  */
 public class Start extends Terrain {
 
-    private boolean walkable;
-    
     public Start(Position position) {
 	super(position);
-	this.walkable = true;
-	this.buildable = false;
+	walkable = true;
+	buildable = false;
     }
 
-    //TODO Need a interface method definer her to check if unit is on me.
-    
+    // TODO Need a interface method definer her to check if unit is on me.
+
 }

@@ -10,11 +10,10 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
  */
 public class Grass extends Terrain {
 
-    private boolean buildable;
-
     public Grass(Position position) {
 	super(position);
 	buildable = true;
 	walkable = false;
     }
+
 }

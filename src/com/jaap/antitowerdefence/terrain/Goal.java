@@ -1,6 +1,7 @@
 package com.jaap.antitowerdefence.terrain;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
+import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * 
@@ -8,12 +9,32 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
  *
  */
 public class Goal extends Terrain implements LandOn {
-    private boolean walkable;
+   
 
     public Goal(Position position) {
 	super(position);
 	walkable = true;
 	buildable = false;
+    }
+
+    
+
+    @Override
+    public void setPostion(Unit unit) {
+	// TODO Auto-generated method stub
+	
+    }
+
+    @Override
+    public void setReachGoal(Unit unit) {
+	// TODO Auto-generated method stub
+	
+    }
+
+    @Override
+    public void setDirections(Unit unit) {
+	// TODO Auto-generated method stub
+	
     }
 
     /*
