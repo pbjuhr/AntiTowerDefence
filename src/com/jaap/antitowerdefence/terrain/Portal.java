@@ -26,7 +26,7 @@ public class Portal extends Terrain implements LandOnInterface {
     public void landOn(Unit u) {
 
 	if(hasEndPortal){
-	    u.setNewPosition = getPosEndPortal();
+	    u.setEndPortalPosition(getPosEndPortal());
 	}
 	// TODO Auto-generated method stub
 
