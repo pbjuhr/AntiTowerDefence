@@ -103,9 +103,8 @@ public abstract class Unit extends Thread {
 
     
     /**
-     * Gets the units current position
+     * Gets the end portal position
      * 
-     * @return Position, the current position
      */
     public void setEndPortalPosition(Position p) {
 	endPortalPosition = p;
