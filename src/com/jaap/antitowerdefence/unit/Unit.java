@@ -20,7 +20,6 @@ public abstract class Unit extends Thread {
     protected boolean hasMoved;
     protected String direction; // The units direction
     protected Position position; // The units current position
-    protected Position endPortalPosition;
     protected Terrain[] walkable;
     private ArrayList<Position> pathHistory; // the units visited positions
     private boolean reachedGoal; // Has the unit reached the goal
@@ -42,9 +41,10 @@ public abstract class Unit extends Thread {
     public void run() {
 	while (true) {
 	    hasMoved = false;
-	    // sleep(coolDown);
 	    if (!isDead()) {
 		move();
+		// sleep(animationSpeed);
+		// Call landOn
 	    } else {
 		break;
 	    }
@@ -53,22 +53,21 @@ public abstract class Unit extends Thread {
 
     /**
      * Moves the unit to it's next position, and adds latest pos to pathhistory
-     * 
      * @param neighbours, an array of the units neighbours
      */
-    public void move() {
+    private void move() {
 	
-	//What index in the movable we should move to
+	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1; 
 
 	while (nextPositionIndex == -1) {
-	    if (direction == "north") {
+	    if (direction.equals("north")) {
 		nextPositionIndex = getTerrainIndex(position.getPosToNorth());
-	    } else if (direction == "south") {
+	    } else if (direction.equals("south")) {
 		nextPositionIndex = getTerrainIndex(position.getPosToSouth());
-	    } else if (direction == "east") {
+	    } else if (direction.equals("east")) {
 		nextPositionIndex = getTerrainIndex(position.getPosToEast());
-	    } else if (direction == "west") {
+	    } else if (direction.equals("west")) {
 		nextPositionIndex = getTerrainIndex(position.getPosToWest());
 	    }
 	    if(nextPositionIndex == -1) {
@@ -77,19 +76,20 @@ public abstract class Unit extends Thread {
 	}
 	pathHistory.add(position);
 	setPosition(walkable[nextPositionIndex].getPosition());
+	hasMoved = true;
     }
     
     /**
      * Rotates the unit (changes it direction) clockwise 90 degrees
      */
     private void spin(){
-	if(direction == "north"){
+	if(direction.equals("north")){
 	    setDirection("east");
-	} else if(direction == "south"){
+	} else if(direction.equals("south")){
 	    setDirection("west");
-	} else if(direction == "east"){
+	} else if(direction.equals("east")){
 	    setDirection("south");
-	} else if(direction == "west"){
+	} else if(direction.equals("west")){
 	    setDirection("north");
 	}
     }
@@ -111,13 +111,15 @@ public abstract class Unit extends Thread {
     }
 
     /**
-     * Gets a terrain object (with same position as the unit) index
-     * 
-     * @return i, the terrain objects index, or -1 if no object was found
+     * Gets the index of a terrain-object (with a given position) from walkable
+     * @param p, the position we're looking at
+     * @return i, the terrain objects index, or -1 if no object was found on 
+     * that position
      */
     protected int getTerrainIndex(Position p) {
 	for (int i = 0; i < walkable.length; i++) {
-	    if (walkable[i].getPosition().equals(p)) {
+	    if (walkable[i].getPosition().getY() == p.getY()
+		    && walkable[i].getPosition().getX() == p.getX()) {
 		return i;
 	    }
 	}
@@ -169,8 +171,8 @@ public abstract class Unit extends Thread {
      * "east"or "west"
      */
     public void setDirection(String newDirection) {
-	if (newDirection == "north" || newDirection == "south"
-		|| newDirection == "east" || newDirection == "west") {
+	if (newDirection.equals("north") || newDirection.equals("south")
+		|| newDirection.equals("east") || newDirection.equals("west")) {
 	    this.direction = newDirection;
 	}
     }
