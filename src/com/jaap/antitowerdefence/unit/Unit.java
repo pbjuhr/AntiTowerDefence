@@ -42,7 +42,7 @@ public abstract class Unit extends Thread {
     public void run() {
 	while (true) {
 	    hasWalked = false;
-	    //sleep(coolDown);
+	    // sleep(coolDown);
 	    if (!isDead()) {
 		move();
 	    } else {
@@ -53,13 +53,13 @@ public abstract class Unit extends Thread {
 
     /**
      * Moves the unit to it's next position, and adds latest pos to pathhistory
+     * 
      * @param neighbours, an array of the units neighbours
      */
     public void move() {
+	int positionIndex = getCurrentTerrainIndex();
 	pathHistory.add(position);
-	for(Terrain t : walkable){
-	    
-	}
+
 	hasWalked = true;
     }
 
@@ -78,14 +78,15 @@ public abstract class Unit extends Thread {
     public boolean isDead() {
 	return (health <= 0);
     }
-    
+
     /**
-     * Gets a terrain object (with same position as the unit) index 
+     * Gets a terrain object (with same position as the unit) index
+     * 
      * @return i, the terrain objects index, or -1 if no object was found
      */
     protected int getCurrentTerrainIndex() {
-	for(int i = 0; i < walkable.length; i++){
-	    if(walkable[i].getPosition().equals(position)) {
+	for (int i = 0; i < walkable.length; i++) {
+	    if (walkable[i].getPosition().equals(position)) {
 		return i;
 	    }
 	}
@@ -100,19 +101,22 @@ public abstract class Unit extends Thread {
     public Position getPosition() {
 	return position;
     }
-    
+
     /**
      * sets the units position
-     * @param p, the new position
+     * 
+     * @param p
+     *            , the new position
      */
     public void setPosition(Position p) {
 	position = p;
     }
-    
+
     /**
      * Checks if the unit has reached the maps goal
      * 
-     * @param goalPos, the goals position
+     * @param goalPos
+     *            , the goals position
      * @return true, if the unit has reached the goal, otherwise false
      */
     public boolean hasReachedGoal(Position goalPos) {
@@ -122,7 +126,8 @@ public abstract class Unit extends Thread {
     /**
      * Sets the reached goal to true or false
      * 
-     * @param reachedGoal, the new reached goal value
+     * @param reachedGoal
+     *            , the new reached goal value
      */
     public void setReachedGoal(boolean reachedGoal) {
 	this.reachedGoal = reachedGoal;
@@ -131,8 +136,9 @@ public abstract class Unit extends Thread {
     /**
      * Sets the direction string
      * 
-     * @param newDirection, string with new direction. Must be "north", "south", "east"
-     * or "west"
+     * @param newDirection
+     *            , string with new direction. Must be "north", "south", "east"
+     *            or "west"
      */
     public void setDirection(String newDirection) {
 	if (newDirection != "north" || newDirection != "south"
