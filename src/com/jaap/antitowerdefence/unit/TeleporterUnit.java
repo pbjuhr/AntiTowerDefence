@@ -11,8 +11,10 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 public class TeleporterUnit extends Unit {
     
     /* Variables related to the portal */
-    private Portal firstPortal;
+//  private Portal firstPortal;
     private int placedPortals;
+    
+    private Portal portal;
     
     /**
      * Runs super constructor and sets teleporters speed, cost, health and
@@ -35,14 +37,18 @@ public class TeleporterUnit extends Unit {
 	if(placedPortals >= -1 || walkable[terrainIndex].isBuildable()) {
 	    return;
 	} else if(placedPortals == 0) {
-	    firstPortal = new Portal(this.position);
+	    
+	    placedPortals++;
+//	    firstPortal = new Portal(this.position);
+	    portal= new Portal(this.position);
 	    placedPortals++;
 	} else if(placedPortals == 1) {
-	    Portal twinPortal = new Portal(this.position);
-	    twinPortal.setHasTwin(true);
-	    twinPortal.setTwinPosition(firstPortal.getPosition());
-	    firstPortal.setHasTwin(true);
-	    firstPortal.setTwinPosition(position);
+//	    Portal twinPortal = new Portal(this.position);
+//	    twinPortal.setHasTwin(true);
+//	    twinPortal.setTwinPosition(firstPortal.getPosition());
+//	    firstPortal.setHasTwin(true);
+//	    firstPortal.setTwinPosition(position);
+	    portal.setPosEndPortal(this.position);
 	    placedPortals++;
 	}
 	/* Replace current positions Terrain to a Portal */ 
@@ -53,7 +59,8 @@ public class TeleporterUnit extends Unit {
      * @return thePortal
      */
     public Portal getPortal() {
-	return firstPortal;
+//	return firstPortal;
+	return portal;
     }
     
     /**
