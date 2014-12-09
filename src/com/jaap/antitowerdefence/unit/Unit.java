@@ -8,6 +8,7 @@ package com.jaap.antitowerdefence.unit;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.LandOnInterface;
@@ -19,13 +20,13 @@ public abstract class Unit extends Thread {
     /* Variables */
     protected int health; 	  // The unit's current health
     protected int cost; 	  // How much the unit costs
-    protected double updateInterval; // How often we move
-    protected boolean hasMoved;   // Is the unit animating
+    protected long updateInterval; // How often we move
     protected String direction;   // The units direction
     protected Position position;  // The units current position
     protected Terrain[] walkable; // All walkable terrain objects in level
-    private Timer t;
+    private Timer t;		  // The timer to schedule actions
     private boolean reachedGoal;  // Has the unit reached the goal
+    private boolean wasTeleported;   // Has the unit been teleported
 
     /**
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
@@ -34,7 +35,7 @@ public abstract class Unit extends Thread {
     public Unit(Terrain[] walkable) {
 	this.walkable = walkable;
 	t = new Timer();
-	hasMoved = false;
+	wasTeleported = false;
 	reachedGoal = false;
 	setStartPosition();
     }
@@ -55,15 +56,20 @@ public abstract class Unit extends Thread {
      */
     public void run() {
 	
-	while (true) {
-	    hasMoved = false;
-	    if (!isDead()) {
-		runLandOn(getTerrainIndex(this.position));
-		move();
-	    } else {
-		break;
+	t.schedule(new TimerTask(){
+	    @Override
+	    public void run() {
+		if(!isDead() && !hasReachedGoal()){
+		    runLandOn(getTerrainIndex(position));
+		    if(!hasReachedGoal()){
+			move();
+		    }
+		} else{
+		    this.cancel();
+		}
 	    }
-	}
+	}, updateInterval);
+
     }
 
     /**
@@ -194,8 +200,8 @@ public abstract class Unit extends Thread {
      * @param goalPos, the goals position
      * @return true, if the unit has reached the goal, otherwise false
      */
-    public boolean hasReachedGoal(Position goalPos) {
-	return goalPos.equals(position);
+    public boolean hasReachedGoal() {
+	return reachedGoal;
     }
 
     /**
@@ -232,6 +238,25 @@ public abstract class Unit extends Thread {
      */
     public int getCost() {
 	return this.cost;
+    }
+    
+    /**
+     * Toggles wasTeleported variable between true and false
+     */
+    public void toggleTeleported(){
+	if(wasTeleported){
+	    wasTeleported = false;
+	} else{
+	    wasTeleported = true;
+	}
+    }
+    
+    /**
+     * Gets the wasTeleported
+     * @return true if the unit has been teleported, otherwise false
+     */
+    public boolean hasBeenTeleported(){
+	return this.wasTeleported;
     }
     
     /**

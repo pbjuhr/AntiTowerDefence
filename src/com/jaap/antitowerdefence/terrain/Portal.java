@@ -26,6 +26,7 @@ public class Portal extends Terrain implements LandOnInterface {
     public void landOn(Unit u) {
 	if(hasReciever) {
 	    u.setPosition(getReciever());
+	    u.toggleTeleported();
 	}
     }
 
