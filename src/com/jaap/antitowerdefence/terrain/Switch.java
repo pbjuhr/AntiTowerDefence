@@ -2,6 +2,7 @@ package com.jaap.antitowerdefence.terrain;
 
 import java.util.Random;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
 
@@ -49,12 +50,12 @@ public class Switch extends Terrain implements LandOnInterface {
     }
 }
 
-enum Direction {
-    NORTH, SOUTH, WEST, EAST;
-
-    public static Direction getRandomDirection() {
-	Random random = new Random();
-	return values()[random.nextInt(values().length)];
-    }
-
-}
+//enum Direction {
+//    NORTH, SOUTH, WEST, EAST;
+//
+//    public static Direction getRandomDirection() {
+//	Random random = new Random();
+//	return values()[random.nextInt(values().length)];
+//    }
+//
+//}
