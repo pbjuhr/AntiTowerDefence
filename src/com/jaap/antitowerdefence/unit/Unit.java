@@ -133,7 +133,7 @@ public abstract class Unit extends Thread {
 	    Method landOnMethod = null;
 	    try {
 		landOnMethod = walkable[currentPositionIndex].getClass().
-			getMethod("landOn");
+			getDeclaredMethod("landOn", Unit.class);
 	    } catch (NoSuchMethodException | SecurityException e1) {
 		e1.printStackTrace();
 		return;
@@ -141,15 +141,17 @@ public abstract class Unit extends Thread {
 	   
 	    // Run the landOn method with the current Terrain object
 	    try {
-		landOnMethod.invoke(walkable[currentPositionIndex], this);
+		landOnMethod.invoke(walkable[currentPositionIndex], getUnit());
 	    } catch (IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException e2) {
 		e2.printStackTrace();
 	    }
-	    
 	}
     }
-
+    
+    public Unit getUnit(){
+	return this;
+    }
     /**
      * The unit gets damaged and the health gets reduced by 20.
      */
@@ -220,10 +222,11 @@ public abstract class Unit extends Thread {
      * "east"or "west"
      */
     public void setDirection(String newDirection) {
-	if (newDirection.equals("north") || newDirection.equals("south")
+	spin();
+	/*if (newDirection.equals("north") || newDirection.equals("south")
 		|| newDirection.equals("east") || newDirection.equals("west")) {
 	    this.direction = newDirection;
-	}
+	}*/
     }
 
     /**
