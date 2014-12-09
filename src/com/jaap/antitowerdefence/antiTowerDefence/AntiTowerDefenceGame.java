@@ -44,7 +44,7 @@ public class AntiTowerDefenceGame {
     }
     
     public void createSoldier(){
-	Unit s = new SoldierUnit(currentLevel.getWalkable(), timeStep);
+	Unit s = new SoldierUnit(currentLevel.getWalkableTerrain(), timeStep);
 	currentLevel.addUnit(s);
     }
 
