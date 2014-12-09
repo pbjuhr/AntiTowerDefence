@@ -41,10 +41,10 @@ public class TestUnit {
 	
 	walkable = new Terrain[5];
 	walkable[0] = start;
-	walkable[1] = goal;
-	walkable[2] = road1;
-	walkable[3] = road2;
-	walkable[4] = road3;
+	walkable[1] = road1;
+	walkable[2] = road2;
+	walkable[3] = road3;
+	walkable[4] = goal;
 	
 	timeStep = 9999;
 	
@@ -88,15 +88,10 @@ public class TestUnit {
      */
     @Test
     public void testReachedGoal() {
-	timeStep = 10;
-	u = new TeleporterUnit(walkable, timeStep);
-	try {
-	    Thread.sleep(5000);
-	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	u = new TeleporterUnit(walkable, 1000);
+	while(!u.hasReachedGoal()){
+	    // STUFF
 	}
-	System.out.println("x: " + u.getPosition().getX() + ", y: " + u.getPosition().getY());
 	assertTrue(u.hasReachedGoal());
     }
 }

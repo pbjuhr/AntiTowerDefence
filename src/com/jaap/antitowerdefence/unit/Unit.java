@@ -10,23 +10,24 @@ import java.lang.reflect.Method;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.LandOnInterface;
 import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
-public abstract class Unit extends Thread {
+public abstract class Unit {
 
     /* Variables */
-    protected int health; 	  // The unit's current health
-    protected int cost; 	  // How much the unit costs
+    protected int health; 	   // The unit's current health
+    protected int cost; 	   // How much the unit costs
     protected long updateInterval; // How often we move
-    protected String direction;   // The units direction
-    protected Position position;  // The units current position
-    protected Terrain[] walkable; // All walkable terrain objects in level
-    private Timer t;		  // The timer to schedule actions
-    private boolean reachedGoal;  // Has the unit reached the goal
-    private boolean wasTeleported;   // Has the unit been teleported
+    protected Direction direction; // The units direction
+    protected Position position;   // The units current position
+    protected Terrain[] walkable;  // All walkable terrain objects in level
+    private Timer t;		   // The timer to schedule actions
+    private boolean reachedGoal;   // Has the unit reached the goal
+    private boolean wasTeleported; // Has the unit been teleported
 
     /**
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
@@ -57,27 +58,30 @@ public abstract class Unit extends Thread {
      * Sets the direction
      */
     private void setStartDirection(){
-	direction = "north";
+	direction = direction.getRandomDirection();
     }
     
     /**
      * Runs the Unit thread
      */
-    public void run() {
+    public void start() {
 	
 	t.schedule(new TimerTask(){
 	    @Override
 	    public void run() {
+		System.out.println("inside run");
 		if(!isDead() && !hasReachedGoal()){
+		    System.out.println("Landon start");
 		    runLandOn(getTerrainIndex(position));
-		    if(!hasReachedGoal() || wasTeleported){
+		    System.out.println("Landon done");
+		    if(!hasReachedGoal() || !wasTeleported){
 			move();
 		    }
 		} else{
 		    this.cancel();
 		}
 	    }
-	}, updateInterval);
+	}, 0, updateInterval);
 
     }
 
@@ -87,10 +91,11 @@ public abstract class Unit extends Thread {
      */
     private void move() {
 	
+	System.out.println("inside move. X: " + position.getX() + ", Y: " + position.getX() + ", Dir: " + direction);
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1; 
-	System.out.println("inside move");
 	while (nextPositionIndex == -1) {
+	    System.out.println("Spinning......");
 	    if (direction.equals("north")) {
 		nextPositionIndex = getTerrainIndex(position.getPosToNorth());
 	    } else if (direction.equals("south")) {
