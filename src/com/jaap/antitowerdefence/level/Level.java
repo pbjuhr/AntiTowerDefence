@@ -20,10 +20,13 @@ public class Level {
     private LevelStats levelStats;	//Level info and game statistics
     
     /**
+     * Contructor for Level saves the walkable terrain for the units, the 
+     * terrain where towers can be built and the level info of the level. The 
+     * unit arraylist is initiated.
      * 
-     * @param walkable
-     * @param buildable
-     * @param levelStats
+     * @param walkable - The walkable terrain in the level
+     * @param buildable - The terrain where towers can be built in the level
+     * @param levelStats - Level info and game statistics
      */
     public Level(Terrain[] walkable, Terrain[] buildable, 
 	    				LevelStats levelStats) {
@@ -34,49 +37,44 @@ public class Level {
     }
     
     /**
-     * 
-     * @return
+     * getWalkableTerrain provides the walkable terrain elements for the units
+     * @return - Terrain array of Grass
      */
     public Terrain[] getWalkableTerrain() {
 	return walkable;
     }
     
     /**
-     * 
-     * @return
+     * getPossibleTowerPositions provides the terrain elements where towers 
+     * can be built
+     * @return - array of possible tower build positions
      */
     public Terrain[] getPossibleTowerPositions() {
 	return buildable;
     }
     
-    /*Håller koll på units - lägger till en färdiskapad unit på order från game
-     * addUnit(): lägger till en unit i unitarrayen och justerar credits*/
     /**
-     * 
-     * @param unit
+     * addUnit adds a unit to the ArrayList of units. The cost of the Unit is
+     * decrease from the players credit 
+     * @param unit - The unit to add to the ArrayList of active units
      */
     public void addUnit(Unit unit) {
 	units.add(unit);	
 	levelStats.decreaseCredits(unit.getCost());
     }
     
-    /*get(): skickar tillbaka alla units*/
     /**
-     * 
+     * getUnits provides the ArrayList of active units
      * @return
      */
     public ArrayList<Unit> getUnits() {
 	return units;
     }
     
-    /*Håller koll på torn
-    	setTowers()
-    		setUnits (Skicka in unitsarrayen)
-    	tar in en tornarray
-    	spara över den gamla tornarrayen*/
     /**
-     * 
-     * @param towers
+     * setTowers replaces the tower array with a new array of towers and
+     * gives the new towers access to the ArrayList of units
+     * @param towers - the tower array to replace the old tower array
      */
     public void setTowers(Tower[] towers) {
 	this.towers = towers;
@@ -85,32 +83,28 @@ public class Level {
 	}
     }
     
-    /*getTowers()*/
     /**
-     * 
-     * @return
+     * getTowers provides the towers in the level
+     * @return - array of towers in level
      */
     public Tower[] getTowers() {
 	return towers;
     }
     
-    /*getLevelStats*/
     /**
-     * 
-     * @return
+     * getLevelStats provides the levelStats instance of the level
+     * @return - the LevelStats object of the level
      */
     public LevelStats getLevelStats() {
 	return levelStats;
     }
     
-    /*
-    Update
-    	Död
-    		Ta bort ur lista
-    	Mål
-    		Uppdatera score/credits*/
     /**
-     * 
+     * updateUnits checks if any of the units has reached goal or died. If a
+     * units has died it is removed from the list of active units. If a unit
+     * has reached goal a score is added to the players total score and the 
+     * players credits is increased. After this the unit is removed from the 
+     * list of active units.
      */
     public void updateUnits() {
 	for(int i = 0; i < units.size(); i++) {
@@ -122,15 +116,16 @@ public class Level {
 	    } 
 	}
     }
-    
+    //Kommentera vidare här!!
     /**
-     * 
+     * unitReachedGoal calculates the
      * @param unit
      */
     private void unitReachedGoal(Unit unit) {
 	double healthCredits = (0.5 * unit.getHealth());
 	double costCredits = (0.8 * unit.getCost());
 	int totalCredits = (int)Math.round((healthCredits + costCredits));
+	//TODO Score? How do we calculate this?
 	levelStats.addCredits(totalCredits);
     }
 }
