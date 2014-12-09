@@ -2,9 +2,6 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -17,19 +14,22 @@ import javax.swing.JPanel;
  */
 public class AntiTowerDefenceGUI {
 
-    JPanel gamePanel;
+    GamePanel gamePanel;
 
     JPanel buttonPanel;
 
+    JMenuItem restart;
+    JMenuItem restartLevel;
     JMenuItem pause;
     JMenuItem quit;
 
     JMenuItem help;
     JMenuItem about;
 
-    @SuppressWarnings("serial")
+    JMenuItem hightscore;
+
     public AntiTowerDefenceGUI() {
-	JFrame frame = new JFrame("Anti Tower Defence"); // Name?
+	JFrame frame = new JFrame("Anti Tower Defence");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.getContentPane().setBackground(Color.BLACK);
 	frame.setSize(640, 480);
@@ -41,15 +41,7 @@ public class AntiTowerDefenceGUI {
 	JPanel mainPanel = new JPanel(new BorderLayout(), true);
 	frame.add(mainPanel);
 
-	gamePanel = new JPanel() {
-	    @Override
-	    public void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	        g.fillRect(35,245,50,100);
-	        g.setColor(Color.RED);
-	        g.fillRect(30,240,15,50);
-	    }
-	};
+	gamePanel = new GamePanel();
 	mainPanel.add(gamePanel, BorderLayout.CENTER);
 
 	buttonPanel = new JPanel(); // FlowLayout
@@ -57,7 +49,6 @@ public class AntiTowerDefenceGUI {
 
 	//frame.pack();
 	frame.setVisible(true);
-	gamePanel.repaint();
     }
 
     private JMenuBar buildMenuBar() {
@@ -65,34 +56,14 @@ public class AntiTowerDefenceGUI {
 
 	JMenu gameMenu = new JMenu("Game");
 	menuBar.add(gameMenu);
-	JMenuItem restart = new JMenuItem("New Game");
+	restart = new JMenuItem("New Game");
 	gameMenu.add(restart);
-	restart.addActionListener(new ActionListener() { // Just toggle for now
-	    @Override
-	    public void actionPerformed(ActionEvent arg0) {
-		if (restart.getText() == "New Game") {
-		    restart.setText("Restart");
-		} else {
-		    restart.setText("New Game");
-		}
-	    }
-	});
-	JMenuItem restartLevel = new JMenuItem("Restart Level");
+	restartLevel = new JMenuItem("Restart Level");
 	restartLevel.setEnabled(false);
 	gameMenu.add(restartLevel);
 	pause = new JMenuItem("Pause");
 	pause.setEnabled(false);
 	gameMenu.add(pause);
-//	pause.addActionListener(new ActionListener() { // Just toggle for now
-//	    @Override
-//	    public void actionPerformed(ActionEvent arg0) {
-//		if (pause.getText() == "Pause") {
-//		    pause.setText("Resume");
-//		} else {
-//		    pause.setText("Pause");
-//		}
-//	    }
-//	});
 	quit = new JMenuItem("Quit");
 	gameMenu.add(quit);
 
@@ -103,7 +74,20 @@ public class AntiTowerDefenceGUI {
 	about = new JMenuItem("About");
 	helpMenu.add(about);
 
+	JMenu highscoreMenu = new JMenu("Highscore");
+	menuBar.add(highscoreMenu);
+	hightscore = new JMenuItem("Highscore");
+	highscoreMenu.add(hightscore);
+
 	return menuBar;
+    }
+
+    public JMenuItem getMenuItemRestart() {
+	return restart;
+    }
+
+    public JMenuItem getMenuItemRestartLevel() {
+	return restartLevel;
     }
 
     public JMenuItem getMenuItemPause() {
@@ -120,6 +104,10 @@ public class AntiTowerDefenceGUI {
 
     public JMenuItem getMenuItemAbout() {
 	return about;
+    }
+
+    public JMenuItem getMenuItemHighscore() {
+	return hightscore;
     }
 
 //    Fönstret å menyn
