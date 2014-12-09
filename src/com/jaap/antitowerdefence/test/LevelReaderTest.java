@@ -91,13 +91,6 @@ public class LevelReaderTest {
 	assertTrue(units.length > 0);
     }
 
- /*   @Test
-    public void testHasUnits(){
-	boolean[] units = levelReader.hasUnits(level);
-	assertNotNull(units);
-	assertTrue(units.length > 0);
-    }
-    */
     /**
      * Checks that getXDimension the correct x-dimension value.
      */

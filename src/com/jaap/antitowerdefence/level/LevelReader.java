@@ -287,35 +287,6 @@ public class LevelReader {
 	return 0;
     }
 
-/*    public boolean[] hasUnits(int currentLevel){
-	boolean[] hasUnits = new boolean[3];
-	NodeList levels = gameLevels.getElementsByTagName("level");
-	NodeList units;
-	Element level;
-	String unitName;
-	for(int y = 0; y < 3; y++) {
-	    hasUnits[y] = false;
-	}
-	for(int i = 0; i < levels.getLength(); i++) {
-	    level = (Element)levels.item(i);
-	    if(Integer.parseInt(level.getAttribute("levelNumber")) == currentLevel) {
-		units = level.getElementsByTagName("unit");
-		for(int m = 0; m < units.getLength(); m++){
-		    unitName = units.item(m).getTextContent();
-		    if(unitName.equals("Farmer")) {
-			hasUnits[0] = true;
-		    }else if(unitName.equals("Soldier")) {
-			hasUnits[1] = true;
-		    }else if(unitName.equals("Wizard")) {
-			hasUnits[2] = true;
-		    }
-		}
-		return hasUnits;
-	    }
-	}
-	return null;
-    }
-*/
     /**
      * getUnits extracts information from the level file about which units that 
      * are are supposed to be implemented in the given level.
