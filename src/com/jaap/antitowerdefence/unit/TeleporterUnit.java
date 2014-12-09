@@ -32,19 +32,16 @@ public class TeleporterUnit extends Unit {
      */
     public void placePortal() {
 	int terrainIndex = getTerrainIndex(position);
-	if(placedPortals >= -1 || walkable[terrainIndex].isBuildable()) {
+	if(!(walkable[terrainIndex].isBuildable())) {
 	    return;
 	} else if(placedPortals == 0) {
 	    placedPortals++;
-	    if(!(walkable[terrainIndex] instanceof Road)){
-		return;
-	    }
 	    firstPortal = new Portal(this.position);
 	    walkable[terrainIndex] = firstPortal;
-	    placedPortals++;
+	    placedPortals = 1;
 	} else if(placedPortals == 1) {
 	    Portal reciever = new Portal(this.position);
-	    firstPortal.setReciever(this.position);
+	    firstPortal.setReciever(reciever.getPosition());
 	    walkable[terrainIndex] = reciever;
 	    placedPortals++;
 	}

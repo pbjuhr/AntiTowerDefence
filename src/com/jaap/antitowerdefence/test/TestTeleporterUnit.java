@@ -5,22 +5,24 @@
 
 package com.jaap.antitowerdefence.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Goal;
+import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Road;
 import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.TeleporterUnit;
-import com.jaap.antitowerdefence.unit.Unit;
 
-public class TestUnit {
+public class TestTeleporterUnit {
     
-    Unit u;
+    TeleporterUnit u;
     Terrain[] walkable;
     int timeStep;
 
@@ -34,10 +36,10 @@ public class TestUnit {
 	Position pos5 = new Position(1,4);
 	
 	Start start = new Start(pos1);
-	Goal goal = new Goal(pos5);
 	Road road1 = new Road(pos2);
 	Road road2 = new Road(pos3);
 	Road road3 = new Road(pos4);
+	Goal goal = new Goal(pos5);
 	
 	walkable = new Terrain[5];
 	walkable[0] = start;
@@ -84,12 +86,55 @@ public class TestUnit {
     }
     
     /**
+     * Tests action
+     */
+    @Test
+    public void testAction() {
+	u.action();
+	assertTrue(u.getPosition().equals(new Position(1,1)));
+    }
+    
+    /**
+     * Tests setDirection
+     */
+    @Test
+    public void testSetDirection() {
+	u.setDirection(Direction.SOUTH);
+	assertTrue(u.getDirection() == Direction.SOUTH);
+    }
+    
+    /**
+     * Tests placeTower
+     */
+    @Test
+    public void testPlaceTower() {
+	u.action();
+	u.placePortal();
+	if(!(walkable[1] instanceof Portal)){
+	    assertTrue(false);
+	}
+	Portal p = (Portal)walkable[1];
+	if(p.hasReciever()){
+	    assertTrue(false);
+	}
+	u.action();
+	u.placePortal();
+	if(!(walkable[2] instanceof Portal)){
+	    assertTrue(false);
+	}
+	Portal p2 = (Portal)walkable[1];
+	if(p.hasReciever() && !p2.hasReciever()){
+	    assertTrue(true);
+	}
+    }
+    
+    /**
      * Tests hasReachedGoal
      */
     @Test
     public void testReachedGoal() {
 	while(!u.hasReachedGoal()){
-	    // STUFF
+	    u.action();
 	}
 	assertTrue(u.hasReachedGoal());
     }

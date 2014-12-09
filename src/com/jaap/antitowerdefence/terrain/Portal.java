@@ -10,10 +10,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Portal extends Terrain implements LandOnInterface {
 
-    Portal endPortal;
-    // Position position
     private Position reciever;
-    // boolean hasTwin
     private boolean hasReciever;
 
     public Portal(Position position) {
@@ -31,33 +28,17 @@ public class Portal extends Terrain implements LandOnInterface {
 	}
     }
 
-    // setTwinPosition(Position pos):void
-    // setHasTwin(boolean hasTwin):void
-//<<<<<<< Updated upstream
     public void setReciever(Position p) {
 	this.reciever = p;
 	this.hasReciever = true;
-//=======
-//    public void setPosEndPortal(Position posEndPortal) {
-//	endPortal = new Portal(posEndPortal);
-//	this.posEndPortal = posEndPortal;
-//	hasEndPortal = true;
-//>>>>>>> Stashed changes
     }
 
-    // getTwinPosition():Position
     public Position getReciever() {
 	return this.reciever;
     }
-
-
-    /*
-     * TODO Need a interface method her to check if unit is on me. Need to now
-     * if unit is on my position
-     */
-    // Test of random
-    public static void main(String[] args) {
-	
+    
+    public boolean hasReciever() {
+	return hasReciever;
     }
 
 }

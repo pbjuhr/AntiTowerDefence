@@ -40,7 +40,18 @@ public class AntiTowerDefenceGame {
     }
 
     public void step() {
-	// Anropa level.updateUnits()
+	// Towers shoot
+	for(Tower t : currentLevel.getTowers()){
+	    t.shoot(t.findUnitInRange());
+	}
+	
+	// Moves the units
+	for(Unit u : currentLevel.getUnits()){
+	    u.action();
+	}
+	currentLevel.updateUnits();
+	
+	currentStep++;
     }
     
     public void createSoldier(){
