@@ -10,12 +10,4 @@ import com.jaap.antitowerdefence.unit.Unit;
 public interface LandOnInterface {
     
     public void landOn(Unit u);
-
-
-
-    /*
-     * TODO Need a interface method her to check if unit is on me. Need to now
-     * if unit is on my position
-     */
-
 }

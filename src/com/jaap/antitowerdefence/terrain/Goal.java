@@ -9,7 +9,6 @@ import com.jaap.antitowerdefence.unit.Unit;
  *
  */
 public class Goal extends Terrain implements LandOnInterface {
-   
 
     public Goal(Position position) {
 	super(position);
@@ -21,11 +20,4 @@ public class Goal extends Terrain implements LandOnInterface {
     public void landOn(Unit u){
 	u.setReachedGoal(true);
     }
-
-
-
-    /*
-     * TODO Need a interface method her to check if unit is on me. Need to now
-     * if unit is on my position
-     */
 }

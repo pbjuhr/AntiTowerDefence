@@ -12,7 +12,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Switch extends Terrain implements LandOnInterface {
     
-    String direction; // Jag la till en direction här! /Peter
+    String direction; // Ändra från sträng till enum-grejen / Peter
    
     public Switch(Position position) {
 	super(position);

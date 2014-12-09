@@ -36,13 +36,13 @@ public abstract class Unit extends Thread {
 	t = new Timer();
 	hasMoved = false;
 	reachedGoal = false;
-	findStartPosition();
+	setStartPosition();
     }
     
     /**
      * Sets the position to the start position
      */
-    private void findStartPosition(){
+    private void setStartPosition(){
 	for (int i = 0; i < walkable.length; i++) {
 	    if (walkable[i] instanceof Start) {
 		setPosition(walkable[i].getPosition());
@@ -138,6 +138,7 @@ public abstract class Unit extends Thread {
 		    | InvocationTargetException e2) {
 		e2.printStackTrace();
 	    }
+	    
 	}
     }
 
