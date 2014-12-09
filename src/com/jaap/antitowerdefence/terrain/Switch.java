@@ -11,7 +11,9 @@ import com.jaap.antitowerdefence.unit.Unit;
  *
  */
 public class Switch extends Terrain implements LandOnInterface {
-
+    
+    String direction; // Jag la till en direction här! /Peter
+   
     public Switch(Position position) {
 	super(position);
 	walkable = true;
@@ -20,11 +22,23 @@ public class Switch extends Terrain implements LandOnInterface {
 
     @Override
     public void landOn(Unit u) {
-	Direction.EAST.compareTo(Direction.EAST);
-	u.getDirection();
-	u.setDirection(Direction.getRandomDirection().toString());
-	// TODO Auto-generated method stub
-
+	//Direction.EAST.compareTo(Direction.EAST);
+	
+	/* Jag ändrade inparametern till this.direction, landOn behöver inte
+	 * göra något mer. /Peter */ 
+	u.setDirection(this.direction);
+    }
+    
+    /**
+     * Sets the switch direction
+     * @author Peter
+     * @param newDirection, the new direction
+     */
+    public void setDirection(String newDirection) {
+	if (newDirection.equals("north") || newDirection.equals("south")
+		|| newDirection.equals("east") || newDirection.equals("west")) {
+	    this.direction = newDirection;
+	}
     }
 
     // Test of random

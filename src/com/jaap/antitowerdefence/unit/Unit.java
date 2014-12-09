@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.LandOnInterface;
+import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 public abstract class Unit extends Thread {
@@ -19,12 +20,12 @@ public abstract class Unit extends Thread {
     protected int speed; // The speed the unit walks in
     protected int health; // The unit's current health
     protected int cost; // How much the unit costs
-    protected int animationSpeed;
-    protected boolean hasMoved;
+    protected int animationSpeed; // The animation time per grid-unit
+    protected boolean hasMoved; // Is the unit animating
     protected String direction; // The units direction
     protected Position position; // The units current position
-    protected Terrain[] walkable;
-    private ArrayList<Position> pathHistory; // the units visited positions
+    protected Terrain[] walkable; // All walkable terrain objects in level
+    private Timer t;
     private boolean reachedGoal; // Has the unit reached the goal
 
     /**
@@ -33,11 +34,22 @@ public abstract class Unit extends Thread {
      */
     public Unit(Terrain[] walkable) {
 	this.walkable = walkable;
-	pathHistory = new ArrayList<Position>();
 	reachedGoal = false;
 	hasMoved = false;
+	findStartPosition();
     }
-
+    
+    /**
+     * Sets the position to the start position
+     */
+    private void findStartPosition(){
+	for (int i = 0; i < walkable.length; i++) {
+	    if (walkable[i] instanceof Start) {
+		setPosition(walkable[i].getPosition());
+	    }
+	}
+    }
+    
     /**
      * Runs the Unit thread
      */
@@ -45,6 +57,7 @@ public abstract class Unit extends Thread {
 	while (true) {
 	    hasMoved = false;
 	    if (!isDead()) {
+		runLandOn(getTerrainIndex(this.position));
 		move();
 		try {
 		    sleep(animationSpeed);
@@ -52,7 +65,6 @@ public abstract class Unit extends Thread {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
-		runLandOn(getTerrainIndex(this.position));
 	    } else {
 		break;
 	    }
@@ -82,7 +94,6 @@ public abstract class Unit extends Thread {
 		spin();
 	    }
 	}
-	pathHistory.add(position);
 	setPosition(walkable[nextPositionIndex].getPosition());
 	hasMoved = true;
     }
@@ -144,7 +155,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Check the units health and returns whether its dead or not
-     * 
      * @return true if the unit is dead, otherwise false
      */
     public boolean isDead() {
@@ -159,8 +169,7 @@ public abstract class Unit extends Thread {
      */
     protected int getTerrainIndex(Position p) {
 	for (int i = 0; i < walkable.length; i++) {
-	    if (walkable[i].getPosition().getY() == p.getY()
-		    && walkable[i].getPosition().getX() == p.getX()) {
+	    if (walkable[i].getPosition().equals(p)) {
 		return i;
 	    }
 	}
@@ -169,7 +178,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Gets the units current position
-     * 
      * @return Position, the current position
      */
     public Position getPosition() {
@@ -177,8 +185,7 @@ public abstract class Unit extends Thread {
     }
 
     /**
-     * sets the units position
-     * 
+     * Sets the units position
      * @param p, the new position
      */
     public void setPosition(Position p) {
@@ -188,7 +195,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Checks if the unit has reached the maps goal
-     * 
      * @param goalPos, the goals position
      * @return true, if the unit has reached the goal, otherwise false
      */
@@ -198,7 +204,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Sets the reached goal to true or false
-     * 
      * @param reachedGoal, the new reached goal value
      */
     public void setReachedGoal(boolean reachedGoal) {
@@ -207,7 +212,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Sets the direction string
-     * 
      * @param newDirection, string with new direction. Must be "north", "south",
      * "east"or "west"
      */
@@ -220,10 +224,25 @@ public abstract class Unit extends Thread {
 
     /**
      * Gets the current direction
-     * 
      * @return direction, String
      */
     public String getDirection() {
 	return this.direction;
+    }
+    
+    /**
+     * Gets the cost of the unit
+     * @return cost, the cost of the Unit
+     */
+    public int getCost() {
+	return this.cost;
+    }
+    
+    /**
+     * Gets the health of the unit
+     * @return health, the health of the Unit
+     */
+    public int getHealth() {
+	return this.health;
     }
 }
