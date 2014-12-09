@@ -18,11 +18,11 @@ public class AntiTowerDefenceGame {
     public AntiTowerDefenceGame(String level){
 	currentStep = 0;
 	currentLevelNumber = 1;
-	//theLevelReader = new LevelReader(level);
+	theLevelReader = new LevelReader(level);
+	currentLevel = new Level(theLevelReader.getRoad(), 
+		theLevelReader.getGrass());
+	towerPlacer = new TowerPlacerAI();
 	highScore = new HighScoreDB();
-	//currentLevel = new Level(theLevelReader.getMap(), theLevelReader.getPossibleTowerPositions());
-	//towerPlacer = new TowerPlacerAI(theLevelReader.get);
-	// new comments
     }
 
     public void newLevel() {
@@ -38,29 +38,29 @@ public class AntiTowerDefenceGame {
 	4. Gubbarna ska gå (anropa också LandOn)
 	5. Kontrollera och uppdatera status i gubbar 
 	6. Statistik ska uppdateras
-	*/
+	 */
     }
-    
+
     public void updateStats() {
-	
+
     }
-    
+
     public boolean hasWon() {
 	return false;
     }
-    
+
     public boolean hasLost() {
 	return false;
     }
-    
+
     public boolean isHighScore() {
 	return false;
     }
-    
+
     public void setHighScore() {
-	
+
     }
-    
+
     public ArrayList<String> getHighScore() {
 	return highScore.getScores();
     }

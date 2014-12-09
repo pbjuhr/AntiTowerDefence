@@ -154,7 +154,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Check the units health and returns whether its dead or not
-     * 
      * @return true if the unit is dead, otherwise false
      */
     public boolean isDead() {
@@ -178,7 +177,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Gets the units current position
-     * 
      * @return Position, the current position
      */
     public Position getPosition() {
@@ -186,8 +184,7 @@ public abstract class Unit extends Thread {
     }
 
     /**
-     * sets the units position
-     * 
+     * Sets the units position
      * @param p, the new position
      */
     public void setPosition(Position p) {
@@ -197,7 +194,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Checks if the unit has reached the maps goal
-     * 
      * @param goalPos, the goals position
      * @return true, if the unit has reached the goal, otherwise false
      */
@@ -207,7 +203,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Sets the reached goal to true or false
-     * 
      * @param reachedGoal, the new reached goal value
      */
     public void setReachedGoal(boolean reachedGoal) {
@@ -216,7 +211,6 @@ public abstract class Unit extends Thread {
 
     /**
      * Sets the direction string
-     * 
      * @param newDirection, string with new direction. Must be "north", "south",
      * "east"or "west"
      */
@@ -229,10 +223,25 @@ public abstract class Unit extends Thread {
 
     /**
      * Gets the current direction
-     * 
      * @return direction, String
      */
     public String getDirection() {
 	return this.direction;
+    }
+    
+    /**
+     * Gets the cost of the unit
+     * @return cost, the cost of the Unit
+     */
+    public int getCost() {
+	return this.cost;
+    }
+    
+    /**
+     * Gets the health of the unit
+     * @return health, the health of the Unit
+     */
+    public int getHealth() {
+	return this.health;
     }
 }

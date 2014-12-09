@@ -7,22 +7,29 @@ public class Tower extends Thread{
     private Position position;
     private int range;
     private int coolDown;
-
+    Unit[] units;
+	    
     public Tower() {
-	start();
+	units = null;
 	this.range = 3;
 	this.coolDown = 5;
+	start();
     }
     
+    /**
+     * sets the unita that 
+     * @param units
+     */
+    public void setUnits(Unit[] units){
+	this.units = units;
+    }
+    
+    /**
+     * Runs the Thread
+     */
     public void run() {
 	while(true) {
-	    try {
-		sleep(coolDown);
-	    } catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	    shoot(inRange());
+	    shoot(findUnitInRange());
 	}
     }
     
@@ -30,7 +37,15 @@ public class Tower extends Thread{
      * Finds the first unit in range of the Tower
      * @return unit, the Unit object that was found, or null
      */
-    public Unit inRange(){
+    public Unit findUnitInRange(){
+	if(units == null){
+	    return null;
+	}
+	for(Unit u : units) {
+	    if(u.getPosition().distanceTo(this.position) <= range) {
+		return u;
+	    }
+	}
 	return null;
     }
     
