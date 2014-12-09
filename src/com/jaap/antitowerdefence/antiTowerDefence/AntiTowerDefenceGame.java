@@ -35,7 +35,8 @@ public class AntiTowerDefenceGame {
     public void newLevel() {
 	currentLevelNumber++;
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
-		theLevelReader.getGrass(currentLevelNumber));
+		theLevelReader.getGrass(currentLevelNumber), 
+		theLevelReader.getLevelStats(currentLevelNumber));
     }
 
     public void step() {
