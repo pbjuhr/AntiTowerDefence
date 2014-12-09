@@ -30,11 +30,41 @@ public class AntiTowerDefenceController {
 	} catch (InvocationTargetException | InterruptedException e) {
 	    //e.printStackTrace();
 	}
-	setListeners();
+	setMenuListeners();
     }
 
-    private void setListeners() {
+    private void setMenuListeners() {
+	JMenuItem restart = gui.getMenuItemRestart();
+	JMenuItem restartLevel = gui.getMenuItemRestartLevel();
 	JMenuItem pause = gui.getMenuItemPause();
+	JMenuItem quit = gui.getMenuItemQuit();
+
+	JMenuItem help = gui.getMenuItemHelp();
+	JMenuItem about = gui.getMenuItemAbout();
+
+	JMenuItem highscore = gui.getMenuItemHighscore();
+
+	restart.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		paused = false;
+		newGame();
+		if (restart.getText() != "Restart") {
+		    restart.setText("Restart");
+		    restartLevel.setEnabled(true);
+		    pause.setEnabled(true);
+		}
+	    }
+	});
+
+	restartLevel.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		paused = false;
+		newGame();
+	    }
+	});
+
 	pause.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -48,7 +78,6 @@ public class AntiTowerDefenceController {
 	    }
 	});
 
-	JMenuItem quit = gui.getMenuItemQuit();
 	quit.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -56,7 +85,6 @@ public class AntiTowerDefenceController {
 	    }
 	});
 
-	JMenuItem help = gui.getMenuItemHelp();
 	help.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -82,7 +110,6 @@ public class AntiTowerDefenceController {
 	    }
 	});
 
-	JMenuItem about = gui.getMenuItemAbout();
 	about.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -102,6 +129,28 @@ public class AntiTowerDefenceController {
 
 		aboutFrame.pack();
 		aboutFrame.setVisible(true);
+	    }
+	});
+
+	highscore.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		JFrame highscoreFrame = new JFrame("Highscore");
+		highscoreFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		highscoreFrame.setLocation(100, 100);
+
+		JTextArea textArea = new JTextArea(13, 25);
+		highscoreFrame.add(textArea);
+		textArea.setEditable(false);
+		textArea.setText("Anti Tower Defence Highscore:\n" +
+			"\nLVL:  NAME:\n" +
+			"6     Peter\n" +
+			"5     Andreas\n" +
+			"5     Anna\n" +
+			"3     Joakim");
+
+		highscoreFrame.pack();
+		highscoreFrame.setVisible(true);
 	    }
 	});
     }
