@@ -6,6 +6,7 @@
 package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -128,5 +129,17 @@ public class TestPosition {
     public void testGetPosToWest() {
 	Position west = position.getPosToWest();
 	assertEquals(west.getX(), (x - 1));
+    }
+    
+    /**
+     * 
+     */
+    @Test
+    public void testEquals(){
+	Position testPosition = new Position(x, y);
+	assertTrue(position.equals(testPosition));
+	testPosition.setX((x - 3));
+	testPosition.setY((y + 3));
+	assertTrue(!position.equals(testPosition));
     }
 }
