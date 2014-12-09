@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 import com.jaap.antitowerdefence.level.Level;
 import com.jaap.antitowerdefence.level.LevelReader;
+import com.jaap.antitowerdefence.unit.SoldierUnit;
+import com.jaap.antitowerdefence.unit.Unit;
 
 public class AntiTowerDefenceGame {
 
-    private int minTimeStep = 1000; // 1 second
+    private int timeStep = 1000; // 1 second
     private int currentStep;
     private int currentLevelNumber;
     private LevelReader theLevelReader;
@@ -25,7 +27,7 @@ public class AntiTowerDefenceGame {
 	theLevelReader = new LevelReader(level);
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber));
-	towerPlacer = new TowerPlacerAI();
+	towerPlacer = new TowerPlacerAI(timeStep);
 	highScore = new HighScoreDB();
     }
 
@@ -36,15 +38,12 @@ public class AntiTowerDefenceGame {
     }
 
     public void step() {
-	/* Kör tidssteg!
-	0. Om x tidssteg: Flytta torn (och sätt cooldown)
-	1. Om ej cooldown: Tornen ska skjuta
-	2. Gubbarna som blir skjutna tar skada
-	3. Gubbar som inte har hälsa kvar dör
-	4. Gubbarna ska gå (anropa också LandOn)
-	5. Kontrollera och uppdatera status i gubbar 
-	6. Statistik ska uppdateras
-	 */
+	// Anropa level.updateUnits()
+    }
+    
+    public void createSoldier(){
+	Unit s = new SoldierUnit(currentLevel.getWalkable(), timeStep);
+	currentLevel.addUnit(s);
     }
 
     public void updateStats() {

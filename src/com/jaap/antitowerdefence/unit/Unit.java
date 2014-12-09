@@ -25,6 +25,7 @@ public abstract class Unit extends Thread {
     protected String direction; // The units direction
     protected Position position; // The units current position
     protected Terrain[] walkable; // All walkable terrain objects in level
+    private Timer t;
     private boolean reachedGoal; // Has the unit reached the goal
 
     /**
