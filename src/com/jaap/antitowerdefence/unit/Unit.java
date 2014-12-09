@@ -34,6 +34,7 @@ public abstract class Unit extends Thread {
      */
     public Unit(Terrain[] walkable) {
 	this.walkable = walkable;
+	position = new Position(0,0);
 	t = new Timer();
 	wasTeleported = false;
 	reachedGoal = false;
@@ -44,9 +45,9 @@ public abstract class Unit extends Thread {
      * Sets the position to the start position
      */
     private void setStartPosition(){
-	for (int i = 0; i < walkable.length; i++) {
-	    if (walkable[i] instanceof Start) {
-		setPosition(walkable[i].getPosition());
+	for (Terrain t : walkable) {
+	    if (t instanceof Start) {
+		this.setPosition(t.getPosition());
 	    }
 	}
     }
@@ -61,7 +62,7 @@ public abstract class Unit extends Thread {
 	    public void run() {
 		if(!isDead() && !hasReachedGoal()){
 		    runLandOn(getTerrainIndex(position));
-		    if(!hasReachedGoal()){
+		    if(!hasReachedGoal() || wasTeleported){
 			move();
 		    }
 		} else{
@@ -96,7 +97,6 @@ public abstract class Unit extends Thread {
 	    }
 	}
 	setPosition(walkable[nextPositionIndex].getPosition());
-	hasMoved = true;
     }
     
     /**

@@ -14,8 +14,8 @@ public class SoldierUnit extends Unit{
      */
     public SoldierUnit(Terrain[] walkable, int timeStep){
 	super(walkable);
-	int speed = 1;
-	updateInterval = timeStep / speed;
+	double speed = 1.6;
+	updateInterval = Math.round(timeStep / speed);
 	cost = 100;
 	health = 200;
 	start();

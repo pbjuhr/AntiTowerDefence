@@ -1,4 +1,6 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
+import java.util.ArrayList;
+
 import com.jaap.antitowerdefence.unit.Unit;
 
 
@@ -7,7 +9,7 @@ public class Tower extends Thread{
     private Position position;
     private int range;
     private int coolDown;
-    Unit[] units;
+    ArrayList<Unit> units;
 	    
     public Tower() {
 	units = null;
@@ -17,10 +19,10 @@ public class Tower extends Thread{
     }
     
     /**
-     * sets the unita that 
+     * Sets the units that 
      * @param units
      */
-    public void setUnits(Unit[] units){
+    public void setUnits(ArrayList<Unit> units){
 	this.units = units;
     }
     
