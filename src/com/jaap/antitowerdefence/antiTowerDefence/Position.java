@@ -103,4 +103,14 @@ public class Position {
 	Position east = new Position((x + 1), y);
 	return east;
     }
+    
+    /**
+     * equals checks if this position has the same xy-coorinates as a given
+     * position
+     * @param position - the position to compare with this position
+     * @return true if the positions has the same xy-coordinates, false if not
+     */
+    public boolean equals(Position position){
+	return((position.getX() == x) && (position.getY() == y));
+    }
 }
