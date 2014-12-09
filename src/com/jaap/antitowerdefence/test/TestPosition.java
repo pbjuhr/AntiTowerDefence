@@ -78,4 +78,55 @@ public class TestPosition {
 	assertEquals(this.y, y);
     }
 
+    /**
+     * Checks that distanceTo provides the correct Manhattan/taxi cab distance 
+     * between two positions
+     */
+    @Test
+    public void testDistanceTo() {
+	Position position = new Position(3, 7);
+	int testDistance = (Math.abs(3 - x) + Math.abs(7 - y));
+	int distance = this.position.distanceTo(position);
+	assertEquals(testDistance, distance);
+    }
+    
+    /**
+     * Checks that getPosToNorth provides the position north of the current
+     * position
+     */
+    @Test
+    public void testGetPosToNorth() {
+	Position north = position.getPosToNorth();
+	assertEquals(north.getY(), (y - 1));
+    }
+    
+    /**
+     * Checks that getPosToSouth provides the position south of the current
+     * position
+     */
+    @Test
+    public void testGetPosToSouth() {
+	Position south = position.getPosToSouth();
+	assertEquals(south.getY(), (y + 1));
+    }
+    
+    /**
+     * Checks that getPosToEast provides the position east of the current
+     * position
+     */
+    @Test
+    public void testGetPosToEast() {
+	Position east = position.getPosToEast();
+	assertEquals(east.getX(), (x + 1));
+    }
+    
+    /**
+     * Checks that getPosToWest provides the position west of the current
+     * position
+     */
+    @Test
+    public void testGetPosToWest() {
+	Position west = position.getPosToWest();
+	assertEquals(west.getX(), (x - 1));
+    }
 }
