@@ -38,6 +38,7 @@ public abstract class Unit extends Thread {
 	t = new Timer();
 	wasTeleported = false;
 	reachedGoal = false;
+	setStartDirection();
 	setStartPosition();
     }
     
@@ -50,6 +51,13 @@ public abstract class Unit extends Thread {
 		this.setPosition(t.getPosition());
 	    }
 	}
+    }
+    
+    /**
+     * Sets the direction
+     */
+    private void setStartDirection(){
+	direction = "north";
     }
     
     /**
@@ -115,28 +123,22 @@ public abstract class Unit extends Thread {
     }
     
     /**
-     * Runs the LandOn method(if exists) on a given Terrain object
+     * Runs the LandOn method(if it exists) on a given Terrain object
      * @param currentPositionIndex, the terrain objects index in walkable
      */
     private void runLandOn(int currentPositionIndex) {
 	if(walkable[currentPositionIndex] instanceof LandOnInterface) {
 	    
-	    // Get the class LandOnInterface
-	    Class<?> landOnInterface = null;
-	    try {
-		landOnInterface = Class.forName("LandOnInterface");
-	    } catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	    }
-	    
 	    // Get the landOn method
 	    Method landOnMethod = null;
 	    try {
-		landOnMethod = landOnInterface.getMethod("landOn");
+		landOnMethod = walkable[currentPositionIndex].getClass().
+			getMethod("landOn");
 	    } catch (NoSuchMethodException | SecurityException e1) {
 		e1.printStackTrace();
+		return;
 	    }
-	    
+	   
 	    // Run the landOn method with the current Terrain object
 	    try {
 		landOnMethod.invoke(walkable[currentPositionIndex], this);
