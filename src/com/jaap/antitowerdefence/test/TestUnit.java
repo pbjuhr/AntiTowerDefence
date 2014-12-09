@@ -88,7 +88,7 @@ public class TestUnit {
      */
     @Test
     public void testReachedGoal() {
-	timeStep = 1000;
+	timeStep = 10;
 	u = new TeleporterUnit(walkable, timeStep);
 	try {
 	    Thread.sleep(5000);
@@ -96,6 +96,7 @@ public class TestUnit {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
+	System.out.println("x: " + u.getPosition().getX() + ", y: " + u.getPosition().getY());
 	assertTrue(u.hasReachedGoal());
     }
 }

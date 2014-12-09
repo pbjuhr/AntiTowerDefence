@@ -89,7 +89,7 @@ public abstract class Unit extends Thread {
 	
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1; 
-
+	System.out.println("inside move");
 	while (nextPositionIndex == -1) {
 	    if (direction.equals("north")) {
 		nextPositionIndex = getTerrainIndex(position.getPosToNorth());
@@ -112,13 +112,13 @@ public abstract class Unit extends Thread {
      */
     private void spin(){
 	if(direction.equals("north")){
-	    setDirection("east");
+	    direction = "east";
 	} else if(direction.equals("south")){
-	    setDirection("west");
+	    direction = "west";
 	} else if(direction.equals("east")){
-	    setDirection("south");
+	    direction = "south";
 	} else if(direction.equals("west")){
-	    setDirection("north");
+	    direction = "north";
 	}
     }
     
@@ -152,6 +152,7 @@ public abstract class Unit extends Thread {
     public Unit getUnit(){
 	return this;
     }
+    
     /**
      * The unit gets damaged and the health gets reduced by 20.
      */
@@ -222,7 +223,7 @@ public abstract class Unit extends Thread {
      * "east"or "west"
      */
     public void setDirection(String newDirection) {
-	spin();
+	direction = "north";
 	/*if (newDirection.equals("north") || newDirection.equals("south")
 		|| newDirection.equals("east") || newDirection.equals("west")) {
 	    this.direction = newDirection;
