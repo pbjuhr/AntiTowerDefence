@@ -1,26 +1,37 @@
 package com.jaap.antitowerdefence.level;
 
+import java.util.ArrayList;
+
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.antiTowerDefence.Tower;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.Unit;
-
+/**
+ * 
+ * @author Anna Osterlund, id10aod
+ *
+ */
 public class Level {
 
-    private Terrain[][] map;
+    private Terrain[] walkable;
+    private Terrain[] buildable;
     private Tower[] towers;
-    private Unit[] units;
+    private ArrayList<Unit> units;
     private LevelStats levelStats;
-    private Position startPosition;
     
-    public Level(Terrain[][] map, LevelStats levelStats) {
+    public Level(Terrain[] walkable, Terrain[] buildable, 
+	    				LevelStats levelStats) {
 	// 1. S�tter map och stats
 	// 2. Initierar towers och units
+	this.walkable = walkable;
+	this.buildable = buildable;
+	this.levelStats = levelStats;
+	units = new ArrayList<Unit>();
     }
     
-    /*public void addUnit(Unit unit) {
+    public void addUnit(Unit unit) {
 	
-    }*/
+    }
     
     /*public void setTowers(Tower[] towers) {
 	
