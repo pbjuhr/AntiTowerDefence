@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.LandOnInterface;
+import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 public abstract class Unit extends Thread {
@@ -19,12 +20,11 @@ public abstract class Unit extends Thread {
     protected int speed; // The speed the unit walks in
     protected int health; // The unit's current health
     protected int cost; // How much the unit costs
-    protected int animationSpeed;
-    protected boolean hasMoved;
+    protected int animationSpeed; // The animation time per grid-unit
+    protected boolean hasMoved; // Is the unit animating
     protected String direction; // The units direction
     protected Position position; // The units current position
-    protected Terrain[] walkable;
-    private ArrayList<Position> pathHistory; // the units visited positions
+    protected Terrain[] walkable; // All walkable terrain objects in level
     private boolean reachedGoal; // Has the unit reached the goal
 
     /**
@@ -33,11 +33,22 @@ public abstract class Unit extends Thread {
      */
     public Unit(Terrain[] walkable) {
 	this.walkable = walkable;
-	pathHistory = new ArrayList<Position>();
 	reachedGoal = false;
 	hasMoved = false;
+	findStartPosition();
     }
-
+    
+    /**
+     * Sets the position to the start position
+     */
+    private void findStartPosition(){
+	for (int i = 0; i < walkable.length; i++) {
+	    if (walkable[i] instanceof Start) {
+		setPosition(walkable[i].getPosition());
+	    }
+	}
+    }
+    
     /**
      * Runs the Unit thread
      */
@@ -45,6 +56,7 @@ public abstract class Unit extends Thread {
 	while (true) {
 	    hasMoved = false;
 	    if (!isDead()) {
+		runLandOn(getTerrainIndex(this.position));
 		move();
 		try {
 		    sleep(animationSpeed);
@@ -52,7 +64,6 @@ public abstract class Unit extends Thread {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
-		runLandOn(getTerrainIndex(this.position));
 	    } else {
 		break;
 	    }
@@ -82,7 +93,6 @@ public abstract class Unit extends Thread {
 		spin();
 	    }
 	}
-	pathHistory.add(position);
 	setPosition(walkable[nextPositionIndex].getPosition());
 	hasMoved = true;
     }
@@ -159,8 +169,7 @@ public abstract class Unit extends Thread {
      */
     protected int getTerrainIndex(Position p) {
 	for (int i = 0; i < walkable.length; i++) {
-	    if (walkable[i].getPosition().getY() == p.getY()
-		    && walkable[i].getPosition().getX() == p.getX()) {
+	    if (walkable[i].getPosition().equals(p)) {
 		return i;
 	    }
 	}

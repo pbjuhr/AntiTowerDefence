@@ -41,9 +41,7 @@ public class TeleporterUnit extends Unit {
 	    placedPortals++;
 	} else if(placedPortals == 1) {
 	    Portal reciever = new Portal(this.position);
-	    reciever.setHasTwin(false);
-	    firstPortal.setHasTwin(true);
-	    firstPortal.setTwinPosition(this.position);
+	    firstPortal.setReciever(this.position);
 	    walkable[terrainIndex] = reciever;
 	    placedPortals++;
 	}
