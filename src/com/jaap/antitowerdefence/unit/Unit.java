@@ -59,6 +59,7 @@ public abstract class Unit {
      * Runs the Unit thread
      */
     public void action() {
+	wasTeleported = false;
 	if(!isDead() && !hasReachedGoal()){
 	    runLandOn(getTerrainIndex(position));
 	    if(!hasReachedGoal() || !wasTeleported){
