@@ -43,17 +43,20 @@ public class LevelStats {
     }
 
     /**
-     * addCredits increses the players amount of credits by muliplying score 
-     * with 10
-     * @param score - number of units that has reached the goal
+     * addCredits increses the players amount of credits
+     * @param credits - credits to add to existing credits
      */
-    public void addCredits(int score) {
-	//TODO!!
-	//Hur räknas credits?
-	//Det här är bara tillfälligt för test.
-	credits += (score*10);
+    public void addCredits(int credits) {
+	this.credits += credits;
     }
 
+    /**
+     * decreaseCredits decreses the players amount of credits
+     * @param credits - credits to subtract from existing credits
+     */
+    public void decreaseCredits(int credits) {
+	this.credits -= credits;
+    }
     /**
      * getCredits provides the players current amount of credits
      * @return - current credit
