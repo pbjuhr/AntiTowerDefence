@@ -5,9 +5,7 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
 
 /**
- * 
  * @author Andreas Bolzyk id10abk
- *
  */
 public class Switch extends Terrain implements LandOnInterface {
     

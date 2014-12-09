@@ -46,7 +46,7 @@ public class TestUnit {
 	walkable[3] = road3;
 	walkable[4] = goal;
 	
-	timeStep = 9999;
+	timeStep = 1000;
 	
 	u = new TeleporterUnit(walkable, timeStep);
     }
@@ -88,7 +88,6 @@ public class TestUnit {
      */
     @Test
     public void testReachedGoal() {
-	u = new TeleporterUnit(walkable, 1000);
 	while(!u.hasReachedGoal()){
 	    // STUFF
 	}

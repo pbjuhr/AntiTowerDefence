@@ -39,8 +39,8 @@ public abstract class Unit {
 	t = new Timer();
 	wasTeleported = false;
 	reachedGoal = false;
-	direction = Direction.getRandomDirection();
-	setStartDirection();
+	direction = Direction.NORTH;
+	//setStartDirection();
 	setStartPosition();
     }
     
@@ -66,7 +66,6 @@ public abstract class Unit {
      * Runs the Unit thread
      */
     public void start() {
-	
 	t.schedule(new TimerTask(){
 	    @Override
 	    public void run() {
@@ -85,7 +84,6 @@ public abstract class Unit {
 		}
 	    }
 	}, 0, updateInterval);
-
     }
 
     /**
@@ -107,11 +105,14 @@ public abstract class Unit {
 		nextPositionIndex = getTerrainIndex(position.getPosToWest());
 	    }
 	    if(nextPositionIndex == -1) {
-		System.out.println("Spinning......");
-		direction = direction.rotateClockWise();
+		spin();
 	    }
 	}
 	setPosition(walkable[nextPositionIndex].getPosition());
+    }
+    
+    private void spin(){
+	this.direction = direction.rotateClockWise();
     }
     
     /**
