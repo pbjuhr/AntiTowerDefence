@@ -1,3 +1,7 @@
+/**
+ * @author Peter Bjuhr
+ */
+
 package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.util.ArrayList;
@@ -19,14 +23,16 @@ public class AntiTowerDefenceGame {
 	currentStep = 0;
 	currentLevelNumber = 1;
 	theLevelReader = new LevelReader(level);
-	currentLevel = new Level(theLevelReader.getRoad(), 
-		theLevelReader.getGrass());
+	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
+		theLevelReader.getGrass(currentLevelNumber));
 	towerPlacer = new TowerPlacerAI();
 	highScore = new HighScoreDB();
     }
 
     public void newLevel() {
-
+	currentLevelNumber++;
+	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
+		theLevelReader.getGrass(currentLevelNumber));
     }
 
     public void step() {
