@@ -2,6 +2,7 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +21,13 @@ public class AntiTowerDefenceGUI {
 
     JPanel buttonPanel;
 
+    JMenuItem pause;
+    JMenuItem quit;
+
+    JMenuItem help;
+    JMenuItem about;
+
+    @SuppressWarnings("serial")
     public AntiTowerDefenceGUI() {
 	JFrame frame = new JFrame("Anti Tower Defence"); // Name?
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,7 +41,15 @@ public class AntiTowerDefenceGUI {
 	JPanel mainPanel = new JPanel(new BorderLayout(), true);
 	frame.add(mainPanel);
 
-	gamePanel = new JPanel();
+	gamePanel = new JPanel() {
+	    @Override
+	    public void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        g.fillRect(35,245,50,100);
+	        g.setColor(Color.RED);
+	        g.fillRect(30,240,15,50);
+	    }
+	};
 	mainPanel.add(gamePanel, BorderLayout.CENTER);
 
 	buttonPanel = new JPanel(); // FlowLayout
@@ -41,6 +57,7 @@ public class AntiTowerDefenceGUI {
 
 	//frame.pack();
 	frame.setVisible(true);
+	gamePanel.repaint();
     }
 
     private JMenuBar buildMenuBar() {
@@ -61,30 +78,48 @@ public class AntiTowerDefenceGUI {
 	    }
 	});
 	JMenuItem restartLevel = new JMenuItem("Restart Level");
+	restartLevel.setEnabled(false);
 	gameMenu.add(restartLevel);
-	JMenuItem pause = new JMenuItem("Pause");
+	pause = new JMenuItem("Pause");
+	pause.setEnabled(false);
 	gameMenu.add(pause);
-	pause.addActionListener(new ActionListener() { // Just toggle for now
-	    @Override
-	    public void actionPerformed(ActionEvent arg0) {
-		if (pause.getText() == "Pause") {
-		    pause.setText("Resume");
-		} else {
-		    pause.setText("Pause");
-		}
-	    }
-	});
-	JMenuItem quit = new JMenuItem("Quit");
+//	pause.addActionListener(new ActionListener() { // Just toggle for now
+//	    @Override
+//	    public void actionPerformed(ActionEvent arg0) {
+//		if (pause.getText() == "Pause") {
+//		    pause.setText("Resume");
+//		} else {
+//		    pause.setText("Pause");
+//		}
+//	    }
+//	});
+	quit = new JMenuItem("Quit");
 	gameMenu.add(quit);
 
 	JMenu helpMenu = new JMenu("Help");
 	menuBar.add(helpMenu);
-	JMenuItem help = new JMenuItem("Help");
+	help = new JMenuItem("Help");
 	helpMenu.add(help);
-	JMenuItem about = new JMenuItem("About");
+	about = new JMenuItem("About");
 	helpMenu.add(about);
 
 	return menuBar;
+    }
+
+    public JMenuItem getMenuItemPause() {
+	return pause;
+    }
+
+    public JMenuItem getMenuItemQuit() {
+	return quit;
+    }
+
+    public JMenuItem getMenuItemHelp() {
+	return help;
+    }
+
+    public JMenuItem getMenuItemAbout() {
+	return about;
     }
 
 //    Fönstret å menyn
@@ -99,4 +134,8 @@ public class AntiTowerDefenceGUI {
 //    getGuiElements()
 //    buildLowerPanel()
 
+    // gamePanel class
+    // images saved where?
+    // listeners
+    // help, about, highscore
 }
