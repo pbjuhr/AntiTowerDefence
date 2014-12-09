@@ -1,6 +1,7 @@
 package com.jaap.antitowerdefence.terrain;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
+import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * 
@@ -21,6 +22,10 @@ public class Start extends Switch {
     */
     public void setDirection(String newDirection) {
 	// Do nothing on purpose!
+    }
+    
+    public void landOn(Unit u) {
+	super.landOn(u);
     }
 
 }

@@ -21,6 +21,8 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class TestUnit {
     
     Unit u;
+    Terrain[] walkable;
+    int timeStep;
 
     @Before
     public void setUp() {
@@ -37,14 +39,14 @@ public class TestUnit {
 	Road road2 = new Road(pos3);
 	Road road3 = new Road(pos4);
 	
-	Terrain[] walkable = new Terrain[5];
+	walkable = new Terrain[5];
 	walkable[0] = start;
 	walkable[1] = goal;
 	walkable[2] = road1;
 	walkable[3] = road2;
 	walkable[4] = road3;
 	
-	int timeStep = 9999;
+	timeStep = 9999;
 	
 	u = new TeleporterUnit(walkable, timeStep);
     }
@@ -81,5 +83,19 @@ public class TestUnit {
 	assertNotEquals(alive, u.isDead());
     }
     
-    
+    /**
+     * Tests hasReachedGoal
+     */
+    @Test
+    public void testReachedGoal() {
+	timeStep = 1000;
+	u = new TeleporterUnit(walkable, timeStep);
+	try {
+	    Thread.sleep(5000);
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	assertTrue(u.hasReachedGoal());
+    }
 }
