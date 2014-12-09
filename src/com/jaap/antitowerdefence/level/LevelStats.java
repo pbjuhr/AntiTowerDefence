@@ -56,6 +56,9 @@ public class LevelStats {
      */
     public void decreaseCredits(int credits) {
 	this.credits -= credits;
+	if(this.credits < 0) {
+	    this.credits = 0;
+	}
     }
     /**
      * getCredits provides the players current amount of credits

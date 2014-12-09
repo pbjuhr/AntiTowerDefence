@@ -81,6 +81,19 @@ public class LevelStatsTest {
     }
 
     /**
+     * testDecreaseCredits subtracts a value from the credits and checks if the 
+     * credits has decreased
+     */
+    @Test
+    public void testDecreaseCredits() {
+	int oldCredits;
+	int newCredits;
+	oldCredits = levelstats.getCredits();
+	levelstats.decreaseCredits(100);
+	newCredits = levelstats.getCredits();
+	assertTrue(newCredits < oldCredits);
+    }
+    /**
      * Checks if getWinScore provides the correct winscore
      */
     @Test
