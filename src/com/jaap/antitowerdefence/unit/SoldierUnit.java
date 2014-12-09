@@ -12,11 +12,12 @@ public class SoldierUnit extends Unit{
     /**
      * Runs super constructor and sets speed, cost and health
      */
-    public SoldierUnit(Terrain[] walkable){
+    public SoldierUnit(Terrain[] walkable, int timeStep){
 	super(walkable);
-	speed = 20;
-	cost = 200;
-	health = 70;
+	int speed = 1;
+	updateInterval = timeStep / speed;
+	cost = 100;
+	health = 200;
 	start();
     }
     

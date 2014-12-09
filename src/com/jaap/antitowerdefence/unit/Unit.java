@@ -7,7 +7,7 @@ package com.jaap.antitowerdefence.unit;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.util.Timer;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.LandOnInterface;
@@ -17,16 +17,15 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 public abstract class Unit extends Thread {
 
     /* Variables */
-    protected int speed; // The speed the unit walks in
-    protected int health; // The unit's current health
-    protected int cost; // How much the unit costs
-    protected int animationSpeed; // The animation time per grid-unit
-    protected boolean hasMoved; // Is the unit animating
-    protected String direction; // The units direction
-    protected Position position; // The units current position
+    protected int health; 	  // The unit's current health
+    protected int cost; 	  // How much the unit costs
+    protected double updateInterval; // How often we move
+    protected boolean hasMoved;   // Is the unit animating
+    protected String direction;   // The units direction
+    protected Position position;  // The units current position
     protected Terrain[] walkable; // All walkable terrain objects in level
     private Timer t;
-    private boolean reachedGoal; // Has the unit reached the goal
+    private boolean reachedGoal;  // Has the unit reached the goal
 
     /**
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
@@ -34,8 +33,9 @@ public abstract class Unit extends Thread {
      */
     public Unit(Terrain[] walkable) {
 	this.walkable = walkable;
-	reachedGoal = false;
+	t = new Timer();
 	hasMoved = false;
+	reachedGoal = false;
 	findStartPosition();
     }
     
@@ -54,17 +54,12 @@ public abstract class Unit extends Thread {
      * Runs the Unit thread
      */
     public void run() {
+	
 	while (true) {
 	    hasMoved = false;
 	    if (!isDead()) {
 		runLandOn(getTerrainIndex(this.position));
 		move();
-		try {
-		    sleep(animationSpeed);
-		} catch (InterruptedException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
 	    } else {
 		break;
 	    }
