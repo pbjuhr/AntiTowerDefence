@@ -39,6 +39,7 @@ public abstract class Unit {
 	t = new Timer();
 	wasTeleported = false;
 	reachedGoal = false;
+	direction = Direction.getRandomDirection();
 	setStartDirection();
 	setStartPosition();
     }
@@ -47,8 +48,8 @@ public abstract class Unit {
      * Sets the position to the start position
      */
     private void setStartPosition(){
-	for (Terrain t : walkable) {
-	    if (t instanceof Start) {
+	for(Terrain t : walkable) {
+	    if(t instanceof Start) {
 		this.setPosition(t.getPosition());
 	    }
 	}
@@ -58,7 +59,7 @@ public abstract class Unit {
      * Sets the direction
      */
     private void setStartDirection(){
-	direction = direction.getRandomDirection();
+	direction = Direction.getRandomDirection();
     }
     
     /**
@@ -69,13 +70,15 @@ public abstract class Unit {
 	t.schedule(new TimerTask(){
 	    @Override
 	    public void run() {
-		System.out.println("inside run");
+		System.out.println("inside run. X: " + position.getX() + ", Y: " + position.getX() + ", Dir: " + direction);
 		if(!isDead() && !hasReachedGoal()){
 		    System.out.println("Landon start");
 		    runLandOn(getTerrainIndex(position));
 		    System.out.println("Landon done");
 		    if(!hasReachedGoal() || !wasTeleported){
+			System.out.println("Move start");
 			move();
+			System.out.println("Move done");
 		    }
 		} else{
 		    this.cancel();
@@ -91,40 +94,24 @@ public abstract class Unit {
      */
     private void move() {
 	
-	System.out.println("inside move. X: " + position.getX() + ", Y: " + position.getX() + ", Dir: " + direction);
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1; 
 	while (nextPositionIndex == -1) {
-	    System.out.println("Spinning......");
-	    if (direction.equals("north")) {
+	    if (direction == Direction.NORTH) {
 		nextPositionIndex = getTerrainIndex(position.getPosToNorth());
-	    } else if (direction.equals("south")) {
+	    } else if (direction == Direction.SOUTH) {
 		nextPositionIndex = getTerrainIndex(position.getPosToSouth());
-	    } else if (direction.equals("east")) {
+	    } else if (direction == Direction.EAST) {
 		nextPositionIndex = getTerrainIndex(position.getPosToEast());
-	    } else if (direction.equals("west")) {
+	    } else if (direction == Direction.WEST) {
 		nextPositionIndex = getTerrainIndex(position.getPosToWest());
 	    }
 	    if(nextPositionIndex == -1) {
-		spin();
+		System.out.println("Spinning......");
+		direction = direction.rotateClockWise();
 	    }
 	}
 	setPosition(walkable[nextPositionIndex].getPosition());
-    }
-    
-    /**
-     * Rotates the unit (changes it direction) clockwise 90 degrees
-     */
-    private void spin(){
-	if(direction.equals("north")){
-	    direction = "east";
-	} else if(direction.equals("south")){
-	    direction = "west";
-	} else if(direction.equals("east")){
-	    direction = "south";
-	} else if(direction.equals("west")){
-	    direction = "north";
-	}
     }
     
     /**
@@ -154,6 +141,25 @@ public abstract class Unit {
 	}
     }
     
+    /**
+     * Gets the index of a terrain-object (with a given position) from walkable
+     * @param p, the position we're looking at
+     * @return i, the terrain objects index, or -1 if no object was found on 
+     * that position
+     */
+    protected int getTerrainIndex(Position p) {
+	for (int i = 0; i < walkable.length; i++) {
+	    if (walkable[i].getPosition().equals(p)) {
+		return i;
+	    }
+	}
+	return -1;
+    }
+    
+    /**
+     * Gets this Unit
+     * @return Unit
+     */
     public Unit getUnit(){
 	return this;
     }
@@ -171,21 +177,6 @@ public abstract class Unit {
      */
     public boolean isDead() {
 	return (this.health <= 0);
-    }
-
-    /**
-     * Gets the index of a terrain-object (with a given position) from walkable
-     * @param p, the position we're looking at
-     * @return i, the terrain objects index, or -1 if no object was found on 
-     * that position
-     */
-    protected int getTerrainIndex(Position p) {
-	for (int i = 0; i < walkable.length; i++) {
-	    if (walkable[i].getPosition().equals(p)) {
-		return i;
-	    }
-	}
-	return -1;
     }
 
     /**
@@ -227,19 +218,15 @@ public abstract class Unit {
      * @param newDirection, string with new direction. Must be "north", "south",
      * "east"or "west"
      */
-    public void setDirection(String newDirection) {
-	direction = "north";
-	/*if (newDirection.equals("north") || newDirection.equals("south")
-		|| newDirection.equals("east") || newDirection.equals("west")) {
-	    this.direction = newDirection;
-	}*/
+    public void setDirection(Direction newDirection) {
+	direction = newDirection;
     }
 
     /**
      * Gets the current direction
      * @return direction, String
      */
-    public String getDirection() {
+    public Direction getDirection() {
 	return this.direction;
     }
     

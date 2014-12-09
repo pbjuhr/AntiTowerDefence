@@ -14,7 +14,7 @@ public enum Direction {
      * Change the direction 90 degrees clockwise
      * @author Peter Bjuhr
      */
-    public Direction rotate90() {
+    public Direction rotateClockWise() {
         return values()[(ordinal() + 1) % 4];
     }
 }

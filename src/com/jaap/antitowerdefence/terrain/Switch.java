@@ -1,7 +1,5 @@
 package com.jaap.antitowerdefence.terrain;
 
-import java.util.Random;
-
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
@@ -13,7 +11,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Switch extends Terrain implements LandOnInterface {
     
-    String direction; // Ändra från sträng till enum-grejen / Peter
+    Direction direction;
    
     public Switch(Position position) {
 	super(position);
@@ -23,10 +21,6 @@ public class Switch extends Terrain implements LandOnInterface {
 
     @Override
     public void landOn(Unit u) {
-	//Direction.EAST.compareTo(Direction.EAST);
-	
-	/* Jag ändrade inparametern till this.direction, landOn behöver inte
-	 * göra något mer. /Peter */ 
 	u.setDirection(this.direction);
     }
     
@@ -35,27 +29,8 @@ public class Switch extends Terrain implements LandOnInterface {
      * @author Peter
      * @param newDirection, the new direction
      */
-    public void setDirection(String newDirection) {
-	if (newDirection.equals("north") || newDirection.equals("south")
-		|| newDirection.equals("east") || newDirection.equals("west")) {
-	    this.direction = newDirection;
-	}
+    public void setDirection(Direction newDirection) {
+	direction = newDirection;
     }
 
-    // Test of random
-    public static void main(String[] args) {
-	for (int i = 0; i < 10; i++) {
-	    System.out.println(Direction.getRandomDirection());
-	}
-    }
 }
-
-//enum Direction {
-//    NORTH, SOUTH, WEST, EAST;
-//
-//    public static Direction getRandomDirection() {
-//	Random random = new Random();
-//	return values()[random.nextInt(values().length)];
-//    }
-//
-//}
