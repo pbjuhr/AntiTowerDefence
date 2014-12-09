@@ -39,7 +39,7 @@ public abstract class Unit {
 	t = new Timer();
 	wasTeleported = false;
 	reachedGoal = false;
-	direction = Direction.NORTH;
+	direction = Direction.getRandomDirection();
 	//setStartDirection();
 	setStartPosition();
     }
@@ -56,34 +56,15 @@ public abstract class Unit {
     }
     
     /**
-     * Sets the direction
-     */
-    private void setStartDirection(){
-	direction = Direction.getRandomDirection();
-    }
-    
-    /**
      * Runs the Unit thread
      */
-    public void start() {
-	t.schedule(new TimerTask(){
-	    @Override
-	    public void run() {
-		System.out.println("inside run. X: " + position.getX() + ", Y: " + position.getX() + ", Dir: " + direction);
-		if(!isDead() && !hasReachedGoal()){
-		    System.out.println("Landon start");
-		    runLandOn(getTerrainIndex(position));
-		    System.out.println("Landon done");
-		    if(!hasReachedGoal() || !wasTeleported){
-			System.out.println("Move start");
-			move();
-			System.out.println("Move done");
-		    }
-		} else{
-		    this.cancel();
-		}
+    public void action() {
+	if(!isDead() && !hasReachedGoal()){
+	    runLandOn(getTerrainIndex(position));
+	    if(!hasReachedGoal() || !wasTeleported){
+		move();
 	    }
-	}, 0, updateInterval);
+	}
     }
 
     /**
@@ -94,6 +75,7 @@ public abstract class Unit {
 	
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1; 
+	
 	while (nextPositionIndex == -1) {
 	    if (direction == Direction.NORTH) {
 		nextPositionIndex = getTerrainIndex(position.getPosToNorth());
@@ -105,14 +87,10 @@ public abstract class Unit {
 		nextPositionIndex = getTerrainIndex(position.getPosToWest());
 	    }
 	    if(nextPositionIndex == -1) {
-		spin();
+		direction = direction.rotateClockWise();
 	    }
 	}
 	setPosition(walkable[nextPositionIndex].getPosition());
-    }
-    
-    private void spin(){
-	this.direction = direction.rotateClockWise();
     }
     
     /**
@@ -134,7 +112,7 @@ public abstract class Unit {
 	   
 	    // Run the landOn method with the current Terrain object
 	    try {
-		landOnMethod.invoke(walkable[currentPositionIndex], getUnit());
+		landOnMethod.invoke(walkable[currentPositionIndex], this);
 	    } catch (IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException e2) {
 		e2.printStackTrace();
@@ -155,14 +133,6 @@ public abstract class Unit {
 	    }
 	}
 	return -1;
-    }
-    
-    /**
-     * Gets this Unit
-     * @return Unit
-     */
-    public Unit getUnit(){
-	return this;
     }
     
     /**
@@ -193,8 +163,7 @@ public abstract class Unit {
      * @param p, the new position
      */
     public void setPosition(Position p) {
-	this.position.setX(p.getX());
-	this.position.setY(p.getY());
+	position = p;
     }
 
     /**

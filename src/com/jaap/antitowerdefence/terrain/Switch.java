@@ -15,6 +15,7 @@ public class Switch extends Terrain implements LandOnInterface {
 	super(position);
 	walkable = true;
 	buildable = false;
+	direction = Direction.getRandomDirection();
     }
 
     @Override

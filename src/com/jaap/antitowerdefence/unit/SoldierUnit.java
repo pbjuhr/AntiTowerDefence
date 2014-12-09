@@ -18,7 +18,6 @@ public class SoldierUnit extends Unit{
 	updateInterval = Math.round(timeStep / speed);
 	cost = 100;
 	health = 200;
-	start();
     }
     
 }

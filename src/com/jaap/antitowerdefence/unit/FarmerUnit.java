@@ -17,6 +17,5 @@ public class FarmerUnit extends Unit {
 	updateInterval = timeStep / speed;
 	cost = 50;
 	health = 70;
-	start();
     }
 }

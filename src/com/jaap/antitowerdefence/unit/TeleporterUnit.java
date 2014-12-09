@@ -25,7 +25,6 @@ public class TeleporterUnit extends Unit {
 	cost = 200;
 	health = 100;
 	placedPortals = 0;
-	start();
     }
     
     /**
