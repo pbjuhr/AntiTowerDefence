@@ -34,11 +34,16 @@ public class TowerPlacerAI {
 	// Fill the array with towers
 	for(int i = 0; i < nrOfTowers; i++) {
 	    int index = rnd.nextInt(possiblePositions.length);
+	    System.out.println(index);
 	    //Find a position that no other tower have
-	    while(containsPosition(newTowers, 
-		    possiblePositions[index].getPosition())){
-		index = rnd.nextInt(possiblePositions.length);
+	    if(newTowers.length<0){
+        	    while(containsPosition(newTowers, 
+        		    possiblePositions[index].getPosition())){
+        		System.out.println("It while");
+        		index = rnd.nextInt(possiblePositions.length);
+        	    }
 	    }
+	    System.out.println("It aftet");
 	    newTowers[i] = new Tower(possiblePositions[index].getPosition());
 	}
 	return newTowers;
@@ -51,7 +56,9 @@ public class TowerPlacerAI {
      * @return true if the array doesnt contain the position, otherwise false
      */
     public boolean containsPosition(Tower[] towers, Position p) {
+	System.out.println("It true");
 	for(Tower t : towers) {
+	    System.out.println("It true");
 	    if(t.getPosition().equals(p)) {
 		return true;
 	    }
