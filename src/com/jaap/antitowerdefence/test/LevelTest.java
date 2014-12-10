@@ -17,6 +17,8 @@ import com.jaap.antitowerdefence.unit.FarmerUnit;
 /**
  * LevelTest.java
  * 
+ * Tests the functionality of the class Level.java
+ * 
  * TODO: Beskrivning, kommentarer
  * 
  * @author Anna Osterlund, id10aod
@@ -27,6 +29,9 @@ public class LevelTest {
     static Level level;
     static LevelStats lvlStats;
     
+    /**
+     * Before the tests are run an instance of Level is created.
+     */
     @BeforeClass
     public static void setUpBeforeClass() {
 	lvlStats = new LevelStats(30, 200);
@@ -34,21 +39,33 @@ public class LevelTest {
 			lvlStats);
     }
 
+    /**
+     * Checks that level was initiated
+     */
     @Test
     public void testLevel() {
 	assertNotNull(level);
     }
 
+    /**
+     * Tests that the function getWalkableTerrain is not returning null
+     */
     @Test
     public void testGetWalkableTerrain() {
 	assertNotNull(level.getWalkableTerrain());
     }
 
+    /**
+     * Tests that the function getPossibleTowerPosition is not returning null
+     */
     @Test
     public void testGetPossibleTowerPositions() {
 	assertNotNull(level.getPossibleTowerPositions());
     }
 
+    /**
+     * Tests that the function addUnit is adding a unit to the Unit ArrayList
+     */
     @Test
     public void testAddUnit() {
 	int units = level.getUnits().size();
@@ -56,11 +73,18 @@ public class LevelTest {
 	assertTrue(units < level.getUnits().size());
     }
 
+    /**
+     * Tests that the function getUnits is not returning null
+     */
     @Test
     public void testGetUnits() {
 	assertNotNull(level.getUnits());
     }
 
+    /**
+     * Tests that the function setTowers sets new towers and passes the active 
+     * units to the towers
+     */
     @Test
     public void testSetTowers() {
 	Tower[] towers = new Tower[2];
@@ -71,11 +95,18 @@ public class LevelTest {
 	assertNotNull(level.getTowers());
     }
 
+    /**
+     * Tests that the function getTowers is not returning null
+     */
     @Test
     public void testGetTowers() {
 	assertNotNull(level.getTowers());
     }
 
+    /**
+     * Tests that the function getLevelStats is not returning null and that
+     * the winScore correspond to the score set when it was constructed.
+     */
     @Test
     public void testGetLevelStats() {
 	LevelStats stats = level.getLevelStats();
