@@ -9,7 +9,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Switch extends Terrain implements LandOnInterface {
     
-    Direction direction;
+    private Direction direction;
    
     public Switch(Position position) {
 	super(position);
@@ -32,4 +32,9 @@ public class Switch extends Terrain implements LandOnInterface {
 	direction = newDirection;
     }
 
+    
+    public Direction getdDirection(){
+	return direction;
+    }
+    
 }
