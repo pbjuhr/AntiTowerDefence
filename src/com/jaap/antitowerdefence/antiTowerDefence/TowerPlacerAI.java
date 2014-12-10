@@ -6,7 +6,6 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 
 public class TowerPlacerAI {
     
-    private int timeStep;
     private int nrOfTowers;
     private int updateInterval;
     private Terrain[] possiblePositions;
@@ -20,8 +19,8 @@ public class TowerPlacerAI {
      */
     public TowerPlacerAI(Terrain[] possiblePositions, int nrOfTowers, int fps) {
 	updateInterval = 20 * fps; //Should update every 20 sec
-	this.timeStep = timeStep * updateInterval;
 	this.possiblePositions = possiblePositions;
+	this.nrOfTowers = nrOfTowers;
     }
     
     /**

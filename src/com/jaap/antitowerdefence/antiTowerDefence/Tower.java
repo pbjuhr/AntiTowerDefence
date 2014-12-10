@@ -12,7 +12,6 @@ public class Tower{
     ArrayList<Unit> units;
 	    
     public Tower(Position position) {
-	units = null;
 	this.range = 3;
 	this.coolDown = 5;
 	this.position = position;
