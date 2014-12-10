@@ -2,8 +2,11 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -14,7 +17,11 @@ import javax.swing.JPanel;
  */
 public class AntiTowerDefenceGUI {
 
-    GamePanel gamePanel;
+    JFrame frame;
+
+    JLayeredPane gamePanels;
+    GameBackground gameBackground;
+    GameForeground gameForeground;
 
     JPanel buttonPanel;
 
@@ -28,12 +35,11 @@ public class AntiTowerDefenceGUI {
 
     JMenuItem hightscore;
 
-    public AntiTowerDefenceGUI() {
-	JFrame frame = new JFrame("Anti Tower Defence");
+    public AntiTowerDefenceGUI() {//Terrain[] grass, Terrain[] road) {
+	frame = new JFrame("Anti Tower Defence");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.getContentPane().setBackground(Color.BLACK);
-	frame.setSize(640, 480);
 	frame.setLocation(640, 250);
+	//frame.setPreferredSize(new Dimension(656, 593));
 
 	JMenuBar menuBar = buildMenuBar();
 	frame.setJMenuBar(menuBar);
@@ -41,13 +47,25 @@ public class AntiTowerDefenceGUI {
 	JPanel mainPanel = new JPanel(new BorderLayout(), true);
 	frame.add(mainPanel);
 
-	gamePanel = new GamePanel();
-	mainPanel.add(gamePanel, BorderLayout.CENTER);
+	JLayeredPane gamePanels = new JLayeredPane();
+	mainPanel.add(gamePanels, BorderLayout.CENTER);
+	gamePanels.setPreferredSize(new Dimension(640, 480));
+
+	gameBackground = new GameBackground();//grass, road);
+	//gameBackground.setPreferredSize(new Dimension(640, 480));
+	gameBackground.setBounds(0, 0, 640, 480);
+	gamePanels.add(gameBackground, new Integer(0), 0);
+
+	gameForeground = new GameForeground();
+	//gameForeground.setPreferredSize(new Dimension(640, 480));
+	gameForeground.setBounds(0, 0, 640, 480);
+	gamePanels.add(gameForeground, new Integer(1), 0);
 
 	buttonPanel = new JPanel(); // FlowLayout
+	buttonPanel.setBackground(Color.DARK_GRAY);
 	mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-	//frame.pack();
+	frame.pack();
 	frame.setVisible(true);
     }
 
@@ -110,6 +128,12 @@ public class AntiTowerDefenceGUI {
 	return hightscore;
     }
 
+    public void addButton(JButton button) {
+	buttonPanel.add(button);
+	frame.pack();
+	frame.setVisible(true);
+    }
+
 //    Fönstret å menyn
 //    JFrame Highsores
 //    LayeredPanel gamePanel
@@ -117,7 +141,8 @@ public class AntiTowerDefenceGUI {
 //    Knapp playButton
 //    Knapp pauseButton
 //    setGamePanel()
-//    addButton(Knapp k) //Här har knappen och knappens lyssnare redan skapats av kontrollern
+//    addButton(Knapp k)
+    //Här har knappen och knappens lyssnare redan skapats av kontrollern
 //    getGamePanel()
 //    getGuiElements()
 //    buildLowerPanel()
