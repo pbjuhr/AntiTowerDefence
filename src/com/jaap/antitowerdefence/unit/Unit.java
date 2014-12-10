@@ -21,6 +21,8 @@ public abstract class Unit {
     /* Variables */
     protected int health; 	   // The unit's current health
     protected int cost; 	   // How much the unit costs
+    protected int birthTime;	   // What time step the unit were created
+    protected double speed; 	   // How often we move per second
     protected long updateInterval; // How often we move
     protected Direction direction; // The units direction
     protected Position position;   // The units current position
@@ -57,8 +59,14 @@ public abstract class Unit {
     
     /**
      * Runs the Unit thread
+     * @param currentStep , to determine if its time to walk
      */
-    public void action() {
+    public void action(int currentStep) {
+	
+	if((currentStep-birthTime) % speed != 0){
+	    return;
+	}
+	
 	wasTeleported = false;
 	if(!isDead() && !hasReachedGoal()){
 	    runLandOn(getTerrainIndex(position));

@@ -49,7 +49,7 @@ public class AntiTowerDefenceGame {
 	for(Unit u : currentLevel.getUnits()){
 	    u.action();
 	}
-	currentLevel.updateUnits();
+	currentLevel.updateUnits(currentStep);
 	
 	currentStep++;
     }
