@@ -32,9 +32,14 @@ public class AiTowerPlacerTest {
     }
 
     @Test
-    public void test() {
+    public void testgetNewTowers() {
 	assertNotNull(aitp.getNewTowers());
-	
     }
 
+    
+    @Test
+    public void testgetNewTowersTwoTimes() {
+	assertNotNull(aitp.getNewTowers());
+	assertNotNull(aitp.getNewTowers());
+    }
 }

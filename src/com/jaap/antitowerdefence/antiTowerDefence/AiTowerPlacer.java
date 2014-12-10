@@ -79,6 +79,13 @@ public class AiTowerPlacer {
 	return false;
     }
 
+    /**
+     * Determines if it is time to change the towers
+     * 
+     * @param timeStep
+     *            , what timestep we are on
+     * @return true if it's time to change, otherwise false
+     */
     public boolean timeToChange(int timeStep) {
 	return (timeStep % updateInterval == 0);
     }
