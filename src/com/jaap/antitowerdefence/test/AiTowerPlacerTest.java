@@ -7,13 +7,17 @@ import org.junit.Test;
 
 import com.jaap.antitowerdefence.antiTowerDefence.AiTowerPlacer;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
-import com.jaap.antitowerdefence.antiTowerDefence.Tower;
 import com.jaap.antitowerdefence.terrain.Grass;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
+/**
+ * Tests the functionality of the class AiTowerPlacer.java
+ * 
+ * @author id10abk
+ *
+ */
 public class AiTowerPlacerTest {
 
-    private Tower t;
     private AiTowerPlacer aitp;
     private Terrain[] possiblePositions;
 
@@ -36,10 +40,18 @@ public class AiTowerPlacerTest {
 	assertNotNull(aitp.getNewTowers());
     }
 
-    
     @Test
     public void testgetNewTowersTwoTimes() {
 	assertNotNull(aitp.getNewTowers());
 	assertNotNull(aitp.getNewTowers());
     }
+
+    @Test
+    public void testCheckTowerPos() {
+	Position p1 = aitp.getNewTowers()[0].getPosition();
+	Position p2 = aitp.getNewTowers()[0].getPosition();
+	assertFalse(p1.equals(p2));
+	assertFalse(p1.getX() == (p2).getX());
+    }
+
 }
