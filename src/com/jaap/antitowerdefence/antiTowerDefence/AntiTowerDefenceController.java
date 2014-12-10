@@ -1,10 +1,13 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -19,18 +22,19 @@ public class AntiTowerDefenceController {
 
     public AntiTowerDefenceController(String level) {
 	paused = true;
-	game = new AntiTowerDefenceGame(level);
+	//game = new AntiTowerDefenceGame(level);
 	try {
 	    SwingUtilities.invokeAndWait(new Runnable() {
 		@Override
 		public void run() {
-		    gui = new AntiTowerDefenceGUI();
+		    gui = new AntiTowerDefenceGUI();//game.getLevel().getPossibleTowerPositions(), game.getLevel().getWalkableTerrain());
 		}
 	    });
 	} catch (InvocationTargetException | InterruptedException e) {
 	    //e.printStackTrace();
 	}
 	setMenuListeners();
+	setButtons();
     }
 
     private void setMenuListeners() {
@@ -151,6 +155,62 @@ public class AntiTowerDefenceController {
 
 		highscoreFrame.pack();
 		highscoreFrame.setVisible(true);
+	    }
+	});
+    }
+
+    private void setButtons() {
+	String[] temp = {"Farmer", "Soldier", "Wizard"};
+	SwingUtilities.invokeLater(new Runnable() {
+	    @Override
+	    public void run() {
+		for (String unit : temp) { // game.getUnits()
+		    if (unit.equals("Farmer")) {
+			JButton farmerButton = new JButton("Farmer", new ImageIcon(getClass().getResource("../../../../assets/Farmer.png")));
+			farmerButton.addActionListener(new ActionListener() {
+			    @Override
+			    public void actionPerformed(ActionEvent arg0) {
+				//game.createFarmer();
+			    }
+			});
+			farmerButton.setBackground(Color.LIGHT_GRAY);
+			gui.addButton(farmerButton);
+		    }
+
+		    if (unit.equals("Soldier")) {
+			JButton soldierButton = new JButton("Soldier", new ImageIcon(getClass().getResource("../../../../assets/Soldier.png")));
+			soldierButton.addActionListener(new ActionListener() {
+			    @Override
+			    public void actionPerformed(ActionEvent arg0) {
+				//game.createSoldier();
+			    }
+			});
+			soldierButton.setBackground(Color.LIGHT_GRAY);
+			gui.addButton(soldierButton);
+		    }
+
+		    if (unit.equals("Wizard")) {
+			JButton wizardButton = new JButton("Wizard", new ImageIcon(getClass().getResource("../../../../assets/Teleporter.png")));
+			wizardButton.addActionListener(new ActionListener() {
+			    @Override
+			    public void actionPerformed(ActionEvent arg0) {
+				//game.createTeleporter();
+			    }
+			});
+			wizardButton.setBackground(Color.LIGHT_GRAY);
+			gui.addButton(wizardButton);
+
+			JButton portalButton = new JButton("Portal", new ImageIcon(getClass().getResource("../../../../assets/Portal.png")));
+			portalButton.addActionListener(new ActionListener() {
+			    @Override
+			    public void actionPerformed(ActionEvent arg0) {
+				//game.createFarmer();
+			    }
+			});
+			portalButton.setBackground(Color.LIGHT_GRAY);
+			gui.addButton(portalButton);
+		    }
+		}
 	    }
 	});
     }
