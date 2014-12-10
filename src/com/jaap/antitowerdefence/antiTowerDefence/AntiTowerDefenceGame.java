@@ -16,12 +16,14 @@ public class AntiTowerDefenceGame {
     private int timeStep = 1000; // 1 second
     private int currentStep;
     private int currentLevelNumber;
+    private int fps;
     private LevelReader theLevelReader;
     private Level currentLevel;
     private TowerPlacerAI towerPlacer;
     private HighScoreDB highScore;
 
     public AntiTowerDefenceGame(String level){
+	fps = 30;
 	currentStep = 0;
 	currentLevelNumber = 1;
 	theLevelReader = new LevelReader(level);
@@ -29,7 +31,8 @@ public class AntiTowerDefenceGame {
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
-	towerPlacer = new TowerPlacerAI(timeStep);
+	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
+		fps, theLevelReader.getNrOfTowers(currentLevelNumber));
 	highScore = new HighScoreDB();
     }
 
@@ -38,6 +41,8 @@ public class AntiTowerDefenceGame {
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
+	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
+		fps, theLevelReader.getNrOfTowers(currentLevelNumber));
     }
 
     public void step() {
@@ -51,6 +56,10 @@ public class AntiTowerDefenceGame {
 	    u.action(currentStep);
 	}
 	currentLevel.updateUnits();
+	
+	if(towerPlacer.timeToChange(currentStep)){
+	    currentLevel.setTowers(towerPlacer.getNewTowers());
+	}
 	
 	currentStep++;
     }
