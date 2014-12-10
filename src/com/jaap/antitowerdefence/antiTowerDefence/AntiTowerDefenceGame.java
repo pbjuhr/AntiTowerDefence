@@ -13,21 +13,23 @@ import com.jaap.antitowerdefence.unit.Unit;
 
 public class AntiTowerDefenceGame {
 
-    private int timeStep = 1000; // 1 second
-    private int currentStep;
-    private int currentLevelNumber;
-    private int fps;
-    private LevelReader theLevelReader;
-    private Level currentLevel;
-    private TowerPlacerAI towerPlacer;
-    private HighScoreDB highScore;
-
-    public AntiTowerDefenceGame(String level){
-	fps = 30;
+    private int currentStep;	 	// How many steps we've taken
+    private int currentLevelNumber;	// The current level number
+    private int fps = 30;		// How many fps the games running at
+    private LevelReader theLevelReader;	// The XML reader
+    private Level currentLevel;		// The current level object
+    private TowerPlacerAI towerPlacer;	// The towerplacerAI
+    private HighScoreDB highScore;	// Highscore object
+    
+    /**
+     * Creates an instance of the AntiTowerDefenceGame model.
+     * @param level, the path to the level xml.
+     */
+    public AntiTowerDefenceGame(String level, int fps){
+	this.fps = fps;
 	currentStep = 0;
 	currentLevelNumber = 1;
 	theLevelReader = new LevelReader(level);
-	System.out.println(level);
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
@@ -46,19 +48,19 @@ public class AntiTowerDefenceGame {
     }
 
     /**
-     * One timestep in the game
+     * Runs one timestep in the game
      */
     public void step() {
 	// Moves the units
 	for(Unit u : currentLevel.getUnits()){
 	    u.action(currentStep);
 	}
-	currentLevel.updateUnits();
 
 	// Towers shoot
 	for(Tower t : currentLevel.getTowers()){
 	    t.shoot(t.findUnitInRange());
 	}
+	currentLevel.updateUnits();
 
 	// Moves the towers
 	if(towerPlacer.timeToChange(currentStep)){
@@ -72,7 +74,7 @@ public class AntiTowerDefenceGame {
      * Creates a farmer unit and adds it to the level
      */
     public void createFarmer(){
-	Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), timeStep, 
+	Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), currentStep, 
 		fps);
 	currentLevel.addUnit(u);
     }
@@ -81,7 +83,7 @@ public class AntiTowerDefenceGame {
      * Creates a soldier unit and adds it to the level
      */
     public void createSoldier(){
-   	Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), timeStep, 
+   	Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), currentStep, 
    		fps);
    	currentLevel.addUnit(u);
     }
@@ -91,25 +93,35 @@ public class AntiTowerDefenceGame {
      */
     public void createTeleporter(){
    	Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
-   		timeStep, fps);
+   		currentStep, fps);
    	currentLevel.addUnit(u);
     }
 
-
     public void updateStats() {
-
+	
     }
 
     public boolean hasWon() {
-	return false;
+	int currentScore =  currentLevel.getLevelStats().getScore();
+	int winScore = currentLevel.getLevelStats().getWinScore();
+	return currentScore >= winScore;
     }
 
     public boolean hasLost() {
+	int currentScore =  currentLevel.getLevelStats().getScore();
+	int winScore = currentLevel.getLevelStats().getWinScore();
+	int credits = currentLevel.getLevelStats().getCredits();
+	int nrOfUnits = currentLevel.getUnits().size();
+	int farmerCost = 50;
+	if(nrOfUnits == 0 && credits < farmerCost && currentScore < winScore) {
+	    return true;
+	}
 	return false;
     }
 
-    public boolean isHighScore(score) {
-	highScore.isHighScore(score);
+    public boolean isHighScore(int score) {
+//	return highScore.isHighScore(score);
+	return true;
     }
 
     public void setHighScore(String name, int score) {
@@ -118,6 +130,14 @@ public class AntiTowerDefenceGame {
 
     public String[][] getHighScore() {
 	return highScore.getHighScoreTopTen();
+    }
+    
+    public Level getLevel(){
+	return currentLevel;
+    }
+    
+    public String[] getPossibleUnits(){
+	return theLevelReader.getUnits(currentLevelNumber);
     }
 
 }
