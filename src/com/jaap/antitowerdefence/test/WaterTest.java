@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.*;
@@ -12,7 +9,9 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Water;
 
 /**
- * @author andreasbolzyk
+ * Tests the functionality of the class Water.java
+ * 
+ * @author id10abk
  *
  */
 public class WaterTest {

@@ -8,6 +8,12 @@ import org.junit.Test;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Start;
 
+/**
+ * Tests the functionality of the class Start.java
+ * 
+ * @author id10abk
+ *
+ */
 public class StartTest {
 
     private static Start s;

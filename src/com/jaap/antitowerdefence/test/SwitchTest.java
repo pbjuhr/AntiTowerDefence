@@ -9,6 +9,12 @@ import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Switch;
 
+/**
+ * Tests the functionality of the class Switch.java
+ * 
+ * @author id10abk
+ *
+ */
 public class SwitchTest {
 
     private static Switch s;

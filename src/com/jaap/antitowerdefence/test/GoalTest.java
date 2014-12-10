@@ -8,6 +8,12 @@ import org.junit.Test;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Goal;
 
+/**
+ * Tests the functionality of the class Goal.java
+ * 
+ * @author andreasbolzyk
+ *
+ */
 public class GoalTest {
 
     private static Goal g;

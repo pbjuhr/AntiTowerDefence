@@ -8,6 +8,12 @@ import org.junit.Test;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Grass;
 
+/**
+ * Tests the functionality of the class Grass.java
+ * 
+ * @author id10abk
+ *
+ */
 public class GrassTest {
 
     private static Grass g;

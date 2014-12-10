@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.jaap.antitowerdefence.unit;
+package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +9,9 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Road;
 
 /**
- * @author andreasbolzyk
+ * Tests the functionality of the class Road.java
+ * 
+ * @author id10abk
  *
  */
 public class RoadTest {
