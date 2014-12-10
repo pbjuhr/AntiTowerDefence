@@ -41,7 +41,7 @@ public class Level {
     
     /**
      * getWalkableTerrain provides the walkable terrain elements for the units
-     * @return - Terrain array of Grass
+     * @return - Terrain array of Road
      */
     public Terrain[] getWalkableTerrain() {
 	return walkable;
