@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Switch;
-import com.jaap.antitowerdefence.unit.Unit;
 
 public class SwitchTest {
 
