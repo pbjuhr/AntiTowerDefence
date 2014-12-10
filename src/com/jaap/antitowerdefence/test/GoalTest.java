@@ -11,7 +11,7 @@ import com.jaap.antitowerdefence.terrain.Goal;
 /**
  * Tests the functionality of the class Goal.java
  * 
- * @author andreasbolzyk
+ * @author id10abk
  *
  */
 public class GoalTest {
