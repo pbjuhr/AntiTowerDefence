@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jaap.antitowerdefence.unit;
+package com.jaap.antitowerdefence.terrain;
 
 import static org.junit.Assert.*;
 
@@ -9,37 +9,37 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
-import com.jaap.antitowerdefence.terrain.Road;
 
 /**
  * @author andreasbolzyk
  *
  */
-public class RoadTest {
+public class WaterTest {
 
-    private static Road r;
+private static Water w;
     
     @BeforeClass
     public static void setUpBeforeClass(){
-	r = new Road(new Position(1,1));
+	w = new Water(new Position(1,1));
     }
     
     
     
     @Test
     public void testBuildable() {
-	assertFalse(r.isBuildable());
+	assertFalse(w.isBuildable());
     }
     
     @Test
     public void testWalkable() {
-	assertTrue(r.isWalkable());
+	assertFalse(w.isWalkable());
     }
     
 
     @Test
     public void testPosition() {
-	assertTrue(new Position(1,1).equals(r.getPosition()));
+	assertTrue(new Position(1,1).equals(w.getPosition()));
     }
 
+    
 }
