@@ -1,12 +1,12 @@
-/**
- * @author Peter Bjuhr
- * Class represents a teleporter unit
- */
-
 package com.jaap.antitowerdefence.unit;
 import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
+/**
+ * A Teleporter Unit represents a sort of wizard who can place portals in the 
+ * map. 
+ * @author Peter Bjuhr
+ */
 public class TeleporterUnit extends Unit {
     
     /* Variables related to the portal */

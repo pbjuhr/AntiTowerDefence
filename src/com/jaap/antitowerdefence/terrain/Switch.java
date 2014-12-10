@@ -25,7 +25,7 @@ public class Switch extends Terrain implements LandOnInterface {
     
     /**
      * Sets the switch direction
-     * @author Peter
+     * @author Peter Bjuhr
      * @param newDirection, the new direction
      */
     public void setDirection(Direction newDirection) {

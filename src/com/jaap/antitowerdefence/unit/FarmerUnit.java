@@ -1,11 +1,11 @@
-/**
- * @author Peter Bjuhr
- * Class represents a farmer unit
- */
 package com.jaap.antitowerdefence.unit;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
 
+/**
+ * A Farmer unit are weak and slow, but costs little money
+ * @author Peter Bjuhr
+ */
 public class FarmerUnit extends Unit {
     
     /**

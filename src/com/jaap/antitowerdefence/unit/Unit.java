@@ -1,8 +1,3 @@
-/**
- * A Unit represents a human in the game.
- * Every Unit is running its own Thread
- * @author Peter Bjuhr
- */
 package com.jaap.antitowerdefence.unit;
 
 import java.lang.reflect.InvocationTargetException;
@@ -16,6 +11,10 @@ import com.jaap.antitowerdefence.terrain.LandOnInterface;
 import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
+/**
+ * A Unit represents a troup-unit in the game.
+ * @author Peter Bjuhr
+ */
 public abstract class Unit {
 
     /* Variables */

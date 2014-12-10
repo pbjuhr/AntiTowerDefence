@@ -1,8 +1,8 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
 /**
- * @author Peter Bjuhr
- * Short introduction to the program
+ * @author Peter Bjuhr, Anna Österlund, Joakim Sandman, Andreas Bolzyk
+ * Anti tower defence is a game wher units.......
  */
 public class AntiTowerDefence {
 

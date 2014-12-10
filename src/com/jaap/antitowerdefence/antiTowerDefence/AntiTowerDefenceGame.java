@@ -1,7 +1,3 @@
-/**
- * @author Peter Bjuhr
- */
-
 package com.jaap.antitowerdefence.antiTowerDefence;
 
 import com.jaap.antitowerdefence.level.Level;
@@ -11,6 +7,10 @@ import com.jaap.antitowerdefence.unit.SoldierUnit;
 import com.jaap.antitowerdefence.unit.TeleporterUnit;
 import com.jaap.antitowerdefence.unit.Unit;
 
+/**
+ * Game model for Anti tower defence game
+ * @author Peter Bjuhr, id10pbn
+ */
 public class AntiTowerDefenceGame {
 
     private int currentStep;	 	// How many steps we've taken
@@ -37,7 +37,10 @@ public class AntiTowerDefenceGame {
 		fps, theLevelReader.getNrOfTowers(currentLevelNumber));
 	highScore = new HighScoreDB();
     }
-
+    
+    /**
+     * Resets necessary variables and sets new level & towerplacer objects
+     */
     public void newLevel() {
 	currentLevelNumber++;
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
@@ -101,12 +104,20 @@ public class AntiTowerDefenceGame {
 	
     }
 
+    /**
+     * Determines if the player has won the current level
+     * @return true if the player has won, otherwise false
+     */
     public boolean hasWon() {
 	int currentScore =  currentLevel.getLevelStats().getScore();
 	int winScore = currentLevel.getLevelStats().getWinScore();
 	return currentScore >= winScore;
     }
-
+    
+    /**
+     * Determines if the player has lost the current level
+     * @return true if the player has lost, otherwise false
+     */
     public boolean hasLost() {
 	int currentScore =  currentLevel.getLevelStats().getScore();
 	int winScore = currentLevel.getLevelStats().getWinScore();
@@ -118,24 +129,27 @@ public class AntiTowerDefenceGame {
 	}
 	return false;
     }
-
-    public boolean isHighScore(int score) {
-//	return highScore.isHighScore(score);
-	return true;
-    }
-
-    public void setHighScore(String name, int score) {
-	highScore.addScore(name, score);
-    }
-
-    public String[][] getHighScore() {
-	return highScore.getHighScoreTopTen();
+    
+    /**
+     * Gets the HighScoreDB object
+     * @return highScore
+     */
+    public HighScoreDB getHighScore(int score) {
+	return highScore;
     }
     
+    /**
+     * Gets the current Level object
+     * @return currentLevel, the level object
+     */
     public Level getLevel(){
 	return currentLevel;
     }
     
+    /**
+     * Gets a string array of possible units for the current level
+     * @return String[], the array with units
+     */
     public String[] getPossibleUnits(){
 	return theLevelReader.getUnits(currentLevelNumber);
     }

@@ -24,6 +24,10 @@ public class Start extends Switch {
 	// Do nothing on purpose!
     }
     
+    /**
+     * Calls the switchs landOn method
+     * @author Peter Bjuhr 
+     */
     public void landOn(Unit u) {
 	super.landOn(u);
     }

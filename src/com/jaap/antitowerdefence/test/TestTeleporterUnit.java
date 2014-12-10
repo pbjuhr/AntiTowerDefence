@@ -1,8 +1,3 @@
-/**
- * Tests the public functions of Unit class
- * @author Peter Bjuhr
- */
-
 package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.assertNotEquals;
@@ -20,6 +15,10 @@ import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.TeleporterUnit;
 
+/**
+ * Tests the public methods of TeleporterUnit class
+ * @author Peter Bjuhr
+ */
 public class TestTeleporterUnit {
     
     TeleporterUnit u;
