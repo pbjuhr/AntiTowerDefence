@@ -47,9 +47,9 @@ public class AntiTowerDefenceGame {
 	
 	// Moves the units
 	for(Unit u : currentLevel.getUnits()){
-	    u.action();
+	    u.action(currentStep);
 	}
-	currentLevel.updateUnits(currentStep);
+	currentLevel.updateUnits();
 	
 	currentStep++;
     }

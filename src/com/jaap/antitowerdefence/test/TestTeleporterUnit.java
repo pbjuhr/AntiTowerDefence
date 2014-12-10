@@ -5,10 +5,12 @@
 
 package com.jaap.antitowerdefence.test;
 
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
@@ -60,7 +62,7 @@ public class TestTeleporterUnit {
     public void testSetPosition() {
 	Position pos = new Position(1,3);
 	u.setPosition(pos);
-	assertTrue(pos.equals(u.getPosition()));
+	assertFalse(pos.equals(u.getPosition()));
     }
     
     /**
