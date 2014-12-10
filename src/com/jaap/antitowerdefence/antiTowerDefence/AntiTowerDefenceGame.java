@@ -101,10 +101,6 @@ public class AntiTowerDefenceGame {
    	currentLevel.addUnit(u);
     }
 
-    public void updateStats() {
-	
-    }
-
     /**
      * Determines if the player has won the current level
      * @return true if the player has won, otherwise false
