@@ -5,16 +5,14 @@
 
 package com.jaap.antitowerdefence.test;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Goal;
-import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Road;
 import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -25,6 +23,7 @@ public class TestTeleporterUnit {
     TeleporterUnit u;
     Terrain[] walkable;
     int timeStep;
+    int fps;
 
     @Before
     public void setUp() {
@@ -48,9 +47,10 @@ public class TestTeleporterUnit {
 	walkable[3] = road3;
 	walkable[4] = goal;
 	
-	timeStep = 1000;
+	timeStep = 0;
+	fps = 30;
 	
-	u = new TeleporterUnit(walkable, timeStep);
+	u = new TeleporterUnit(walkable, timeStep, fps);
     }
 
     /**
@@ -90,7 +90,8 @@ public class TestTeleporterUnit {
      */
     @Test
     public void testAction() {
-	u.action();
+	int timeStep = 0;
+	u.action(timeStep);
 	assertTrue(u.getPosition().equals(new Position(1,1)));
     }
     
@@ -108,24 +109,7 @@ public class TestTeleporterUnit {
      */
     @Test
     public void testPlaceTower() {
-	u.action();
-	u.placePortal();
-	if(!(walkable[1] instanceof Portal)){
-	    assertTrue(false);
-	}
-	Portal p = (Portal)walkable[1];
-	if(p.hasReciever()){
-	    assertTrue(false);
-	}
-	u.action();
-	u.placePortal();
-	if(!(walkable[2] instanceof Portal)){
-	    assertTrue(false);
-	}
-	Portal p2 = (Portal)walkable[1];
-	if(p.hasReciever() && !p2.hasReciever()){
-	    assertTrue(true);
-	}
+	assertTrue(false);
     }
     
     /**
@@ -133,8 +117,10 @@ public class TestTeleporterUnit {
      */
     @Test
     public void testReachedGoal() {
+	int i = 0;
 	while(!u.hasReachedGoal()){
-	    u.action();
+	    u.action(i);
+	    i++;
 	}
 	assertTrue(u.hasReachedGoal());
     }
