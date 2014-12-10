@@ -12,7 +12,7 @@ public class SoldierUnit extends Unit{
     /**
      * Runs super constructor and sets speed, cost and health
      */
-    public SoldierUnit(Terrain[] walkable, int fps){
+    public SoldierUnit(Terrain[] walkable, int timeStep, int fps){
 	super(walkable);
 	double speed = 1.6;
 	updateInterval = Math.round(fps/speed);

@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import com.jaap.antitowerdefence.unit.Unit;
 
 
-public class Tower extends Thread{
+public class Tower{
 
     private Position position;
     private int range;
     private int coolDown;
     ArrayList<Unit> units;
 	    
-    public Tower() {
+    public Tower(Position position) {
 	units = null;
 	this.range = 3;
 	this.coolDown = 5;
-	start();
+	this.position = position;
     }
     
     /**
@@ -24,15 +24,6 @@ public class Tower extends Thread{
      */
     public void setUnits(ArrayList<Unit> units){
 	this.units = units;
-    }
-    
-    /**
-     * Runs the Thread
-     */
-    public void run() {
-	while(true) {
-	    shoot(findUnitInRange());
-	}
     }
     
     /**
