@@ -1,70 +1,81 @@
 package com.jaap.antitowerdefence.test;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Tower;
 import com.jaap.antitowerdefence.level.Level;
+import com.jaap.antitowerdefence.level.LevelStats;
+import com.jaap.antitowerdefence.terrain.Grass;
+import com.jaap.antitowerdefence.terrain.Road;
+import com.jaap.antitowerdefence.unit.FarmerUnit;
 /**
  * LevelTest.java
  * 
- * TODO: Beskrivning, tester, kommentarer
+ * TODO: Beskrivning, kommentarer
  * 
  * @author Anna Osterlund, id10aod
  *
  */
 public class LevelTest {
 
-    Level level;
+    static Level level;
+    static LevelStats lvlStats;
+    
     @BeforeClass
     public static void setUpBeforeClass() {
-	
+	lvlStats = new LevelStats(30, 200);
+	level = new Level(new Grass[10], new Road[20], 
+			lvlStats);
     }
 
     @Test
     public void testLevel() {
-	fail("Not yet implemented");
+	assertNotNull(level);
     }
 
     @Test
     public void testGetWalkableTerrain() {
-	fail("Not yet implemented");
+	assertNotNull(level.getWalkableTerrain());
     }
 
     @Test
     public void testGetPossibleTowerPositions() {
-	fail("Not yet implemented");
+	assertNotNull(level.getPossibleTowerPositions());
     }
 
     @Test
     public void testAddUnit() {
-	fail("Not yet implemented");
+	int units = level.getUnits().size();
+	level.addUnit(new FarmerUnit(new Road[10], 2, 4));
+	assertTrue(units < level.getUnits().size());
     }
 
     @Test
     public void testGetUnits() {
-	fail("Not yet implemented");
+	assertNotNull(level.getUnits());
     }
 
     @Test
     public void testSetTowers() {
-	fail("Not yet implemented");
+	level.setTowers(new Tower[7]);
+	assertNotNull(level.getTowers());
     }
 
     @Test
     public void testGetTowers() {
-	fail("Not yet implemented");
+	assertNotNull(level.getTowers());
     }
 
     @Test
     public void testGetLevelStats() {
-	fail("Not yet implemented");
+	LevelStats stats = level.getLevelStats();
+	assertNotNull(stats);
+	assertEquals(30, stats.getWinScore());
+	assertEquals(30, stats.getCredits());
     }
-
-    @Test
-    public void testUpdateUnits() {
-	fail("Not yet implemented");
-    }
-
 }

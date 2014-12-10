@@ -32,7 +32,7 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  * checks if the file is valid and, if so, parse the file. The file is 
  * validated with a xml-schema, "levelsSchema.xsd".The class contains functions 
  * for retrieving information about the game levels. If the given xml-file is 
- * not valid a ddeffault file is used.
+ * not valid a default file is used.
  * 
  * @author Anna Osterlund, id10aod
  *
