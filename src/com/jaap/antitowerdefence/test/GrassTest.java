@@ -1,4 +1,4 @@
-package com.jaap.antitowerdefence.terrain;
+package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
+import com.jaap.antitowerdefence.terrain.Grass;
 
 public class GrassTest {
 
