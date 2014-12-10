@@ -5,70 +5,102 @@ import java.util.Random;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 public class TowerPlacerAI {
-    
+
     private int nrOfTowers;
     private int updateInterval;
     private Terrain[] possiblePositions;
-    
+
     /**
      * Creates the TowerPlacer
-     * @param possiblePositions, contains all terrain with positions where 
-     * a tower can be placed
-     * @param nrOfTowers, the number of towers
-     * @param fps, how often does the game update
+     * 
+     * @param possiblePositions
+     *            , contains all terrain with positions where a tower can be
+     *            placed
+     * @param nrOfTowers
+     *            , the number of towers
+     * @param fps
+     *            , how often does the game update
      */
     public TowerPlacerAI(Terrain[] possiblePositions, int nrOfTowers, int fps) {
-	updateInterval = 20 * fps; //Should update every 20 sec
+	updateInterval = 20 * fps; // Should update every 20 sec
 	this.possiblePositions = possiblePositions;
 	this.nrOfTowers = nrOfTowers;
     }
-    
+
     /**
      * Creates a new tower array with positions within possible tower positions
+     * 
      * @return newTowers, an array of towers
      */
     public Tower[] getNewTowers() {
 	Tower[] newTowers = new Tower[nrOfTowers];
 	Random rnd = new Random();
-	
+
 	// Fill the array with towers
-	for(int i = 0; i < nrOfTowers; i++) {
+	for (int i = 0; i < nrOfTowers; i++) {
 	    int index = rnd.nextInt(possiblePositions.length);
 	    System.out.println(index);
-	    //Find a position that no other tower have
-	    if(newTowers.length<0){
-        	    while(containsPosition(newTowers, 
-        		    possiblePositions[index].getPosition())){
-        		System.out.println("It while");
-        		index = rnd.nextInt(possiblePositions.length);
-        	    }
+	    // Find a position that no other tower have
+
+	    if (containsTower(newTowers)) {
+		while (containsPosition(newTowers,
+			possiblePositions[index].getPosition())) {
+		    System.out.println("In while");
+		    index = rnd.nextInt(possiblePositions.length);
+		}
 	    }
-	    System.out.println("It aftet");
+	    System.out.println("It aftet while");
 	    newTowers[i] = new Tower(possiblePositions[index].getPosition());
+	    
+	    System.out.print(newTowers[i]!=null);
+	    System.out.println(" :it is good ");
 	}
 	return newTowers;
     }
-    
+
+    /**
+     * 
+     * @param towers
+     * @author id10abk
+     * @return
+     */
+    public boolean containsTower(Tower[] towers) {
+	for (Tower t : towers) {
+	    if (t != null) {
+		System.out.println(" not emtpy True");
+		return true;
+	    }
+	}
+	System.out.println(" emtpy False");
+	return false;
+    }
+
     /**
      * Check if a Tower array contains a tower with a certain position
-     * @param towers, the tower array
-     * @param position, thw position
+     * 
+     * @param towers
+     *            , the tower array
+     * @param position
+     *            , thw position
      * @return true if the array doesnt contain the position, otherwise false
      */
     public boolean containsPosition(Tower[] towers, Position p) {
-	System.out.println("It true");
-	for(Tower t : towers) {
-	    System.out.println("It true");
-	    if(t.getPosition().equals(p)) {
+	int i=0;
+	for (Tower t : towers) {
+	    System.out.println(i++);
+	    System.out.println(t.getPosition().equals(p));
+	    if (t.getPosition().equals(p)) {
 		return true;
 	    }
 	}
 	return false;
     }
-    
+
     /**
      * determines if it is time to change the towers
-     * @param timeStep, what timestep we are on
+     * 
+     * @param timeStep
+     *            , what timestep we are on
      * @return true if it's time to change, otherwise false
      */
     public boolean timeToChange(int timeStep) {
