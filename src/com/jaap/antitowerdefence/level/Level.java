@@ -6,6 +6,9 @@ import com.jaap.antitowerdefence.antiTowerDefence.Tower;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.Unit;
 /**
+ * Level.java
+ * 
+ * TODO: BESKRIVNING + kommentera sista klassen
  * 
  * @author Anna Osterlund, id10aod
  *

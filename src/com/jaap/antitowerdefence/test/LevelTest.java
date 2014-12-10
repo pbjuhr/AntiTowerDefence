@@ -1,12 +1,19 @@
 package com.jaap.antitowerdefence.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jaap.antitowerdefence.level.Level;
-
+/**
+ * LevelTest.java
+ * 
+ * TODO: Beskrivning, tester, kommentarer
+ * 
+ * @author Anna Osterlund, id10aod
+ *
+ */
 public class LevelTest {
 
     Level level;
