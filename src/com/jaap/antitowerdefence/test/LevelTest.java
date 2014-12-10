@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.antiTowerDefence.Tower;
 import com.jaap.antitowerdefence.level.Level;
 import com.jaap.antitowerdefence.level.LevelStats;
@@ -62,7 +63,11 @@ public class LevelTest {
 
     @Test
     public void testSetTowers() {
-	level.setTowers(new Tower[7]);
+	Tower[] towers = new Tower[2];
+	Position position = new Position(1,2);
+	towers[0] = new Tower(position);
+	towers[1] = new Tower(position);
+	level.setTowers(towers);
 	assertNotNull(level.getTowers());
     }
 
@@ -76,6 +81,5 @@ public class LevelTest {
 	LevelStats stats = level.getLevelStats();
 	assertNotNull(stats);
 	assertEquals(30, stats.getWinScore());
-	assertEquals(30, stats.getCredits());
     }
 }
