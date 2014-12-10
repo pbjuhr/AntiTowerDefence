@@ -54,14 +54,15 @@ public class AntiTowerDefenceGame {
      * Runs one timestep in the game
      */
     public void step() {
-	// Moves the units
-	for(Unit u : currentLevel.getUnits()){
-	    u.action(currentStep);
-	}
-
+	
 	// Towers shoot
 	for(Tower t : currentLevel.getTowers()){
 	    t.shoot(t.findUnitInRange());
+	}
+		
+	// Moves the units
+	for(Unit u : currentLevel.getUnits()){
+	    u.action(currentStep);
 	}
 	currentLevel.updateUnits();
 
