@@ -57,7 +57,6 @@ public class AiTowerPlacer {
 		towers.add(new Tower(possiblePositions[index].getPosition()));
 	    }
 	}
-	System.out.println("The end of for loop");
 	return writeToArray(towers);
     }
 
@@ -92,10 +91,8 @@ public class AiTowerPlacer {
      */
     private Tower[] writeToArray(ArrayList<Tower> towers) {
 	Tower[] newTowers = new Tower[towers.size() - 1];
-	System.out.println(towers.size() - 1);
 	for (int i = 0; i < towers.size(); i++) {
 	    newTowers[i] = towers.remove(i);
-	    System.out.println(newTowers[i].getPosition().getX());
 	}
 	return newTowers;
     }
