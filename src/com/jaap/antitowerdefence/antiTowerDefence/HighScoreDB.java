@@ -9,7 +9,9 @@ import java.util.Properties;
 /**
  * HighScoreDB.java
  * 
- * TODO: BESKRIVNING, om uppkoppling till databasen misslyckas?
+ * A class that manages all communication with the Anti Tower Defence highscore
+ * database. After the class has been initiated the function connectToDB has to 
+ * be called to connect to the database.
  * 
  * @author Anna Osterlund, id10aod
  *
@@ -18,40 +20,40 @@ public class HighScoreDB {
 
 
     /*Variables*/
-    Connection conn;
-    PreparedStatement addHighScore;
-    PreparedStatement getHighScore;
+    Connection conn;			//The database connection
+    PreparedStatement addHighScore;	//SQL-query to add a score
+    PreparedStatement getHighScore;	//SQL-query to retrieve top ten scores
 
     /**
-     * Constructor connects the database
+     * Constructor initiates an object of the class
      */
     public HighScoreDB() {
-	connectToDB();
-	setPreparedStatments();
+
     }
 
     /**
      * connectToDB connects to the database using a passwort, a username, a URI
-     * and a mySQL JDBC driver.
+     * and a mySQL JDBC driver. If this is successful it sets the prepared
+     * statments
+     * @return true if the connection was successful, false if not
      */
-    private void connectToDB() {
+    public boolean connectToDB() {
 	Properties connectionProps = new Properties();
-	connectionProps.put("user", "root");
-	connectionProps.put("password", "Anngurt_8580");
+	connectionProps.put("user", "v135h14g13");
+	connectionProps.put("password", "Sheoja8a");
 
 	try {
 	    Class.forName("com.mysql.jdbc.Driver");
 	    conn = DriverManager.getConnection(
-		    "jdbc:mysql://localhost:3306/atd_high_score",
+		    "jdbc:mysql://mysql.cs.umu.se:3306/v135h14g13",
 		    connectionProps);
+	    setPreparedStatments();
 	} catch (SQLException e) {
-	    //TODO: Check system.exit()
-	    System.out.println("Error: unable connect to database!");
-	    System.exit(1);
+	    return false;
 	} catch(ClassNotFoundException ex) {
-	    System.out.println("Error: unable to load driver class!");
-	    System.exit(1);
+	    return false;
 	}
+	return true;
     }
 
     /**
@@ -130,16 +132,14 @@ public class HighScoreDB {
      * setPreparedStatements constructs prepared SQL-statements for inserting
      * a highscore into the database and for retrieveing the ten highest scores
      * from the database.
+     * @throws SQLException 
      */
-    private void setPreparedStatments() {
-	try {
-	    addHighScore = conn.prepareStatement(
-		    "INSERT INTO HighScore (Name,Score) VALUES (?,?);");
-	    getHighScore = conn.prepareStatement(
-		    "SELECT * FROM HighScore ORDER BY Score DESC limit 10;");
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
+    private void setPreparedStatments() throws SQLException {
+
+	addHighScore = conn.prepareStatement(
+		"INSERT INTO HighScore (name,score) VALUES (?,?);");
+	getHighScore = conn.prepareStatement(
+		"SELECT * FROM HighScore ORDER BY score DESC limit 10;");
+
     }
 }

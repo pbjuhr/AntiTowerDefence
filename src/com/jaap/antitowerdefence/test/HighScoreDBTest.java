@@ -17,6 +17,7 @@ import com.jaap.antitowerdefence.antiTowerDefence.HighScoreDB;
 public class HighScoreDBTest {
 
     private static HighScoreDB highScore;
+    private static boolean success;
     
     /**
      * Initiates a HighScoreDB before running the tests
@@ -24,6 +25,7 @@ public class HighScoreDBTest {
     @BeforeClass
     public static void setUpBeforeClass(){
 	highScore = new HighScoreDB();
+	success = highScore.connectToDB();
     }
 
     /**
@@ -31,6 +33,7 @@ public class HighScoreDBTest {
      */
     @Test
     public void testHighScoreDB() {
+	assertTrue(success);
 	assertNotNull(highScore);
     }
     
@@ -40,8 +43,10 @@ public class HighScoreDBTest {
     @Test
     public void testAddScore() {
 	String result;
-	result = highScore.addScore("Frans", 19);
-	assertEquals(result, "success");
+	result = highScore.addScore("Berit", 16);
+	System.out.println(result);
+	assertEquals("success", result);
+	
     }
     
     /**
