@@ -103,7 +103,7 @@
 	<level levelNumber="2">
 		<towers>7</towers>
 		<credits>1500</credits>
-		<winScore>100</winScore>
+		<winScore>50</winScore>
 		<units>
 			<unit>Farmer</unit>
 			<unit>Soldier</unit>
