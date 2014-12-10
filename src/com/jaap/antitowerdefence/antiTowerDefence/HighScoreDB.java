@@ -15,15 +15,15 @@ import java.util.Properties;
  *
  */
 public class HighScoreDB {
-    
-    
+
+
     /*Variables*/
     Connection conn;
     PreparedStatement addHighScore;
     PreparedStatement getHighScore;
-    
+
     /**
-     * 
+     * Constructor connects the database
      */
     public HighScoreDB() {
 	connectToDB();
@@ -31,27 +31,26 @@ public class HighScoreDB {
     }
 
     /**
-     * connectToDB
+     * connectToDB connects to the database using a passwort, a username, a URI
+     * and a mySQL JDBC driver.
      */
     private void connectToDB() {
 	Properties connectionProps = new Properties();
 	connectionProps.put("user", "root");
 	connectionProps.put("password", "Anngurt_8580");
+
 	try {
 	    Class.forName("com.mysql.jdbc.Driver");
-	 }
-	 catch(ClassNotFoundException ex) {
-	    System.out.println("Error: unable to load driver class!");
-	    System.exit(1);
-	 }
-	
-	try {
 	    conn = DriverManager.getConnection(
 		    "jdbc:mysql://localhost:3306/atd_high_score",
 		    connectionProps);
 	} catch (SQLException e) {
-	    // TODO Om uppkoppling misslyckas
-	    e.printStackTrace();
+	    //TODO: Check system.exit()
+	    System.out.println("Error: unable connect to database!");
+	    System.exit(1);
+	} catch(ClassNotFoundException ex) {
+	    System.out.println("Error: unable to load driver class!");
+	    System.exit(1);
 	}
     }
 
@@ -99,7 +98,7 @@ public class HighScoreDB {
 	}
 	return highScore;
     }
-    
+
     /**
      * isHighScore checks if a given score is a valid highscore, top ten or 
      * higher
@@ -124,7 +123,7 @@ public class HighScoreDB {
 	if(i < 10){
 	    return "true";
 	}
-	 return "false";
+	return "false";
     }
 
     /**

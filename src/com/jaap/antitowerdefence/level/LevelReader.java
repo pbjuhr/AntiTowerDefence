@@ -69,7 +69,7 @@ public class LevelReader {
 	//TODO!!
 	// HANTERA OM EJ VALIDERING GÅR IGENOM!!
 	// och andra felmeddelanden
-	File schemaFile = new File("assets/levelsSchema.xsd");
+	File schemaFile = new File("assets/levels/levelsSchema.xsd");
 	Source xmlLevelFile = new StreamSource(levelFile);
 	SchemaFactory schemaFactory = SchemaFactory
 		.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

@@ -28,7 +28,7 @@ public class LevelReaderTest {
      */
     @BeforeClass
     public static void setUpBeforeClass() {
-	levelReader = new LevelReader("src/levels.xml");
+	levelReader = new LevelReader("assets/levels/levels.xml");
 	level = 1;
     }
 
