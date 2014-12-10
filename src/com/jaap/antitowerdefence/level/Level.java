@@ -8,7 +8,8 @@ import com.jaap.antitowerdefence.unit.Unit;
 /**
  * Level.java
  * 
- * TODO: BESKRIVNING + kommentera sista klassen
+ * A class that contains all of the components of a Anti Tower Defence level. It
+ * keeps track of active units, towers, terrain, level info and statistics.
  * 
  * @author Anna Osterlund, id10aod
  *
