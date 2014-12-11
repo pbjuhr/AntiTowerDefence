@@ -1,5 +1,7 @@
 package com.jaap.antitowerdefence.terrain;
 
+import java.util.ArrayList;
+
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
@@ -10,8 +12,9 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class Switch extends Terrain implements LandOnInterface {
     
     private Direction direction;
+    private ArrayList<Direction> dir;
    
-    public Switch(Position position) {
+    public Switch(Position position, ArrayList<Direction> dir) {
 	super(position);
 	walkable = true;
 	buildable = false;
