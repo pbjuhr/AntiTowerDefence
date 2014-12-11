@@ -2,8 +2,6 @@ package com.jaap.antitowerdefence.unit;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
@@ -25,7 +23,6 @@ public abstract class Unit {
     protected Direction direction; // The units direction
     protected Position position;   // The units current position
     protected Terrain[] walkable;  // All walkable terrain objects in level
-    private Timer t;		   // The timer to schedule actions
     private boolean reachedGoal;   // Has the unit reached the goal
     private boolean wasTeleported; // Has the unit been teleported
 
@@ -36,11 +33,9 @@ public abstract class Unit {
     public Unit(Terrain[] walkable) {
 	this.walkable = walkable;
 	position = new Position(0,0);
-	t = new Timer();
 	wasTeleported = false;
 	reachedGoal = false;
-	direction = Direction.getRandomDirection();
-	//setStartDirection();
+	direction = Direction.getRandomDirection(); // Gets set by start landOn
 	setStartPosition();
     }
     
@@ -82,19 +77,129 @@ public abstract class Unit {
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1;
 	
+	// Get the index of next terrain object, depending on current direction
 	if (direction == Direction.NORTH) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToNorth());
+	    if(nextPositionIndex == -1) {
+		nextPositionIndex = findNeighbourIndexOfNorth();
+	    }
 	} else if (direction == Direction.SOUTH) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToSouth());
+	    if(nextPositionIndex == -1) {
+		nextPositionIndex = findNeighbourIndexOfSouth();
+	    }
 	} else if (direction == Direction.EAST) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToEast());
+	    if(nextPositionIndex == -1) {
+		nextPositionIndex = findNeighbourIndexOfEast();
+	    }
 	} else if (direction == Direction.WEST) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToWest());
-	}
-	if(nextPositionIndex == -1) {
-	    direction = direction.rotateClockWise();
+	    if(nextPositionIndex == -1) {
+		nextPositionIndex = findNeighbourIndexOfWest();
+	    }
 	}
 	setPosition(walkable[nextPositionIndex].getPosition());	
+    }
+    
+    /**
+     * Looks in the direction in order west, east, south and changes the units
+     * direction according to where a walkable terrain exists.
+     * @return the index in the walkable array of the terrain object
+     */
+    private int findNeighbourIndexOfNorth() {
+	int neighbourIndex = -1;
+	neighbourIndex = getTerrainIndex(position.getPosToWest());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.WEST);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToEast());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.EAST);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToSouth());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.SOUTH);
+	    return neighbourIndex;
+	}
+	return neighbourIndex;
+    }
+    
+    /**
+     * Looks in the direction in order east, west, north and changes the units
+     * direction according to where a walkable terrain exists.
+     * @return the index in the walkable array of the terrain object
+     */
+    private int findNeighbourIndexOfSouth() {
+	int neighbourIndex = -1;
+	neighbourIndex = getTerrainIndex(position.getPosToEast());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.EAST);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToWest());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.WEST);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToNorth());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.NORTH);
+	    return neighbourIndex;
+	}
+	return neighbourIndex;
+    }
+    
+    /**
+     * Looks in the direction in order north, south, west and changes the units
+     * direction according to where a walkable terrain exists.
+     * @return the index in the walkable array of the terrain object
+     */
+    private int findNeighbourIndexOfEast() {
+	int neighbourIndex = -1;
+	neighbourIndex = getTerrainIndex(position.getPosToNorth());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.NORTH);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToSouth());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.SOUTH);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToWest());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.WEST);
+	    return neighbourIndex;
+	}
+	return neighbourIndex;
+    }
+    
+    /**
+     * Looks in the direction in order south, north, east and changes the units
+     * direction according to where a walkable terrain exists.
+     * @return the index in the walkable array of the terrain object
+     */
+    private int findNeighbourIndexOfWest() {
+	int neighbourIndex = -1;
+	neighbourIndex = getTerrainIndex(position.getPosToSouth());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.SOUTH);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToNorth());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.NORTH);
+	    return neighbourIndex;
+	}
+	neighbourIndex = getTerrainIndex(position.getPosToEast());
+	if(neighbourIndex != -1) {
+	    setDirection(Direction.EAST);
+	    return neighbourIndex;
+	}
+	return neighbourIndex;
     }
     
     /**
@@ -144,14 +249,6 @@ public abstract class Unit {
      */
     public void takeDamage() {
 	this.health -= 20;
-    }
-
-    /**
-     * Check the units health and returns whether its dead or not
-     * @return true if the unit is dead, otherwise false
-     */
-    public boolean isDead() {
-	return (this.health <= 0);
     }
     
     /**
