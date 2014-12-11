@@ -3,6 +3,7 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +13,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import com.jaap.antitowerdefence.terrain.Terrain;
+import com.jaap.antitowerdefence.unit.Unit;
+//TODO errorhandling getPanel splashscreens
 /**
  * @author Joakim Sandman (tm08jsn)
  */
@@ -35,7 +39,7 @@ public class AntiTowerDefenceGUI {
 
     JMenuItem hightscore;
 
-    public AntiTowerDefenceGUI() {//Terrain[] grass, Terrain[] road) {
+    public AntiTowerDefenceGUI(int fps) {
 	frame = new JFrame("Anti Tower Defence");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setLocation(640, 250);
@@ -51,17 +55,15 @@ public class AntiTowerDefenceGUI {
 	mainPanel.add(gamePanels, BorderLayout.CENTER);
 	gamePanels.setPreferredSize(new Dimension(640, 480));
 
-	gameBackground = new GameBackground();//grass, road);
-	//gameBackground.setPreferredSize(new Dimension(640, 480));
+	gameBackground = new GameBackground();
 	gameBackground.setBounds(0, 0, 640, 480);
 	gamePanels.add(gameBackground, new Integer(0), 0);
 
-	gameForeground = new GameForeground();
-	//gameForeground.setPreferredSize(new Dimension(640, 480));
+	gameForeground = new GameForeground(fps);
 	gameForeground.setBounds(0, 0, 640, 480);
 	gamePanels.add(gameForeground, new Integer(1), 0);
 
-	buttonPanel = new JPanel(); // FlowLayout
+	buttonPanel = new JPanel();
 	buttonPanel.setBackground(Color.DARK_GRAY);
 	mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -132,6 +134,15 @@ public class AntiTowerDefenceGUI {
 	buttonPanel.add(button);
 	frame.pack();
 	frame.setVisible(true);
+    }
+
+    public JPanel getButtons() {
+	return buttonPanel;
+    }
+
+    public void newLevelGUI(Terrain[] grass, Terrain[] road, ArrayList<Unit> units, Tower[] towers) {
+	gameBackground.setTerrain(grass, road);
+	gameForeground.setTerrainAndObjects(units, towers, road);
     }
 
 //    Fönstret å menyn
