@@ -1,8 +1,10 @@
 package com.jaap.antitowerdefence.test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +12,9 @@ import org.junit.Test;
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Goal;
+import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Road;
-import com.jaap.antitowerdefence.terrain.Start;
+import com.jaap.antitowerdefence.terrain.Switch;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.TeleporterUnit;
 
@@ -24,7 +27,7 @@ public class TestTeleporterUnit {
     TeleporterUnit u;
     Terrain[] walkable;
     int timeStep;
-    int fps;
+    int stepsPerSec;
 
     @Before
     public void setUp() {
@@ -35,7 +38,12 @@ public class TestTeleporterUnit {
 	Position pos4 = new Position(1,3);
 	Position pos5 = new Position(1,4);
 	
-	Start start = new Start(pos1);
+	ArrayList<Direction> dirs = new ArrayList<Direction>();
+	dirs.add(Direction.NORTH);
+	dirs.add(Direction.SOUTH);
+	dirs.add(Direction.EAST);
+	dirs.add(Direction.WEST);
+	Switch start = new Switch(pos1, dirs);
 	Road road1 = new Road(pos2);
 	Road road2 = new Road(pos3);
 	Road road3 = new Road(pos4);
@@ -49,9 +57,9 @@ public class TestTeleporterUnit {
 	walkable[4] = goal;
 	
 	timeStep = 0;
-	fps = 30;
+	stepsPerSec = 30;
 	
-	u = new TeleporterUnit(walkable, timeStep, fps);
+	u = new TeleporterUnit(walkable, stepsPerSec);
     }
 
     /**
@@ -92,8 +100,12 @@ public class TestTeleporterUnit {
     @Test
     public void testAction() {
 	int timeStep = 0;
-	u.action(timeStep);
-	assertTrue(u.getPosition().equals(new Position(1,1)));
+	// Moves 3 times
+	while(timeStep < 4 * stepsPerSec){
+	    u.action();
+	    timeStep++;
+	}
+	assertTrue(u.getPosition().equals(new Position(1,3)));
     }
     
     /**
@@ -110,7 +122,20 @@ public class TestTeleporterUnit {
      */
     @Test
     public void testPlaceTower() {
-	assertTrue(false);
+	int timeStep = 0;
+	while(timeStep < 5 * stepsPerSec){
+	    if(timeStep == (stepsPerSec + 1) || timeStep == 4*stepsPerSec){
+		System.out.println("Time: " + timeStep + ", places portal on posX: " + u.getPosition().getX() + ", Y: " +u.getPosition().getY());
+		u.placePortal();
+	    }
+	    u.action();
+	    timeStep++;
+	}
+	
+	for(int i = 0; i < walkable.length; i++) {
+	    System.out.println("i: " + i + ", portal: " + (walkable[i] instanceof Portal) + ", pos: x:" + walkable[i].getPosition().getX() + ", pos: y:" + walkable[i].getPosition().getY());
+	}
+	
     }
     
     /**
@@ -118,10 +143,8 @@ public class TestTeleporterUnit {
      */
     @Test
     public void testReachedGoal() {
-	int i = 0;
 	while(!u.hasReachedGoal()){
-	    u.action(i);
-	    i++;
+	    u.action();
 	}
 	assertTrue(u.hasReachedGoal());
     }

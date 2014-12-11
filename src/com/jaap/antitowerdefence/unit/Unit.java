@@ -18,8 +18,9 @@ public abstract class Unit {
     /* Variables */
     protected int health; 	   // The unit's current health
     protected int cost; 	   // How much the unit costs
-    protected double speed; 	   // How often we move per second
     protected long coolDown; 	   // Steps until next move
+    protected double speed = 1;	   // How often does the unit move
+    protected int stepsPerSec;     // steps per second in game
     protected Direction direction; // The units direction
     protected Position position;   // The units current position
     protected Terrain[] walkable;  // All walkable terrain objects in level
@@ -30,42 +31,52 @@ public abstract class Unit {
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
      * false.
      */
-    public Unit(Terrain[] walkable) {
+    public Unit(Terrain[] walkable, int stepsPerSec) {
 	this.walkable = walkable;
+	this.stepsPerSec = stepsPerSec;
 	position = new Position(0,0);
 	wasTeleported = false;
 	reachedGoal = false;
-	//direction = Direction.getRandomDirection(); // Gets set by start landOn
-	setStartPositionAndDirection();
-	System.out.println("DIR: " + this.direction);
+	direction = Direction.NORTH; // Gets set by start landOn
+	//setStartPosition();
+	setPosition(new Position(1,0));
     }
     
     /**
      * Sets the position to the start position
      */
-    private void setStartPositionAndDirection(){
+    private void setStartPosition(){
 	for(Terrain t : walkable) {
 	    if(t instanceof Start) {
 		this.setPosition(t.getPosition());
-		this.setDirection(((Start) t).getdDirection());
 	    }
 	}
+    }
+    
+    /**
+     * Resets the coolDown
+     */
+    protected void resetCoolDown() {
+	coolDown = Math.round(stepsPerSec/speed);
     }
     
     /**
      * Runs the Unit thread
      * @param currentStep , to determine if its time to walk
      */
-    public void action(int currentStep) {
+    public void action() {
 
 	if(coolDown > 0){
 	    coolDown--;
 	} else{
 	    wasTeleported = false;
+	    System.out.println("Is goal? " + hasReachedGoal());
 	    if(isAlive() && !hasReachedGoal()){
 		runLandOn(getTerrainIndex(position));
 		if(!hasReachedGoal() || !wasTeleported){
 		    move();
+		    System.out.println("Moved to x: " + position.getX() + ", y: " + position.getY());
+		    resetCoolDown();
 		}
 	    }
 	}
@@ -78,35 +89,28 @@ public abstract class Unit {
     private void move() {
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1;
-	System.out.println("dir: " + this.direction);
 	// Get the index of next terrain object, depending on current direction
 	if (direction == Direction.NORTH) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToNorth());
-	    System.out.println("nextindn: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfNorth();
 	    }
 	} else if (direction == Direction.SOUTH) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToSouth());
-	    System.out.println("nextinds: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfSouth();
 	    }
 	} else if (direction == Direction.EAST) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToEast());
-	    System.out.println("nextinde: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfEast();
 	    }
 	} else if (direction == Direction.WEST) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToWest());
-	    System.out.println("nextindw: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfWest();
 	    }
 	}
-	System.out.println("walkable len: " + walkable.length);
-	System.out.println("next index: " + nextPositionIndex);
 	setPosition(walkable[nextPositionIndex].getPosition());	
     }
     

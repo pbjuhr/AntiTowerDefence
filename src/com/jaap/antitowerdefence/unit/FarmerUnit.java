@@ -11,11 +11,11 @@ public class FarmerUnit extends Unit {
     /**
      * Runs super constructor and sets speed, cost and health
      */
-    public FarmerUnit(Terrain[] walkable, int timeStep, int fps) {
-	super(walkable);
-	int speed = 1;
-	coolDown = Math.round(fps/speed);
+    public FarmerUnit(Terrain[] walkable, int stepsPerSec) {
+	super(walkable, stepsPerSec);
+	speed = 1;
 	cost = 50;
 	health = 70;
+	resetCoolDown();
     }
 }

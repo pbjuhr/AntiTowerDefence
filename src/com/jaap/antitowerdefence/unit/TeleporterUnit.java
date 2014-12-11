@@ -12,18 +12,19 @@ public class TeleporterUnit extends Unit {
     /* Variables related to the portal */
     private Portal firstPortal;
     private int placedPortals;
-
+    
     /**
      * Runs super constructor and sets teleporters speed, cost, health and
      * portal variables
      */
-    public TeleporterUnit(Terrain[] walkable, int timeStep, int fps) {
-	super(walkable);
-	speed = 0.8;
-	coolDown = Math.round(fps/speed);
+    public TeleporterUnit(Terrain[] walkable, int stepsPerSec) {
+	super(walkable, stepsPerSec);
+	this.stepsPerSec = stepsPerSec;
+	coolDown = Math.round(stepsPerSec/speed);
 	cost = 200;
 	health = 100;
 	placedPortals = 0;
+	resetCoolDown();
     }
     
     /**
@@ -38,7 +39,8 @@ public class TeleporterUnit extends Unit {
 	    firstPortal = new Portal(this.position);
 	    walkable[terrainIndex] = firstPortal;
 	    placedPortals = 1;
-	} else if(placedPortals == 1) {
+	} else if(placedPortals == 1 && 
+		!firstPortal.getPosition().equals(this.position)) {
 	    Portal reciever = new Portal(this.position);
 	    firstPortal.setReciever(reciever.getPosition());
 	    walkable[terrainIndex] = reciever;
