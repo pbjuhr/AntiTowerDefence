@@ -3,22 +3,29 @@ import java.util.ArrayList;
 
 import com.jaap.antitowerdefence.unit.Unit;
 
-
+/**
+ * Tower that can shoot units within a shooting distance
+ * @author Peter Bjuhr
+ */
 public class Tower{
 
-    private Position position;
-    private Position shootPosition;
-    private int range;
-    private int coolDown;
-    private int sps;
-    private int shootInterval = 2;
-    ArrayList<Unit> units;
+    private Position position;		// position of the tower
+    private Position shootPosition;	// last shooting position
+    private int range = 3; 		// how far away the tower can see
+    private int shootInterval = 2;	// time between ever shot (seconds)
+    private int coolDown;		// how many steps until we can shoot
+    private int stepsPerSecond;		// steps per second in the game
+    ArrayList<Unit> units;		// the units to shoot at
 
-    public Tower(Position position, int sps) {
-	this.range = 3;
-	this.coolDown = shootInterval * sps;
+    /**
+     * Creates a Tower object
+     * @param position, The position of the tower
+     * @param stepsPerSecond, steps per second in the game
+     */
+    public Tower(Position position, int stepsPerSecond) {
+	this.coolDown = shootInterval * stepsPerSecond;
 	this.position = position;
-	this.sps = sps;
+	this.stepsPerSecond = stepsPerSecond;
 	shootPosition = null;
     }
     
@@ -35,8 +42,9 @@ public class Tower{
      * Units in range. 
      */
     public void action() {
+	// Determine if it is time to shoot
 	if(coolDown > 0) {
-	    if(coolDown < (sps * shootInterval) - 1){
+	    if(coolDown < (stepsPerSecond * shootInterval) - 1){
 		shootPosition = null;
 	    }
 	    coolDown--;
@@ -44,7 +52,7 @@ public class Tower{
 	    Unit u = findUnitInRange();
 	    if(u != null) {
 		shootPosition = u.getPosition();
-		coolDown = sps * 5;
+		coolDown = stepsPerSecond * shootInterval;
 		u.takeDamage(); //FIRE!!
 	    }
 	}

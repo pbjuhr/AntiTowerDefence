@@ -34,7 +34,7 @@ public class AntiTowerDefenceGame {
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		sps, theLevelReader.getNrOfTowers(currentLevelNumber));
+		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
 	highScore = new HighScoreDB();
     }
     
@@ -79,7 +79,7 @@ public class AntiTowerDefenceGame {
      */
     public void createFarmer(){
 	Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), currentStep, 
-		sps);
+		stepsPerSecond);
 	currentLevel.addUnit(u);
     }
     
@@ -88,7 +88,7 @@ public class AntiTowerDefenceGame {
      */
     public void createSoldier(){
    	Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), currentStep, 
-   		sps);
+   		stepsPerSecond);
    	currentLevel.addUnit(u);
     }
     
@@ -97,7 +97,7 @@ public class AntiTowerDefenceGame {
      */
     public void createTeleporter(){
    	Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
-   		currentStep, sps);
+   		currentStep, stepsPerSecond);
    	currentLevel.addUnit(u);
     }
 
