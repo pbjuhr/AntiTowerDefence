@@ -65,15 +65,13 @@ public abstract class Unit {
      * @param currentStep , to determine if its time to walk
      */
     public void action() {
-
 	if(coolDown > 0){
 	    coolDown--;
 	} else{
 	    wasTeleported = false;
-	    System.out.println("Is goal? " + hasReachedGoal());
-	    if(isAlive() && !hasReachedGoal()){
+	    if(isAlive() && !reachedGoal){
 		runLandOn(getTerrainIndex(position));
-		if(!hasReachedGoal() || !wasTeleported){
+		if(!reachedGoal && !wasTeleported){
 		    move();
 		    System.out.println("Moved to x: " + position.getX() + ", y: " + position.getY());
 		    resetCoolDown();
