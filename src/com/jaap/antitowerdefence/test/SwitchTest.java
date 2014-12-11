@@ -2,6 +2,8 @@ package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,10 +20,13 @@ import com.jaap.antitowerdefence.terrain.Switch;
 public class SwitchTest {
 
     private static Switch s;
-
+    static ArrayList<Direction> dir;
     @BeforeClass
     public static void setUpBeforeClass() {
-	s = new Switch(new Position(1, 1));
+	dir = new ArrayList<Direction>();
+	dir.add(Direction.EAST);
+	dir.add(Direction.NORTH);
+	s = new Switch(new Position(1, 1),dir);
 	s.setDirection(Direction.EAST);
     }
 
@@ -42,7 +47,7 @@ public class SwitchTest {
 
     @Test
     public void testDirection() {
-	assertTrue(s.getdDirection().equals(Direction.EAST));
+	assertTrue(s.getDirection().equals(Direction.EAST));
     }
 
 }

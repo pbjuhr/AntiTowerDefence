@@ -39,19 +39,16 @@ public class Switch extends Terrain implements LandOnInterface {
 
     }
 
-    /**
-     * Sets the switch direction
-     * 
-     * @author Peter Bjuhr
-     * @param newDirection
-     *            , the new direction
-     */
     public void setDirection(Direction newDirection) {
 	direction = newDirection;
     }
 
     public Direction getDirection() {
 	return direction;
+    }
+    
+    public String getDirectionToString() {
+	return direction.toString();
     }
 
 }
