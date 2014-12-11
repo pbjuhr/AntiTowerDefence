@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jaap.antitowerdefence.antiTowerDefence.TowerPlacerAi;
+import com.jaap.antitowerdefence.antiTowerDefence.TowerPlacerAI;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Grass;
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -16,9 +16,9 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  * @author id10abk
  *
  */
-public class TowerPlacerAiTest {
+public class TowerPlacerAITest {
 
-    private TowerPlacerAi aitp;
+    private TowerPlacerAI aitp;
     private Terrain[] possiblePositions;
 
     @Before
@@ -31,7 +31,7 @@ public class TowerPlacerAiTest {
 	possiblePositions[2] = new Grass(new Position(3, 1));
 	possiblePositions[3] = new Grass(new Position(4, 1));
 
-	aitp = new TowerPlacerAi(possiblePositions, 2, 30);
+	aitp = new TowerPlacerAI(possiblePositions, 2, 30);
 
     }
 
