@@ -144,6 +144,22 @@ public class AntiTowerDefenceGame {
     }
     
     /**
+     * @author andreasbolzyk id10abk
+     * 
+     */
+    public void setTowerArrayInLevel(){
+	getLevel().setTowers(towerPlacer.getNewTowers());
+    }
+    
+    /**
+     * @author andreasbolzyk id10abk
+     * 
+     */
+    public Tower[] getTowerArray(){
+	return towerPlacer.getNewTowers();
+    }
+    
+    /**
      * Gets a string array of possible units for the current level
      * @return String[], the array with units
      */
