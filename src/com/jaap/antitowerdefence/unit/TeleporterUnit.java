@@ -1,5 +1,6 @@
 package com.jaap.antitowerdefence.unit;
 import com.jaap.antitowerdefence.terrain.Portal;
+import com.jaap.antitowerdefence.terrain.Road;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 /**
@@ -19,8 +20,6 @@ public class TeleporterUnit extends Unit {
      */
     public TeleporterUnit(Terrain[] walkable, int stepsPerSec) {
 	super(walkable, stepsPerSec);
-	this.stepsPerSec = stepsPerSec;
-	coolDown = Math.round(stepsPerSec/speed);
 	cost = 200;
 	health = 100;
 	placedPortals = 0;
@@ -31,8 +30,10 @@ public class TeleporterUnit extends Unit {
      * Places a portal on a given position
      */
     public void placePortal() {
+	System.out.println("Places portal on posX: " + getPosition().getX() + ", Y: " + getPosition().getY());
 	int terrainIndex = getTerrainIndex(position);
-	if(!(walkable[terrainIndex].isBuildable())) {
+	if(!(walkable[terrainIndex] instanceof Road)) {
+	    System.out.println("Not road");
 	    return;
 	} else if(placedPortals == 0) {
 	    placedPortals++;

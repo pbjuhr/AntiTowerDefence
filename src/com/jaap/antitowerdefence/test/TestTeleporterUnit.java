@@ -69,7 +69,7 @@ public class TestTeleporterUnit {
     public void testSetPosition() {
 	Position pos = new Position(1,3);
 	u.setPosition(pos);
-	assertFalse(pos.equals(u.getPosition()));
+	assertTrue(pos.equals(u.getPosition()));
     }
     
     /**
@@ -109,6 +109,17 @@ public class TestTeleporterUnit {
     }
     
     /**
+     * Tests hasReachedGoal
+     */
+    @Test
+    public void testReachedGoal() {
+	while(!u.hasReachedGoal()){
+	    u.action();
+	}
+	assertTrue(u.hasReachedGoal());
+    }
+    
+    /**
      * Tests setDirection
      */
     @Test
@@ -123,29 +134,21 @@ public class TestTeleporterUnit {
     @Test
     public void testPlaceTower() {
 	int timeStep = 0;
-	while(timeStep < 5 * stepsPerSec){
+	while(!u.hasReachedGoal()){
+	    
+	    //Place portal on pos2 and pos4
 	    if(timeStep == (stepsPerSec + 1) || timeStep == 4*stepsPerSec){
-		System.out.println("Time: " + timeStep + ", places portal on posX: " + u.getPosition().getX() + ", Y: " +u.getPosition().getY());
 		u.placePortal();
 	    }
 	    u.action();
 	    timeStep++;
 	}
 	
-	for(int i = 0; i < walkable.length; i++) {
-	    System.out.println("i: " + i + ", portal: " + (walkable[i] instanceof Portal) + ", pos: x:" + walkable[i].getPosition().getX() + ", pos: y:" + walkable[i].getPosition().getY());
-	}
-	
-    }
-    
-    /**
-     * Tests hasReachedGoal
-     */
-    @Test
-    public void testReachedGoal() {
-	while(!u.hasReachedGoal()){
-	    u.action();
-	}
-	assertTrue(u.hasReachedGoal());
+	assertTrue(walkable[1] instanceof Portal);
+	assertTrue(walkable[3] instanceof Portal);
+	assertTrue(((Portal)walkable[1]).hasReciever());
+	assertFalse(((Portal)walkable[3]).hasReciever());
+	assertTrue(((Portal)walkable[1]).getReciever().
+		equals(((Portal)walkable[3]).getPosition()));
     }
 }
