@@ -57,12 +57,16 @@ public class AntiTowerDefenceGame {
 	
 	// Towers shoot
 	for(Tower t : currentLevel.getTowers()){
-	    t.action();
+	    if(t!=null){
+		t.action();
+	    }
 	}
 		
 	// Moves the units
 	for(Unit u : currentLevel.getUnits()){
-	    u.action();
+	    if(u!=null){
+		u.action();
+	    }
 	}
 	currentLevel.updateUnits();
 
