@@ -45,8 +45,8 @@ int dx=0;
 //	for (Unit u : units) {
 //	    BufferedImage unit = null;
 //	    try {
-////		unit = ImageIO.read(new File(getClass().getResource("../../../../assets/" + u.getClass().getSimpleName() + ".png").getFile()));
-//		unit = ImageIO.read(new File(getClass().getResource("../../../../assets/Farmer.png").getFile()));
+////		unit = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/" + u.getClass().getSimpleName() + ".png").getFile()));
+//		unit = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/Farmer.png").getFile()));
 //	    } catch (IOException e) {
 //		//e.printStackTrace();
 //	    }
@@ -56,8 +56,8 @@ int dx=0;
 //	for (Tower t : towers) {
 	    BufferedImage tower = null;
 	    try {
-//		tower = ImageIO.read(new File(getClass().getResource("../../../../assets/" + t.getClass().getSimpleName() + ".png").getFile()));
-		tower = ImageIO.read(new File(getClass().getResource("../../../../assets/Tower.png").getFile()));
+//		tower = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/" + t.getClass().getSimpleName() + ".png").getFile()));
+		tower = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/Tower.png").getFile()));
 	    } catch (IOException e) {
 		//e.printStackTrace();
 	    }
@@ -67,8 +67,8 @@ int dx=0;
 //	for (Terrain s : switches) {
 //	    BufferedImage switchPlate = null;
 //	    try {
-////		switchPlate = ImageIO.read(new File(getClass().getResource("../../../../assets/" + s.getClass().getSimpleName() + ".png").getFile()));
-//		switchPlate = ImageIO.read(new File(getClass().getResource("../../../../assets/Portal.png").getFile()));
+////		switchPlate = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/" + s.getClass().getSimpleName() + ".png").getFile()));
+//		switchPlate = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/Portal.png").getFile()));
 //	    } catch (IOException e) {
 //		//e.printStackTrace();
 //	    }
