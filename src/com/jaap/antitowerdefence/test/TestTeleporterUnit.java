@@ -75,15 +75,15 @@ public class TestTeleporterUnit {
     }
     
     /**
-     * Tests isDead method
+     * Tests isAlive method
      */
     @Test
-    public void testIsDead() {
-	boolean alive = u.isDead();
+    public void testIsAlive() {
+	boolean alive = true;
 	for(int i = 0; i < 10; i++){
 	    u.takeDamage();
 	}
-	assertNotEquals(alive, u.isDead());
+	assertNotEquals(alive, u.isAlive());
     }
     
     /**

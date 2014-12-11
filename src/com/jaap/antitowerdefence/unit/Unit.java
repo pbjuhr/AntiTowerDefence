@@ -35,17 +35,19 @@ public abstract class Unit {
 	position = new Position(0,0);
 	wasTeleported = false;
 	reachedGoal = false;
-	direction = Direction.getRandomDirection(); // Gets set by start landOn
-	setStartPosition();
+	//direction = Direction.getRandomDirection(); // Gets set by start landOn
+	setStartPositionAndDirection();
+	System.out.println("DIR: " + this.direction);
     }
     
     /**
      * Sets the position to the start position
      */
-    private void setStartPosition(){
+    private void setStartPositionAndDirection(){
 	for(Terrain t : walkable) {
 	    if(t instanceof Start) {
 		this.setPosition(t.getPosition());
+		this.setDirection(((Start) t).getdDirection());
 	    }
 	}
     }
@@ -76,29 +78,35 @@ public abstract class Unit {
     private void move() {
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1;
-	
+	System.out.println("dir: " + this.direction);
 	// Get the index of next terrain object, depending on current direction
 	if (direction == Direction.NORTH) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToNorth());
+	    System.out.println("nextindn: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfNorth();
 	    }
 	} else if (direction == Direction.SOUTH) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToSouth());
+	    System.out.println("nextinds: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfSouth();
 	    }
 	} else if (direction == Direction.EAST) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToEast());
+	    System.out.println("nextinde: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfEast();
 	    }
 	} else if (direction == Direction.WEST) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToWest());
+	    System.out.println("nextindw: " + walkable.length);
 	    if(nextPositionIndex == -1) {
 		nextPositionIndex = findNeighbourIndexOfWest();
 	    }
 	}
+	System.out.println("walkable len: " + walkable.length);
+	System.out.println("next index: " + nextPositionIndex);
 	setPosition(walkable[nextPositionIndex].getPosition());	
     }
     
