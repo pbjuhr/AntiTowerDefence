@@ -14,7 +14,7 @@ public class FarmerUnit extends Unit {
     public FarmerUnit(Terrain[] walkable, int timeStep, int fps) {
 	super(walkable);
 	int speed = 1;
-	updateInterval = Math.round(fps/speed);
+	coolDown = Math.round(fps/speed);
 	cost = 50;
 	health = 70;
     }

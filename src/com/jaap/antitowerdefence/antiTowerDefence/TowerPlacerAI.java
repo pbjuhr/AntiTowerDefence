@@ -1,9 +1,15 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
 
+/**
+ * 
+ * @author Peter Bjuhr & id10abk
+ *
+ */
 public class TowerPlacerAI {
 
     private int nrOfTowers;
@@ -11,15 +17,15 @@ public class TowerPlacerAI {
     private Terrain[] possiblePositions;
 
     /**
-     * Creates the TowerPlacer
+     * This class get a map of buildable terrain and how many tower are allowed
+     * to build. Setup a updateInterval.
      * 
      * @param possiblePositions
-     *            , contains all terrain with positions where a tower can be
-     *            placed
+     *            A array of all buildable terrain.
      * @param nrOfTowers
-     *            , the number of towers
+     *            How many tower the AI can place.
      * @param fps
-     *            , how often does the game update
+     *            How often does the game update
      */
     public TowerPlacerAI(Terrain[] possiblePositions, int nrOfTowers, int fps) {
 	updateInterval = 20 * fps; // Should update every 20 sec
@@ -33,63 +39,40 @@ public class TowerPlacerAI {
      * @return newTowers, an array of towers
      */
     public Tower[] getNewTowers() {
-	Tower[] newTowers = new Tower[nrOfTowers];
-	Random rnd = new Random();
+	ArrayList<Tower> towers = new ArrayList<Tower>();
 
-	// Fill the array with towers
+	Random rand = new Random();
+
 	for (int i = 0; i < nrOfTowers; i++) {
-	    int index = rnd.nextInt(possiblePositions.length);
-	    System.out.println(index);
-	    // Find a position that no other tower have
+	    int index = rand.nextInt(possiblePositions.length);
 
-	    if (containsTower(newTowers)) {
-		while (containsPosition(newTowers,
+	    if (towers.isEmpty()) {
+		towers.add(new Tower(possiblePositions[index].getPosition()));
+
+	    } else if (!towers.isEmpty()) {
+		while (containsPosition(towers,
 			possiblePositions[index].getPosition())) {
-		    System.out.println("In while");
-		    index = rnd.nextInt(possiblePositions.length);
+		    index = rand.nextInt(possiblePositions.length);
 		}
-	    }
-	    System.out.println("It aftet while");
-	    newTowers[i] = new Tower(possiblePositions[index].getPosition());
-	    
-	    System.out.print(newTowers[i]!=null);
-	    System.out.println(" :it is good ");
-	}
-	return newTowers;
-    }
-
-    /**
-     * 
-     * @param towers
-     * @author id10abk
-     * @return
-     */
-    public boolean containsTower(Tower[] towers) {
-	for (Tower t : towers) {
-	    if (t != null) {
-		System.out.println(" not emtpy True");
-		return true;
+		towers.add(new Tower(possiblePositions[index].getPosition()));
 	    }
 	}
-	System.out.println(" emtpy False");
-	return false;
+	return writeToArray(towers);
     }
 
     /**
      * Check if a Tower array contains a tower with a certain position
      * 
      * @param towers
-     *            , the tower array
+     *            , The tower array.
      * @param position
-     *            , thw position
-     * @return true if the array doesnt contain the position, otherwise false
+     *            , The position.
+     * @return true if the array doesn't contain the position, otherwise false.
      */
-    public boolean containsPosition(Tower[] towers, Position p) {
-	int i=0;
-	for (Tower t : towers) {
-	    System.out.println(i++);
-	    System.out.println(t.getPosition().equals(p));
-	    if (t.getPosition().equals(p)) {
+    private boolean containsPosition(ArrayList<Tower> towers, Position p) {
+
+	for (int i = 0; i < towers.size(); i++) {
+	    if (p.equals(towers.get(i).getPosition())) {
 		return true;
 	    }
 	}
@@ -97,7 +80,7 @@ public class TowerPlacerAI {
     }
 
     /**
-     * determines if it is time to change the towers
+     * Determines if it is time to change the towers
      * 
      * @param timeStep
      *            , what timestep we are on
@@ -105,5 +88,19 @@ public class TowerPlacerAI {
      */
     public boolean timeToChange(int timeStep) {
 	return (timeStep % updateInterval == 0);
+    }
+
+    /**
+     * 
+     * @param Towers
+     *            ArreyList of towers place in on map
+     * @return Towers array
+     */
+    private Tower[] writeToArray(ArrayList<Tower> towers) {
+	Tower[] newTowers = new Tower[towers.size() - 1];
+	for (int i = 0; i < towers.size(); i++) {
+	    newTowers[i] = towers.remove(i);
+	}
+	return newTowers;
     }
 }

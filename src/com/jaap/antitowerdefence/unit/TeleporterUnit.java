@@ -19,9 +19,8 @@ public class TeleporterUnit extends Unit {
      */
     public TeleporterUnit(Terrain[] walkable, int timeStep, int fps) {
 	super(walkable);
-	birthTime = timeStep;
 	speed = 0.8;
-	updateInterval = Math.round(fps/speed);
+	coolDown = Math.round(fps/speed);
 	cost = 200;
 	health = 100;
 	placedPortals = 0;

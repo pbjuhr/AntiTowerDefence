@@ -19,8 +19,6 @@ import com.jaap.antitowerdefence.unit.FarmerUnit;
  * 
  * Tests the functionality of the class Level.java
  * 
- * TODO: Beskrivning, kommentarer
- * 
  * @author Anna Osterlund, id10aod
  *
  */

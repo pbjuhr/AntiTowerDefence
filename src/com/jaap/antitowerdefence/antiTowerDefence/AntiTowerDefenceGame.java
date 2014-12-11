@@ -15,7 +15,7 @@ public class AntiTowerDefenceGame {
 
     private int currentStep;	 	// How many steps we've taken
     private int currentLevelNumber;	// The current level number
-    private int fps = 30;		// How many fps the games running at
+    private int stepsPerSecond;		// Steps per second
     private LevelReader theLevelReader;	// The XML reader
     private Level currentLevel;		// The current level object
     private TowerPlacerAI towerPlacer;	// The towerplacerAI
@@ -25,8 +25,8 @@ public class AntiTowerDefenceGame {
      * Creates an instance of the AntiTowerDefenceGame model.
      * @param level, the path to the level xml.
      */
-    public AntiTowerDefenceGame(String level, int fps){
-	this.fps = fps;
+    public AntiTowerDefenceGame(String level, int stepsPerSecond){
+	this.stepsPerSecond = stepsPerSecond;
 	currentStep = 0;
 	currentLevelNumber = 1;
 	theLevelReader = new LevelReader(level);
@@ -34,7 +34,7 @@ public class AntiTowerDefenceGame {
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		fps, theLevelReader.getNrOfTowers(currentLevelNumber));
+		sps, theLevelReader.getNrOfTowers(currentLevelNumber));
 	highScore = new HighScoreDB();
     }
     
@@ -47,7 +47,7 @@ public class AntiTowerDefenceGame {
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		fps, theLevelReader.getNrOfTowers(currentLevelNumber));
+		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
     }
 
     /**
@@ -57,7 +57,7 @@ public class AntiTowerDefenceGame {
 	
 	// Towers shoot
 	for(Tower t : currentLevel.getTowers()){
-	    t.shoot(t.findUnitInRange());
+	    t.action();
 	}
 		
 	// Moves the units
@@ -79,7 +79,7 @@ public class AntiTowerDefenceGame {
      */
     public void createFarmer(){
 	Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), currentStep, 
-		fps);
+		sps);
 	currentLevel.addUnit(u);
     }
     
@@ -88,7 +88,7 @@ public class AntiTowerDefenceGame {
      */
     public void createSoldier(){
    	Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), currentStep, 
-   		fps);
+   		sps);
    	currentLevel.addUnit(u);
     }
     
@@ -97,7 +97,7 @@ public class AntiTowerDefenceGame {
      */
     public void createTeleporter(){
    	Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
-   		currentStep, fps);
+   		currentStep, sps);
    	currentLevel.addUnit(u);
     }
 

@@ -1,5 +1,8 @@
 package com.jaap.antitowerdefence.terrain;
 
+import java.util.ArrayList;
+
+import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
 
@@ -10,8 +13,8 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Start extends Switch {
 
-    public Start(Position position) {
-	super(position);
+    public Start(Position position,ArrayList<Direction> dir) {
+	super(position, dir);
 	walkable = true;
 	buildable = false;
     }

@@ -14,7 +14,7 @@ public class SoldierUnit extends Unit{
     public SoldierUnit(Terrain[] walkable, int timeStep, int fps){
 	super(walkable);
 	double speed = 1.6;
-	updateInterval = Math.round(fps/speed);
+	coolDown = Math.round(fps/speed);
 	cost = 100;
 	health = 200;
     }

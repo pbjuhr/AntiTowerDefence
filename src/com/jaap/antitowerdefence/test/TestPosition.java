@@ -1,8 +1,3 @@
-/**
- * Example test class to test Position
- * @author Peter Bjuhr
- */
-
 package com.jaap.antitowerdefence.test;
 
 import static org.junit.Assert.assertEquals;
@@ -132,7 +127,7 @@ public class TestPosition {
     }
     
     /**
-     * 
+     * Tests that Equals correctly compares two positions
      */
     @Test
     public void testEquals(){
