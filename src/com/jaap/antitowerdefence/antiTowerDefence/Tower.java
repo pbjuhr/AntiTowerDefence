@@ -7,14 +7,18 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class Tower{
 
     private Position position;
+    private Position shootPosition;
     private int range;
     private int coolDown;
+    private int sps;
     ArrayList<Unit> units;
-	    
-    public Tower(Position position) {
+
+    public Tower(Position position, int sps) {
 	this.range = 3;
-	this.coolDown = 5;
+	this.coolDown = 5 * sps;
 	this.position = position;
+	this.sps = sps;
+	shootPosition = null;
     }
     
     /**
@@ -26,12 +30,29 @@ public class Tower{
     }
     
     /**
+     * Shoots a unit if the canon is loaded (cooldown = 0) and if there's any
+     * Units in range. 
+     */
+    public void action() {
+	if(coolDown > 0) {
+	    coolDown--;
+	} else {
+	    Unit u = findUnitInRange();
+	    if(u != null) {
+		shootPosition = u.getPosition();
+		coolDown = sps * 5;
+		u.takeDamage(); //FIRE!!
+	    }
+	}
+    }
+
+    /**
      * Finds the first unit in range of the Tower
      * @return unit, the Unit object that was found, or null
      */
-    public Unit findUnitInRange(){
+    private Unit findUnitInRange(){
 	if(units == null){
-	    return null;
+	    return null; //No unit within sight
 	}
 	for(Unit u : units) {
 	    if(u.getPosition().distanceTo(this.position) <= range) {
@@ -42,11 +63,11 @@ public class Tower{
     }
     
     /**
-     * Shoots a unit
-     * @param u, the Unit to get shot
+     * Gets the position of the latest shot
+     * @return Position the postion, or null
      */
-    public void shoot(Unit u){
-	u.takeDamage();
+    public Position getShootPosition() {
+	return shootPosition;
     }
     
     /**
