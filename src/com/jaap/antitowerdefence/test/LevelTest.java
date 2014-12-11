@@ -67,7 +67,7 @@ public class LevelTest {
     @Test
     public void testAddUnit() {
 	int units = level.getUnits().size();
-	level.addUnit(new FarmerUnit(new Road[10], 2, 4));
+	level.addUnit(new FarmerUnit(new Road[10], 2));
 	assertTrue(units < level.getUnits().size());
     }
 
