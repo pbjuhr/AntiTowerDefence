@@ -51,9 +51,10 @@ public class Tower{
 	} else {
 	    Unit u = findUnitInRange();
 	    if(u != null) {
+		//FIRE!!
 		shootPosition = u.getPosition();
 		coolDown = stepsPerSecond * shootInterval;
-		u.takeDamage(); //FIRE!!
+		u.takeDamage(); 
 	    }
 	}
     }

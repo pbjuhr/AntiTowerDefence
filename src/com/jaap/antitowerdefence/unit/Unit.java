@@ -21,7 +21,7 @@ public abstract class Unit {
     protected int health; 	   // The unit's current health
     protected int cost; 	   // How much the unit costs
     protected double speed; 	   // How often we move per second
-    protected long coolDown; // How often we move
+    protected long coolDown; 	   // Steps until next move
     protected Direction direction; // The units direction
     protected Position position;   // The units current position
     protected Terrain[] walkable;  // All walkable terrain objects in level
@@ -79,29 +79,22 @@ public abstract class Unit {
      * @param neighbours, an array of the units neighbours
      */
     private void move() {
-	
-	/* 
-	 * TODO: units should turn around if atervandsgrand
-	 */
-	
 	//What index in the walkable-array we should move to
 	int nextPositionIndex = -1;
 	
-	while (nextPositionIndex == -1) {
-	    if (direction == Direction.NORTH) {
-		nextPositionIndex = getTerrainIndex(position.getPosToNorth());
-	    } else if (direction == Direction.SOUTH) {
-		nextPositionIndex = getTerrainIndex(position.getPosToSouth());
-	    } else if (direction == Direction.EAST) {
-		nextPositionIndex = getTerrainIndex(position.getPosToEast());
-	    } else if (direction == Direction.WEST) {
-		nextPositionIndex = getTerrainIndex(position.getPosToWest());
-	    }
-	    if(nextPositionIndex == -1) {
-		direction = direction.rotateClockWise();
-	    }
+	if (direction == Direction.NORTH) {
+	    nextPositionIndex = getTerrainIndex(position.getPosToNorth());
+	} else if (direction == Direction.SOUTH) {
+	    nextPositionIndex = getTerrainIndex(position.getPosToSouth());
+	} else if (direction == Direction.EAST) {
+	    nextPositionIndex = getTerrainIndex(position.getPosToEast());
+	} else if (direction == Direction.WEST) {
+	    nextPositionIndex = getTerrainIndex(position.getPosToWest());
 	}
-	setPosition(walkable[nextPositionIndex].getPosition());
+	if(nextPositionIndex == -1) {
+	    direction = direction.rotateClockWise();
+	}
+	setPosition(walkable[nextPositionIndex].getPosition());	
     }
     
     /**
