@@ -120,7 +120,7 @@ public class Level {
 	    if(units.get(i).hasReachedGoal()){
 		unitReachedGoal(units.get(i));
 		units.remove(i);
-	    }else if(units.get(i).isDead()) {
+	    }else if(!units.get(i).isAlive()) {
 		units.remove(i);
 	    } 
 	}
@@ -128,15 +128,15 @@ public class Level {
 
     /**
      * unitReachedGoal calculates the credits earned and adds this to the 
-     * players current credits. It the player also recieves a score of 10% of
-     * the units health
+     * players current credits. It the player also recieves a score of 10 plus
+     * 10% of the units health
      * @param unit - farmer, soldier or wizard
      */
     private void unitReachedGoal(Unit unit) {
 	double healthCredits = (0.5 * unit.getHealth());
 	double costCredits = (0.8 * unit.getCost());
 	int totalCredits = (int)Math.round((healthCredits + costCredits));
-	int score = (int)Math.round((unit.getHealth()/10));
+	int score = (int)Math.round((unit.getHealth()/10) + 10);
 	levelStats.addCredits(totalCredits);
 	levelStats.addScore(score);
     }
