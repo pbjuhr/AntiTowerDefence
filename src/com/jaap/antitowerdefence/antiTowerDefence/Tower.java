@@ -11,11 +11,12 @@ public class Tower{
     private int range;
     private int coolDown;
     private int sps;
+    private int shootInterval = 5;
     ArrayList<Unit> units;
 
     public Tower(Position position, int sps) {
 	this.range = 3;
-	this.coolDown = 5 * sps;
+	this.coolDown = shootInterval * sps;
 	this.position = position;
 	this.sps = sps;
 	shootPosition = null;
@@ -35,6 +36,9 @@ public class Tower{
      */
     public void action() {
 	if(coolDown > 0) {
+	    if(coolDown < (sps * shootInterval) - 1){
+		shootPosition = null;
+	    }
 	    coolDown--;
 	} else {
 	    Unit u = findUnitInRange();
