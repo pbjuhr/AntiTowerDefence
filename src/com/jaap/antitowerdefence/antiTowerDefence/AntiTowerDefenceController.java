@@ -1,6 +1,7 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
+import com.jaap.antitowerdefence.unit.TeleporterUnit;
+//TODO errorhandling help about hiScore splashscreens enabling(+portals) levels
 public class AntiTowerDefenceController {
 
     private boolean paused;
@@ -22,12 +26,17 @@ public class AntiTowerDefenceController {
 
     public AntiTowerDefenceController(String level) {
 	paused = true;
-	//game = new AntiTowerDefenceGame(level, 20);System.err.println(System.getProperty("user.dir"));
+	game = new AntiTowerDefenceGame(level, 20);
+	game.newLevel();
 	try {
 	    SwingUtilities.invokeAndWait(new Runnable() {
 		@Override
 		public void run() {
-		    gui = new AntiTowerDefenceGUI();//game.getLevel().getPossibleTowerPositions(), game.getLevel().getWalkableTerrain());
+		    gui = new AntiTowerDefenceGUI(40);
+		    gui.newLevelGUI(game.getLevel().getPossibleTowerPositions(),
+			    game.getLevel().getWalkableTerrain(),
+			    game.getLevel().getUnits(),
+			    game.getLevel().getTowers());
 		}
 	    });
 	} catch (InvocationTargetException | InterruptedException e) {
@@ -53,10 +62,15 @@ public class AntiTowerDefenceController {
 	    public void actionPerformed(ActionEvent arg0) {
 		paused = false;
 		newGame();
+		runGame();
 		if (restart.getText() != "Restart") {
 		    restart.setText("Restart");
 		    restartLevel.setEnabled(true);
 		    pause.setEnabled(true);
+		    Component[] buttons = gui.getButtons().getComponents();
+		    for (Component b : buttons) {
+			b.setEnabled(true);
+		    }
 		}
 	    }
 	});
@@ -65,7 +79,7 @@ public class AntiTowerDefenceController {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		paused = false;
-		newGame();
+		game.newLevel();
 	    }
 	});
 
@@ -164,16 +178,17 @@ public class AntiTowerDefenceController {
 	SwingUtilities.invokeLater(new Runnable() {
 	    @Override
 	    public void run() {
-		for (String unit : temp) { // game.getUnits()
+		for (String unit : temp) {//game.getPossibleUnits()) {
 		    if (unit.equals("Farmer")) {
 			JButton farmerButton = new JButton("Farmer", new ImageIcon("assets/img/FarmerUnit.png"));
 			farmerButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
-				//game.createFarmer();
+				game.createFarmer();
 			    }
 			});
 			farmerButton.setBackground(Color.LIGHT_GRAY);
+			farmerButton.setEnabled(false);
 			gui.addButton(farmerButton);
 		    }
 
@@ -182,10 +197,11 @@ public class AntiTowerDefenceController {
 			soldierButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
-				//game.createSoldier();
+				game.createSoldier();
 			    }
 			});
 			soldierButton.setBackground(Color.LIGHT_GRAY);
+			soldierButton.setEnabled(false);
 			gui.addButton(soldierButton);
 		    }
 
@@ -194,20 +210,23 @@ public class AntiTowerDefenceController {
 			wizardButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
-				//game.createTeleporter();
+				game.createTeleporter();
+//				TeleporterUnit wizard = game.createTeleporter();
 			    }
 			});
 			wizardButton.setBackground(Color.LIGHT_GRAY);
+			wizardButton.setEnabled(false);
 			gui.addButton(wizardButton);
 
 			JButton portalButton = new JButton("Portal", new ImageIcon("assets/img/Portal.png"));
 			portalButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
-				//game.createFarmer();
+//				wizard.pladePortal();
 			    }
 			});
 			portalButton.setBackground(Color.LIGHT_GRAY);
+			portalButton.setEnabled(false);
 			gui.addButton(portalButton);
 		    }
 		}
@@ -216,7 +235,22 @@ public class AntiTowerDefenceController {
     }
 
     private void runGame() {
-
+	Timer timer = new Timer(1000/20, new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		if (paused) {
+		    gamePaused();
+		} else if (game.hasLost()) {
+		    gameLost();
+		} else if (game.hasWon()) {
+		    gameWin();
+		} else {
+//		    game.step();
+		}
+	    }
+	});
+	timer.setRepeats(true);
+	timer.start();
     }
 
     private void updateGui() {
