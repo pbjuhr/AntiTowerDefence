@@ -11,7 +11,7 @@ public class Tower{
     private int range;
     private int coolDown;
     private int sps;
-    private int shootInterval = 5;
+    private int shootInterval = 2;
     ArrayList<Unit> units;
 
     public Tower(Position position, int sps) {

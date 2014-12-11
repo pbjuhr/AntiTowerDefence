@@ -15,7 +15,7 @@ public class AntiTowerDefenceGame {
 
     private int currentStep;	 	// How many steps we've taken
     private int currentLevelNumber;	// The current level number
-    private int sps = 20;		// Steps per second
+    private int stepsPerSecond;		// Steps per second
     private LevelReader theLevelReader;	// The XML reader
     private Level currentLevel;		// The current level object
     private TowerPlacerAI towerPlacer;	// The towerplacerAI
@@ -25,8 +25,8 @@ public class AntiTowerDefenceGame {
      * Creates an instance of the AntiTowerDefenceGame model.
      * @param level, the path to the level xml.
      */
-    public AntiTowerDefenceGame(String level, int sps){
-	this.sps = sps;
+    public AntiTowerDefenceGame(String level, int stepsPerSecond){
+	this.stepsPerSecond = stepsPerSecond;
 	currentStep = 0;
 	currentLevelNumber = 1;
 	theLevelReader = new LevelReader(level);
@@ -47,7 +47,7 @@ public class AntiTowerDefenceGame {
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		sps, theLevelReader.getNrOfTowers(currentLevelNumber));
+		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
     }
 
     /**
