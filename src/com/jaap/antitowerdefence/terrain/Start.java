@@ -13,8 +13,8 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Start extends Switch {
 
-    public Start(Position position) {
-	super(position);
+    public Start(Position position,ArrayList<Direction> dir) {
+	super(position,dir);
 	walkable = true;
 	buildable = false;
     }

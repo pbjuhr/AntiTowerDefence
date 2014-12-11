@@ -14,12 +14,12 @@ public class Switch extends Terrain implements LandOnInterface {
     private Direction direction;
     protected ArrayList<Direction> dir;
 
-    public Switch(Position position) {
+    public Switch(Position position,ArrayList<Direction> dir) {
 	super(position);
 	walkable = true;
 	buildable = false;
-	// direction = dir.get(0);
-	// this.dir = dir;
+	 direction = dir.get(0);
+	 this.dir = dir;
 	// findNewDirection(dir);
 	// Direction.getRandomDirection();
     }

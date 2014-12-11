@@ -1,5 +1,8 @@
 package com.jaap.antitowerdefence.terrain;
 
+import java.util.ArrayList;
+
+import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 /**
  * 
  * @author Andreas Bolzyk id10abk
@@ -27,6 +30,11 @@ public abstract class Terrain {
 
     public boolean isBuildable() {
 	return buildable;
+    }
+
+    public void setSwitch(ArrayList<Direction> directions) {
+	// TODO Auto-generated method stub
+	
     }
 
 }
