@@ -65,10 +65,6 @@ public class LevelReader {
      * current level file. This way only valid level files are used.
      */
     private void validateLevelFile() {
-
-	//TODO!!
-	// HANTERA OM EJ VALIDERING GÅR IGENOM!!
-	// och andra felmeddelanden
 	File schemaFile = new File("assets/levels/levelsSchema.xsd");
 	Source xmlLevelFile = new StreamSource(levelFile);
 	SchemaFactory schemaFactory = SchemaFactory
@@ -79,12 +75,15 @@ public class LevelReader {
 	    Validator levelValidator = schema.newValidator();
 	    levelValidator.validate(xmlLevelFile);
 	} catch (SAXException e) {
-	    System.out.println("Fel vid skapandet av nytt schema");
-	} catch (IOException e) {
-	    /*Om levelfilen inte är korrekt så används defaultfilen 
-	     * "levels.xml"*/
+	    /*If the schema can not be created and used for validation, the 
+	     * default file (levels.xml) is used */
 	    levelFile = new File("src/levels.xml");
-	    System.out.println("Fel vid validering av filen");
+	    System.out.println("Error: The schema could not be created");
+	} catch (IOException e) {
+	    /*If the levelfile is invalid, the default file (levels.xml) is 
+	     * used */
+	    levelFile = new File("src/levels.xml");
+	    System.out.println("Error: The file is unvalid");
 	}
     }
 
@@ -93,9 +92,7 @@ public class LevelReader {
      * it possible to read from the file.
      */
     private void parseLevelFile() {
-	//TODO!!
-	// HANTERA OM EJ VALIDERING GÅR IGENOM!!
-	// och andra felmeddelanden
+
 	DocumentBuilder dBuilder;
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	try {
