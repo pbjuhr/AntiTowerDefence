@@ -171,7 +171,7 @@ public class Level {
 	    if(road[i] instanceof Start){
 		Start s = (Start) road[i];
 		s.setSwitch(directions);
-	    }else if(neighbours > 1){
+	    }else if(neighbours > 2){
 		road[i] = new Switch(road[i].getPosition(), directions);		
 	    }
 	}
