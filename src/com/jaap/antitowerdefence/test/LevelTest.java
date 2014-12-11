@@ -87,8 +87,8 @@ public class LevelTest {
     public void testSetTowers() {
 	Tower[] towers = new Tower[2];
 	Position position = new Position(1,2);
-	towers[0] = new Tower(position);
-	towers[1] = new Tower(position);
+	towers[0] = new Tower(position, 20);
+	towers[1] = new Tower(position, 20);
 	level.setTowers(towers);
 	assertNotNull(level.getTowers());
     }
