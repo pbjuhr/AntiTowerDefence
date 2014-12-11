@@ -62,7 +62,7 @@ public class AntiTowerDefenceGame {
 		
 	// Moves the units
 	for(Unit u : currentLevel.getUnits()){
-	    u.action(currentStep);
+	    u.action();
 	}
 	currentLevel.updateUnits();
 
@@ -78,7 +78,7 @@ public class AntiTowerDefenceGame {
      * Creates a farmer unit and adds it to the level
      */
     public void createFarmer(){
-	Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), currentStep, 
+	Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), 
 		stepsPerSecond);
 	currentLevel.addUnit(u);
     }
@@ -87,7 +87,7 @@ public class AntiTowerDefenceGame {
      * Creates a soldier unit and adds it to the level
      */
     public void createSoldier(){
-   	Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), currentStep, 
+   	Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), 
    		stepsPerSecond);
    	currentLevel.addUnit(u);
     }
@@ -97,7 +97,7 @@ public class AntiTowerDefenceGame {
      */
     public void createTeleporter(){
    	Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
-   		currentStep, stepsPerSecond);
+   		stepsPerSecond);
    	currentLevel.addUnit(u);
     }
 
