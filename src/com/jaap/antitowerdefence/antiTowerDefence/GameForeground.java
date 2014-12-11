@@ -57,7 +57,7 @@ int dx=0;
 	    BufferedImage tower = null;
 	    try {
 //		tower = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/" + t.getClass().getSimpleName() + ".png").getFile()));
-		tower = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/Tower.png").getFile()));
+		tower = ImageIO.read(new File("assets/img/Tower.png"));
 	    } catch (IOException e) {
 		//e.printStackTrace();
 	    }

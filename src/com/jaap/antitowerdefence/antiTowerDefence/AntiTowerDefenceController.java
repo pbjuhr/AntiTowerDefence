@@ -22,7 +22,7 @@ public class AntiTowerDefenceController {
 
     public AntiTowerDefenceController(String level) {
 	paused = true;
-	game = new AntiTowerDefenceGame(level, 20);System.err.println(System.getProperty("user.dir"));
+	//game = new AntiTowerDefenceGame(level, 20);System.err.println(System.getProperty("user.dir"));
 	try {
 	    SwingUtilities.invokeAndWait(new Runnable() {
 		@Override
@@ -166,7 +166,7 @@ public class AntiTowerDefenceController {
 	    public void run() {
 		for (String unit : temp) { // game.getUnits()
 		    if (unit.equals("Farmer")) {
-			JButton farmerButton = new JButton("Farmer", new ImageIcon(getClass().getResource("../../../../../assets/img/Farmer.png")));
+			JButton farmerButton = new JButton("Farmer", new ImageIcon("assets/img/FarmerUnit.png"));
 			farmerButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
@@ -178,7 +178,7 @@ public class AntiTowerDefenceController {
 		    }
 
 		    if (unit.equals("Soldier")) {
-			JButton soldierButton = new JButton("Soldier", new ImageIcon(getClass().getResource("../../../../../assets/img/Soldier.png")));
+			JButton soldierButton = new JButton("Soldier", new ImageIcon("assets/img/SoldierUnit.png"));
 			soldierButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
@@ -190,7 +190,7 @@ public class AntiTowerDefenceController {
 		    }
 
 		    if (unit.equals("Wizard")) {
-			JButton wizardButton = new JButton("Wizard", new ImageIcon(getClass().getResource("../../../../../assets/img/Teleporter.png")));
+			JButton wizardButton = new JButton("Wizard", new ImageIcon("assets/img/TeleporterUnit.png"));
 			wizardButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
@@ -200,7 +200,7 @@ public class AntiTowerDefenceController {
 			wizardButton.setBackground(Color.LIGHT_GRAY);
 			gui.addButton(wizardButton);
 
-			JButton portalButton = new JButton("Portal", new ImageIcon(getClass().getResource("../../../../../assets/img/Portal.png")));
+			JButton portalButton = new JButton("Portal", new ImageIcon("assets/img/Portal.png"));
 			portalButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {

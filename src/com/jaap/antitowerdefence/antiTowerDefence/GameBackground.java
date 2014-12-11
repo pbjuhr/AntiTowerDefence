@@ -33,7 +33,7 @@ public class GameBackground extends JComponent {
 	for (Terrain t : grass) {
 	    BufferedImage grass = null;
 	    try {
-		grass = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/" + t.getClass().getSimpleName() + ".png").getFile()));
+		grass = ImageIO.read(new File("assets/img/" + t.getClass().getSimpleName() + ".png"));
 	    } catch (IOException e) {
 		//e.printStackTrace();
 	    }
@@ -54,7 +54,7 @@ public class GameBackground extends JComponent {
     private void drawWater(Graphics g) {
 	BufferedImage water = null;
 	try {
-	    water = ImageIO.read(new File(getClass().getResource("../../../../../assets/img/Water.png").getFile()));
+	    water = ImageIO.read(new File("assets/img/Water.png"));
 	} catch (IOException e) {
 	    //e.printStackTrace();
 	}
