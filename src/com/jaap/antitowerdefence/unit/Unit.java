@@ -64,7 +64,7 @@ public abstract class Unit {
 	
 	/* 
 	 * TODO: units should turn around if atervandsgrand
-	*/
+	 */
 
 	if((currentStep-birthTime) % speed != 0){
 	    return;
