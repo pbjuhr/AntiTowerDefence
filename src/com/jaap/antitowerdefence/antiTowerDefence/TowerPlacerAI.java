@@ -47,14 +47,14 @@ public class TowerPlacerAI {
 	    int index = rand.nextInt(possiblePositions.length);
 
 	    if (towers.isEmpty()) {
-		towers.add(new Tower(possiblePositions[index].getPosition()));
+		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval ));
 
 	    } else if (!towers.isEmpty()) {
 		while (containsPosition(towers,
 			possiblePositions[index].getPosition())) {
 		    index = rand.nextInt(possiblePositions.length);
 		}
-		towers.add(new Tower(possiblePositions[index].getPosition()));
+		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval));
 	    }
 	}
 	return writeToArray(towers);
