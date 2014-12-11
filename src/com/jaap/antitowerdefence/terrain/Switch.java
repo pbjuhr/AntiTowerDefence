@@ -11,7 +11,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Switch extends Terrain implements LandOnInterface {
 
-    private Direction direction;
+    protected Direction direction;
     protected ArrayList<Direction> dir;
 
     public Switch(Position position,ArrayList<Direction> dir) {
@@ -39,10 +39,7 @@ public class Switch extends Terrain implements LandOnInterface {
 
     }
 
-    public void setSwitch(ArrayList<Direction> dir) {
-	direction = dir.get(0);
-	this.dir = dir;
-    }
+
 
     /**
      * Sets the switch direction

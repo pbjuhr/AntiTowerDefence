@@ -13,7 +13,7 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Start extends Switch {
 
-    public Start(Position position,ArrayList<Direction> dir) {
+    public Start(Position position) {
 	super(position,dir);
 	walkable = true;
 	buildable = false;
@@ -24,8 +24,9 @@ public class Start extends Switch {
      * 
      * @author Peter Bjuhr
      */
-    public void setDirection(String newDirection) {
-	// Do nothing on purpose!
+    public void setSwitch(ArrayList<Direction> dir) {
+	direction = dir.get(0);
+	this.dir = dir;
     }
 
     /**
