@@ -33,8 +33,6 @@ public abstract class Terrain {
     }
 
     public void setSwitch(ArrayList<Direction> directions) {
-	// TODO Auto-generated method stub
-	
     }
 
 }

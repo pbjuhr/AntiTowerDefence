@@ -11,22 +11,24 @@ import com.jaap.antitowerdefence.unit.Unit;
  * @author Andreas Bolzyk id10abk
  *
  */
-public class Start extends Switch {
+public class Start extends Terrain implements LandOnInterface{
 
+   
+    protected Direction direction;
+    protected ArrayList<Direction> newdir;
+    
     public Start(Position position) {
-	super(position,dir);
+	super(position);
+	
 	walkable = true;
 	buildable = false;
+	
     }
 
-    /**
-     * Starts setDirection does not change the switch direction
-     * 
-     * @author Peter Bjuhr
-     */
+
     public void setSwitch(ArrayList<Direction> dir) {
 	direction = dir.get(0);
-	this.dir = dir;
+	newdir = dir;
     }
 
     /**
@@ -35,7 +37,26 @@ public class Start extends Switch {
      * @author Peter Bjuhr
      */
     public void landOn(Unit u) {
-	super.landOn(u);
+	u.setDirection(this.direction);
     }
 
+    
+    public Direction findNewDirection(ArrayList<Direction> dir) {
+
+	for (int i = 0; i < dir.size(); i++) {
+	    dir.get(i).compareTo(direction);
+	}
+
+	return direction;
+
+    }
+
+    public void setDirection(Direction newDirection) {
+	direction = newDirection;
+    }
+
+    public Direction getdDirection() {
+	return direction;
+    }
+    
 }
