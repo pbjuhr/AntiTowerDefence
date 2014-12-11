@@ -20,9 +20,8 @@ public abstract class Unit {
     /* Variables */
     protected int health; 	   // The unit's current health
     protected int cost; 	   // How much the unit costs
-    protected int birthTime;	   // What time step the unit were created
     protected double speed; 	   // How often we move per second
-    protected long updateInterval; // How often we move
+    protected long coolDown; // How often we move
     protected Direction direction; // The units direction
     protected Position position;   // The units current position
     protected Terrain[] walkable;  // All walkable terrain objects in level
@@ -61,20 +60,16 @@ public abstract class Unit {
      * @param currentStep , to determine if its time to walk
      */
     public void action(int currentStep) {
-	
-	/* 
-	 * TODO: units should turn around if atervandsgrand
-	 */
 
-	if((currentStep-birthTime) % speed != 0){
-	    return;
-	}
-	
-	wasTeleported = false;
-	if(!isDead() && !hasReachedGoal()){
-	    runLandOn(getTerrainIndex(position));
-	    if(!hasReachedGoal() || !wasTeleported){
-		move();
+	if(coolDown > 0){
+	    coolDown--;
+	} else{
+	    wasTeleported = false;
+	    if(isAlive() && !hasReachedGoal()){
+		runLandOn(getTerrainIndex(position));
+		if(!hasReachedGoal() || !wasTeleported){
+		    move();
+		}
 	    }
 	}
     }
@@ -85,8 +80,12 @@ public abstract class Unit {
      */
     private void move() {
 	
+	/* 
+	 * TODO: units should turn around if atervandsgrand
+	 */
+	
 	//What index in the walkable-array we should move to
-	int nextPositionIndex = -1; 
+	int nextPositionIndex = -1;
 	
 	while (nextPositionIndex == -1) {
 	    if (direction == Direction.NORTH) {
@@ -160,6 +159,14 @@ public abstract class Unit {
      */
     public boolean isDead() {
 	return (this.health <= 0);
+    }
+    
+    /**
+     * Check the units health and returns whether its alive or not
+     * @return true if the unit is alive, otherwise false
+     */
+    public boolean isAlive() {
+	return (this.health > 0);
     }
 
     /**
