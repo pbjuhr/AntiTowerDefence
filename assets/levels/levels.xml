@@ -8,8 +8,8 @@
 		<credits>1000</credits>
 		<winScore>20</winScore>
 		<units>
-			<unit>Farmer</unit>
-			<unit>Soldier</unit>
+			<unit>FarmerUnit</unit>
+			<unit>SoldierUnit</unit>
 		</units>
 		<terrain>
 			<grass>
@@ -105,9 +105,9 @@
 		<credits>1500</credits>
 		<winScore>50</winScore>
 		<units>
-			<unit>Farmer</unit>
-			<unit>Soldier</unit>
-			<unit>Wizard</unit>
+			<unit>FarmerUnit</unit>
+			<unit>SoldierUnit</unit>
+			<unit>TeleporterUnit</unit>
 		</units>
 		<terrain>
 			<grass>
