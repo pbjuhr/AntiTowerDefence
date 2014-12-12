@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import com.jaap.antitowerdefence.unit.TeleporterUnit;
+import com.jaap.antitowerdefence.unit.Unit;
 //TODO errorhandling help about hiScore splashscreens enabling(+portals) levels
 public class AntiTowerDefenceController {
 
@@ -211,7 +212,6 @@ public class AntiTowerDefenceController {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
 				game.createTeleporter();
-//				TeleporterUnit wizard = game.createTeleporter();
 			    }
 			});
 			wizardButton.setBackground(Color.LIGHT_GRAY);
@@ -222,7 +222,11 @@ public class AntiTowerDefenceController {
 			portalButton.addActionListener(new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
-//				wizard.pladePortal();
+				for (Unit u : game.getLevel().getUnits()) {
+				    if (u instanceof TeleporterUnit) {
+					((TeleporterUnit) u).placePortal();
+				    }
+				}
 			    }
 			});
 			portalButton.setBackground(Color.LIGHT_GRAY);

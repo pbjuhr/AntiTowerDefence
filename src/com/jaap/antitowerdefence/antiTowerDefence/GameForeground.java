@@ -23,7 +23,7 @@ public class GameForeground extends JComponent {
     private ArrayList<Unit> units;
     private Tower[] towers;
     private Terrain[] road;
-    //private Terrain[] switches;
+    //private ArrayList<Switch> switches;
     int animationOffset;
     double realOffset;
 
@@ -36,10 +36,6 @@ public class GameForeground extends JComponent {
 		repaint();
 		realOffset = (realOffset + 32.0/fps) % 32;
 		animationOffset = (int) realOffset;
-		if (!units.isEmpty()) {
-		    units.get(0).setPosition(new Position(5, 10));
-		    units.get(0).setDirection(Direction.EAST);
-		}
 	    }
 	});
 	timer.setRepeats(true);
@@ -106,15 +102,15 @@ public class GameForeground extends JComponent {
     }
 
     private void drawTowers(Graphics g) {
-//	for (Tower t : towers) {
-//	    BufferedImage towerImg = null;
-//	    try {
-//		towerImg = ImageIO.read(new File("assets/img/" + t.getClass().getSimpleName() + ".png"));
-//	    } catch (IOException e) {
-//		//e.printStackTrace();
-//	    }
-//	    g.drawImage(towerImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
-//	}
+	for (Tower t : towers) {
+	    BufferedImage towerImg = null;
+	    try {
+		towerImg = ImageIO.read(new File("assets/img/" + t.getClass().getSimpleName() + ".png"));
+	    } catch (IOException e) {
+		//e.printStackTrace();
+	    }
+	    g.drawImage(towerImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
+	}
     }
 
     private void drawUnits(Graphics g) {
