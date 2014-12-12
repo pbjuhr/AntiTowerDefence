@@ -1,5 +1,11 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import com.jaap.antitowerdefence.level.Level;
 import com.jaap.antitowerdefence.level.LevelReader;
 import com.jaap.antitowerdefence.unit.FarmerUnit;
@@ -29,7 +35,18 @@ public class AntiTowerDefenceGame {
 	this.stepsPerSecond = stepsPerSecond;
 	currentStep = 0;
 	currentLevelNumber = 1;
-	theLevelReader = new LevelReader(level);
+	try {
+	    theLevelReader = new LevelReader(level);
+	} catch (ParserConfigurationException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (SAXException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));

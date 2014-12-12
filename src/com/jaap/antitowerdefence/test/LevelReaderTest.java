@@ -4,8 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import com.jaap.antitowerdefence.level.LevelReader;
 import com.jaap.antitowerdefence.level.LevelStats;
@@ -25,9 +30,13 @@ public class LevelReaderTest {
     /**
      * A LevelReader that is used in all test methods is created once, before 
      * the tests are executed. Which level to test is also set.
+     * @throws IOException 
+     * @throws SAXException 
+     * @throws ParserConfigurationException 
      */
     @BeforeClass
-    public static void setUpBeforeClass() {
+    public static void setUpBeforeClass() throws ParserConfigurationException, 
+    						SAXException, IOException {
 	levelReader = new LevelReader("assets/levels/levels.xml");
 	level = 1;
     }
