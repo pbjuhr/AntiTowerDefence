@@ -1,0 +1,3 @@
+Soldier have a reasonable price and are pretty high health and their movements are good.
+Health: 200 
+Cost: 100

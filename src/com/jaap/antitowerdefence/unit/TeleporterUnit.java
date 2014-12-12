@@ -13,8 +13,8 @@ public class TeleporterUnit extends Unit {
     /* Variables related to the portal */
     private Portal firstPortal;
     private int placedPortals;
-    protected static double speed = 2;
-    protected static int cost = 200;
+    static double speed = 2;
+    static int cost = 200;
     
     /**
      * Runs super constructor and sets teleporters speed, cost, health and

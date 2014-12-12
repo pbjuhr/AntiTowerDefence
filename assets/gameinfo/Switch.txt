@@ -1,0 +1,2 @@
+A switch is a terrain element, which can change the direction of a unit when they walks on the element. 
+The user can change the direction of the switch by clicking on the arrows.

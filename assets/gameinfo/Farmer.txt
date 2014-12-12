@@ -1,0 +1,3 @@
+The farmer is cheap to buy, but they move slow and have low health. 
+Health: 70 
+Cost: 50

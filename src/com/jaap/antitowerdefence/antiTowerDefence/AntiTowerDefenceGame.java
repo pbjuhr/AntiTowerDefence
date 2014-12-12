@@ -156,6 +156,7 @@ public class AntiTowerDefenceGame {
      * @return
      */
     public boolean canAfford(int price) {
+	System.out.println("Price: " + price + ", Credits: " + currentLevel.getLevelStats().getCredits());
 	return (price <= currentLevel.getLevelStats().getCredits());
     }
 
@@ -222,11 +223,7 @@ public class AntiTowerDefenceGame {
      * @return hasError, true if an error has been generated, otherwise false
      */
     private boolean hasErrors() {
-	if(hasError) {
-	    hasError = false;
-	    return true;
-	}
-	return false;
+	return hasError;
     }
     
     /**
@@ -234,6 +231,7 @@ public class AntiTowerDefenceGame {
      * @return errorMessage, a string message
      */
     public String getErrorMessage() {
+	hasError = false;
 	return errorMessage;
     }
 

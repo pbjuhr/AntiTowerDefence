@@ -1,0 +1,1 @@
+This is an anti tower defense game. The goal of the game is to reach a definite score. The user gets score points by getting units reaching the goal. The score points are based on how much health the reaching unit has.
