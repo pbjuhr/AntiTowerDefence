@@ -41,10 +41,10 @@ public class TeleporterUnit extends Unit {
 	    placedPortals = 1;
 	} else if(placedPortals == 1 && 
 		!firstPortal.getPosition().equals(this.position)) {
-	    Portal reciever = new Portal(this.position);
-	    reciever.setDirection(direction);
-	    firstPortal.setReciever(reciever);
-	    walkable[terrainIndex] = reciever;
+	    Portal receiver = new Portal(this.position);
+	    receiver.setDirection(direction);
+	    firstPortal.setReciever(receiver);
+	    walkable[terrainIndex] = receiver;
 	    placedPortals++;
 	}
     }
@@ -66,16 +66,35 @@ public class TeleporterUnit extends Unit {
     }
     
     /**
-     * The Teleporters unit needs to remove a portal without reciever if it die
+     * The Teleporters unit needs to remove a portal without receiver if it die
      */
     public void takeDamage() {
 	super.takeDamage();
 	// Needs to reset the portal to a road object
 	if(health <= 0 && placedPortals == 1) {
-	    Road r = new Road(firstPortal.getPosition());
-	    int terrainIndex = getTerrainIndex(firstPortal.getPosition());
-	    walkable[terrainIndex] = r;
+	    resetFirstPortal();
 	}
+    }
+    
+    /**
+     * Sets the reached goal to true or false.
+     * If the unit has placed a portal, it needs to remove the first portal
+     * @param reachedGoal, the new reached goal value
+     */
+    public void setReachedGoal(boolean reachedGoal) {
+	super.setReachedGoal(reachedGoal);
+	if(placedPortals == 1 && reachedGoal) {
+	    resetFirstPortal();
+	}
+    }
+    
+    /**
+     * Replaces the first portal object with a new road object
+     */
+    public void resetFirstPortal() {
+	Road r = new Road(firstPortal.getPosition());
+	int terrainIndex = getTerrainIndex(firstPortal.getPosition());
+	walkable[terrainIndex] = r;
     }
 
 }

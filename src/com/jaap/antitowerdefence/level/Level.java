@@ -160,16 +160,16 @@ public class Level {
 	for(int i = 0; i < road.length; i++) {
 	    directions = new ArrayList<Direction>();
 	    neighbours = 0;
+	    if(roadContains(road[i].getPosition().getPosToNorth())) {
+		directions.add(Direction.NORTH);
+		neighbours++;
+	    }
 	    if(roadContains(road[i].getPosition().getPosToEast())) {
 		directions.add(Direction.EAST);
 		neighbours++;
 	    }
 	    if(roadContains(road[i].getPosition().getPosToSouth())) {
 		directions.add(Direction.SOUTH);
-		neighbours++;
-	    }
-	    if(roadContains(road[i].getPosition().getPosToNorth())) {
-		directions.add(Direction.NORTH);
 		neighbours++;
 	    }
 	    if(roadContains(road[i].getPosition().getPosToWest())) {

@@ -12,14 +12,14 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class Portal extends Terrain implements LandOnInterface {
 
     private Direction direction;
-    private Portal reciever;
-    private boolean hasReciever;
+    private Portal receiver;
+    private boolean hasReceiver;
 
     public Portal(Position position) {
 	super(position);
 	this.walkable = true;
 	this.buildable = false;
-	this.hasReciever = false;
+	this.hasReceiver = false;
     }
     
     /**
@@ -29,7 +29,7 @@ public class Portal extends Terrain implements LandOnInterface {
      */
     @Override
     public void landOn(Unit u) {
-	if(hasReciever) {
+	if(hasReceiver) {
 	    u.setPosition(getReciever().getPosition());
 	    u.setDirection(getReciever().getDirection());
 	    u.toggleTeleported();
@@ -42,8 +42,8 @@ public class Portal extends Terrain implements LandOnInterface {
      * @param p, the reciever position
      */
     public void setReciever(Portal p) {
-	this.reciever = p;
-	this.hasReciever = true;
+	this.receiver = p;
+	this.hasReceiver = true;
     }
     
     /**
@@ -52,7 +52,7 @@ public class Portal extends Terrain implements LandOnInterface {
      * @return Portal, the portal object
      */
     public Portal getReciever() {
-	return this.reciever;
+	return this.receiver;
     }
     
     /**
@@ -61,7 +61,7 @@ public class Portal extends Terrain implements LandOnInterface {
      * @return true if portal have reciever, otherwise false
      */
     public boolean hasReciever() {
-	return hasReciever;
+	return hasReceiver;
     }
     
     /**

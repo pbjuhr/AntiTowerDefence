@@ -52,16 +52,12 @@ public class AntiTowerDefenceGame {
     }
     
     /**
-     * Resets necessary variables and sets new level & towerplacer objects
+     * Increases the current level number and resets level related variables
+     * throught restart level.
      */
     public void newLevel() {
 	currentLevelNumber++;
-	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
-		theLevelReader.getGrass(currentLevelNumber), 
-		theLevelReader.getLevelStats(currentLevelNumber));
-	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		theLevelReader.getNrOfTowers(currentLevelNumber), stepsPerSecond);
-	currentLevel.setTowers(towerPlacer.getNewTowers());
+	restartLevel();
     }
     
     /**
@@ -154,9 +150,9 @@ public class AntiTowerDefenceGame {
     }
     
     /**
-     * Check if the
-     * @param price
-     * @return
+     * Check if the player can afford to create a certain unit
+     * @param price, the price of the unit
+     * @return true or false
      */
     public boolean canAfford(int price) {
 	return (price <= currentLevel.getLevelStats().getCredits());
@@ -213,7 +209,8 @@ public class AntiTowerDefenceGame {
     }
     
     /**
-     * 
+     * Sets an error message
+     * @param message, a string with the message
      */
     public void setError(String message) {
 	hasError = true;
