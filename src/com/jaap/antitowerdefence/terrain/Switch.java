@@ -47,7 +47,8 @@ public class Switch extends Terrain implements LandOnInterface {
     public void changeDirection() {
 	for (int i = 0; i < possibleDirections.size(); i++) {
 	    if(direction == possibleDirections.get(i)) {
-		direction = possibleDirections.get((i+1) % possibleDirections.size());
+		direction = possibleDirections.get((i+1) % 
+			possibleDirections.size());
 		break;
 	    }
 	}
