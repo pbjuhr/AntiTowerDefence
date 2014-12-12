@@ -51,8 +51,12 @@ public class LevelReader {
      * Validates ande parse the file. Sets nrOfLevels and the level maps 
      * dimensions.
      * @param levelFile - file containing valid Anti Tower Defence levels
+     * @throws ParserConfigurationException - Error while parsing the level file
+     * @throws IOException - Error while creating the docBuilder
+     * @throws SAXException - Error while creating the docBuilder
      */
-    public LevelReader(String levelFile) {
+    public LevelReader(String levelFile) throws ParserConfigurationException, 
+    SAXException, IOException {
 	this.levelFile = new File(levelFile);
 	validateLevelFile();
 	parseLevelFile();
@@ -90,20 +94,19 @@ public class LevelReader {
     /**
      * parseLevelFile uses a DocumentBuilder to parse the level file making
      * it possible to read from the file.
+     * @throws ParserConfigurationException - Error while parsing the level file
+     * @throws IOException - Error while creating the docBuilder
+     * @throws SAXException - Error while creating the docBuilder
      */
-    private void parseLevelFile() {
+    private void parseLevelFile() throws ParserConfigurationException, 
+    SAXException, IOException {
 
 	DocumentBuilder dBuilder;
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	try {
-	    dBuilder = dbFactory.newDocumentBuilder();
-	    gameLevels = dBuilder.parse(levelFile);
-	    gameLevels.getDocumentElement().normalize();
-	} catch (SAXException | IOException e) {
-	    System.out.println("Fel vid skapandet av docBuilder");
-	} catch (ParserConfigurationException e) {
-	    System.out.println("Fel vid parsning");
-	}
+
+	dBuilder = dbFactory.newDocumentBuilder();
+	gameLevels = dBuilder.parse(levelFile);
+	gameLevels.getDocumentElement().normalize();
     }
 
     /**
@@ -192,7 +195,7 @@ public class LevelReader {
 	}
 	return road;
     }
-    
+
     /**
      * getGrass extracts all the grass positions of a given level from the 
      * level file. Constructs grass objects using these positions and saves the 
@@ -274,10 +277,10 @@ public class LevelReader {
 	    level = (Element)levels.item(i);
 	    if(Integer.parseInt(
 		    level.getAttribute("levelNumber")) == currentLevel) {
-		
+
 		nrOfTowers = Integer.parseInt(
 			level.getElementsByTagName("towers").
-				item(0).getTextContent());
+			item(0).getTextContent());
 		return nrOfTowers;
 	    }
 	}
@@ -300,7 +303,7 @@ public class LevelReader {
 	    level = (Element)levels.item(i);
 	    if(Integer.parseInt(
 		    level.getAttribute("levelNumber")) == currentLevel) {
-		
+
 		units = level.getElementsByTagName("unit");
 		hasUnits = new String[units.getLength()];
 		for(int m = 0; m < units.getLength(); m++){
@@ -331,7 +334,7 @@ public class LevelReader {
     public int getXDimension() {
 	return xDimension;
     }
-    
+
     /**
      * getYDimension provides the y-dimension of the level maps
      * @return y-dimension of level maps
