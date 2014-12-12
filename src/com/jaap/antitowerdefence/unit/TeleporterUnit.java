@@ -13,7 +13,6 @@ public class TeleporterUnit extends Unit {
     /* Variables related to the portal */
     private Portal firstPortal;
     private int placedPortals;
-    private double speed = 2;
     public static int cost = 200;
     
     /**
@@ -23,6 +22,7 @@ public class TeleporterUnit extends Unit {
     public TeleporterUnit(Terrain[] walkable, int stepsPerSec) {
 	super(walkable, stepsPerSec);
 	health = 100;
+	speed = 3;
 	placedPortals = 0;
 	resetCoolDown();
     }

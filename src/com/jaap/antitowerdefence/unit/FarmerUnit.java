@@ -7,8 +7,7 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  * @author Peter Bjuhr
  */
 public class FarmerUnit extends Unit {
-    
-    private double speed = 1;
+   
     public static int cost = 50;
     
     /**
@@ -17,6 +16,7 @@ public class FarmerUnit extends Unit {
     public FarmerUnit(Terrain[] walkable, int stepsPerSec) {
 	super(walkable, stepsPerSec);
 	health = 70;
+	speed = 1;
 	resetCoolDown();
     }
 }

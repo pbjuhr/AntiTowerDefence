@@ -17,7 +17,7 @@ public abstract class Unit {
 
     /* Variables */
     public static int cost; 	   // How much the unit costs
-    private double speed; 	   // How often does the unit move
+    protected double speed; 	   // How often does the unit move
     protected int health; 	   // The unit's current health
     protected long coolDown; 	   // Steps until next move
     protected int stepsPerSec;     // steps per second in game
@@ -72,7 +72,6 @@ public abstract class Unit {
 		runLandOn(getTerrainIndex(position));
 		if(!reachedGoal && !wasTeleported){
 		    move();
-		    System.out.println("Moved to x: " + position.getX() + ", y: " + position.getY());
 		    resetCoolDown();
 		}
 	    }

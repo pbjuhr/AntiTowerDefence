@@ -8,7 +8,6 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  */
 public class SoldierUnit extends Unit{
     
-    private double speed = 3;
     public static int cost = 100;
     
     /**
@@ -17,6 +16,7 @@ public class SoldierUnit extends Unit{
     public SoldierUnit(Terrain[] walkable, int stepsPerSec){
 	super(walkable, stepsPerSec);
 	health = 200;
+	speed = 2;
 	resetCoolDown();
     }
     
