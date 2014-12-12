@@ -361,4 +361,12 @@ public abstract class Unit {
     public double getSpeed() {
 	return speed;
     }
+    
+    /**
+     * Gets the coolDown. (number of steps until next move)
+     * @return coolDown (int)
+     */
+    public int getCoolDown() {
+	return (int) coolDown;
+    }
 }
