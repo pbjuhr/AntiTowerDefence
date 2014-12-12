@@ -124,6 +124,11 @@ public class AntiTowerDefenceGame {
      * Creates a teleporter unit and adds it to the level
      */
     public TeleporterUnit createTeleporter(){
+	for(Unit u : currentLevel.getUnits()) {
+	    if(u instanceof TeleporterUnit) {
+		return null;
+	    }
+	}
    	Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
    		stepsPerSecond);
    	currentLevel.addUnit(u);

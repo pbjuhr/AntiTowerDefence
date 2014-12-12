@@ -20,6 +20,7 @@ public class TeleporterUnit extends Unit {
      */
     public TeleporterUnit(Terrain[] walkable, int stepsPerSec) {
 	super(walkable, stepsPerSec);
+	speed = 2;
 	cost = 200;
 	health = 100;
 	placedPortals = 0;

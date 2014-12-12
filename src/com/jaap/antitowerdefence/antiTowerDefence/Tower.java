@@ -11,7 +11,7 @@ public class Tower{
 
     private Position position;		// position of the tower
     private Position shootPosition;	// last shooting position
-    private int range = 3; 		// how far away the tower can see
+    private int range = 2; 		// how far away the tower can see
     private int shootInterval = 2;	// time between ever shot (seconds)
     private int coolDown;		// how many steps until we can shoot
     private int stepsPerSecond;		// steps per second in the game
@@ -48,15 +48,13 @@ public class Tower{
     public void action() {
 	// Determine if it is time to shoot
 	if(coolDown > 0) {
-	    if(coolDown < (stepsPerSecond * shootInterval) - 10){
+	    if(coolDown < (stepsPerSecond * shootInterval) - ((1/4) * stepsPerSecond)){
 		shootPosition = null;
 	    }
 	    coolDown--;
 	} else {
 	    Unit u = findUnitInRange();
 	    if(u != null) {
-		System.out.println("A tower is shooting");
-		System.out.println("Pos x: " + getPosition().getX() + ", y: " + getPosition().getY());
 		//FIRE!!
 		shootPosition = u.getPosition();
 		u.takeDamage(); 

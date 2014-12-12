@@ -255,9 +255,11 @@ public abstract class Unit {
     
     /**
      * The unit gets damaged and the health gets reduced by 20.
+     * It also resets the coolDown counter because of falling :(
      */
     public void takeDamage() {
 	this.health -= 20;
+	resetCoolDown();
     }
     
     /**

@@ -13,7 +13,7 @@ public class SoldierUnit extends Unit{
      */
     public SoldierUnit(Terrain[] walkable, int stepsPerSec){
 	super(walkable, stepsPerSec);
-	speed = 1.6;
+	speed = 3;
 	cost = 100;
 	health = 200;
 	resetCoolDown();
