@@ -28,6 +28,7 @@ public class AntiTowerDefenceController {
 	paused = true;
 	game = new AntiTowerDefenceGame(level, 20);
 	game.newLevel();
+	game.newLevel();
 	try {
 	    SwingUtilities.invokeAndWait(new Runnable() {
 		@Override
@@ -244,7 +245,7 @@ public class AntiTowerDefenceController {
 		} else if (game.hasWon()) {
 		    gameWin();
 		} else {
-//		    game.step();
+		    game.step();
 		}
 	    }
 	});
