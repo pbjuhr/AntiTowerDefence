@@ -48,6 +48,7 @@ public abstract class Unit {
 	for(Terrain t : walkable) {
 	    if(t instanceof Start) {
 		this.setPosition(t.getPosition());
+		this.setDirection(((Start)t).getDirection());
 	    }
 	}
     }

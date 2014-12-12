@@ -55,7 +55,7 @@ public class Start extends Terrain implements LandOnInterface{
 	direction = newDirection;
     }
 
-    public Direction getdDirection() {
+    public Direction getDirection() {
 	return direction;
     }
     
