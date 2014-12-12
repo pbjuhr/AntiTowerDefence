@@ -40,7 +40,7 @@ public class AntiTowerDefenceController {
 	    SwingUtilities.invokeAndWait(new Runnable() {
 		@Override
 		public void run() {
-		    gui = new AntiTowerDefenceGUI(40);
+		    gui = new AntiTowerDefenceGUI(40, game.getLevel().getLevelStats());
 		    gui.newLevelGUI(game.getLevel().getPossibleTowerPositions(),
 			    game.getLevel().getWalkableTerrain(),
 			    game.getLevel().getUnits(),
@@ -285,11 +285,11 @@ public class AntiTowerDefenceController {
     }
 
     private void gameLost() {
-
+	game.restartLevel();
     }
 
     private void gameWin() {
-
+	game.newLevel();
     }
 
     private void gamePaused() {

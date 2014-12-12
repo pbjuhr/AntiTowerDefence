@@ -1,5 +1,7 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
+import com.jaap.antitowerdefence.level.LevelStats;
 import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Switch;
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -23,10 +26,12 @@ public class GameForeground extends JComponent {
     private ArrayList<Unit> units;
     private Tower[] towers;
     private Terrain[] road;
+    private LevelStats stats;
     int animationOffset;
     double realOffset;
 
-    public GameForeground(int fps) {
+    public GameForeground(int fps, LevelStats stats) {
+	this.stats = stats;
 	animationOffset = 0;
 	realOffset = 0;
 	Timer timer = new Timer(Math.round(1000/fps), new ActionListener() {
@@ -54,6 +59,11 @@ public class GameForeground extends JComponent {
 	drawRoadObjects(g);
 	drawTowers(g);
 	drawUnits(g);
+	g.setFont(new Font("Courier new", Font.BOLD, 14));
+	g.setColor(Color.WHITE);
+	g.drawString("Score: " + stats.getScore() + "/" + stats.getWinScore(), 10, 15);
+	g.drawString("Credits: " + stats.getCredits(), 10, 30);
+	g.drawString("Time: " + 42, 10, 45);
     }
 
     private void drawRoadObjects(Graphics g) {

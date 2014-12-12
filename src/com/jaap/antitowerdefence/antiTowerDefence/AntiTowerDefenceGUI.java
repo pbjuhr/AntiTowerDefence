@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import com.jaap.antitowerdefence.level.LevelStats;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.Unit;
 //TODO errorhandling getPanel splashscreens
@@ -39,7 +40,7 @@ public class AntiTowerDefenceGUI {
 
     JMenuItem hightscore;
 
-    public AntiTowerDefenceGUI(int fps) {
+    public AntiTowerDefenceGUI(int fps, LevelStats stats) {
 	frame = new JFrame("Anti Tower Defence");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setLocation(640, 250);
@@ -59,7 +60,7 @@ public class AntiTowerDefenceGUI {
 	gameBackground.setBounds(0, 0, 640, 480);
 	gamePanels.add(gameBackground, new Integer(0), 0);
 
-	gameForeground = new GameForeground(fps);
+	gameForeground = new GameForeground(fps, stats);
 	gameForeground.setBounds(0, 0, 640, 480);
 	gamePanels.add(gameForeground, new Integer(1), 0);
 
