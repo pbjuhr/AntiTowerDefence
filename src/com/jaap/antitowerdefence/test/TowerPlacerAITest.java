@@ -37,6 +37,7 @@ public class TowerPlacerAITest {
     @Test
     public void testgetNewTowers() {
 	assertNotNull(aitp.getNewTowers());
+	assertTrue(aitp.getNewTowers().length!=2);
     }
 
     @Test
