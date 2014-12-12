@@ -72,10 +72,29 @@ public class TeleporterUnit extends Unit {
 	super.takeDamage();
 	// Needs to reset the portal to a road object
 	if(health <= 0 && placedPortals == 1) {
-	    Road r = new Road(firstPortal.getPosition());
-	    int terrainIndex = getTerrainIndex(firstPortal.getPosition());
-	    walkable[terrainIndex] = r;
+	    resetFirstPortal();
 	}
+    }
+    
+    /**
+     * Sets the reached goal to true or false.
+     * If the unit has placed a portal, it needs to remove the first portal
+     * @param reachedGoal, the new reached goal value
+     */
+    public void setReachedGoal(boolean reachedGoal) {
+	super.setReachedGoal(reachedGoal);
+	if(placedPortals == 1 && reachedGoal) {
+	    resetFirstPortal();
+	}
+    }
+    
+    /**
+     * Replaces the firstportal object with a new road object
+     */
+    public void resetFirstPortal() {
+	Road r = new Road(firstPortal.getPosition());
+	int terrainIndex = getTerrainIndex(firstPortal.getPosition());
+	walkable[terrainIndex] = r;
     }
 
 }
