@@ -100,7 +100,7 @@ public class TowerPlacerAI {
 	
 	Tower[] newTowers = new Tower[towers.size()];
 	for (int i = 0; i < towers.size(); i++) {
-	    newTowers[i] = towers.remove(i);
+	    newTowers[i] = towers.get(i);
 	}
 	return newTowers;
     }
