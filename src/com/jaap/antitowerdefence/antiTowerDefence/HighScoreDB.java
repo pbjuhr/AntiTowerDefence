@@ -91,8 +91,8 @@ public class HighScoreDB {
 	try {
 	    topTen = getHighScore.executeQuery();
 	    while (topTen.next()) {
-		highScore[i][0] = topTen.getString("Name");
-		highScore[i][1] = Integer.toString(topTen.getInt("Score"));
+		highScore[i][0] = topTen.getString("name");
+		highScore[i][1] = Integer.toString(topTen.getInt("score"));
 		i++;
 	    }
 	} catch (SQLException e) {
@@ -114,7 +114,7 @@ public class HighScoreDB {
 	try {
 	    topTen = getHighScore.executeQuery();
 	    while (topTen.next()) {
-		if(score > topTen.getInt("Score")){
+		if(score > topTen.getInt("score")){
 		    return "true";
 		}
 		i++;
