@@ -252,12 +252,12 @@ public class AntiTowerDefenceController {
 		public void mouseClicked(MouseEvent e) {
 		    if ((e.getX() >= t.getPosition().getX()*32)
 			    && (e.getX() < (t.getPosition().getX()+1)*32)
-			    && (e.getY() >= t.getPosition().getY())
+			    && (e.getY() >= t.getPosition().getY()*32)
 			    && (e.getY() < (t.getPosition().getY()+1)*32)) {
 			((Switch) t).changeDirection();
 		    }
 		}
-	    });;
+	    });
 	}
     }
 

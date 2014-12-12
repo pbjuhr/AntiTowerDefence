@@ -58,7 +58,6 @@ public class GameForeground extends JComponent {
 
     private void drawRoadObjects(Graphics g) {
 	for (Terrain t : road) {
-	    //System.out.println(t.getClass().getSimpleName());
 	    BufferedImage roadObjectImg = null;
 	    try {
 		switch (t.getClass().getSimpleName()) {
