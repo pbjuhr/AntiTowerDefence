@@ -50,7 +50,6 @@ public class AntiTowerDefenceGame {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-//	System.out.println(theLevelReader.getNrOfTowers(currentLevelNumber));
 	highScore = new HighScoreDB();
 	newLevel();
     }
@@ -63,8 +62,10 @@ public class AntiTowerDefenceGame {
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
+	
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
+		theLevelReader.getNrOfTowers(currentLevelNumber), stepsPerSecond);
+	
 	currentLevel.setTowers(towerPlacer.getNewTowers());
     }
     
