@@ -550,7 +550,7 @@
 				<position x="9" y="9"></position>
 				<position x="10" y="9"></position>
 				<position x="11" y="9"></position>
-				<position x="12" y="9"></position>
+				<position x="17" y="9"></position>
 				<position x="0" y="10"></position>
 				<position x="1" y="10"></position>
 				<position x="2" y="10"></position>
@@ -925,8 +925,8 @@
 				<position x="16" y="0"></position>
 				<position x="2" y="1"></position>
 				<position x="16" y="1"></position>
-				<position x="5" y="2"></position>
-				<position x="6" y="2"></position>
+				<position x="2" y="2"></position>
+				<position x="16" y="2"></position>
 				<position x="2" y="3"></position>
 				<position x="3" y="3"></position>
 				<position x="4" y="3"></position>
