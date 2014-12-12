@@ -352,4 +352,12 @@ public abstract class Unit {
     public int getHealth() {
 	return this.health;
     }
+    
+    /**
+     * Gets the speed of the unit
+     * @return speed
+     */
+    public double getSpeed() {
+	return this.speed;
+    }
 }
