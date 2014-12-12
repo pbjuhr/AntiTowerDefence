@@ -188,7 +188,7 @@ public class LevelReader {
 	y = Integer.parseInt(position.getAttribute("y"));
 
 	if(type.equals("start")){
-	    road = new Start(new Position(x, y));
+	    road = new Start(new Position(x, y), null);
 	}else if(type.equals("goal")) {
 	    road = new Goal(new Position(x, y));
 	}else {
