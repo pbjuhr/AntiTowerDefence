@@ -37,12 +37,11 @@ public abstract class Unit {
 	position = new Position(0,0);
 	wasTeleported = false;
 	reachedGoal = false;
-	direction = Direction.NORTH; // Gets set again by start landOn
 	setStartPosition();
     }
     
     /**
-     * Sets the position to the start position
+     * Sets the position and direction to the start position
      */
     private void setStartPosition(){
 	for(Terrain t : walkable) {
