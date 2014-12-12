@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="com.jaap.antitowerdefence.unit.SoldierUnit" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/unit/SoldierUnit.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="532" y="891"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="2" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.Direction" 
+  <enumeration id="1" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.Direction" 
     project="AntiTowerDefence" file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/Direction.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="996" y="936"/>    
+    <position height="-1" width="-1" x="852" y="603"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="3" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceGUI" 
+  <class id="2" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceGUI" 
     project="AntiTowerDefence" 
     file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefenceGUI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -31,16 +22,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.jaap.antitowerdefence.unit.FarmerUnit" project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/unit/FarmerUnit.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="744" y="891"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefence" 
+  <class id="3" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefence" 
     project="AntiTowerDefence" 
     file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefence.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -51,50 +33,27 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceController" 
+  <class id="4" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceController" 
     project="AntiTowerDefence" 
     file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefenceController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="242" width="222" x="515" y="141"/>    
+    <position height="-1" width="-1" x="737" y="202"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="com.jaap.antitowerdefence.antiTowerDefence.AntiTowerDefenceGame" 
-    project="AntiTowerDefence" 
-    file="/AntiTowerDefence/src/com/jaap/antitowerdefence/antiTowerDefence/AntiTowerDefenceGame.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="314" width="222" x="689" y="423"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="8">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="9" name="gui">        
+  <association id="5">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="6" name="gui">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="10" minimum="0" maximum="1">        
+      <multiplicity id="7" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="11">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="12" name="game">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="13" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

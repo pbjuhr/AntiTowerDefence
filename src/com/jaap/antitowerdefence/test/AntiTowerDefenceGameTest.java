@@ -85,14 +85,14 @@ public class AntiTowerDefenceGameTest {
 	game.newLevel();
 	assertTrue(game.getLevel().getUnits().isEmpty());
     }
-    
+
     @Test
-    public void testGetTower(){
+    public void testGetTower() {
 	assertNotNull(game.getTowerArray());
     }
-    
-    //Tower array in level is to big have empty spaces 
-    //Added if null condition 
+
+    // Tower array in level is to big have empty spaces
+    // Added if null condition
     @Test
     public void testStep() {
 	game.createFarmer();
