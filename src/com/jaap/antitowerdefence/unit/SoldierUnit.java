@@ -8,13 +8,14 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  */
 public class SoldierUnit extends Unit{
     
+    protected static double speed = 3;
+    protected static int cost = 100;
+    
     /**
      * Runs super constructor and sets speed, cost and health
      */
     public SoldierUnit(Terrain[] walkable, int stepsPerSec){
 	super(walkable, stepsPerSec);
-	speed = 3;
-	cost = 100;
 	health = 200;
 	resetCoolDown();
     }

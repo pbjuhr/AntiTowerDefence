@@ -16,10 +16,10 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 public abstract class Unit {
 
     /* Variables */
+    protected static double speed; // How often does the unit move
+    protected static int cost; 	   // How much the unit costs
     protected int health; 	   // The unit's current health
-    protected int cost; 	   // How much the unit costs
     protected long coolDown; 	   // Steps until next move
-    protected double speed = 1;	   // How often does the unit move
     protected int stepsPerSec;     // steps per second in game
     protected Direction direction; // The units direction
     protected Position position;   // The units current position
@@ -324,8 +324,8 @@ public abstract class Unit {
      * Gets the cost of the unit
      * @return cost, the cost of the Unit
      */
-    public int getCost() {
-	return this.cost;
+    public static int getCost() {
+	return cost;
     }
     
     /**
@@ -359,7 +359,7 @@ public abstract class Unit {
      * Gets the speed of the unit
      * @return speed
      */
-    public double getSpeed() {
-	return this.speed;
+    public static double getSpeed() {
+	return speed;
     }
 }

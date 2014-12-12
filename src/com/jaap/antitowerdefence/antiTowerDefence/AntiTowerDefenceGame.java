@@ -106,33 +106,57 @@ public class AntiTowerDefenceGame {
      * Creates a farmer unit and adds it to the level
      */
     public void createFarmer(){
-	Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), 
-		stepsPerSecond);
-	currentLevel.addUnit(u);
+	if(canAfford(FarmerUnit.getCost())) {
+	    Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), 
+		    stepsPerSecond);
+	    currentLevel.addUnit(u);
+	}
     }
-    
+
     /**
      * Creates a soldier unit and adds it to the level
      */
     public void createSoldier(){
-   	Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), 
-   		stepsPerSecond);
-   	currentLevel.addUnit(u);
+	if(canAfford(SoldierUnit.getCost())) {
+	    Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), 
+		    stepsPerSecond);
+	    currentLevel.addUnit(u);
+	}
     }
-    
+
     /**
      * Creates a teleporter unit and adds it to the level
      */
     public TeleporterUnit createTeleporter(){
+	if(canAfford(TeleporterUnit.getCost()) && containsTeleporter()) {
+	    Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
+		    stepsPerSecond);
+	    currentLevel.addUnit(u);
+	    return (TeleporterUnit)u;
+	}
+	return null;
+    }
+    
+    /**
+     * Check if a Teleporter unit is active in the game
+     * @return true or false
+     */
+    private boolean containsTeleporter() {
 	for(Unit u : currentLevel.getUnits()) {
 	    if(u instanceof TeleporterUnit) {
-		return null;
+		return true;
 	    }
 	}
-   	Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
-   		stepsPerSecond);
-   	currentLevel.addUnit(u);
-   	return (TeleporterUnit)u;
+	return false;
+    }
+    
+    /**
+     * Check if the
+     * @param price
+     * @return
+     */
+    public boolean canAfford(int price) {
+	return (price <= currentLevel.getLevelStats().getCredits());
     }
 
     /**
@@ -173,31 +197,15 @@ public class AntiTowerDefenceGame {
      * Gets the current Level object
      * @return currentLevel, the level object
      */
-    public Level getLevel(){
+    public Level getLevel() {
 	return currentLevel;
-    }
-    
-    /**
-     * @author andreasbolzyk id10abk
-     * 
-     */
-    public void setTowerArrayInLevel(){
-	getLevel().setTowers(towerPlacer.getNewTowers());
-    }
-    
-    /**
-     * @author andreasbolzyk id10abk
-     * 
-     */
-    public Tower[] getTowerArray(){
-	return towerPlacer.getNewTowers();
     }
     
     /**
      * Gets a string array of possible units for the current level
      * @return String[], the array with units
      */
-    public String[] getPossibleUnits(){
+    public String[] getPossibleUnits() {
 	return theLevelReader.getUnits(currentLevelNumber);
     }
     

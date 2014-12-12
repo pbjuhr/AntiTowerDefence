@@ -8,6 +8,9 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  */
 public class FarmerUnit extends Unit {
     
+    protected static double speed = 1;
+    protected static int cost = 50;
+    
     /**
      * Runs super constructor and sets speed, cost and health
      */

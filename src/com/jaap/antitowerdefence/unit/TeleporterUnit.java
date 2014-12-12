@@ -13,6 +13,8 @@ public class TeleporterUnit extends Unit {
     /* Variables related to the portal */
     private Portal firstPortal;
     private int placedPortals;
+    protected static double speed = 2;
+    protected static int cost = 200;
     
     /**
      * Runs super constructor and sets teleporters speed, cost, health and
@@ -20,8 +22,6 @@ public class TeleporterUnit extends Unit {
      */
     public TeleporterUnit(Terrain[] walkable, int stepsPerSec) {
 	super(walkable, stepsPerSec);
-	speed = 2;
-	cost = 200;
 	health = 100;
 	placedPortals = 0;
 	resetCoolDown();
@@ -63,6 +63,19 @@ public class TeleporterUnit extends Unit {
      */
     public int getPlacedPortals() {
 	return placedPortals;
+    }
+    
+    /**
+     * The Teleporters unit needs to remove a portal without reciever if it die
+     */
+    public void takeDamage() {
+	super.takeDamage();
+	// Needs to reset the portal to a road object
+	if(health <= 0 && placedPortals == 1) {
+	    Road r = new Road(firstPortal.getPosition());
+	    int terrainIndex = getTerrainIndex(firstPortal.getPosition());
+	    walkable[terrainIndex] = r;
+	}
     }
 
 }
