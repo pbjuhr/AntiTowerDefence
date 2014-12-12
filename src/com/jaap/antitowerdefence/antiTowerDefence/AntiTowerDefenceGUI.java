@@ -140,6 +140,10 @@ public class AntiTowerDefenceGUI {
 	return buttonPanel;
     }
 
+    public GameForeground getGameForeground() {
+	return gameForeground;
+    }
+
     public void newLevelGUI(Terrain[] grass, Terrain[] road, ArrayList<Unit> units, Tower[] towers) {
 	gameBackground.setTerrain(grass, road);
 	gameForeground.setTerrainAndObjects(units, towers, road);

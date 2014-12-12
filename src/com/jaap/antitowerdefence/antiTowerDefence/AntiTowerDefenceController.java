@@ -5,7 +5,10 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import com.jaap.antitowerdefence.terrain.Switch;
+import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.TeleporterUnit;
 import com.jaap.antitowerdefence.unit.Unit;
 //TODO errorhandling help about hiScore splashscreens enabling(+portals) levels
@@ -24,6 +29,7 @@ public class AntiTowerDefenceController {
     private boolean paused;
     private AntiTowerDefenceGame game;
     private AntiTowerDefenceGUI gui;
+//    private ArrayList<Terrain> switches;
 
     public AntiTowerDefenceController(String level) {
 	paused = true;
@@ -46,6 +52,7 @@ public class AntiTowerDefenceController {
 	}
 	setMenuListeners();
 	setButtons();
+	setSwitchListeners();
     }
 
     private void setMenuListeners() {
@@ -236,6 +243,22 @@ public class AntiTowerDefenceController {
 		}
 	    }
 	});
+    }
+
+    private void setSwitchListeners() {
+	for (Terrain t : game.getLevel().getSwitches()) {
+	    gui.getGameForeground().addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		    if ((e.getX() >= t.getPosition().getX()*32)
+			    && (e.getX() < (t.getPosition().getX()+1)*32)
+			    && (e.getY() >= t.getPosition().getY())
+			    && (e.getY() < (t.getPosition().getY()+1)*32)) {
+			((Switch) t).changeDirection();
+		    }
+		}
+	    });;
+	}
     }
 
     private void runGame() {
