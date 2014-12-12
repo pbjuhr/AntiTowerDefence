@@ -48,6 +48,7 @@ public class AntiTowerDefenceGame {
 	    setError(e.toString());
 	}
 	highScore = new HighScoreDB();
+	highScore.connectToDB();
 	newLevel();
     }
     
@@ -188,7 +189,7 @@ public class AntiTowerDefenceGame {
      * Gets the HighScoreDB object
      * @return highScore
      */
-    public HighScoreDB getHighScore(int score) {
+    public HighScoreDB getHighScore() {
 	return highScore;
     }
     
@@ -232,6 +233,10 @@ public class AntiTowerDefenceGame {
     public String getErrorMessage() {
 	hasError = false;
 	return errorMessage;
+    }
+
+    public int getCurrentLevelNumber() {
+	return currentLevelNumber;
     }
 
 }
