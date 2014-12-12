@@ -26,7 +26,7 @@ public class Level {
     private Terrain[] grass;		//Possible tower position
     private Tower[] towers;		//Towers implemented in level
     private ArrayList<Unit> units;	//Units currently active in game
-    private ArrayList<Switch> switches;	//All road switches in the level
+    private ArrayList<Terrain> switches;//All road switches in the level
     private LevelStats levelStats;	//Level info and game statistics
 
     /**
@@ -43,7 +43,7 @@ public class Level {
 	this.road = walkable;
 	this.grass = buildable;
 	this.levelStats = levelStats;
-	switches = new ArrayList<Switch>();
+	switches = new ArrayList<Terrain>();
 	setSwitches();
 	units = new ArrayList<Unit>();
     }
@@ -176,6 +176,7 @@ public class Level {
 	    if(road[i] instanceof Start) {
 		Start s = (Start) road[i];
 		s.setSwitch(directions);
+		switches.add(s);
 		
 	    }else if(road[i] instanceof Goal) {
 
@@ -207,7 +208,7 @@ public class Level {
      * getSwitches provides all switches in the level
      * @return the switches
      */
-    public ArrayList<Switch> getSwitches() {
+    public ArrayList<Terrain> getSwitches() {
 	return switches;
     }
 }
