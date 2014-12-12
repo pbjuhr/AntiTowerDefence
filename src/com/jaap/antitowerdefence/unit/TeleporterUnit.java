@@ -1,4 +1,6 @@
 package com.jaap.antitowerdefence.unit;
+
+import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Road;
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -36,12 +38,14 @@ public class TeleporterUnit extends Unit {
 	    return;
 	} else if(placedPortals == 0) {
 	    placedPortals++;
-	    firstPortal = new Portal(this.position);
+	    Position p = new Position(position.getX(), position.getY());
+	    firstPortal = new Portal(p);
 	    walkable[terrainIndex] = firstPortal;
 	    placedPortals = 1;
 	} else if(placedPortals == 1 && 
 		!firstPortal.getPosition().equals(this.position)) {
-	    Portal receiver = new Portal(this.position);
+	    Position p = new Position(position.getX(), position.getY());
+	    Portal receiver = new Portal(p);
 	    receiver.setDirection(direction);
 	    firstPortal.setReciever(receiver);
 	    walkable[terrainIndex] = receiver;
