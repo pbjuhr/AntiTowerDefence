@@ -18,7 +18,9 @@ import com.jaap.antitowerdefence.unit.Unit;
  * @author Peter Bjuhr, id10pbn
  */
 public class AntiTowerDefenceGame {
-
+    
+    private boolean hasError;		// Has the game any errors?
+    private String errorMessage;	// Error message
     private int currentStep;	 	// How many steps we've taken
     private int currentLevelNumber;	// The current level number
     private int stepsPerSecond;		// Steps per second
@@ -33,6 +35,7 @@ public class AntiTowerDefenceGame {
      */
     public AntiTowerDefenceGame(String level, int stepsPerSecond){
 	this.stepsPerSecond = stepsPerSecond;
+	hasError = false;
 	currentStep = 0;
 	currentLevelNumber = 0;
 	try {
@@ -203,6 +206,34 @@ public class AntiTowerDefenceGame {
      */
     public String[] getPossibleUnits(){
 	return theLevelReader.getUnits(currentLevelNumber);
+    }
+    
+    /**
+     * 
+     */
+    public void setError(String message) {
+	hasError = true;
+	errorMessage = message;
+    }
+    
+    /**
+     * Return if the game has generated any errors
+     * @return hasError, true if an error has been generated, otherwise false
+     */
+    private boolean hasErrors() {
+	if(hasError) {
+	    hasError = false;
+	    return true;
+	}
+	return false;
+    }
+    
+    /**
+     * Gets the error message
+     * @return errorMessage, a string message
+     */
+    public String getErrorMessage() {
+	return errorMessage;
     }
 
 }

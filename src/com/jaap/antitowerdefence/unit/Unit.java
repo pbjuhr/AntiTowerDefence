@@ -37,9 +37,8 @@ public abstract class Unit {
 	position = new Position(0,0);
 	wasTeleported = false;
 	reachedGoal = false;
-	direction = Direction.NORTH; // Gets set by start landOn
-	//setStartPosition();
-	setPosition(new Position(1,0));
+	direction = Direction.NORTH; // Gets set again by start landOn
+	setStartPosition();
     }
     
     /**
