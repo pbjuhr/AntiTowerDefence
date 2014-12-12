@@ -30,10 +30,8 @@ public class TeleporterUnit extends Unit {
      * Places a portal on a given position
      */
     public void placePortal() {
-	System.out.println("Places portal on posX: " + getPosition().getX() + ", Y: " + getPosition().getY());
 	int terrainIndex = getTerrainIndex(position);
 	if(!(walkable[terrainIndex] instanceof Road)) {
-	    System.out.println("Not road");
 	    return;
 	} else if(placedPortals == 0) {
 	    placedPortals++;
@@ -43,7 +41,8 @@ public class TeleporterUnit extends Unit {
 	} else if(placedPortals == 1 && 
 		!firstPortal.getPosition().equals(this.position)) {
 	    Portal reciever = new Portal(this.position);
-	    firstPortal.setReciever(reciever.getPosition(), direction);
+	    reciever.setDirection(direction);
+	    firstPortal.setReciever(reciever);
 	    walkable[terrainIndex] = reciever;
 	    placedPortals++;
 	}
