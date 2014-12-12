@@ -31,7 +31,6 @@ public class TowerPlacerAI {
 	updateInterval = 20 * fps; // Should update every 20 sec
 	this.possiblePositions = possiblePositions;
 	this.nrOfTowers = nrOfTowers;
-//	System.out.println(nrOfTowers);
     }
 
     /**
@@ -58,6 +57,8 @@ public class TowerPlacerAI {
 		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval));
 	    }
 	}
+	
+	System.out.println(writeToArray(towers).length);
 	return writeToArray(towers);
     }
 
@@ -98,7 +99,8 @@ public class TowerPlacerAI {
      * @return Towers array
      */
     private Tower[] writeToArray(ArrayList<Tower> towers) {
-	Tower[] newTowers = new Tower[towers.size() - 1];
+	
+	Tower[] newTowers = new Tower[towers.size()];
 	for (int i = 0; i < towers.size(); i++) {
 	    newTowers[i] = towers.remove(i);
 	}
