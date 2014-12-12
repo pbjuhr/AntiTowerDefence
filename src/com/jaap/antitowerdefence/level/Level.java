@@ -89,9 +89,11 @@ public class Level {
      * @param towers - the tower array to replace the old tower array
      */
     public void setTowers(Tower[] newTowers) {
-	this.towers = newTowers;
+	if(this.towers == null) {
+	    this.towers = new Tower[newTowers.length];
+	}
 	for(int i = 0; i < this.towers.length; i++) {
-	    System.out.println("Tower pos X: " + newTowers[i].getPosition().getX() + ", Y: " + newTowers[i].getPosition().getY());
+	    this.towers[i] = newTowers[i];
 	    this.towers[i].setUnits(units);
 	}
     }
