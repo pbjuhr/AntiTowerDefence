@@ -106,7 +106,7 @@ public class AntiTowerDefenceGame {
      * Creates a farmer unit and adds it to the level
      */
     public void createFarmer(){
-	if(canAfford(FarmerUnit.getCost())) {
+	if(canAfford(FarmerUnit.cost)) {
 	    Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), 
 		    stepsPerSecond);
 	    currentLevel.addUnit(u);
@@ -117,7 +117,7 @@ public class AntiTowerDefenceGame {
      * Creates a soldier unit and adds it to the level
      */
     public void createSoldier(){
-	if(canAfford(SoldierUnit.getCost())) {
+	if(canAfford(SoldierUnit.cost)) {
 	    Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), 
 		    stepsPerSecond);
 	    currentLevel.addUnit(u);
@@ -128,7 +128,7 @@ public class AntiTowerDefenceGame {
      * Creates a teleporter unit and adds it to the level
      */
     public TeleporterUnit createTeleporter(){
-	if(canAfford(TeleporterUnit.getCost()) && containsTeleporter()) {
+	if(canAfford(TeleporterUnit.cost) && containsTeleporter()) {
 	    Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
 		    stepsPerSecond);
 	    currentLevel.addUnit(u);

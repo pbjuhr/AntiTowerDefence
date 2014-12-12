@@ -8,8 +8,8 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  */
 public class SoldierUnit extends Unit{
     
-    static double speed = 3;
-    static int cost = 100;
+    private double speed = 3;
+    public static int cost = 100;
     
     /**
      * Runs super constructor and sets speed, cost and health
