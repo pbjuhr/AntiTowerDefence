@@ -2,20 +2,15 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -115,69 +110,21 @@ public class AntiTowerDefenceController {
 	help.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		JFrame helpFrame = new JFrame("Help");
-		helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		helpFrame.setLocation(100, 100);
-		helpFrame.setLayout(new GridLayout(6, 1));
-
-		JLabel farmer = new JLabel();
-		helpFrame.add(farmer);
-		farmer.setText("Farmer: Basic unit.");
-
-		JLabel soldier = new JLabel();
-		helpFrame.add(soldier);
-		soldier.setText("Soldier: Advanced unit.");
-
-		JLabel wizard = new JLabel();
-		helpFrame.add(wizard);
-		wizard.setText("Wizard: Portal placing unit.");
-
-		helpFrame.pack();
-		helpFrame.setVisible(true);
+		gui.showHelpFrame();
 	    }
 	});
 
 	about.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		JFrame aboutFrame = new JFrame("About");
-		aboutFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		aboutFrame.setLocation(100, 100);
-
-		JTextArea textArea = new JTextArea(6, 15);
-		aboutFrame.add(textArea);
-		textArea.setEditable(false);
-		textArea.setText("Anti Tower Defence\n" +
-			"\nA game by:\n" +
-			"Peter Bjuhr\n" +
-			"Andreas Bolzyk\n" +
-			"Joakim Sandman\n" +
-			"Anna Österlund");
-
-		aboutFrame.pack();
-		aboutFrame.setVisible(true);
+		gui.showAboutFrame();
 	    }
 	});
 
 	highscore.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		JFrame highscoreFrame = new JFrame("Highscore");
-		highscoreFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		highscoreFrame.setLocation(100, 100);
-
-		JTextArea textArea = new JTextArea(13, 25);
-		highscoreFrame.add(textArea);
-		textArea.setEditable(false);
-		textArea.setText("Anti Tower Defence Highscore:\n" +
-			"\nLVL:  NAME:\n" +
-			"6     Peter\n" +
-			"5     Andreas\n" +
-			"5     Anna\n" +
-			"3     Joakim");
-
-		highscoreFrame.pack();
-		highscoreFrame.setVisible(true);
+		gui.showHighscoreFrame(game.getHighScore());
 	    }
 	});
     }
@@ -290,6 +237,15 @@ public class AntiTowerDefenceController {
 
     private void gameWin() {
 	game.newLevel();
+	HighScoreDB db = game.getHighScore();
+	int score = game.getCurrentLevelNumber();
+	String isHighScore = db.isHighScore(score);
+	if (isHighScore.equals("true")) {
+	    String name = gui.showNewHighscoreFrame(db);
+	    db.addScore(name, score);
+	} else if (isHighScore.equals("fail")) {
+	    
+	}
     }
 
     private void gamePaused() {
