@@ -41,14 +41,11 @@ public class AntiTowerDefenceGame {
 	try {
 	    theLevelReader = new LevelReader(level);
 	} catch (ParserConfigurationException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    setError(e.toString());
 	} catch (SAXException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    setError(e.toString());
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    setError(e.toString());
 	}
 	highScore = new HighScoreDB();
 	newLevel();
@@ -62,10 +59,8 @@ public class AntiTowerDefenceGame {
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
-	
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
 		theLevelReader.getNrOfTowers(currentLevelNumber), stepsPerSecond);
-	
 	currentLevel.setTowers(towerPlacer.getNewTowers());
     }
     
