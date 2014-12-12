@@ -26,6 +26,9 @@ public abstract class Unit {
     protected Terrain[] walkable;  // All walkable terrain objects in level
     private boolean reachedGoal;   // Has the unit reached the goal
     private boolean wasTeleported; // Has the unit been teleported
+    
+    /*TEST */
+    private Position nextPos;
 
     /**
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
@@ -64,9 +67,10 @@ public abstract class Unit {
      * @param currentStep , to determine if its time to walk
      */
     public void action() {
-	if(coolDown > 0){
+	if(coolDown > 1){
 	    coolDown--;
 	} else{
+	    System.out.println("pos x: "+position.getX() + ", y: "+position.getY());
 	    wasTeleported = false;
 	    if(isAlive() && !reachedGoal){
 		runLandOn(getTerrainIndex(position));
@@ -282,7 +286,8 @@ public abstract class Unit {
      * @param p, the new position
      */
     public void setPosition(Position p) {
-	position = p;
+	position.setX(p.getX());
+	position.setY(p.getY());
     }
 
     /**
