@@ -57,8 +57,6 @@ public class TowerPlacerAI {
 		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval));
 	    }
 	}
-	
-	System.out.println(writeToArray(towers).length);
 	return writeToArray(towers);
     }
 
