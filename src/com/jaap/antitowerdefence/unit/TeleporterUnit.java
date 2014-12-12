@@ -43,7 +43,7 @@ public class TeleporterUnit extends Unit {
 	} else if(placedPortals == 1 && 
 		!firstPortal.getPosition().equals(this.position)) {
 	    Portal reciever = new Portal(this.position);
-	    firstPortal.setReciever(reciever.getPosition());
+	    firstPortal.setReciever(reciever.getPosition(), direction);
 	    walkable[terrainIndex] = reciever;
 	    placedPortals++;
 	}

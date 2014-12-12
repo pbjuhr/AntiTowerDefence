@@ -1,5 +1,6 @@
 package com.jaap.antitowerdefence.terrain;
 
+import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
 
@@ -10,7 +11,8 @@ import com.jaap.antitowerdefence.unit.Unit;
  */
 public class Portal extends Terrain implements LandOnInterface {
 
-    private Position reciever;
+    private Position recieverPos;
+    private Direction recieverDir;
     private boolean hasReciever;
 
     public Portal(Position position) {
@@ -29,6 +31,7 @@ public class Portal extends Terrain implements LandOnInterface {
     public void landOn(Unit u) {
 	if(hasReciever) {
 	    u.setPosition(getReciever());
+	    u.setDirection(getDirection());
 	    u.toggleTeleported();
 	}
     }
@@ -38,18 +41,19 @@ public class Portal extends Terrain implements LandOnInterface {
      * @author Peter Bjuhr
      * @param p, the reciever position
      */
-    public void setReciever(Position p) {
-	this.reciever = p;
+    public void setReciever(Position p, Direction d) {
+	this.recieverPos = p;
+	this.recieverDir = d;
 	this.hasReciever = true;
     }
     
     /**
-     * Gets the portals reciever
+     * Gets the portals reciever position
      * @author Peter Bjuhr
      * @return Position, the reciver position
      */
     public Position getReciever() {
-	return this.reciever;
+	return this.recieverPos;
     }
     
     /**
@@ -59,6 +63,21 @@ public class Portal extends Terrain implements LandOnInterface {
      */
     public boolean hasReciever() {
 	return hasReciever;
+    }
+    
+    /**
+     * Sets the direction of recieving portal
+     * @return void
+     */
+    public void setDirection(Direction dir) {
+	this.recieverDir = dir;
+    }
+    
+    /**
+     * Returns the direction of the recieving portal
+     */
+    public Direction getDirection() {
+	return this.recieverDir;
     }
 
 }
