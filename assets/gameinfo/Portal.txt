@@ -1,1 +1,2 @@
-The portal can only be placed when the wizard is on the map. One set of portals per wizard is possible.
+The portal can only be placed when the wizard is on the map.
+One set of portals per wizard is possible.
