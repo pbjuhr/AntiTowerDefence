@@ -88,7 +88,7 @@ public class AntiTowerDefenceController {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		paused = false;
-		game.newLevel();
+		game.restartLevel();
 	    }
 	});
 

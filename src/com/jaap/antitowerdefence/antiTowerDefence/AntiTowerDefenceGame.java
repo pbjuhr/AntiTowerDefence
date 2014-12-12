@@ -72,7 +72,7 @@ public class AntiTowerDefenceGame {
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
+		theLevelReader.getNrOfTowers(currentLevelNumber), stepsPerSecond);
 	currentLevel.setTowers(towerPlacer.getNewTowers());
     }
 
