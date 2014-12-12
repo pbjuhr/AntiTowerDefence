@@ -70,6 +70,18 @@ public class AntiTowerDefenceGame {
 		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
 	currentLevel.setTowers(towerPlacer.getNewTowers());
     }
+    
+    /**
+     * Resets necessary variables and sets new level & towerplacer objects
+     */
+    public void restartLevel() {
+	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
+		theLevelReader.getGrass(currentLevelNumber), 
+		theLevelReader.getLevelStats(currentLevelNumber));
+	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
+		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
+	currentLevel.setTowers(towerPlacer.getNewTowers());
+    }
 
     /**
      * Runs one timestep in the game
@@ -120,10 +132,11 @@ public class AntiTowerDefenceGame {
     /**
      * Creates a teleporter unit and adds it to the level
      */
-    public void createTeleporter(){
+    public TeleporterUnit createTeleporter(){
    	Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
    		stepsPerSecond);
    	currentLevel.addUnit(u);
+   	return (TeleporterUnit)u;
     }
 
     /**
