@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.antiTowerDefence.Tower;
+import com.jaap.antitowerdefence.terrain.Goal;
 import com.jaap.antitowerdefence.terrain.Start;
 import com.jaap.antitowerdefence.terrain.Switch;
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -87,17 +88,9 @@ public class Level {
      */
     public void setTowers(Tower[] towers) {
 
-	this.towers = new Tower[towers.length];
+	this.towers = towers;	
 	for(int i = 0; i < towers.length; i++) {
-	    if(towers[i]!=null){
-        	    this.towers[i]=towers[i];
-	    }
-	}
-	
-	for(int i = 0; i < towers.length; i++) {
-	    if(towers[i]!=null){
-		this.towers[i].setUnits(units);
-	    }
+	    this.towers[i].setUnits(units);
 	}
     }
 
@@ -172,14 +165,18 @@ public class Level {
 	    }
 	    if(roadContains(road[i].getPosition().getPosToNorth())) {
 		directions.add(Direction.NORTH);
+		neighbours++;
 	    }
 	    if(roadContains(road[i].getPosition().getPosToWest())) {
 		directions.add(Direction.WEST);
+		neighbours++;
 	    }
-	    
-	    if(road[i] instanceof Start){
+	    System.out.println(neighbours);
+	    if(road[i] instanceof Start) {
 		Start s = (Start) road[i];
 		s.setSwitch(directions);
+	    }else if(road[i] instanceof Goal) {
+
 	    }else if(neighbours > 2){
 		road[i] = new Switch(road[i].getPosition(), directions);		
 	    }
@@ -195,8 +192,9 @@ public class Level {
     private boolean roadContains(Position roadPosition) {
 
 	for(Terrain t : road) {
-	    if(t.getPosition().equals(roadPosition));
-	    return true;
+	    if(t.getPosition().equals(roadPosition)){
+		return true;
+	    }
 	}
 	return false;
     }

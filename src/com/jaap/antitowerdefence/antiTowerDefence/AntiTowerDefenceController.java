@@ -174,12 +174,11 @@ public class AntiTowerDefenceController {
     }
 
     private void setButtons() {
-	String[] temp = {"Farmer", "Soldier", "Wizard"};
 	SwingUtilities.invokeLater(new Runnable() {
 	    @Override
 	    public void run() {
-		for (String unit : temp) {//game.getPossibleUnits()) {
-		    if (unit.equals("Farmer")) {
+		for (String unit : game.getPossibleUnits()) {
+		    if (unit.equals("FarmerUnit")) {
 			JButton farmerButton = new JButton("Farmer", new ImageIcon("assets/img/FarmerUnit.png"));
 			farmerButton.addActionListener(new ActionListener() {
 			    @Override
@@ -192,7 +191,7 @@ public class AntiTowerDefenceController {
 			gui.addButton(farmerButton);
 		    }
 
-		    if (unit.equals("Soldier")) {
+		    if (unit.equals("SoldierUnit")) {
 			JButton soldierButton = new JButton("Soldier", new ImageIcon("assets/img/SoldierUnit.png"));
 			soldierButton.addActionListener(new ActionListener() {
 			    @Override
@@ -205,7 +204,7 @@ public class AntiTowerDefenceController {
 			gui.addButton(soldierButton);
 		    }
 
-		    if (unit.equals("Wizard")) {
+		    if (unit.equals("TeleporterUnit")) {
 			JButton wizardButton = new JButton("Wizard", new ImageIcon("assets/img/TeleporterUnit.png"));
 			wizardButton.addActionListener(new ActionListener() {
 			    @Override

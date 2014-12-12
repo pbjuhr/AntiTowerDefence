@@ -81,12 +81,13 @@ public class LevelReader {
 	} catch (SAXException e) {
 	    /*If the schema can not be created and used for validation, the 
 	     * default file (levels.xml) is used */
-	    levelFile = new File("src/levels.xml");
+	    System.out.println(e.getMessage());
+	    levelFile = new File("assets/levels/levels.xml");
 	    System.out.println("Error: The schema could not be created");
 	} catch (IOException e) {
 	    /*If the levelfile is invalid, the default file (levels.xml) is 
 	     * used */
-	    levelFile = new File("src/levels.xml");
+	    levelFile = new File("assets/level/levels.xml");
 	    System.out.println("Error: The file is unvalid");
 	}
     }
@@ -308,8 +309,9 @@ public class LevelReader {
 		hasUnits = new String[units.getLength()];
 		for(int m = 0; m < units.getLength(); m++){
 		    unitName = units.item(m).getTextContent();
-		    if(unitName.equals("Farmer") || unitName.equals("Soldier")
-			    || unitName.equals("Wizard")) {
+		    if(unitName.equals("FarmerUnit") || 
+			    unitName.equals("SoldierUnit") || 
+			    unitName.equals("TeleporterUnit")) {
 			hasUnits[m] = unitName;
 		    }
 		}
