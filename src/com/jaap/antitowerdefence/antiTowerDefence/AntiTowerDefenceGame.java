@@ -47,6 +47,13 @@ public class AntiTowerDefenceGame {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
+
+	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
+		theLevelReader.getGrass(currentLevelNumber), 
+		theLevelReader.getLevelStats(currentLevelNumber));
+	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
+		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
+	System.out.println(theLevelReader.getNrOfTowers(currentLevelNumber));
 	highScore = new HighScoreDB();
 	newLevel();
     }

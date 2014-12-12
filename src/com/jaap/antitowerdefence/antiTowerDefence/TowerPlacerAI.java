@@ -31,6 +31,7 @@ public class TowerPlacerAI {
 	updateInterval = 20 * fps; // Should update every 20 sec
 	this.possiblePositions = possiblePositions;
 	this.nrOfTowers = nrOfTowers;
+//	System.out.println(nrOfTowers);
     }
 
     /**
