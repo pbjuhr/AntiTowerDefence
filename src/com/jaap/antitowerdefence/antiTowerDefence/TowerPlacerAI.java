@@ -14,6 +14,7 @@ public class TowerPlacerAI {
 
     private int nrOfTowers;
     private int updateInterval;
+    private int stepsPerSecond;
     private Terrain[] possiblePositions;
 
     /**
@@ -27,8 +28,9 @@ public class TowerPlacerAI {
      * @param fps
      *            How often does the game update
      */
-    public TowerPlacerAI(Terrain[] possiblePositions, int nrOfTowers, int fps) {
-	updateInterval = 20 * fps; // Should update every 20 sec
+    public TowerPlacerAI(Terrain[] possiblePositions, int nrOfTowers, int stepsPerSecond) {
+	updateInterval = 20 * stepsPerSecond; // Should update every 20 sec
+	this.stepsPerSecond = stepsPerSecond;
 	this.possiblePositions = possiblePositions;
 	this.nrOfTowers = nrOfTowers;
     }
@@ -47,14 +49,14 @@ public class TowerPlacerAI {
 	    int index = rand.nextInt((possiblePositions.length - 1));
 
 	    if (towers.isEmpty()) {
-		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval ));
+		towers.add(new Tower(possiblePositions[index].getPosition(), stepsPerSecond));
 
 	    } else if (!towers.isEmpty()) {
 		while (containsPosition(towers,
 			possiblePositions[index].getPosition())) {
 		    index = rand.nextInt((possiblePositions.length - 1));
 		}
-		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval));
+		towers.add(new Tower(possiblePositions[index].getPosition(), stepsPerSecond));
 	    }
 	}
 	return writeToArray(towers);

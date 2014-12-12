@@ -23,10 +23,14 @@ public class Tower{
      * @param stepsPerSecond, steps per second in the game
      */
     public Tower(Position position, int stepsPerSecond) {
-	this.coolDown = shootInterval * stepsPerSecond;
 	this.position = position;
 	this.stepsPerSecond = stepsPerSecond;
 	shootPosition = null;
+	resetCoolDown();
+    }
+    
+    private void resetCoolDown() {
+	this.coolDown = shootInterval * stepsPerSecond;
     }
     
     /**
@@ -44,17 +48,19 @@ public class Tower{
     public void action() {
 	// Determine if it is time to shoot
 	if(coolDown > 0) {
-	    if(coolDown < (stepsPerSecond * shootInterval) - 1){
+	    if(coolDown < (stepsPerSecond * shootInterval) - 10){
 		shootPosition = null;
 	    }
 	    coolDown--;
 	} else {
 	    Unit u = findUnitInRange();
 	    if(u != null) {
+		System.out.println("A tower is shooting");
+		System.out.println("Pos x: " + getPosition().getX() + ", y: " + getPosition().getY());
 		//FIRE!!
 		shootPosition = u.getPosition();
-		coolDown = stepsPerSecond * shootInterval;
 		u.takeDamage(); 
+		resetCoolDown();
 	    }
 	}
     }

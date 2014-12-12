@@ -83,15 +83,12 @@ public class AntiTowerDefenceGame {
 	
 	// Moves the towers
 	if(towerPlacer.timeToChange(currentStep)){
-	    System.out.println("Time to change towers");
 	    currentLevel.setTowers(towerPlacer.getNewTowers());
 	}
 	
 	// Towers shoot
 	for(Tower t : currentLevel.getTowers()){
-	    if(t!=null){
-		t.action();
-	    }
+	    t.action();
 	}
 		
 	// Moves the units
