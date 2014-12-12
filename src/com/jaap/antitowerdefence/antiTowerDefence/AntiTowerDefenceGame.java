@@ -34,7 +34,7 @@ public class AntiTowerDefenceGame {
     public AntiTowerDefenceGame(String level, int stepsPerSecond){
 	this.stepsPerSecond = stepsPerSecond;
 	currentStep = 0;
-	currentLevelNumber = 1;
+	currentLevelNumber = 0;
 	try {
 	    theLevelReader = new LevelReader(level);
 	} catch (ParserConfigurationException e) {
@@ -47,12 +47,8 @@ public class AntiTowerDefenceGame {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
-		theLevelReader.getGrass(currentLevelNumber), 
-		theLevelReader.getLevelStats(currentLevelNumber));
-	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
-		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
 	highScore = new HighScoreDB();
+	newLevel();
     }
     
     /**
@@ -65,12 +61,18 @@ public class AntiTowerDefenceGame {
 		theLevelReader.getLevelStats(currentLevelNumber));
 	towerPlacer = new TowerPlacerAI(currentLevel.getPossibleTowerPositions(), 
 		stepsPerSecond, theLevelReader.getNrOfTowers(currentLevelNumber));
+	currentLevel.setTowers(towerPlacer.getNewTowers());
     }
 
     /**
      * Runs one timestep in the game
      */
     public void step() {
+	
+	// Moves the towers
+	if(towerPlacer.timeToChange(currentStep)){
+	    currentLevel.setTowers(towerPlacer.getNewTowers());
+	}
 	
 	// Towers shoot
 	for(Tower t : currentLevel.getTowers()){
@@ -86,11 +88,6 @@ public class AntiTowerDefenceGame {
 	    }
 	}
 	currentLevel.updateUnits();
-
-	// Moves the towers
-	if(towerPlacer.timeToChange(currentStep)){
-	    currentLevel.setTowers(towerPlacer.getNewTowers());
-	}
 
 	currentStep++;
     }
