@@ -18,7 +18,9 @@ public class Switch extends Terrain implements LandOnInterface {
 	super(position);
 	walkable = true;
 	buildable = false;
-	direction = possibleDirections.get(0);
+	if(possibleDirections != null) {
+	    direction = possibleDirections.get(0);
+	}
 	this.possibleDirections = possibleDirections;
 	// findNewDirection(dir);
 	// Direction.getRandomDirection();
