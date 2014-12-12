@@ -45,7 +45,7 @@ public class TowerPlacerAI {
 	Random rand = new Random();
 
 	for (int i = 0; i < nrOfTowers; i++) {
-	    int index = rand.nextInt(possiblePositions.length);
+	    int index = rand.nextInt((possiblePositions.length - 1));
 
 	    if (towers.isEmpty()) {
 		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval ));
@@ -53,7 +53,7 @@ public class TowerPlacerAI {
 	    } else if (!towers.isEmpty()) {
 		while (containsPosition(towers,
 			possiblePositions[index].getPosition())) {
-		    index = rand.nextInt(possiblePositions.length);
+		    index = rand.nextInt((possiblePositions.length - 1));
 		}
 		towers.add(new Tower(possiblePositions[index].getPosition(),updateInterval));
 	    }
