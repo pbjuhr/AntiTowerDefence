@@ -43,7 +43,7 @@ public class HighScoreDBTest {
     @Test
     public void testAddScore() {
 	String result;
-	result = highScore.addScore("Berit", 16);
+	result = highScore.addScore("Krister", 6);
 	System.out.println(result);
 	assertEquals("success", result);
 	
