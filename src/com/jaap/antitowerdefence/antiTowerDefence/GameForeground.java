@@ -19,7 +19,8 @@ import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Switch;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.Unit;
-//TODO errorhandling switchlisteners working towers remove testunit
+
+//TODO errorhandling movement
 public class GameForeground extends JComponent {
 
     private static final long serialVersionUID = 1L;
@@ -27,30 +28,41 @@ public class GameForeground extends JComponent {
     private Tower[] towers;
     private Terrain[] road;
     private LevelStats stats;
-    int animationOffset;
-    double realOffset;
+    private Timer timer;
+    private int animationOffset;
+    private double realOffset;
 
-    public GameForeground(int fps, LevelStats stats) {
-	this.stats = stats;
+    public GameForeground(int fps) {
 	animationOffset = 0;
 	realOffset = 0;
-	Timer timer = new Timer(Math.round(1000/fps), new ActionListener() {
+	timer = new Timer(Math.round(1000/fps), new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		repaint();
-		realOffset = (realOffset + 32.0/fps) % 32;
-		animationOffset = 0;//(int) realOffset;
+//		realOffset = (realOffset + 32.0/fps) % 32;
+//		animationOffset = 0;//(int) realOffset;
 	    }
 	});
 	timer.setRepeats(true);
-	timer.start();
     }
 
     public void setTerrainAndObjects(ArrayList<Unit> units, Tower[] towers, Terrain[] road) {
 	this.units = units;
 	this.towers = towers;
 	this.road = road;
+    }
+
+    public void setStats(LevelStats stats) {
+	this.stats = stats;
 	repaint();
+    }
+
+    public void start() {
+	timer.start();
+    }
+
+    public void stop() {
+	timer.stop();
     }
 
     @Override
@@ -63,16 +75,17 @@ public class GameForeground extends JComponent {
 	g.setColor(Color.WHITE);
 	g.drawString("Score: " + stats.getScore() + "/" + stats.getWinScore(), 10, 15);
 	g.drawString("Credits: " + stats.getCredits(), 10, 30);
-	g.drawString("Time: " + 42, 10, 45);
     }
 
     private void drawRoadObjects(Graphics g) {
 	for (Terrain t : road) {
 	    BufferedImage roadObjectImg = null;
+	    BufferedImage dirImg = null;
 	    try {
 		switch (t.getClass().getSimpleName()) {
 		case "Start":
 		    roadObjectImg = ImageIO.read(new File("assets/img/Start.png"));
+		    dirImg = ImageIO.read(new File("assets/img/DirBig/" + ((Switch) t).getDirection() + ".png"));
 		    break;
 		case "Goal":
 		    roadObjectImg = ImageIO.read(new File("assets/img/Goal.png"));
@@ -80,28 +93,21 @@ public class GameForeground extends JComponent {
 		case "Portal":
 		    if (((Portal) t).hasReciever()) {
 			roadObjectImg = ImageIO.read(new File("assets/img/Portal_start.png"));
+		    } else if (((Portal) t).getDirection() == null) {
+			roadObjectImg = ImageIO.read(new File("assets/img/Portal.png"));
 		    } else {
 			roadObjectImg = ImageIO.read(new File("assets/img/Portal_end.png"));
+			dirImg = ImageIO.read(new File("assets/img/DirBig/" + ((Portal) t).getDirection() + ".png"));
 		    }
 		    break;
 		case "Switch":
-		    switch (((Switch) t).getDirection()) {
-		    case EAST:
-			roadObjectImg = ImageIO.read(new File("assets/img/DirBig/EAST.png"));
-			break;
-		    case NORTH:
-			roadObjectImg = ImageIO.read(new File("assets/img/DirBig/NORTH.png"));
-			break;
-		    case SOUTH:
-			roadObjectImg = ImageIO.read(new File("assets/img/DirBig/SOUTH.png"));
-			break;
-		    case WEST:
-			roadObjectImg = ImageIO.read(new File("assets/img/DirBig/WEST.png"));
-			break;
-		    }
+		    roadObjectImg = ImageIO.read(new File("assets/img/DirBig/" + ((Switch) t).getDirection() + ".png"));
 		    break;
 		}
 		g.drawImage(roadObjectImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
+		if (dirImg != null) {
+		    g.drawImage(dirImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
+		}
 	    }
 	    catch (IOException e) {
 		//e.printStackTrace();

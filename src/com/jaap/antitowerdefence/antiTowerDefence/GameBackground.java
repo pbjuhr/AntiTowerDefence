@@ -9,15 +9,19 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
+
 //TODO errorhandling
 public class GameBackground extends JComponent {
 
     private static final long serialVersionUID = 1L;
+    private int width;
+    private int height;
     private Terrain[] grass;
     private Terrain[] road;
 
-    public GameBackground() {
-	repaint();
+    public GameBackground(int width, int height) {
+	this.width = width;
+	this.height = height;
     }
 
     public void setTerrain(Terrain[] grass, Terrain[] road) {
@@ -41,8 +45,8 @@ public class GameBackground extends JComponent {
 	} catch (IOException e) {
 	    //e.printStackTrace();
 	}
-	for (int row = 0; row < 15; row++) {
-	    for (int col = 0; col < 20; col++) {
+	for (int row = 0; row < height; row++) {
+	    for (int col = 0; col < width; col++) {
 		g.drawImage(waterImg, col*32, row*32, null);
 	    }
 	}
