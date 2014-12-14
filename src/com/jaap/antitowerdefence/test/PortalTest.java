@@ -21,7 +21,7 @@ public class PortalTest {
     @BeforeClass
     public static void setUpBeforeClass() {
 	p = new Portal(new Position(1, 1));
-	p.setReciever(new Position(2, 1));
+//	p.setReciever(new Position(2, 1));
     }
 
     @Test

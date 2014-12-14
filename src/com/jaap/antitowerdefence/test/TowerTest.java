@@ -34,13 +34,13 @@ public class TowerTest {
 	walkable = new Terrain[3];
 	u = new ArrayList<Unit>();
 
-	walkable[0] = new Start(new Position(1, 0));
-	walkable[1] = new Road(new Position(1, 1));
-	walkable[2] = new Goal(new Position(1, 2));
-
-	u.add(new SoldierUnit(walkable, 0, 30));
-	u.add(new SoldierUnit(walkable, 0, 30));
-	t.setUnits(u);
+//	walkable[0] = new Start(new Position(1, 0));
+//	walkable[1] = new Road(new Position(1, 1));
+//	walkable[2] = new Goal(new Position(1, 2));
+//
+//	u.add(new SoldierUnit(walkable, 0, 30));
+//	u.add(new SoldierUnit(walkable, 0, 30));
+//	t.setUnits(u);
     }
 
 //    @Test
