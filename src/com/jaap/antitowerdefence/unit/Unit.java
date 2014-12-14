@@ -70,7 +70,7 @@ public abstract class Unit {
 	if(coolDown > 1){
 	    coolDown--;
 	} else{
-	    System.out.println("pos x: "+position.getX() + ", y: "+position.getY());
+//	    System.out.println("pos x: "+position.getX() + ", y: "+position.getY());
 	    wasTeleported = false;
 	    if(isAlive() && !reachedGoal){
 		runLandOn(getTerrainIndex(position));
