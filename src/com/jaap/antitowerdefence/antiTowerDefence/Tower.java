@@ -48,7 +48,7 @@ public class Tower{
     public void action() {
 	// Determine if it is time to shoot
 	if(coolDown > 0) {
-	    if(coolDown < (stepsPerSecond * shootInterval) - ((1/4) * stepsPerSecond)){
+	    if(coolDown < (stepsPerSecond * shootInterval) - ((1/2) * stepsPerSecond)){
 		shootPosition = null;
 	    }
 	    coolDown--;

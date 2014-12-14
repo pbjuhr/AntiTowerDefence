@@ -241,4 +241,8 @@ public class AntiTowerDefenceGame {
 	return currentLevelNumber;
     }
 
+    public LevelReader getLevelReader() {
+	return theLevelReader;
+    }
+
 }

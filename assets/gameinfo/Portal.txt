@@ -1,2 +1,3 @@
-The portal can only be placed when the wizard is on the map.
-One set of portals per wizard is possible.
+The portal can only be placed when the wizard is on the map. One set of portals
+per wizard is possible. The end portal has the same direction as the wizard who
+put it there had when he placed it, and it can not be changed. 
