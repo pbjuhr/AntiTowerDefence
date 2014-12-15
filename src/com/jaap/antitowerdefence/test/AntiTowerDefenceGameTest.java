@@ -31,7 +31,7 @@ public class AntiTowerDefenceGameTest {
     public void testGetLevelgetWalkableTerrain() {
 	assertNotNull(game.getLevel().getWalkableTerrain());
 	System.out.println("The Array length "
-		+ game.getLevel().getWalkableTerrain().length);
+		+ game.getLevel().getWalkableTerrain().size());
     }
 
     @Test

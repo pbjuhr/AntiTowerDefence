@@ -37,7 +37,7 @@ public class TowerPlacerAITest {
     @Test
     public void testgetNewTowers() {
 	assertNotNull(aitp.getNewTowers());
-	assertTrue(aitp.getNewTowers().length!=2);
+	assertTrue(aitp.getNewTowers().size() !=2);
     }
 
     @Test
@@ -48,8 +48,8 @@ public class TowerPlacerAITest {
 
     @Test
     public void testCheckTowerPos() {
-	Position p1 = aitp.getNewTowers()[0].getPosition();
-	Position p2 = aitp.getNewTowers()[0].getPosition();
+	Position p1 = aitp.getNewTowers().get(0).getPosition();
+	Position p2 = aitp.getNewTowers().get(0).getPosition();
 	assertFalse(p1.equals(p2));
 	assertFalse(p1.getX() == (p2).getX());
     }
