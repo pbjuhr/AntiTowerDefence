@@ -22,7 +22,9 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.TeleporterUnit;
 import com.jaap.antitowerdefence.unit.Unit;
 
-//TODO errorhandling
+/**
+ * @author Joakim Sandman (tm08jsn)
+ */
 public class AntiTowerDefenceController {
 
     private String levelName;

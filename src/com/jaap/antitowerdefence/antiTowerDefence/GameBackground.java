@@ -10,7 +10,9 @@ import javax.swing.JComponent;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
 
-//TODO errorhandling
+/**
+ * @author Joakim Sandman (tm08jsn)
+ */
 public class GameBackground extends JComponent {
 
     private static final long serialVersionUID = 1L;
