@@ -1,5 +1,6 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.jaap.antitowerdefence.unit.Unit;
 
@@ -15,7 +16,7 @@ public class Tower{
     private int shootInterval = 2;	// time between ever shot (seconds)
     private int coolDown;		// how many steps until we can shoot
     private int stepsPerSecond;		// steps per second in the game
-    ArrayList<Unit> units;		// the units to shoot at
+    CopyOnWriteArrayList<Unit> units;		// the units to shoot at
 
     /**
      * Creates a Tower object
@@ -37,7 +38,7 @@ public class Tower{
      * Sets the units that 
      * @param units
      */
-    public void setUnits(ArrayList<Unit> units){
+    public void setUnits(CopyOnWriteArrayList<Unit> units){
 	this.units = units;
     }
     

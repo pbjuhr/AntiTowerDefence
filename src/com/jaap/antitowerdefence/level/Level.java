@@ -1,6 +1,7 @@
 package com.jaap.antitowerdefence.level;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
@@ -25,7 +26,7 @@ public class Level {
     private Terrain[] road;		//Terrain elements units can walk on
     private Terrain[] grass;		//Possible tower position
     private Tower[] towers;		//Towers implemented in level
-    private ArrayList<Unit> units;	//Units currently active in game
+    private CopyOnWriteArrayList<Unit> units;	//Units currently active in game
     private ArrayList<Terrain> switches;//All road switches in the level
     private LevelStats levelStats;	//Level info and game statistics
 
@@ -45,7 +46,7 @@ public class Level {
 	this.levelStats = levelStats;
 	switches = new ArrayList<Terrain>();
 	setSwitches();
-	units = new ArrayList<Unit>();
+	units = new CopyOnWriteArrayList<Unit>();
     }
 
     /**
@@ -79,7 +80,7 @@ public class Level {
      * getUnits provides the ArrayList of active units
      * @return
      */
-    public ArrayList<Unit> getUnits() {
+    public CopyOnWriteArrayList<Unit> getUnits() {
 	return units;
     }
 

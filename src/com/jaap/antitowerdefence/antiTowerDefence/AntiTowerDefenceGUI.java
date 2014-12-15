@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,7 +34,6 @@ import com.jaap.antitowerdefence.level.LevelStats;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.Unit;
 
-//TODO errorhandling
 /**
  * @author Joakim Sandman (tm08jsn)
  */
@@ -216,7 +216,7 @@ public class AntiTowerDefenceGUI {
 	return gameForeground;
     }
 
-    public void newLevelGUI(Terrain[] grass, Terrain[] road, ArrayList<Unit> units, Tower[] towers, LevelStats stats) {
+    public void newLevelGUI(Terrain[] grass, Terrain[] road, CopyOnWriteArrayList<Unit> units, Tower[] towers, LevelStats stats) {
 	gameBackground.setTerrain(grass, road);
 	gameForeground.setTerrainAndObjects(units, towers, road);
 	gameForeground.setStats(stats);
