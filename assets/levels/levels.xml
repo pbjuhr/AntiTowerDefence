@@ -100,9 +100,9 @@
 
 	<!-- LEVEL 2 -->
 	<level levelNumber="2">
-		<towers>4</towers>
-		<credits>800</credits>
-		<winScore>300</winScore>
+		<towers>6</towers>
+		<credits>700</credits>
+		<winScore>400</winScore>
 		<units>
 			<unit>FarmerUnit</unit>
 			<unit>SoldierUnit</unit>
@@ -244,9 +244,9 @@
 	
 	<!-- LEVEL 3 -->
 	<level levelNumber="3">
-		<towers>7</towers>
-		<credits>1500</credits>
-		<winScore>400</winScore>
+		<towers>10</towers>
+		<credits>1000</credits>
+		<winScore>800</winScore>
 		<units>
 			<unit>FarmerUnit</unit>
 			<unit>TeleporterUnit</unit>
