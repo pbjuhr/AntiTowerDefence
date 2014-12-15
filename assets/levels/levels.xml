@@ -395,9 +395,9 @@
 	
 	<!-- LEVEL 4 -->
 	<level levelNumber="4">
-		<towers>10</towers>
-		<credits>1800</credits>
-		<winScore>600</winScore>
+		<towers>12</towers>
+		<credits>1600</credits>
+		<winScore>800</winScore>
 		<units>
 			<unit>FarmerUnit</unit>
 			<unit>SoldierUnit</unit>
@@ -592,9 +592,9 @@
 	
 		<!-- LEVEL 5 -->
 	<level levelNumber="5">
-		<towers>11</towers>
-		<credits>2000</credits>
-		<winScore>800</winScore>
+		<towers>12</towers>
+		<credits>1800</credits>
+		<winScore>900</winScore>
 		<units>
 			<unit>FarmerUnit</unit>
 			<unit>SoldierUnit</unit>
@@ -810,9 +810,9 @@
 	
 		<!-- LEVEL 6 -->
 	<level levelNumber="6">
-		<towers>12</towers>
-		<credits>2200</credits>
-		<winScore>900</winScore>
+		<towers>13</towers>
+		<credits>2000</credits>
+		<winScore>1000</winScore>
 		<units>
 			<unit>FarmerUnit</unit>
 			<unit>SoldierUnit</unit>
