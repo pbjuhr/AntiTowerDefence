@@ -17,7 +17,6 @@ public class TeleporterUnit extends Unit {
     /* Variables related to the portal */
     private Portal firstPortal;
     private int placedPortals;
-    public static int cost = 200;
     
     /**
      * Runs super constructor and sets teleporters speed, cost, health and
@@ -30,6 +29,7 @@ public class TeleporterUnit extends Unit {
 	speed = 3;
 	placedPortals = 0;
 	resetCoolDown();
+	cost = 200;
     }
     
     /**

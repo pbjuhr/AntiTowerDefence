@@ -9,8 +9,6 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  * @author Peter Bjuhr
  */
 public class FarmerUnit extends Unit {
-   
-    public static int cost = 50;
     
     /**
      * Runs super constructor and sets speed, cost and health
@@ -20,5 +18,6 @@ public class FarmerUnit extends Unit {
 	health = 70;
 	speed = 1;
 	resetCoolDown();
+	cost = 50;
     }
 }
