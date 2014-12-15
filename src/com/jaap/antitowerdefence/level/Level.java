@@ -23,12 +23,12 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class Level {
 
     /*Variables*/
-    private Terrain[] road;		//Terrain elements units can walk on
-    private Terrain[] grass;		//Possible tower position
-    private Tower[] towers;		//Towers implemented in level
+    private Terrain[] road;			//Terrain units can walk on
+    private Terrain[] grass;			//Possible tower position
+    private Tower[] towers;			//Towers implemented in level
     private CopyOnWriteArrayList<Unit> units;	//Units currently active in game
-    private ArrayList<Terrain> switches;//All road switches in the level
-    private LevelStats levelStats;	//Level info and game statistics
+    private ArrayList<Terrain> switches;	//All road switches in the level
+    private LevelStats levelStats;		//Level info and game statistics
 
     /**
      * Contructor for Level saves the walkable terrain for the units, the 

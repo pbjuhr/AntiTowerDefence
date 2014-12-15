@@ -44,7 +44,6 @@ public class HighScoreDBTest {
     public void testAddScore() {
 	String result;
 	result = highScore.addScore("Krister", 6);
-	System.out.println(result);
 	assertEquals("success", result);
 	
     }
