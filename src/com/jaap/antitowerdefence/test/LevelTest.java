@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -13,6 +15,7 @@ import com.jaap.antitowerdefence.level.Level;
 import com.jaap.antitowerdefence.level.LevelStats;
 import com.jaap.antitowerdefence.terrain.Grass;
 import com.jaap.antitowerdefence.terrain.Road;
+import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.FarmerUnit;
 /**
  * LevelTest.java
@@ -33,8 +36,9 @@ public class LevelTest {
     @BeforeClass
     public static void setUpBeforeClass() {
 	lvlStats = new LevelStats(30, 200);
-	level = new Level(new Grass[10], new Road[20], 
-			lvlStats);
+	CopyOnWriteArrayList<Terrain> path = 
+		new CopyOnWriteArrayList<Terrain>();
+	level = new Level(path, new Grass[20], lvlStats);
     }
 
     /**
@@ -85,10 +89,10 @@ public class LevelTest {
      */
     @Test
     public void testSetTowers() {
-	Tower[] towers = new Tower[2];
+	CopyOnWriteArrayList<Tower> towers = new CopyOnWriteArrayList<Tower>();
 	Position position = new Position(1,2);
-	towers[0] = new Tower(position, 20);
-	towers[1] = new Tower(position, 20);
+	towers.add(new Tower(position, 20));
+	towers.add(new Tower(position, 20));
 	level.setTowers(towers);
 	assertNotNull(level.getTowers());
     }
@@ -110,5 +114,13 @@ public class LevelTest {
 	LevelStats stats = level.getLevelStats();
 	assertNotNull(stats);
 	assertEquals(30, stats.getWinScore());
+    }
+    
+    /**
+     * Tests the method setSwitches
+     */
+    @Test
+    public void testSetSwitches() {
+	assertNotNull(level.getSwitches());
     }
 }

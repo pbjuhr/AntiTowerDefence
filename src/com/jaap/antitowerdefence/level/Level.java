@@ -23,14 +23,14 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class Level {
 
     /*Variables*/
-    private Terrain[] road;			//Terrain units can walk on
-    private Terrain[] grass;			//Possible tower position
-    private Tower[] towers;			//Towers implemented in level	
+    private Terrain[] grass;			//Possible tower position	
     private ArrayList<Terrain> switches;	//All road switches in the level
     private LevelStats levelStats;		//Level info and game statistics
-    /*Units currently active in game. A CopyOnWriteArrayList is used to ensure
-     * thread safety*/
-    private CopyOnWriteArrayList<Unit> units;
+
+    /*CopyOnWriteArrayLists are used to ensure thread safety*/	
+    private CopyOnWriteArrayList<Unit> units;	//Units currently active in game
+    private CopyOnWriteArrayList<Tower> towers;	//Towers implemented in level
+    private CopyOnWriteArrayList<Terrain> road;	//Terrain units can walk on
 
     /**
      * Contructor for Level saves the walkable terrain for the units, the 
@@ -41,7 +41,7 @@ public class Level {
      * @param buildable - The terrain where towers can be built in the level
      * @param levelStats - Level info and game statistics
      */
-    public Level(Terrain[] walkable, Terrain[] buildable, 
+    public Level(CopyOnWriteArrayList<Terrain> walkable, Terrain[] buildable, 
 	    LevelStats levelStats) {
 	this.road = walkable;
 	this.grass = buildable;
@@ -55,7 +55,7 @@ public class Level {
      * getWalkableTerrain provides the walkable terrain elements for the units
      * @return - Terrain array of Road
      */
-    public Terrain[] getWalkableTerrain() {
+    public CopyOnWriteArrayList<Terrain> getWalkableTerrain() {
 	return road;
     }
 
@@ -95,13 +95,11 @@ public class Level {
      * gives the new towers access to the ArrayList of units
      * @param towers - the tower array to replace the old tower array
      */
-    public void setTowers(Tower[] newTowers) {
-	if(this.towers == null) {
-	    this.towers = new Tower[newTowers.length];
-	}
-	for(int i = 0; i < this.towers.length; i++) {
-	    this.towers[i] = newTowers[i];
-	    this.towers[i].setUnits(units);
+    public void setTowers(CopyOnWriteArrayList<Tower> newTowers) {
+	this.towers = newTowers;
+
+	for(int i = 0; i < this.towers.size(); i++) {
+	    this.towers.get(i).setUnits(units);
 	}
     }
 
@@ -109,7 +107,7 @@ public class Level {
      * getTowers provides the towers in the level
      * @return - array of towers in level
      */
-    public Tower[] getTowers() {
+    public CopyOnWriteArrayList<Tower> getTowers() {
 	return towers;
     }
 
@@ -168,35 +166,35 @@ public class Level {
 	int neighbours;
 	Switch tmpSwitch;
 	ArrayList<Direction> directions;
-	for(int i = 0; i < road.length; i++) {
+	for(int i = 0; i < road.size(); i++) {
 	    directions = new ArrayList<Direction>();
 	    neighbours = 0;
-	    if(roadContains(road[i].getPosition().getPosToNorth())) {
+	    if(roadContains(road.get(i).getPosition().getPosToNorth())) {
 		directions.add(Direction.NORTH);
 		neighbours++;
 	    }
-	    if(roadContains(road[i].getPosition().getPosToEast())) {
+	    if(roadContains(road.get(i).getPosition().getPosToEast())) {
 		directions.add(Direction.EAST);
 		neighbours++;
 	    }
-	    if(roadContains(road[i].getPosition().getPosToSouth())) {
+	    if(roadContains(road.get(i).getPosition().getPosToSouth())) {
 		directions.add(Direction.SOUTH);
 		neighbours++;
 	    }
-	    if(roadContains(road[i].getPosition().getPosToWest())) {
+	    if(roadContains(road.get(i).getPosition().getPosToWest())) {
 		directions.add(Direction.WEST);
 		neighbours++;
 	    }
-	    if(road[i] instanceof Start) {
-		Start s = (Start) road[i];
+	    if(road.get(i) instanceof Start) {
+		Start s = (Start) road.get(i);
 		s.setSwitch(directions);
 		switches.add(s);
 
-	    }else if(road[i] instanceof Goal) {
+	    }else if(road.get(i) instanceof Goal) {
 
 	    }else if(neighbours > 2){
-		tmpSwitch = new Switch(road[i].getPosition(), directions);
-		road[i] = tmpSwitch;
+		tmpSwitch = new Switch(road.get(i).getPosition(), directions);
+		road.set(i, tmpSwitch);
 		switches.add(tmpSwitch);
 	    }
 	}
