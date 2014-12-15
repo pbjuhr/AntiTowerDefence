@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,7 @@ import com.jaap.antitowerdefence.unit.TeleporterUnit;
 public class TestTeleporterUnit {
     
     TeleporterUnit u;
-    Terrain[] walkable;
+    CopyOnWriteArrayList<Terrain> walkable;
     int timeStep;
     int stepsPerSec;
 
@@ -49,12 +50,12 @@ public class TestTeleporterUnit {
 	Road road3 = new Road(pos4);
 	Goal goal = new Goal(pos5);
 	
-	walkable = new Terrain[5];
-	walkable[0] = start;
-	walkable[1] = road1;
-	walkable[2] = road2;
-	walkable[3] = road3;
-	walkable[4] = goal;
+	walkable = new CopyOnWriteArrayList<Terrain>();
+	walkable.add(start);
+	walkable.add(road1);
+	walkable.add(road2);
+	walkable.add(road3);
+	walkable.add(goal);
 	
 	timeStep = 0;
 	stepsPerSec = 30;
@@ -144,11 +145,11 @@ public class TestTeleporterUnit {
 	    timeStep++;
 	}
 	
-	assertTrue(walkable[1] instanceof Portal);
-	assertTrue(walkable[3] instanceof Portal);
-	assertTrue(((Portal)walkable[1]).hasReciever());
-	assertFalse(((Portal)walkable[3]).hasReciever());
-	assertTrue(((Portal)walkable[1]).getReciever().
-		equals(((Portal)walkable[3]).getPosition()));
+	assertTrue(walkable.get(1) instanceof Portal);
+	assertTrue(walkable.get(3) instanceof Portal);
+	assertTrue(((Portal)walkable.get(1)).hasReciever());
+	assertFalse(((Portal)walkable.get(3)).hasReciever());
+	assertTrue(((Portal)walkable.get(1)).getReciever().
+		equals(((Portal)walkable.get(3)).getPosition()));
     }
 }
