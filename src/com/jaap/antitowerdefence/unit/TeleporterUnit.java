@@ -23,7 +23,8 @@ public class TeleporterUnit extends Unit {
      * Runs super constructor and sets teleporters speed, cost, health and
      * portal variables
      */
-    public TeleporterUnit(CopyOnWriteArrayList<Terrain> walkable, int stepsPerSec) {
+    public TeleporterUnit(CopyOnWriteArrayList<Terrain> walkable, 
+	    int stepsPerSec) {
 	super(walkable, stepsPerSec);
 	health = 100;
 	speed = 3;

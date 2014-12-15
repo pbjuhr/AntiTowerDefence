@@ -19,8 +19,7 @@ import javax.swing.SwingWorker;
 import com.jaap.antitowerdefence.level.Level;
 import com.jaap.antitowerdefence.terrain.Switch;
 import com.jaap.antitowerdefence.terrain.Terrain;
-import com.jaap.antitowerdefence.unit.TeleporterUnit;
-import com.jaap.antitowerdefence.unit.Unit;
+import com.jaap.antitowerdefence.unit.*;
 
 /**
  * @author Joakim Sandman (tm08jsn)
@@ -34,6 +33,8 @@ public class AntiTowerDefenceController {
     private Timer gameTimer;
     private int stepsPerSec;
     private int fps;
+    private JButton farmerButton;
+    private JButton soldierButton;
     private JButton wizardButton;
     private JButton portalButton;
     private boolean firstRun;
@@ -73,6 +74,8 @@ public class AntiTowerDefenceController {
     private void newLevelGUI() {
 	stopTime();
 	firstRun = false;
+	farmerButton = null;
+	soldierButton = null;
 	wizardButton = null;
 	portalButton = null;
 	Level level = game.getLevel();
@@ -233,6 +236,7 @@ public class AntiTowerDefenceController {
 		});
 		farmerButton.setBackground(Color.LIGHT_GRAY);
 		farmerButton.setEnabled(false);
+		this.farmerButton = farmerButton;
 		gui.addButton(farmerButton);
 	    }
 
@@ -246,6 +250,7 @@ public class AntiTowerDefenceController {
 		});
 		soldierButton.setBackground(Color.LIGHT_GRAY);
 		soldierButton.setEnabled(false);
+		this.soldierButton = soldierButton;
 		gui.addButton(soldierButton);
 	    }
 
@@ -321,15 +326,7 @@ public class AntiTowerDefenceController {
     private void runGame() {
 	gui.getGameForeground().start();
 	gui.hidePausePanel();
-	SwingUtilities.invokeLater(new Runnable() {
-	    @Override
-	    public void run() {
-		Component[] buttons = gui.getButtons().getComponents();
-		for (Component b : buttons) {
-		    b.setEnabled(true);
-		}
-	    }
-	});
+	enableButtons();
 	gameTimer = new Timer();
 	gameTimer.schedule(new TimerTask() {
 	    @Override
@@ -340,26 +337,52 @@ public class AntiTowerDefenceController {
 		    gameWon();
 		} else {
 		    game.step();
-		    boolean teleporterActive = false;
-		    for (Unit u : game.getLevel().getUnits()) {
-			if (u instanceof TeleporterUnit) {
-			    wizardButton.setEnabled(false);
-			    if (((TeleporterUnit) u).getPlacedPortals() < 2) {
-				portalButton.setEnabled(true);
-			    } else {
-				portalButton.setEnabled(false);
-			    }
-			    teleporterActive = true;
-			    break;
-			}
-		    }
-		    if (!teleporterActive && (wizardButton != null) && (portalButton != null)) {
-			wizardButton.setEnabled(true);
-			portalButton.setEnabled(false);
-		    }
+		    enableButtons();
 		}
 	    }
 	}, 0, 1000/stepsPerSec);
+    }
+
+    private void enableButtons() {
+	boolean teleporterActive = false;
+	for (Unit u : game.getLevel().getUnits()) {
+	    if (u instanceof TeleporterUnit) {
+		wizardButton.setEnabled(false);
+		if (((TeleporterUnit) u).getPlacedPortals() < 2) {
+		    portalButton.setEnabled(true);
+		} else {
+		    portalButton.setEnabled(false);
+		}
+		teleporterActive = true;
+		break;
+	    }
+	}
+	int currentCredits = game.getLevel().getLevelStats().getCredits();
+	if (wizardButton != null) {
+	    if (!teleporterActive && (portalButton != null)) {
+		wizardButton.setEnabled(true);
+		portalButton.setEnabled(false);
+	    }
+	    if (TeleporterUnit.getCost() > currentCredits) {
+		wizardButton.setEnabled(false);
+	    } else {
+		wizardButton.setEnabled(true);
+	    }
+	}
+	if (soldierButton != null) {
+	    if (SoldierUnit.getCost() > currentCredits) {
+		soldierButton.setEnabled(false);
+	    } else {
+		soldierButton.setEnabled(true);
+	    }
+	}
+	if (farmerButton != null) {
+	    if (FarmerUnit.getCost() > currentCredits) {
+		farmerButton.setEnabled(false);
+	    } else {
+		farmerButton.setEnabled(true);
+	    }
+	}
     }
 
     private void gameLost() {
