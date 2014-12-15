@@ -2,6 +2,7 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
 
@@ -40,8 +41,8 @@ public class TowerPlacerAI {
      * 
      * @return newTowers, an array of towers
      */
-    public Tower[] getNewTowers() {
-	ArrayList<Tower> towers = new ArrayList<Tower>();
+    public CopyOnWriteArrayList<Tower> getNewTowers() {
+	CopyOnWriteArrayList<Tower> towers = new CopyOnWriteArrayList<Tower>();
 
 	Random rand = new Random();
 
@@ -59,7 +60,7 @@ public class TowerPlacerAI {
 		towers.add(new Tower(possiblePositions[index].getPosition(), stepsPerSecond));
 	    }
 	}
-	return writeToArray(towers);
+	return towers;
     }
 
     /**
@@ -71,7 +72,7 @@ public class TowerPlacerAI {
      *            , The position.
      * @return true if the array doesn't contain the position, otherwise false.
      */
-    private boolean containsPosition(ArrayList<Tower> towers, Position p) {
+    private boolean containsPosition(CopyOnWriteArrayList<Tower> towers, Position p) {
 
 	for (int i = 0; i < towers.size(); i++) {
 	    if (p.equals(towers.get(i).getPosition())) {
