@@ -15,7 +15,7 @@ public class Tower{
     private int shootInterval = 2;	// time between ever shot (seconds)
     private int coolDown;		// how many steps until we can shoot
     private int stepsPerSecond;		// steps per second in the game
-    CopyOnWriteArrayList<Unit> units;		// the units to shoot at
+    CopyOnWriteArrayList<Unit> units;	// the units to shoot at
 
     /**
      * Creates a Tower object
@@ -56,6 +56,7 @@ public class Tower{
 	    Unit u = findUnitInRange();
 	    if(u != null) {
 		//FIRE!!
+		System.out.println("Tower shoot from pos x: " + getPosition().getX() + ", y: " + getPosition().getY());
 		shootPosition = new Position(u.getPosition().getX(), 
 			u.getPosition().getY());
 		u.takeDamage(); 

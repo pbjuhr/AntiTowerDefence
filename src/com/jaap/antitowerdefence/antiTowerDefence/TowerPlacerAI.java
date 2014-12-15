@@ -22,12 +22,9 @@ public class TowerPlacerAI {
      * This class get a map of buildable terrain and how many tower are allowed
      * to build. Setup a updateInterval.
      * 
-     * @param possiblePositions
-     *            A array of all buildable terrain.
-     * @param nrOfTowers
-     *            How many tower the AI can place.
-     * @param fps
-     *            How often does the game update
+     * @param possiblePositions - A array of all buildable terrain.
+     * @param nrOfTowers - How many tower the AI can place.
+     * @param fps - How often does the game update
      */
     public TowerPlacerAI(Terrain[] possiblePositions, int nrOfTowers, int stepsPerSecond) {
 	updateInterval = 20 * stepsPerSecond; // Should update every 20 sec
@@ -38,7 +35,6 @@ public class TowerPlacerAI {
 
     /**
      * Creates a new tower array with positions within possible tower positions
-     * 
      * @return newTowers, an array of towers
      */
     public CopyOnWriteArrayList<Tower> getNewTowers() {
@@ -66,13 +62,12 @@ public class TowerPlacerAI {
     /**
      * Check if a Tower array contains a tower with a certain position
      * 
-     * @param towers
-     *            , The tower array.
-     * @param position
-     *            , The position.
+     * @param towers - The tower array.
+     * @param position - The position.
      * @return true if the array doesn't contain the position, otherwise false.
      */
-    private boolean containsPosition(CopyOnWriteArrayList<Tower> towers, Position p) {
+    private boolean containsPosition(CopyOnWriteArrayList<Tower> towers, 
+	    Position p) {
 
 	for (int i = 0; i < towers.size(); i++) {
 	    if (p.equals(towers.get(i).getPosition())) {
@@ -85,8 +80,7 @@ public class TowerPlacerAI {
     /**
      * Determines if it is time to change the towers
      * 
-     * @param timeStep
-     *            , what timestep we are on
+     * @param timeStep - what timestep we are on
      * @return true if it's time to change, otherwise false
      */
     public boolean timeToChange(int timeStep) {
@@ -95,8 +89,7 @@ public class TowerPlacerAI {
 
     /**
      * 
-     * @param Towers
-     *            ArreyList of towers place in on map
+     * @param Towers - ArreyList of towers place in on map
      * @return Towers array
      */
     private Tower[] writeToArray(ArrayList<Tower> towers) {
@@ -104,6 +97,7 @@ public class TowerPlacerAI {
 	Tower[] newTowers = new Tower[towers.size()];
 	for (int i = 0; i < towers.size(); i++) {
 	    newTowers[i] = towers.get(i);
+	    System.out.println("x: " + newTowers[i].getPosition().getX() + ", y: " + newTowers[i].getPosition().getY()); 
 	}
 	return newTowers;
     }
