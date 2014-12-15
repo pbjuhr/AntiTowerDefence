@@ -1,5 +1,7 @@
 package com.jaap.antitowerdefence.unit;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 /**
@@ -13,7 +15,7 @@ public class SoldierUnit extends Unit{
     /**
      * Runs super constructor and sets speed, cost and health
      */
-    public SoldierUnit(Terrain[] walkable, int stepsPerSec){
+    public SoldierUnit(CopyOnWriteArrayList<Terrain> walkable, int stepsPerSec){
 	super(walkable, stepsPerSec);
 	health = 200;
 	speed = 2;

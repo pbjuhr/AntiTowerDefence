@@ -2,6 +2,7 @@ package com.jaap.antitowerdefence.unit;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.jaap.antitowerdefence.antiTowerDefence.Direction;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
@@ -23,7 +24,7 @@ public abstract class Unit {
     protected int stepsPerSec;     // steps per second in game
     protected Direction direction; // The units direction
     protected Position position;   // The units current position
-    protected Terrain[] walkable;  // All walkable terrain objects in level
+    protected CopyOnWriteArrayList<Terrain> walkable;  // All walkable terrain objects in level
     private boolean reachedGoal;   // Has the unit reached the goal
     private boolean wasTeleported; // Has the unit been teleported
     
@@ -35,7 +36,7 @@ public abstract class Unit {
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
      * false.
      */
-    public Unit(Terrain[] walkable, int stepsPerSec) {
+    public Unit(CopyOnWriteArrayList<Terrain> walkable, int stepsPerSec) {
 	this.walkable = walkable;
 	this.stepsPerSec = stepsPerSec;
 	position = new Position(0,0);
@@ -93,7 +94,7 @@ public abstract class Unit {
 	//What index in the walkable-array we should move to
 //	int nextPositionIndex = -1;
 	findNextPositionIndex();
-	setPosition(walkable[nextPositionIndex].getPosition());	
+	setPosition(walkable.get(nextPositionIndex).getPosition());	
 	// Get the index of next terrain object, depending on current direction
 	findNextPositionIndex();
     }
@@ -227,12 +228,12 @@ public abstract class Unit {
      * @param currentPositionIndex, the terrain objects index in walkable
      */
     private void runLandOn(int currentPositionIndex) {
-	if(walkable[currentPositionIndex] instanceof LandOnInterface) {
+	if(walkable.get(currentPositionIndex) instanceof LandOnInterface) {
 	    
 	    // Get the landOn method
 	    Method landOnMethod = null;
 	    try {
-		landOnMethod = walkable[currentPositionIndex].getClass().
+		landOnMethod = walkable.get(currentPositionIndex).getClass().
 			getDeclaredMethod("landOn", Unit.class);
 	    } catch (NoSuchMethodException | SecurityException e1) {
 		e1.printStackTrace();
@@ -241,7 +242,7 @@ public abstract class Unit {
 	   
 	    // Run the landOn method with the current Terrain object
 	    try {
-		landOnMethod.invoke(walkable[currentPositionIndex], this);
+		landOnMethod.invoke(walkable.get(currentPositionIndex), this);
 	    } catch (IllegalAccessException | IllegalArgumentException
 		    | InvocationTargetException e2) {
 		e2.printStackTrace();
@@ -256,8 +257,8 @@ public abstract class Unit {
      * that position
      */
     protected int getTerrainIndex(Position p) {
-	for (int i = 0; i < walkable.length; i++) {
-	    if (walkable[i].getPosition().equals(p)) {
+	for (int i = 0; i < walkable.size(); i++) {
+	    if (walkable.get(i).getPosition().equals(p)) {
 		return i;
 	    }
 	}

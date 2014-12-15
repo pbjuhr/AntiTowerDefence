@@ -1,5 +1,7 @@
 package com.jaap.antitowerdefence.unit;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.terrain.Portal;
 import com.jaap.antitowerdefence.terrain.Road;
@@ -21,7 +23,7 @@ public class TeleporterUnit extends Unit {
      * Runs super constructor and sets teleporters speed, cost, health and
      * portal variables
      */
-    public TeleporterUnit(Terrain[] walkable, int stepsPerSec) {
+    public TeleporterUnit(CopyOnWriteArrayList<Terrain> walkable, int stepsPerSec) {
 	super(walkable, stepsPerSec);
 	health = 100;
 	speed = 3;
@@ -34,13 +36,13 @@ public class TeleporterUnit extends Unit {
      */
     public void placePortal() {
 	int terrainIndex = getTerrainIndex(position);
-	if(!(walkable[terrainIndex] instanceof Road)) {
+	if(!(walkable.get(terrainIndex) instanceof Road)) {
 	    return;
 	} else if(placedPortals == 0) {
 	    placedPortals++;
 	    Position p = new Position(position.getX(), position.getY());
 	    firstPortal = new Portal(p);
-	    walkable[terrainIndex] = firstPortal;
+	    walkable.set(terrainIndex, firstPortal);
 	    placedPortals = 1;
 	} else if(placedPortals == 1 && 
 		!firstPortal.getPosition().equals(this.position)) {
@@ -48,7 +50,7 @@ public class TeleporterUnit extends Unit {
 	    Portal receiver = new Portal(p);
 	    receiver.setDirection(direction);
 	    firstPortal.setReciever(receiver);
-	    walkable[terrainIndex] = receiver;
+	    walkable.set(terrainIndex, receiver);
 	    placedPortals++;
 	}
     }
@@ -98,7 +100,7 @@ public class TeleporterUnit extends Unit {
     public void resetFirstPortal() {
 	Road r = new Road(firstPortal.getPosition());
 	int terrainIndex = getTerrainIndex(firstPortal.getPosition());
-	walkable[terrainIndex] = r;
+	walkable.set(terrainIndex, r);
     }
 
 }
