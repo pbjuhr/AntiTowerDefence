@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -20,33 +21,29 @@ import com.jaap.antitowerdefence.terrain.Switch;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.Unit;
 
-//TODO errorhandling movement
+/**
+ * @author Joakim Sandman (tm08jsn)
+ */
 public class GameForeground extends JComponent {
 
     private static final long serialVersionUID = 1L;
-    private ArrayList<Unit> units;
+    private CopyOnWriteArrayList<Unit> units;
     private Tower[] towers;
     private Terrain[] road;
     private LevelStats stats;
     private Timer timer;
-    private int animationOffset;
-    private double realOffset;
 
     public GameForeground(int fps) {
-	animationOffset = 0;
-	realOffset = 0;
 	timer = new Timer(Math.round(1000/fps), new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		repaint();
-//		realOffset = (realOffset + 32.0/fps) % 32;
-//		animationOffset = 0;//(int) realOffset;
 	    }
 	});
 	timer.setRepeats(true);
     }
 
-    public void setTerrainAndObjects(ArrayList<Unit> units, Tower[] towers, Terrain[] road) {
+    public void setTerrainAndObjects(CopyOnWriteArrayList<Unit> units, Tower[] towers, Terrain[] road) {
 	this.units = units;
 	this.towers = towers;
 	this.road = road;
@@ -85,7 +82,7 @@ public class GameForeground extends JComponent {
 		switch (t.getClass().getSimpleName()) {
 		case "Start":
 		    roadObjectImg = ImageIO.read(new File("assets/img/Start.png"));
-		    dirImg = ImageIO.read(new File("assets/img/DirBig/" + ((Switch) t).getDirection() + ".png"));
+		    dirImg = ImageIO.read(new File("assets/img/DirSmallWhite/" + ((Switch) t).getDirection() + ".png"));
 		    break;
 		case "Goal":
 		    roadObjectImg = ImageIO.read(new File("assets/img/Goal.png"));
@@ -97,7 +94,7 @@ public class GameForeground extends JComponent {
 			roadObjectImg = ImageIO.read(new File("assets/img/Portal.png"));
 		    } else {
 			roadObjectImg = ImageIO.read(new File("assets/img/Portal_end.png"));
-			dirImg = ImageIO.read(new File("assets/img/DirBig/" + ((Portal) t).getDirection() + ".png"));
+			dirImg = ImageIO.read(new File("assets/img/DirSmallWhite/" + ((Portal) t).getDirection() + ".png"));
 		    }
 		    break;
 		case "Switch":
@@ -142,20 +139,28 @@ public class GameForeground extends JComponent {
 	    } catch (IOException e) {
 		//e.printStackTrace();
 	    }
+	    int x = 0;
+	    int y = 0;
+	    int animationOffset = (int) (32 * (1 - (double) u.getCoolDown()/u.getMaxCoolDown()));
 	    switch (u.getDirection()) {
 	    case EAST:
-		g.drawImage(unitImg, u.getPosition().getX()*32 + animationOffset, u.getPosition().getY()*32, null);
+		x = u.getPosition().getX()*32 + animationOffset;
+		y = u.getPosition().getY()*32;
 		break;
 	    case NORTH:
-		g.drawImage(unitImg, u.getPosition().getX()*32, u.getPosition().getY()*32 - animationOffset, null);
+		x = u.getPosition().getX()*32;
+		y = u.getPosition().getY()*32 - animationOffset;
 		break;
 	    case SOUTH:
-		g.drawImage(unitImg, u.getPosition().getX()*32, u.getPosition().getY()*32 + animationOffset, null);
+		x = u.getPosition().getX()*32;
+		y = u.getPosition().getY()*32 + animationOffset;
 		break;
 	    case WEST:
-		g.drawImage(unitImg, u.getPosition().getX()*32 - animationOffset, u.getPosition().getY()*32, null);
+		x = u.getPosition().getX()*32 - animationOffset;
+		y = u.getPosition().getY()*32;
 		break;
 	    }
+	    g.drawImage(unitImg, x, y, null);
 	}
     }
 

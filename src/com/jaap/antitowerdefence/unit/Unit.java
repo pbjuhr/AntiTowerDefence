@@ -29,6 +29,7 @@ public abstract class Unit {
     
     /*TEST */
     private Position nextPos;
+    private int nextPositionIndex;
 
     /**
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
@@ -41,6 +42,7 @@ public abstract class Unit {
 	wasTeleported = false;
 	reachedGoal = false;
 	setStartPosition();
+//	findNextPositionIndex();
     }
     
     /**
@@ -73,11 +75,12 @@ public abstract class Unit {
 //	    System.out.println("pos x: "+position.getX() + ", y: "+position.getY());
 	    wasTeleported = false;
 	    if(isAlive() && !reachedGoal){
-		runLandOn(getTerrainIndex(position));
+//		runLandOn(getTerrainIndex(position));
 		if(!reachedGoal && !wasTeleported){
 		    move();
 		    resetCoolDown();
 		}
+		runLandOn(getTerrainIndex(position));
 	    }
 	}
     }
@@ -88,8 +91,14 @@ public abstract class Unit {
      */
     private void move() {
 	//What index in the walkable-array we should move to
-	int nextPositionIndex = -1;
+//	int nextPositionIndex = -1;
+	findNextPositionIndex();
+	setPosition(walkable[nextPositionIndex].getPosition());	
 	// Get the index of next terrain object, depending on current direction
+	findNextPositionIndex();
+    }
+    
+    private void findNextPositionIndex() {
 	if (direction == Direction.NORTH) {
 	    nextPositionIndex = getTerrainIndex(position.getPosToNorth());
 	    if(nextPositionIndex == -1) {
@@ -111,7 +120,6 @@ public abstract class Unit {
 		nextPositionIndex = findNeighbourIndexOfWest();
 	    }
 	}
-	setPosition(walkable[nextPositionIndex].getPosition());	
     }
     
     /**
@@ -262,7 +270,7 @@ public abstract class Unit {
      */
     public void takeDamage() {
 	this.health -= 20;
-	resetCoolDown();
+//	resetCoolDown();
     }
     
     /**
@@ -373,5 +381,9 @@ public abstract class Unit {
      */
     public int getCoolDown() {
 	return (int) coolDown;
+    }
+    
+    public long getMaxCoolDown() {
+	return Math.round(stepsPerSec/speed);
     }
 }
