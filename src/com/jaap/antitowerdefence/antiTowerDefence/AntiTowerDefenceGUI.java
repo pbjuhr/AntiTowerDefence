@@ -216,7 +216,8 @@ public class AntiTowerDefenceGUI {
 	return gameForeground;
     }
 
-    public void newLevelGUI(Terrain[] grass, Terrain[] road, CopyOnWriteArrayList<Unit> units, Tower[] towers, LevelStats stats) {
+    public void newLevelGUI(Terrain[] grass, CopyOnWriteArrayList<Terrain> road,
+	    CopyOnWriteArrayList<Unit> units, CopyOnWriteArrayList<Tower> towers, LevelStats stats) {
 	gameBackground.setTerrain(grass, road);
 	gameForeground.setTerrainAndObjects(units, towers, road);
 	gameForeground.setStats(stats);

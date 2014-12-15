@@ -28,8 +28,8 @@ public class GameForeground extends JComponent {
 
     private static final long serialVersionUID = 1L;
     private CopyOnWriteArrayList<Unit> units;
-    private Tower[] towers;
-    private Terrain[] road;
+    private CopyOnWriteArrayList<Tower> towers;
+    private CopyOnWriteArrayList<Terrain> road;
     private LevelStats stats;
     private Timer timer;
 
@@ -43,7 +43,7 @@ public class GameForeground extends JComponent {
 	timer.setRepeats(true);
     }
 
-    public void setTerrainAndObjects(CopyOnWriteArrayList<Unit> units, Tower[] towers, Terrain[] road) {
+    public void setTerrainAndObjects(CopyOnWriteArrayList<Unit> units, CopyOnWriteArrayList<Tower> towers, CopyOnWriteArrayList<Terrain> road) {
 	this.units = units;
 	this.towers = towers;
 	this.road = road;

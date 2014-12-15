@@ -4,11 +4,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
+import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * @author Joakim Sandman (tm08jsn)
@@ -19,14 +21,14 @@ public class GameBackground extends JComponent {
     private int width;
     private int height;
     private Terrain[] grass;
-    private Terrain[] road;
+    private CopyOnWriteArrayList<Terrain> road;
 
     public GameBackground(int width, int height) {
 	this.width = width;
 	this.height = height;
     }
 
-    public void setTerrain(Terrain[] grass, Terrain[] road) {
+    public void setTerrain(Terrain[] grass, CopyOnWriteArrayList<Terrain> road) {
 	this.grass = grass;
 	this.road = road;
 	repaint();
