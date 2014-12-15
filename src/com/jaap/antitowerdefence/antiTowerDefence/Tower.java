@@ -23,7 +23,7 @@ public class Tower{
      * @param stepsPerSecond, steps per second in the game
      */
     public Tower(Position position, int stepsPerSecond) {
-	this.position = position;
+	this.position = new Position(position.getX(), position.getY());
 	this.stepsPerSecond = stepsPerSecond;
 	shootPosition = null;
 	resetCoolDown();
@@ -56,7 +56,8 @@ public class Tower{
 	    Unit u = findUnitInRange();
 	    if(u != null) {
 		//FIRE!!
-		shootPosition = u.getPosition();
+		shootPosition = new Position(u.getPosition().getX(), 
+			u.getPosition().getY());
 		u.takeDamage(); 
 		resetCoolDown();
 	    }

@@ -12,7 +12,6 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 
 /**
  * A Unit represents a troup-unit in the game.
- * 
  * @author Peter Bjuhr
  */
 public abstract class Unit {
@@ -67,10 +66,7 @@ public abstract class Unit {
     }
 
     /**
-     * Runs the Unit thread
-     * 
-     * @param currentStep
-     *            , to determine if its time to walk
+     * Runs the Unit action (Walk and run landOn on terrain object)
      */
     public void action() {
 	if (coolDown > 1) {
@@ -177,7 +173,6 @@ public abstract class Unit {
     /**
      * Looks in the direction in order north, south, west and changes the units
      * direction according to where a walkable terrain exists.
-     * 
      * @return the index in the walkable array of the terrain object
      */
     private int findNeighbourIndexOfEast() {
@@ -203,7 +198,6 @@ public abstract class Unit {
     /**
      * Looks in the direction in order south, north, east and changes the units
      * direction according to where a walkable terrain exists.
-     * 
      * @return the index in the walkable array of the terrain object
      */
     private int findNeighbourIndexOfWest() {
@@ -228,9 +222,7 @@ public abstract class Unit {
 
     /**
      * Runs the LandOn method(if it exists) on a given Terrain object
-     * 
-     * @param currentPositionIndex
-     *            , the terrain objects index in walkable
+     * @param currentPositionIndex - the terrain objects index in walkable
      */
     private void runLandOn(int currentPositionIndex) {
 	if (walkable.get(currentPositionIndex) instanceof LandOnInterface) {
@@ -281,7 +273,6 @@ public abstract class Unit {
 
     /**
      * Check the units health and returns whether its alive or not
-     * 
      * @return true if the unit is alive, otherwise false
      */
     public boolean isAlive() {
@@ -290,7 +281,6 @@ public abstract class Unit {
 
     /**
      * Gets the units current position
-     * 
      * @return Position, the current position
      */
     public Position getPosition() {
@@ -299,9 +289,7 @@ public abstract class Unit {
 
     /**
      * Sets the units position
-     * 
-     * @param p
-     *            , the new position
+     * @param p - the new position
      */
     public void setPosition(Position p) {
 	position.setX(p.getX());
@@ -310,7 +298,6 @@ public abstract class Unit {
 
     /**
      * Checks if the unit has reached the maps goal
-     * 
      * @param goalPos - the goals position
      * @return true - if the unit has reached the goal, otherwise false
      */
@@ -377,7 +364,11 @@ public abstract class Unit {
     public int getCoolDown() {
 	return (int) coolDown;
     }
-
+    
+    /**
+     * Gets the maximum coolDown. (max number of steps until next move)
+     * @return coolDown (int)
+     */
     public long getMaxCoolDown() {
 	return Math.round(stepsPerSec / speed);
     }

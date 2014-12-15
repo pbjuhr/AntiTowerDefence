@@ -106,7 +106,7 @@ public class TestTeleporterUnit {
 	    u.action();
 	    timeStep++;
 	}
-	assertTrue(u.getPosition().equals(new Position(1,3)));
+	assertTrue(u.getPosition().equals(new Position(1,4)));
     }
     
     /**
@@ -134,16 +134,20 @@ public class TestTeleporterUnit {
      */
     @Test
     public void testPlaceTower() {
-	int timeStep = 0;
 	while(!u.hasReachedGoal()){
-	    
 	    //Place portal on pos2 and pos4
-	    if(timeStep == (stepsPerSec + 1) || timeStep == 4*stepsPerSec){
+	    if(u.getPosition().equals(walkable.get(1).getPosition()) || 
+		    u.getPosition().equals(walkable.get(3).getPosition())){
 		u.placePortal();
 	    }
 	    u.action();
-	    timeStep++;
 	}
+	
+	System.out.println("0: " + (walkable.get(0) instanceof Portal));
+	System.out.println("1: " + (walkable.get(1) instanceof Portal));
+	System.out.println("2: " + (walkable.get(2) instanceof Portal));
+	System.out.println("3: " + (walkable.get(3) instanceof Portal));
+	System.out.println("4: " + (walkable.get(4) instanceof Portal));
 	
 	assertTrue(walkable.get(1) instanceof Portal);
 	assertTrue(walkable.get(3) instanceof Portal);
