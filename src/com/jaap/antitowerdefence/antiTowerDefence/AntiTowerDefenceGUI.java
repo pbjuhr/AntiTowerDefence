@@ -399,7 +399,9 @@ public class AntiTowerDefenceGUI {
 	    String[][] currentHighscore = db.getHighScoreTopTen();
 	    if (currentHighscore != null) {
 		for (String[] s : currentHighscore) {
-		    scoresAndNames += s[1] + "   " + s[0] + "\n";
+		    if (s[0] != null) {
+			scoresAndNames += s[1] + "   " + s[0] + "\n";
+		    }
 		}
 	    }
 	} else {

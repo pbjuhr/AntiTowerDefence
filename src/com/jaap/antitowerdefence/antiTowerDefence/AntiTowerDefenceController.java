@@ -397,11 +397,15 @@ public class AntiTowerDefenceController {
 	HighScoreDB db = game.getHighScore();
 	if (db.connectToDB()) {
 	    int score = game.getCurrentLevelNumber();
-	    String isHighScore = db.isHighScore(score);
-	    if (isHighScore.equals("true")) {
-		gui.showNewHighscoreFrame(db, score);
-	    } else if (isHighScore.equals("fail")) {
-		//ERROR
+	    if (score > 0) {
+		String isHighScore = db.isHighScore(score);
+		if (isHighScore.equals("true")) {
+		    gui.showNewHighscoreFrame(db, score);
+		} else if (isHighScore.equals("false")) {
+		    gui.showHighscoreFrame(db);
+		} else {
+		    //ERROR
+		}
 	    }
 	} else {
 	    //ERROR
