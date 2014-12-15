@@ -2,6 +2,7 @@ package com.jaap.antitowerdefence.level;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -134,17 +135,17 @@ public class LevelReader {
     /**
      * getRoad extracts all the walkable positions, road, start and goal, of a 
      * given level from the level file. Constructs terrain objects using 
-     * these positions, saves the objects in a Terrain array and returns the 
+     * these positions, saves the objects in a Terrain ArrayList and returns the 
      * array.
      * @param currentLevel - the level to extract the positions from
-     * @return an array with walkable Terrain objects or null
+     * @return an ArrayList with walkable Terrain objects or null
      */
-    public Terrain[] getRoad(int currentLevel) {
-	Terrain[] road;
+    public CopyOnWriteArrayList<Terrain> getRoad(int currentLevel) {
+	
+	CopyOnWriteArrayList<Terrain> road;
 	NodeList positions;
 	Element level;
 	Element terrainRoad;
-	int n = 0;
 	int levelNr;
 	NodeList levels = gameLevels.getElementsByTagName("level");
 	for(int i = 0; i < levels.getLength(); i++) {
@@ -154,19 +155,18 @@ public class LevelReader {
 		terrainRoad = (Element)level
 			.getElementsByTagName("road").item(0);
 		positions = terrainRoad.getElementsByTagName("position");
-		road = new Terrain[(positions.getLength()+2)];
+		road = new CopyOnWriteArrayList<Terrain>();
 		for(int m = 0; m < (positions.getLength()); m++){
-		    road[m] = getRoadObject("road", (Element)positions.item(m));
-		    n = m;
+		    road.add(getRoadObject("road", (Element)positions.item(m)));
 		}
 		terrainRoad = (Element)level
 			.getElementsByTagName("start").item(0);
 		positions = terrainRoad.getElementsByTagName("position");
-		road[n+1] = getRoadObject("start", (Element)positions.item(0));
+		road.add(getRoadObject("start", (Element)positions.item(0)));
 		terrainRoad = (Element)level
 			.getElementsByTagName("goal").item(0);
 		positions = terrainRoad.getElementsByTagName("position");
-		road[n+2] = getRoadObject("goal", (Element)positions.item(0));
+		road.add(getRoadObject("goal", (Element)positions.item(0)));
 		return road;
 	    }
 	}

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -66,7 +67,7 @@ public class LevelReaderTest {
     @Test
     public void testGetNrOfLevels() {
 	int nrLev = levelReader.getNrOfLevels();
-	assertEquals(nrLev, 2);
+	assertEquals(6, nrLev);
     }
     
     /**
@@ -94,7 +95,7 @@ public class LevelReaderTest {
      * Checks that getUnits returns a string-array with a length > 0.
      */
     @Test
-    public void testGetUnits(){
+    public void testGetUnits() {
 	String[] units = levelReader.getUnits(level);
 	assertNotNull(units);
 	assertTrue(units.length > 0);
@@ -104,7 +105,7 @@ public class LevelReaderTest {
      * Checks that getXDimension the correct x-dimension value.
      */
     @Test
-    public void testGetXDimension(){
+    public void testGetXDimension() {
 	int xDim = levelReader.getXDimension();
 	assertEquals(xDim, 20);
     }
@@ -113,18 +114,19 @@ public class LevelReaderTest {
      * Checks that getYDimension the correct y-dimension value.
      */
     @Test
-    public void testGetYDimension(){
+    public void testGetYDimension() {
 	int yDim = levelReader.getYDimension();
 	assertEquals(yDim, 15);
     }
+    
     /**
      * Checks thar getRoad returns an array of Terrain that
      * is not null or empty
      */
     @Test
-    public void testGetRoad(){
-	Terrain[] road = levelReader.getRoad(level);
+    public void testGetRoad() {
+	CopyOnWriteArrayList<Terrain> road = levelReader.getRoad(level);
 	assertNotNull(road);
-	assertTrue(road.length > 0);
+	assertTrue(road.size() > 0);
     }
 }
