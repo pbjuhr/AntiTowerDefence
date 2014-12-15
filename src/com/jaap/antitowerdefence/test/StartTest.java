@@ -1,21 +1,14 @@
-//
-//
-//
-//import static org.junit.Assert.*;
-//
-//import org.junit.BeforeClass;
-//import org.junit.Test;
-//
-//import com.jaap.antitowerdefence.antiTowerDefence.Position;
-//import com.jaap.antitowerdefence.terrain.Start;
-//
-///**
-// * Tests the functionality of the class Start.java
-// * 
-// * @author id10abk
-// *
-// */
-//public class StartTest {
+package com.jaap.antitowerdefence.test;
+
+
+
+/**
+ * Tests the functionality of the class Start.java
+ * 
+ * @author id10abk
+ *
+ */
+public class StartTest {
 //
 //    private static Start s;
 //
@@ -39,4 +32,4 @@
 //	assertTrue(new Position(1, 1).equals(s.getPosition()));
 //    }
 //
-//}
+}
