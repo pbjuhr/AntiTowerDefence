@@ -51,6 +51,8 @@ public class AntiTowerDefenceController {
     private void newGame() {
 	stopTime();
 	game = new AntiTowerDefenceGame(levelName, stepsPerSec);
+	game.newLevel();
+	game.newLevel();
 	if (firstRun) {
 	    try {
 		SwingUtilities.invokeAndWait(new Runnable() {
