@@ -149,9 +149,9 @@ public class Level {
      * @param unit - farmer, soldier or wizard
      */
     private void unitReachedGoal(Unit unit) {
-	double healthCredits = (0.5 * unit.getHealth());
+	double healthCredits = (0.6 * unit.getHealth());
 	@SuppressWarnings("static-access")
-	double costCredits = (0.8 * unit.getCost());
+	double costCredits = (0.9 * unit.getCost());
 	int totalCredits = (int)Math.round((healthCredits + costCredits));
 	int score = (int)Math.round((unit.getHealth()/10) + 10);
 	levelStats.addCredits(totalCredits);
