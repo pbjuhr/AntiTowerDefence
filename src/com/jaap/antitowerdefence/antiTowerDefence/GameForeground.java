@@ -122,6 +122,9 @@ public class GameForeground extends JComponent {
 		} else {
 		    towerImg = ImageIO.read(new File("assets/img/Tower_shoot.png"));
 		    shootImg = ImageIO.read(new File("assets/img/red.png"));
+		    g.setColor(Color.RED);
+		    g.drawLine(t.getPosition().getX()*32 + 16, t.getPosition().getY()*32 + 16,
+			    t.getShootPosition().getX()*32 + 16, t.getShootPosition().getY()*32 + 16);
 		    g.drawImage(shootImg, t.getShootPosition().getX()*32, t.getShootPosition().getY()*32, null);
 		}
 	    } catch (IOException e) {
