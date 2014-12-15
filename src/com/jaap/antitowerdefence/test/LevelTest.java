@@ -14,7 +14,6 @@ import com.jaap.antitowerdefence.antiTowerDefence.Tower;
 import com.jaap.antitowerdefence.level.Level;
 import com.jaap.antitowerdefence.level.LevelStats;
 import com.jaap.antitowerdefence.terrain.Grass;
-import com.jaap.antitowerdefence.terrain.Road;
 import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.FarmerUnit;
 /**
@@ -71,7 +70,7 @@ public class LevelTest {
     @Test
     public void testAddUnit() {
 	int units = level.getUnits().size();
-	level.addUnit(new FarmerUnit(new Road[10], 2));
+	level.addUnit(new FarmerUnit(new CopyOnWriteArrayList<Terrain>(), 2));
 	assertTrue(units < level.getUnits().size());
     }
 
