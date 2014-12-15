@@ -5,4 +5,4 @@ A game by:
 Peter Bjuhr
 Andreas Bolzyk
 Joakim Sandman
-Anna Östersund
+Anna Osterlund
