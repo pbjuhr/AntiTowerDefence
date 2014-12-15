@@ -109,7 +109,6 @@ public class AntiTowerDefenceGame {
 	    Unit u = new FarmerUnit(currentLevel.getWalkableTerrain(), 
 		    stepsPerSecond);
 	    currentLevel.addUnit(u);
-	    currentLevel.getLevelStats().decreaseCredits(FarmerUnit.cost);
 	}
     }
 
@@ -121,22 +120,18 @@ public class AntiTowerDefenceGame {
 	    Unit u = new SoldierUnit(currentLevel.getWalkableTerrain(), 
 		    stepsPerSecond);
 	    currentLevel.addUnit(u);
-	    currentLevel.getLevelStats().decreaseCredits(SoldierUnit.cost);
 	}
     }
 
     /**
      * Creates a teleporter unit and adds it to the level
      */
-    public TeleporterUnit createTeleporter(){
+    public void createTeleporter(){
 	if(canAfford(TeleporterUnit.cost) && !containsTeleporter()) {
 	    Unit u = new TeleporterUnit(currentLevel.getWalkableTerrain(), 
 		    stepsPerSecond);
 	    currentLevel.addUnit(u);
-	    currentLevel.getLevelStats().decreaseCredits(TeleporterUnit.cost);
-	    return (TeleporterUnit)u;
 	}
-	return null;
     }
     
     /**
