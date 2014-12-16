@@ -5,10 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
@@ -213,62 +215,70 @@ public class AntiTowerDefenceController {
     private void setButtons() {
 	gui.emptyButtons();
 	for (String unit : game.getPossibleUnits()) {
-	    if (unit.equals("FarmerUnit")) {
-		JButton farmerButton = new JButton("Farmer", new ImageIcon("assets/img/FarmerUnit.png"));
-		farmerButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent arg0) {
-			game.createFarmer();
-		    }
-		});
-		farmerButton.setBackground(Color.LIGHT_GRAY);
-		farmerButton.setEnabled(false);
-		this.farmerButton = farmerButton;
-		gui.addButton(farmerButton);
-	    }
+	    try {
+		if (unit.equals("FarmerUnit")) {
+		    JButton farmerButton = new JButton("Farmer",
+			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/FarmerUnit.png"))));
+		    farmerButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			    game.createFarmer();
+			}
+		    });
+		    farmerButton.setBackground(Color.LIGHT_GRAY);
+		    farmerButton.setEnabled(false);
+		    this.farmerButton = farmerButton;
+		    gui.addButton(farmerButton);
+		}
 
-	    if (unit.equals("SoldierUnit")) {
-		JButton soldierButton = new JButton("Soldier", new ImageIcon("assets/img/SoldierUnit.png"));
-		soldierButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent arg0) {
-			game.createSoldier();
-		    }
-		});
-		soldierButton.setBackground(Color.LIGHT_GRAY);
-		soldierButton.setEnabled(false);
-		this.soldierButton = soldierButton;
-		gui.addButton(soldierButton);
-	    }
+		if (unit.equals("SoldierUnit")) {
+		    JButton soldierButton = new JButton("Soldier",
+			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/SoldierUnit.png"))));
+		    soldierButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			    game.createSoldier();
+			}
+		    });
+		    soldierButton.setBackground(Color.LIGHT_GRAY);
+		    soldierButton.setEnabled(false);
+		    this.soldierButton = soldierButton;
+		    gui.addButton(soldierButton);
+		}
 
-	    if (unit.equals("TeleporterUnit")) {
-		JButton wizardButton = new JButton("Wizard", new ImageIcon("assets/img/TeleporterUnit.png"));
-		wizardButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent arg0) {
-			game.createTeleporter();
-		    }
-		});
-		wizardButton.setBackground(Color.LIGHT_GRAY);
-		wizardButton.setEnabled(false);
-		this.wizardButton = wizardButton;
-		gui.addButton(wizardButton);
+		if (unit.equals("TeleporterUnit")) {
+		    JButton wizardButton = new JButton("Wizard",
+			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/TeleporterUnit.png"))));
+		    wizardButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			    game.createTeleporter();
+			}
+		    });
+		    wizardButton.setBackground(Color.LIGHT_GRAY);
+		    wizardButton.setEnabled(false);
+		    this.wizardButton = wizardButton;
+		    gui.addButton(wizardButton);
 
-		JButton portalButton = new JButton("Portal", new ImageIcon("assets/img/Portal.png"));
-		portalButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent arg0) {
-			for (Unit u : game.getLevel().getUnits()) {
-			    if (u instanceof TeleporterUnit) {
-				((TeleporterUnit) u).placePortal();
+		    JButton portalButton = new JButton("Portal",
+			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Portal.png"))));
+		    portalButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			    for (Unit u : game.getLevel().getUnits()) {
+				if (u instanceof TeleporterUnit) {
+				    ((TeleporterUnit) u).placePortal();
+				}
 			    }
 			}
-		    }
-		});
-		portalButton.setBackground(Color.LIGHT_GRAY);
-		portalButton.setEnabled(false);
-		this.portalButton = portalButton;
-		gui.addButton(portalButton);
+		    });
+		    portalButton.setBackground(Color.LIGHT_GRAY);
+		    portalButton.setEnabled(false);
+		    this.portalButton = portalButton;
+		    gui.addButton(portalButton);
+		}
+	    } catch (IOException e) {
+		//e.printStackTrace();
 	    }
 	}
     }

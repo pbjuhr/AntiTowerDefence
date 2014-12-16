@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Semaphore;
@@ -92,24 +91,24 @@ public class GameForeground extends JComponent {
 	    try {
 		switch (t.getClass().getSimpleName()) {
 		case "Start":
-		    roadObjectImg = ImageIO.read(new File("assets/img/Start.png"));
-		    dirImg = ImageIO.read(new File("assets/img/DirSmallWhite/" + ((Switch) t).getDirection() + ".png"));
+		    roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Start.png"));
+		    dirImg = ImageIO.read(ResourcesLoader.load("img/DirSmall/" + ((Switch) t).getDirection() + ".png"));
 		    break;
 		case "Goal":
-		    roadObjectImg = ImageIO.read(new File("assets/img/Goal.png"));
+		    roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Goal.png"));
 		    break;
 		case "Portal":
 		    if (((Portal) t).hasReciever()) {
-			roadObjectImg = ImageIO.read(new File("assets/img/Portal_start.png"));
+			roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Portal_start.png"));
 		    } else if (((Portal) t).getDirection() == null) {
-			roadObjectImg = ImageIO.read(new File("assets/img/Portal.png"));
+			roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Portal.png"));
 		    } else {
-			roadObjectImg = ImageIO.read(new File("assets/img/Portal_end.png"));
-			dirImg = ImageIO.read(new File("assets/img/DirSmallWhite/" + ((Portal) t).getDirection() + ".png"));
+			roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Portal_end.png"));
+			dirImg = ImageIO.read(ResourcesLoader.load("img/DirSmall/" + ((Portal) t).getDirection() + ".png"));
 		    }
 		    break;
 		case "Switch":
-		    roadObjectImg = ImageIO.read(new File("assets/img/DirBig/" + ((Switch) t).getDirection() + ".png"));
+		    roadObjectImg = ImageIO.read(ResourcesLoader.load("img/DirBig/" + ((Switch) t).getDirection() + ".png"));
 		    break;
 		}
 		g.drawImage(roadObjectImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
@@ -134,10 +133,10 @@ public class GameForeground extends JComponent {
 	    BufferedImage shootImg = null;
 	    try {
 		if (t.getShootPosition() == null) {
-		    towerImg = ImageIO.read(new File("assets/img/" + t.getClass().getSimpleName() + ".png"));
+		    towerImg = ImageIO.read(ResourcesLoader.load("img/" + t.getClass().getSimpleName() + ".png"));
 		} else {
-		    towerImg = ImageIO.read(new File("assets/img/Tower_shoot.png"));
-		    shootImg = ImageIO.read(new File("assets/img/red.png"));
+		    towerImg = ImageIO.read(ResourcesLoader.load("img/Tower_shoot.png"));
+		    shootImg = ImageIO.read(ResourcesLoader.load("img/red.png"));
 		    g.setColor(Color.RED);
 		    g.drawLine(t.getPosition().getX()*32 + 16, t.getPosition().getY()*32 + 16,
 			    t.getShootPosition().getX()*32 + 16, t.getShootPosition().getY()*32 + 16);
@@ -155,7 +154,7 @@ public class GameForeground extends JComponent {
 	for (Unit u : units) {
 	    BufferedImage unitImg = null;
 	    try {
-		unitImg = ImageIO.read(new File("assets/img/" + u.getClass().getSimpleName() + ".png"));
+		unitImg = ImageIO.read(ResourcesLoader.load("img/" + u.getClass().getSimpleName() + ".png"));
 	    } catch (IOException e) {
 		//e.printStackTrace();
 	    }
