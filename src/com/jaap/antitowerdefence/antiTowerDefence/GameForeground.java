@@ -132,15 +132,16 @@ public class GameForeground extends JComponent {
 	    BufferedImage towerImg = null;
 	    BufferedImage shootImg = null;
 	    try {
-		if (t.getShootPosition() == null) {
+		Position shootPos = t.getShootPosition();
+		if (shootPos == null) {
 		    towerImg = ImageIO.read(ResourcesLoader.load("img/" + t.getClass().getSimpleName() + ".png"));
 		} else {
 		    towerImg = ImageIO.read(ResourcesLoader.load("img/Tower_shoot.png"));
 		    shootImg = ImageIO.read(ResourcesLoader.load("img/red.png"));
 		    g.setColor(Color.RED);
 		    g.drawLine(t.getPosition().getX()*32 + 16, t.getPosition().getY()*32 + 16,
-			    t.getShootPosition().getX()*32 + 16, t.getShootPosition().getY()*32 + 16);
-		    g.drawImage(shootImg, t.getShootPosition().getX()*32, t.getShootPosition().getY()*32, null);
+			    shootPos.getX()*32 + 16, shootPos.getY()*32 + 16);
+		    g.drawImage(shootImg, shootPos.getX()*32, shootPos.getY()*32, null);
 		}
 	    } catch (IOException e) {
 		//e.printStackTrace();
