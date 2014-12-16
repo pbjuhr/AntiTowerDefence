@@ -10,6 +10,8 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  */
 public class FarmerUnit extends Unit {
     
+    public static int cost = 50; // How much the unit costs
+    
     /**
      * Runs super constructor and sets speed, cost and health
      */
@@ -18,6 +20,12 @@ public class FarmerUnit extends Unit {
 	health = 70;
 	speed = 1;
 	resetCoolDown();
-	cost = 50;
+    }
+    
+    /**
+     * 
+     */
+    public int getCost() {
+	return cost;
     }
 }
