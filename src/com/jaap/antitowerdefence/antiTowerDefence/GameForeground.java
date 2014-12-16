@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
@@ -43,10 +42,13 @@ public class GameForeground extends JComponent {
 	timer.setRepeats(true);
     }
 
-    public void setTerrainAndObjects(CopyOnWriteArrayList<Unit> units, CopyOnWriteArrayList<Tower> towers, CopyOnWriteArrayList<Terrain> road) {
+    public void setTerrainAndUnits(CopyOnWriteArrayList<Unit> units, CopyOnWriteArrayList<Terrain> road) {
 	this.units = units;
-	this.towers = towers;
 	this.road = road;
+    }
+
+    public void  setTowers(CopyOnWriteArrayList<Tower> towers) {
+	this.towers = towers;
     }
 
     public void setStats(LevelStats stats) {

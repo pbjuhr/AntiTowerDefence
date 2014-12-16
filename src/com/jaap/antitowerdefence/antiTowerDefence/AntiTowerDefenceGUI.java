@@ -2,6 +2,7 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -12,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -40,10 +40,10 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class AntiTowerDefenceGUI {
 
     private JFrame frame;
-    private int width;
+//    private int width;
     private int height;
 
-    private JLayeredPane gamePanels;
+//    private JLayeredPane gamePanels;
     private GameBackground gameBackground;
     private GameForeground gameForeground;
     private JComponent cover;
@@ -65,7 +65,7 @@ public class AntiTowerDefenceGUI {
     private JMenuItem hightscore;
 
     public AntiTowerDefenceGUI(int fps, int width, int height) {
-	this.width = width;
+//	this.width = width;
 	this.height = height;
 	frame = new JFrame("Anti Tower Defence");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -219,9 +219,13 @@ public class AntiTowerDefenceGUI {
     public void newLevelGUI(Terrain[] grass, CopyOnWriteArrayList<Terrain> road,
 	    CopyOnWriteArrayList<Unit> units, CopyOnWriteArrayList<Tower> towers, LevelStats stats) {
 	gameBackground.setTerrain(grass, road);
-	gameForeground.setTerrainAndObjects(units, towers, road);
+	gameForeground.setTerrainAndUnits(units, road);
+	setTowers(towers);
 	gameForeground.setStats(stats);
-	gameForeground.start();
+    }
+
+    public void setTowers(CopyOnWriteArrayList<Tower> towers) {
+	gameForeground.setTowers(towers);
     }
 
     public boolean isPaused() {
@@ -233,9 +237,18 @@ public class AntiTowerDefenceGUI {
 	coverTitel.setVisible(false);
 	options.setVisible(false);
 	options.removeAll();
+	restart.setText("Restart");
+	restartLevel.setEnabled(true);
+	pause.setText("Pause");
+	pause.setEnabled(true);
     }
 
     public void showPausePanel(String text) {
+	pause.setText("Resume");
+	for (Component b : buttonPanel.getComponents()) {
+	    b.setEnabled(false);
+	}
+
 	titelText.setText(text);
 	cover.setVisible(true);
 	coverTitel.setVisible(true);
@@ -249,6 +262,13 @@ public class AntiTowerDefenceGUI {
     }
 
     public void showLosePanel(String text) {
+	restart.setText("New Game");
+	restartLevel.setEnabled(false);
+	pause.setEnabled(false);
+	for (Component b : buttonPanel.getComponents()) {
+	    b.setEnabled(false);
+	}
+
 	titelText.setText(text);
 	cover.setVisible(true);
 	coverTitel.setVisible(true);
@@ -268,6 +288,11 @@ public class AntiTowerDefenceGUI {
     }
 
     public void showWinPanel(String text) {
+	pause.setEnabled(false);
+	for (Component b : buttonPanel.getComponents()) {
+	    b.setEnabled(false);
+	}
+
 	titelText.setText(text);
 	cover.setVisible(true);
 	coverTitel.setVisible(true);

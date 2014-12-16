@@ -38,7 +38,7 @@ public class LevelStats {
      * getScore provides the players current score 
      * @return current score
      */
-    public int getScore() {
+    public synchronized int getScore() {
 	return score;
     }
 
@@ -64,7 +64,7 @@ public class LevelStats {
      * getCredits provides the players current amount of credits
      * @return - current credit
      */
-    public int getCredits() {
+    public synchronized int getCredits() {
 	return credits;
     }
 
@@ -72,7 +72,7 @@ public class LevelStats {
      * getWinScore provides the score needed to win the level
      * @return - score needed to win level
      */
-    public int getWinScore() {
+    public synchronized int getWinScore() {
 	return winScore;
     }
 
