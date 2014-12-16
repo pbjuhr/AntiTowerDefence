@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
+import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * @author Joakim Sandman (tm08jsn)
@@ -44,7 +45,7 @@ public class GameBackground extends JComponent {
     private void drawWater(Graphics g) {
 	BufferedImage waterImg = null;
 	try {
-	    waterImg = ImageIO.read(ResourcesLoader.load("img/Water.png"));
+	    waterImg = ImageIO.read(new File("assets/img/Water.png"));
 	} catch (IOException e) {
 	    //e.printStackTrace();
 	}
