@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
-import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * @author Joakim Sandman (tm08jsn)

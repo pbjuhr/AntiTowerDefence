@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.Semaphore;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -31,8 +32,10 @@ public class GameForeground extends JComponent {
     private CopyOnWriteArrayList<Terrain> road;
     private LevelStats stats;
     private Timer timer;
+    private Semaphore towersBusy;
 
     public GameForeground(int fps) {
+	towersBusy = new Semaphore(1);
 	timer = new Timer(Math.round(1000/fps), new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -47,8 +50,14 @@ public class GameForeground extends JComponent {
 	this.road = road;
     }
 
-    public void  setTowers(CopyOnWriteArrayList<Tower> towers) {
+    public void setTowers(CopyOnWriteArrayList<Tower> towers) {
+	try {
+	    towersBusy.acquire();
+	} catch (InterruptedException e) {
+	    //e.printStackTrace();
+	}
 	this.towers = towers;
+	towersBusy.release();
     }
 
     public void setStats(LevelStats stats) {
@@ -115,6 +124,11 @@ public class GameForeground extends JComponent {
     }
 
     private void drawTowers(Graphics g) {
+	try {
+	    towersBusy.acquire();
+	} catch (InterruptedException e) {
+	    //e.printStackTrace();
+	}
 	for (Tower t : towers) {
 	    BufferedImage towerImg = null;
 	    BufferedImage shootImg = null;
@@ -134,6 +148,7 @@ public class GameForeground extends JComponent {
 	    }
 	    g.drawImage(towerImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
 	}
+	towersBusy.release();
     }
 
     private void drawUnits(Graphics g) {
