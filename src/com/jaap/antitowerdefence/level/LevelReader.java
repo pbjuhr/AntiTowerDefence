@@ -86,6 +86,10 @@ public class LevelReader {
     }
 
     
+    /**
+     * validateLevelFile uses a xml-schema, levelsSchema.xsd to validate the 
+     * current level file. This way only valid level files are used.
+     */
     private void validateLevelFile() {
 	
 	
