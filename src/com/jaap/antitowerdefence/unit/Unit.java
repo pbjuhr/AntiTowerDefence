@@ -17,6 +17,7 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 public abstract class Unit {
 
     /* Variables */
+    public static int cost;
     protected double speed; // How often does the unit move
     protected int health; // The unit's current health
     protected long coolDown; // Steps until next move
@@ -333,7 +334,9 @@ public abstract class Unit {
      * Gets the cost of the unit
      * @return cost, the cost of the Unit
      */
-    public abstract int getCost();
+    public static int getCost() {
+	return cost;
+    }
 
     /**
      * Toggles wasTeleported variable between true and false

@@ -22,8 +22,4 @@ public class SoldierUnit extends Unit{
 	resetCoolDown();
     }
     
-    public int getCost() {
-	return cost;
-    }
-    
 }

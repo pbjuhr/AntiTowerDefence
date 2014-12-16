@@ -5,7 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.jaap.antitowerdefence.terrain.Terrain;
 
 /**
- * A Farmer unit are weak and slow, but costs little money
+ * A Farmer unit are weak and slow, but cheap
  * @author Peter Bjuhr
  */
 public class FarmerUnit extends Unit {
@@ -21,11 +21,5 @@ public class FarmerUnit extends Unit {
 	speed = 1;
 	resetCoolDown();
     }
-    
-    /**
-     * 
-     */
-    public int getCost() {
-	return cost;
-    }
+   
 }

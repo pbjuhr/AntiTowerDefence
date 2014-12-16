@@ -32,10 +32,6 @@ public class TeleporterUnit extends Unit {
 	resetCoolDown();
     }
     
-    public int getCost() {
-	return cost;
-    }
-    
     /**
      * Places a portal on a given position
      */
