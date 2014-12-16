@@ -44,7 +44,7 @@ public class GameBackground extends JComponent {
     private void drawWater(Graphics g) {
 	BufferedImage waterImg = null;
 	try {
-	    waterImg = ImageIO.read(new File("assets/img/Water.png"));
+	    waterImg = ImageIO.read(ResourcesLoader.load("img/Water.png"));
 	} catch (IOException e) {
 	    //e.printStackTrace();
 	}
