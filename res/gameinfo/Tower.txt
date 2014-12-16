@@ -1,0 +1,3 @@
+The tower is created by the game and placed randomly on the buildable terrain
+(the grass). The towers can shoot the Units.  After 20 Sec the towers changes
+their positions.
