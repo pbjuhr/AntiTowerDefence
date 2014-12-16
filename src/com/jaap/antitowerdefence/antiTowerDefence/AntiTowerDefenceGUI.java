@@ -13,9 +13,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -318,9 +321,9 @@ public class AntiTowerDefenceGUI {
 	    helpFrame.add(introPanel);
 	    JPanel introImagePanel = new JPanel();
 	    introPanel.add(introImagePanel, BorderLayout.NORTH);
-	    introImagePanel.add(new JLabel(new ImageIcon("assets/img/Start.png")));
-	    introImagePanel.add(new JLabel(new ImageIcon("assets/img/Goal.png")));
-	    JTextArea introTextPanel = new JTextArea(new Scanner(new File("assets/gameinfo/Intro.txt")).useDelimiter("\\Z").next());
+	    introImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Start.png")))));
+	    introImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Goal.png")))));
+	    JTextArea introTextPanel = new JTextArea(new Scanner(ResourcesLoader.load("gameinfo/Intro.txt")).useDelimiter("\\Z").next());
 	    introPanel.add(introTextPanel, BorderLayout.CENTER);
 	    introTextPanel.setEditable(false);
 
@@ -328,8 +331,8 @@ public class AntiTowerDefenceGUI {
 	    helpFrame.add(farmerPanel);
 	    JPanel farmerImagePanel = new JPanel();
 	    farmerPanel.add(farmerImagePanel, BorderLayout.NORTH);
-	    farmerImagePanel.add(new JLabel(new ImageIcon("assets/img/FarmerUnit.png")));
-	    JTextArea farmerTextPanel = new JTextArea(new Scanner(new File("assets/gameinfo/Farmer.txt")).useDelimiter("\\Z").next());
+	    farmerImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/FarmerUnit.png")))));
+	    JTextArea farmerTextPanel = new JTextArea(new Scanner(ResourcesLoader.load("gameinfo/Farmer.txt")).useDelimiter("\\Z").next());
 	    farmerPanel.add(farmerTextPanel, BorderLayout.CENTER);
 	    farmerTextPanel.setEditable(false);
 
@@ -337,8 +340,8 @@ public class AntiTowerDefenceGUI {
 	    helpFrame.add(soldierPanel);
 	    JPanel soldierImagePanel = new JPanel();
 	    soldierPanel.add(soldierImagePanel, BorderLayout.NORTH);
-	    soldierImagePanel.add(new JLabel(new ImageIcon("assets/img/SoldierUnit.png")));
-	    JTextArea soldierTextPanel = new JTextArea(new Scanner(new File("assets/gameinfo/Soldier.txt")).useDelimiter("\\Z").next());
+	    soldierImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/SoldierUnit.png")))));
+	    JTextArea soldierTextPanel = new JTextArea(new Scanner(ResourcesLoader.load("gameinfo/Soldier.txt")).useDelimiter("\\Z").next());
 	    soldierPanel.add(soldierTextPanel, BorderLayout.CENTER);
 	    soldierTextPanel.setEditable(false);
 
@@ -346,8 +349,8 @@ public class AntiTowerDefenceGUI {
 	    helpFrame.add(wizardPanel);
 	    JPanel wizardImagePanel = new JPanel();
 	    wizardPanel.add(wizardImagePanel, BorderLayout.NORTH);
-	    wizardImagePanel.add(new JLabel(new ImageIcon("assets/img/TeleporterUnit.png")));
-	    JTextArea wizardTextPanel = new JTextArea(new Scanner(new File("assets/gameinfo/Wizard.txt")).useDelimiter("\\Z").next());
+	    wizardImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/TeleporterUnit.png")))));
+	    JTextArea wizardTextPanel = new JTextArea(new Scanner(ResourcesLoader.load("gameinfo/Wizard.txt")).useDelimiter("\\Z").next());
 	    wizardPanel.add(wizardTextPanel, BorderLayout.CENTER);
 	    wizardTextPanel.setEditable(false);
 
@@ -355,10 +358,10 @@ public class AntiTowerDefenceGUI {
 	    helpFrame.add(portalPanel);
 	    JPanel portalImagePanel = new JPanel();
 	    portalPanel.add(portalImagePanel, BorderLayout.NORTH);
-	    portalImagePanel.add(new JLabel(new ImageIcon("assets/img/Portal.png")));
-	    portalImagePanel.add(new JLabel(new ImageIcon("assets/img/Portal_start.png")));
-	    portalImagePanel.add(new JLabel(new ImageIcon("assets/img/Portal_end.png")));
-	    JTextArea portalTextPanel = new JTextArea(new Scanner(new File("assets/gameinfo/Portal.txt")).useDelimiter("\\Z").next());
+	    portalImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Portal.png")))));
+	    portalImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Portal_start.png")))));
+	    portalImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Portal_end.png")))));
+	    JTextArea portalTextPanel = new JTextArea(new Scanner(ResourcesLoader.load("gameinfo/Portal.txt")).useDelimiter("\\Z").next());
 	    portalPanel.add(portalTextPanel, BorderLayout.CENTER);
 	    portalTextPanel.setEditable(false);
 
@@ -366,11 +369,11 @@ public class AntiTowerDefenceGUI {
 	    helpFrame.add(switchPanel);
 	    JPanel switchImagePanel = new JPanel();
 	    switchPanel.add(switchImagePanel, BorderLayout.NORTH);
-	    switchImagePanel.add(new JLabel(new ImageIcon("assets/img/DirBig/NORTH.png")));
-	    switchImagePanel.add(new JLabel(new ImageIcon("assets/img/DirBig/EAST.png")));
-	    switchImagePanel.add(new JLabel(new ImageIcon("assets/img/DirBig/SOUTH.png")));
-	    switchImagePanel.add(new JLabel(new ImageIcon("assets/img/DirBig/WEST.png")));
-	    JTextArea switchTextPanel = new JTextArea(new Scanner(new File("assets/gameinfo/Switch.txt")).useDelimiter("\\Z").next());
+	    switchImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/DirBig/NORTH.png")))));
+	    switchImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/DirBig/EAST.png")))));
+	    switchImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/DirBig/SOUTH.png")))));
+	    switchImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/DirBig/WEST.png")))));
+	    JTextArea switchTextPanel = new JTextArea(new Scanner(ResourcesLoader.load("gameinfo/Switch.txt")).useDelimiter("\\Z").next());
 	    switchPanel.add(switchTextPanel, BorderLayout.CENTER);
 	    switchTextPanel.setEditable(false);
 
@@ -378,12 +381,11 @@ public class AntiTowerDefenceGUI {
 	    helpFrame.add(towerPanel);
 	    JPanel towerImagePanel = new JPanel();
 	    towerPanel.add(towerImagePanel, BorderLayout.NORTH);
-	    towerImagePanel.add(new JLabel(new ImageIcon("assets/img/Tower.png")));
-	    JTextArea towerTextPanel = new JTextArea(new Scanner(new File("assets/gameinfo/Tower.txt")).useDelimiter("\\Z").next());
+	    towerImagePanel.add(new JLabel(new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Tower.png")))));
+	    JTextArea towerTextPanel = new JTextArea(new Scanner(ResourcesLoader.load("gameinfo/Tower.txt")).useDelimiter("\\Z").next());
 	    towerPanel.add(towerTextPanel, BorderLayout.CENTER);
 	    towerTextPanel.setEditable(false);
-
-	} catch (FileNotFoundException e) {
+	} catch (IOException e) {
 	    //e.printStackTrace();
 	}
 
@@ -397,16 +399,12 @@ public class AntiTowerDefenceGUI {
 	aboutFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	aboutFrame.setResizable(false);
 
-	try {
-	    JPanel aboutPanel = new JPanel();
-	    aboutFrame.add(aboutPanel);
-	    JTextArea textArea = new JTextArea(9, 15);
-	    aboutPanel.add(textArea);
-	    textArea.setEditable(false);
-	    textArea.setText(new Scanner(new File("assets/gameinfo/About.txt")).useDelimiter("\\Z").next());
-	} catch (FileNotFoundException e) {
-	    //e.printStackTrace();
-	}
+	JPanel aboutPanel = new JPanel();
+	aboutFrame.add(aboutPanel);
+	JTextArea textArea = new JTextArea(9, 15);
+	aboutPanel.add(textArea);
+	textArea.setEditable(false);
+	textArea.setText(new Scanner(ResourcesLoader.load("gameinfo/About.txt")).useDelimiter("\\Z").next());
 
 	aboutFrame.pack();
 	aboutFrame.setLocationRelativeTo(null);
@@ -425,14 +423,16 @@ public class AntiTowerDefenceGUI {
 	    String[][] currentHighscore = db.getHighScoreTopTen();
 	    if (currentHighscore != null) {
 		for (String[] s : currentHighscore) {
-		    if (s[0] != null) {
-			scoresAndNames += s[1] + "   " + s[0] + "\n";
+		    if (s[1] != null) {
+			char[] spaces = new char[6 - s[1].length()];
+			Arrays.fill(spaces, ' ');
+			scoresAndNames += s[1] + new String(spaces) + s[0] + "\n";
 		    }
 		}
 	    }
 	} else {
-	    scoresAndNames = "ERROR 626. Failed to connect to"
-		    + " highscore database!";
+	    scoresAndNames = "ERROR 626.\n"
+		    + "Failed to connect to highscore database!";
 	}
 
 	JPanel highscorePanel = new JPanel();
@@ -448,7 +448,7 @@ public class AntiTowerDefenceGUI {
     }
 
     public void showNewHighscoreFrame(HighScoreDB db, int score) {
-	JFrame newHighscoreFrame = new JFrame("Highscore");
+	JFrame newHighscoreFrame = new JFrame("New Highscore");
 	newHighscoreFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	newHighscoreFrame.setResizable(false);
 
@@ -513,6 +513,23 @@ public class AntiTowerDefenceGUI {
 	newHighscoreFrame.pack();
 	newHighscoreFrame.setLocationRelativeTo(null);
 	newHighscoreFrame.setVisible(true);
+    }
+
+    public void showErrorFrame(String message) {
+	JFrame errorFrame = new JFrame("Error");
+	errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	errorFrame.setResizable(false);
+
+	JPanel errorPanel = new JPanel();
+	errorFrame.add(errorPanel);
+	JTextArea textArea = new JTextArea();
+	errorPanel.add(textArea);
+	textArea.setEditable(false);
+	textArea.setText(message);
+
+	errorFrame.pack();
+	errorFrame.setLocationRelativeTo(null);
+	errorFrame.setVisible(true);
     }
 
 }
