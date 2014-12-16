@@ -1,5 +1,6 @@
 package com.jaap.antitowerdefence.level;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -8,6 +9,7 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -40,17 +42,14 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  */
 public class LevelReader {
 
-    /* Variables */
-/////////////////////////////////////////    
-//    private File levelFile; // xml-file containing game levels
-////////////////////////////////////////    
+    /* Variables */   
+    private File levelFile; 		// xml-file containing game levels 
     private InputStream inputStream;
-    
-    
-    private Document gameLevels; // a parsed document of the game levels
-    private int nrOfLevels; // nr of maps in file
-    private int xDimension; // x-dimension of level maps
-    private int yDimension; // y-dimension of level maps
+    private String defaultLevelFile;
+    private Document gameLevels; 	// a parsed document of the game levels
+    private int nrOfLevels; 		// nr of maps in file
+    private int xDimension;	 	// x-dimension of level maps
+    private int yDimension; 		// y-dimension of level maps
 
     /**
      * LevelReader constructor. Creates the xml-reader with the given file name.
@@ -68,36 +67,62 @@ public class LevelReader {
      */
     public LevelReader(String levelFile) throws ParserConfigurationException,
 	    SAXException, IOException {
-	
-	
-/////////////////////////////////////////////	
-//	this.levelFile = new File(levelFile);
-/////////////////////////////////////////////
-	inputStream = ResourcesLoader.load(levelFile);
-	
-	
-	validateLevelFile();
-	System.out.println("1");
-	parseLevelFile();
-	System.out.println("2");
+	defaultLevelFile = "levels/levels.xml";
+	if(levelFile == null){
+	    inputStream = ResourcesLoader.load(defaultLevelFile);
+	    validateLevelFile();
+	    parseLevelFile(true);
+	}else{
+	    this.levelFile = new File(levelFile);
+	    validateInputFile();
+	    parseLevelFile(false);
+	}
 	setNrOfLevels();
-	System.out.println("3");
 	setLevelDimensions();
     }
 
+    private void validateLevelFile(){
+	StreamSource xmlLevelFile;
+	StreamSource schemaFile;
+	    xmlLevelFile = 
+		    new StreamSource(
+			    ResourcesLoader.load(defaultLevelFile));
+	    schemaFile = 
+		    new StreamSource(
+			    ResourcesLoader.load("levels/levelsSchema.xsd"));
+	
+   	SchemaFactory schemaFactory = SchemaFactory
+   		.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+   	Schema schema;
+   	try {
+   	    schema = schemaFactory.newSchema(schemaFile);
+   	    Validator levelValidator = schema.newValidator();
+   	    levelValidator.validate(xmlLevelFile);
+   	} catch (SAXException e) {
+   	    /*If the schema can not be created and used for validation, the 
+   	     * default file (levels.xml) is used */
+   	    System.out.println(e.getMessage());  	    
+   	    inputStream = ResourcesLoader.load(defaultLevelFile);
+   	    
+   	    
+   	    
+   	    System.out.println("Error: The schema could not be created");
+   	} catch (IOException e) {
+   	    /*If the levelfile is invalid, the default file (levels.xml) is 
+   	     * used */ 	    
+   	    inputStream = ResourcesLoader.load(defaultLevelFile);
+   	    System.out.println("Error: The file is unvalid");
+   	}
+    }
     
-    private void validateLevelFile() {
-	
-	
-/////////////////////////////////////////////	
-//	File schemaFile = new File("assets/levels/levelsSchema.xsd");
-//	Source xmlLevelFile = new StreamSource(levelFile);
-/////////////////////////////////////////////
-	StreamSource xmlLevelFile = new StreamSource(ResourcesLoader.load("levels/levels.xml"));
-	StreamSource schemaFile = new StreamSource(ResourcesLoader.load("levels/levelsSchema.xsd"));
+    private void validateInputFile() {
 
-	
-	
+	StreamSource schemaFile;
+	Source xmlLevelFile;
+	    schemaFile =
+		    new StreamSource(
+				ResourcesLoader.load("levels/levelsSchema.xsd"));
+	    xmlLevelFile = new StreamSource(levelFile);
 	
    	SchemaFactory schemaFactory = SchemaFactory
    		.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -115,7 +140,7 @@ public class LevelReader {
 /////////////////////////////////////////////////   	    
 //   	    levelFile = new File("assets/levels/levels.xml");
 /////////////////////////////////////////////////   	    
-   	    inputStream = ResourcesLoader.load("levels/levels.xml");
+   	    inputStream = ResourcesLoader.load(defaultLevelFile);
    	    
    	    
    	    
@@ -128,19 +153,13 @@ public class LevelReader {
 /////////////////////////////////////////////////   	    
 //   	    levelFile = new File("assets/levels/levels.xml");
 /////////////////////////////////////////////////   	    
-   	    inputStream = ResourcesLoader.load("levels/levels.xml");
+   	    inputStream = ResourcesLoader.load(defaultLevelFile);
    	    
    	    
    	    
    	    System.out.println("Error: The file is unvalid");
    	}
-       }
-
-    
-    
-    
-    
-   
+       }   
 
     /**
      * parseLevelFile uses a DocumentBuilder to parse the level file making it
@@ -153,7 +172,7 @@ public class LevelReader {
      * @throws SAXException
      *             - Error while creating the docBuilder
      */
-    private void parseLevelFile() throws ParserConfigurationException,
+    private void parseLevelFile(boolean fileInput) throws ParserConfigurationException,
 	    SAXException, IOException {
 
 	DocumentBuilder dBuilder;
@@ -161,14 +180,11 @@ public class LevelReader {
 
 	dBuilder = dbFactory.newDocumentBuilder();
 	
-	
-////////////////////////////////////////////////
-//	gameLevels = dBuilder.parse(levelFile);
-///////////////////////////////////////
-	gameLevels = dBuilder.parse(inputStream);
-
-	
-	
+	if(fileInput){
+	    gameLevels = dBuilder.parse(inputStream);
+	}else{
+	    gameLevels = dBuilder.parse(levelFile); 
+	}	
 	gameLevels.getDocumentElement().normalize();
     }
 
