@@ -22,4 +22,12 @@ public class SoldierUnit extends Unit{
 	resetCoolDown();
     }
     
+    /**
+     * Gets the cost of the unit
+     * @return cost, the cost of the Unit
+     */
+    public int getCost() {
+	return cost;
+    }
+    
 }

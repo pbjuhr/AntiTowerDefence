@@ -33,6 +33,14 @@ public class TeleporterUnit extends Unit {
     }
     
     /**
+     * Gets the cost of the unit
+     * @return cost, the cost of the Unit
+     */
+    public int getCost() {
+	return cost;
+    }
+    
+    /**
      * Places a portal on a given position
      */
     public void placePortal() {

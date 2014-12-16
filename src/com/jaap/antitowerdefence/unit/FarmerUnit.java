@@ -21,5 +21,13 @@ public class FarmerUnit extends Unit {
 	speed = 1;
 	resetCoolDown();
     }
+    
+    /**
+     * Gets the cost of the unit
+     * @return cost, the cost of the Unit
+     */
+    public int getCost() {
+	return cost;
+    }
    
 }

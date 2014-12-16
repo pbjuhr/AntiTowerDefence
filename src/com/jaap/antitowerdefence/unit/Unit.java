@@ -334,9 +334,7 @@ public abstract class Unit {
      * Gets the cost of the unit
      * @return cost, the cost of the Unit
      */
-    public static int getCost() {
-	return cost;
-    }
+    public abstract int getCost();
 
     /**
      * Toggles wasTeleported variable between true and false
