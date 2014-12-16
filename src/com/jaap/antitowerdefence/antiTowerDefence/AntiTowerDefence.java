@@ -10,9 +10,10 @@ public class AntiTowerDefence {
      * @param args, (optional) contain a levels xml-file
      */
     public static void main(String[] args) {
-    	String levelFile = "assets/levels/levels.xml";
+    	String levelFile = "levels/levels.xml";
 	if (args.length > 0) {
 	    levelFile = args[0];
+	    System.out.println(levelFile);
 	}
     	new AntiTowerDefenceController(levelFile);
     }
