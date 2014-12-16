@@ -2,7 +2,6 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -59,7 +58,7 @@ public class GameBackground extends JComponent {
 	for (Terrain t : grass) {
 	    BufferedImage grassImg = null;
 	    try {
-		grassImg = ImageIO.read(new File("assets/img/Grass.png"));
+		grassImg = ImageIO.read(ResourcesLoader.load("img/Grass.png"));
 	    } catch (IOException e) {
 		//e.printStackTrace();
 	    }
@@ -71,7 +70,7 @@ public class GameBackground extends JComponent {
 	for (Terrain t : road) {
 	    BufferedImage roadImg = null;
 	    try {
-		roadImg = ImageIO.read(new File("assets/img/Road.png"));
+		roadImg = ImageIO.read(ResourcesLoader.load("img/Road.png"));
 	    } catch (IOException e) {
 		//e.printStackTrace();
 	    }
