@@ -71,14 +71,10 @@ public abstract class Unit {
     public void action() {
 	if (coolDown > 1) {
 	    coolDown--;
-	} else {
-	    if (isAlive() && !reachedGoal) {
-		if (!reachedGoal) {
-		    move();
-		    resetCoolDown();
-		}
-		runLandOn(getTerrainIndex(position));
-	    }
+	} else if (!reachedGoal) {
+	    move();
+	    resetCoolDown();
+	    runLandOn(getTerrainIndex(position));
 	}
     }
 

@@ -39,7 +39,6 @@ public class TowerPlacerAI {
 
     /**
      * Creates a new tower array with positions within possible tower positions
-     * 
      * @return newTowers, an array of towers
      */
     public CopyOnWriteArrayList<Tower> getNewTowers() {

@@ -91,12 +91,18 @@ public class AntiTowerDefenceGame {
 	}
 		
 	// Moves the units
-	for(Unit u : currentLevel.getUnits()) {
-	    if(u!=null){
-		u.action();
-	    }
+	for(int i = 0; i < currentLevel.getUnits().size(); i++) {
+	    Unit u = currentLevel.getUnits().get(i);
+	    u.action();
+	    if(u.hasReachedGoal()){
+		currentLevel.unitReachedGoal(u);
+		currentLevel.getUnits().remove(i);
+		i--;
+	    }else if(!u.isAlive()) {
+		currentLevel.getUnits().remove(i);
+		i--;
+	    } 
 	}
-	currentLevel.updateUnits();
 
 	currentStep++;
     }

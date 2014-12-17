@@ -116,30 +116,12 @@ public class Level {
     }
 
     /**
-     * updateUnits checks if any of the units has reached goal or died. If a
-     * units has died it is removed from the list of active units. If a unit
-     * has reached goal a score is added to the players total score and the 
-     * players credits is increased. After this the unit is removed from the 
-     * list of active units.
-     */
-    public void updateUnits() {
-	for(int i = 0; i < units.size(); i++) {
-	    if(units.get(i).hasReachedGoal()){
-		unitReachedGoal(units.get(i));
-		units.remove(i);
-	    }else if(!units.get(i).isAlive()) {
-		units.remove(i);
-	    } 
-	}
-    }
-
-    /**
      * unitReachedGoal calculates the credits earned and adds this to the 
      * players current credits. It the player also recieves a score of 10 plus
      * 10% of the units health
      * @param unit - farmer, soldier or wizard
      */
-    private void unitReachedGoal(Unit unit) {
+    public void unitReachedGoal(Unit unit) {
 	double healthCredits = (0.5 * unit.getHealth());
 	double costCredits = (0.8 * unit.getCost());
 	int totalCredits = (int)Math.round((healthCredits + costCredits));
