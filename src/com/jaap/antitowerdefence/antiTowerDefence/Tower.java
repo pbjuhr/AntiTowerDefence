@@ -48,7 +48,9 @@ public class Tower{
     public void action() {
 	// Determine if it is time to shoot
 	if(coolDown > 0) {
-	    if(coolDown < (stepsPerSecond * shootInterval) - ((3/4) * stepsPerSecond)){
+	    if(coolDown < 
+		    ((stepsPerSecond * shootInterval) - 
+			    ((3/4) * stepsPerSecond))){
 		shootPosition = null;
 	    }
 	    coolDown--;
@@ -56,7 +58,6 @@ public class Tower{
 	    Unit u = findUnitInRange();
 	    if(u != null) {
 		//FIRE!!
-		System.out.println("Tower shoot from pos x: " + getPosition().getX() + ", y: " + getPosition().getY());
 		shootPosition = new Position(u.getPosition().getX(), 
 			u.getPosition().getY());
 		u.takeDamage(); 
@@ -70,9 +71,6 @@ public class Tower{
      * @return unit, the Unit object that was found, or null
      */
     private Unit findUnitInRange(){
-	if(units == null){
-	    return null; //No unit within sight
-	}
 	for(Unit u : units) {
 	    if(u.getPosition().distanceTo(this.position) <= range) {
 		return u;

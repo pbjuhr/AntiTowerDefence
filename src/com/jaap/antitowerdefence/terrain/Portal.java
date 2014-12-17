@@ -6,7 +6,7 @@ import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * 
- * @author Andreas Bolzyk id10abk
+ * @author Andreas Bolzyk id10abk, Peter Bjuhr (id10pbn)
  *
  */
 public class Portal extends Terrain implements LandOnInterface {
@@ -24,7 +24,7 @@ public class Portal extends Terrain implements LandOnInterface {
     
     /**
      * What happens when unit lands on a Portal
-     * @author Peter Bjuhr
+     * @author Peter Bjuhr (id10pbn)
      * @param Unit u, the Unit that have stepped on the Portal
      */
     @Override
@@ -32,13 +32,12 @@ public class Portal extends Terrain implements LandOnInterface {
 	if(hasReceiver) {
 	    u.setPosition(getReciever().getPosition());
 	    u.setDirection(getReciever().getDirection());
-	    u.toggleTeleported();
 	}
     }
     
     /**
      * Sets the portals reciever
-     * @author Peter Bjuhr
+     * @author Peter Bjuhr (id10pbn)
      * @param p, the reciever position
      */
     public void setReciever(Portal p) {
@@ -48,7 +47,7 @@ public class Portal extends Terrain implements LandOnInterface {
     
     /**
      * Gets the portals reciever
-     * @author Peter Bjuhr
+     * @author Peter Bjuhr (id10pbn)
      * @return Portal, the portal object
      */
     public Portal getReciever() {
@@ -57,7 +56,7 @@ public class Portal extends Terrain implements LandOnInterface {
     
     /**
      * Does the portal have a reciever
-     * @author Peter Bjuhr
+     * @author Peter Bjuhr (id10pbn)
      * @return true if portal have reciever, otherwise false
      */
     public boolean hasReciever() {

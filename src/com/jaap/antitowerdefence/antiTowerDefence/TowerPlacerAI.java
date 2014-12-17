@@ -46,21 +46,19 @@ public class TowerPlacerAI {
 	CopyOnWriteArrayList<Tower> towers = new CopyOnWriteArrayList<Tower>();
 
 	Random rand = new Random();
+	int index;
 
 	for (int i = 0; i < nrOfTowers; i++) {
-	    int index = rand.nextInt((possiblePositions.length - 1));
+	    index = rand.nextInt((possiblePositions.length - 1));
 
-	    if (towers.isEmpty()) {
-		towers.add(new Tower(possiblePositions[index].getPosition(),
-			stepsPerSecond));
-	    } else if (!towers.isEmpty()) {
+	    if(!towers.isEmpty()) {
 		while (containsPosition(towers,
 			possiblePositions[index].getPosition())) {
 		    index = rand.nextInt((possiblePositions.length - 1));
 		}
-		towers.add(new Tower(possiblePositions[index].getPosition(),
-			stepsPerSecond));
 	    }
+	    towers.add(new Tower(possiblePositions[index].getPosition(),
+			stepsPerSecond));
 	}
 	return towers;
     }
@@ -77,8 +75,8 @@ public class TowerPlacerAI {
     private boolean containsPosition(CopyOnWriteArrayList<Tower> towers,
 	    Position p) {
 
-	for (int i = 0; i < towers.size(); i++) {
-	    if (p.equals(towers.get(i).getPosition())) {
+	for (Tower t: towers) {
+	    if (p.equals(t.getPosition())) {
 		return true;
 	    }
 	}

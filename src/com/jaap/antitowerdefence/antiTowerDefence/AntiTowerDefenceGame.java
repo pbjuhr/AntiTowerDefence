@@ -81,17 +81,17 @@ public class AntiTowerDefenceGame {
     public void step() {
 	
 	// Moves the towers
-	if(towerPlacer.timeToChange(currentStep)){
+	if(towerPlacer.timeToChange(currentStep)) {
 	    currentLevel.setTowers(towerPlacer.getNewTowers());
 	}
 	
 	// Towers shoot
-	for(Tower t : currentLevel.getTowers()){
+	for(Tower t : currentLevel.getTowers()) {
 	    t.action();
 	}
 		
 	// Moves the units
-	for(Unit u : currentLevel.getUnits()){
+	for(Unit u : currentLevel.getUnits()) {
 	    if(u!=null){
 		u.action();
 	    }

@@ -72,9 +72,8 @@ public abstract class Unit {
 	if (coolDown > 1) {
 	    coolDown--;
 	} else {
-	    wasTeleported = false;
 	    if (isAlive() && !reachedGoal) {
-		if (!reachedGoal && !wasTeleported) {
+		if (!reachedGoal) {
 		    move();
 		    resetCoolDown();
 		}
@@ -336,16 +335,6 @@ public abstract class Unit {
      */
     public abstract int getCost();
 
-    /**
-     * Toggles wasTeleported variable between true and false
-     */
-    public void toggleTeleported() {
-	if (wasTeleported) {
-	    wasTeleported = false;
-	} else {
-	    wasTeleported = true;
-	}
-    }
 
     /**
      * Gets the health of the unit
