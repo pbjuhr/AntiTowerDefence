@@ -1,5 +1,7 @@
 package com.jaap.antitowerdefence.level;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -26,6 +28,7 @@ public class Level {
     private Terrain[] grass;			//Possible tower position	
     private ArrayList<Terrain> switches;	//All road switches in the level
     private LevelStats levelStats;		//Level info and game statistics
+    private PropertyChangeSupport towerChange;	//Signals change of towers
 
     /*CopyOnWriteArrayLists are used to ensure thread safety*/	
     private CopyOnWriteArrayList<Unit> units;	//Units currently active in game
@@ -46,9 +49,19 @@ public class Level {
 	this.road = walkable;
 	this.grass = buildable;
 	this.levelStats = levelStats;
+	towerChange = new PropertyChangeSupport(this);
 	switches = new ArrayList<Terrain>();
 	setSwitches();
 	units = new CopyOnWriteArrayList<Unit>();
+    }
+
+    /**
+     * addPropertyChangeListener adds a listener to inform when the tower array
+     * changes.
+     * @param listener - The listener to add
+     */
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        towerChange.addPropertyChangeListener(listener);
     }
 
     /**
@@ -88,15 +101,18 @@ public class Level {
 
     /**
      * setTowers replaces the tower array with a new array of towers and
-     * gives the new towers access to the ArrayList of units
+     * gives the new towers access to the ArrayList of units. It also signals
+     * the porpertyChangeListeners that the towers have changed.
      * @param towers - the tower array to replace the old tower array
      */
     public void setTowers(CopyOnWriteArrayList<Tower> newTowers) {
+	CopyOnWriteArrayList<Tower> oldTowers = towers;
 	this.towers = newTowers;
 
 	for(int i = 0; i < this.towers.size(); i++) {
 	    this.towers.get(i).setUnits(units);
 	}
+	towerChange.firePropertyChange("towers", oldTowers, towers);
     }
 
     /**

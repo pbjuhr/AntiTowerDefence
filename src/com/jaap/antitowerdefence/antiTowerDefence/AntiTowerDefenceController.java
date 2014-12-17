@@ -4,16 +4,22 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
@@ -25,7 +31,7 @@ import com.jaap.antitowerdefence.unit.*;
 /**
  * @author Joakim Sandman (tm08jsn)
  */
-public class AntiTowerDefenceController {
+public class AntiTowerDefenceController implements PropertyChangeListener {
 
     private String levelName;
     private boolean paused;
@@ -82,6 +88,7 @@ public class AntiTowerDefenceController {
 	wizardButton = null;
 	portalButton = null;
 	Level level = game.getLevel();
+	level.addPropertyChangeListener(this);
 	gui.newLevelGUI(level.getPossibleTowerPositions(),
 		level.getWalkableTerrain(), level.getUnits(),
 		level.getTowers(), level.getLevelStats());
@@ -96,6 +103,11 @@ public class AntiTowerDefenceController {
 	} catch (InvocationTargetException | InterruptedException e) {
 	    System.exit(0);
 	}
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent arg0) {
+	gui.setTowers(game.getLevel().getTowers());
     }
 
     private void stopTime() {
@@ -205,6 +217,7 @@ public class AntiTowerDefenceController {
 	});
     }
 
+    @SuppressWarnings("serial")
     private void setButtons() {
 	gui.emptyButtons();
 	for (String unit : game.getPossibleUnits()) {
@@ -212,10 +225,19 @@ public class AntiTowerDefenceController {
 	        JButton farmerButton = new JButton("Farmer",
 	    	    new ImageIcon(images[19]));
 	        farmerButton.addActionListener(new ActionListener() {
-	    	@Override
-	    	public void actionPerformed(ActionEvent arg0) {
-	    	    game.createFarmer();
-	    	}
+		    @Override
+		    public void actionPerformed(ActionEvent arg0) {
+			game.createFarmer();
+		    }
+		});
+		farmerButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+			.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0),
+				"farmerButton");
+		farmerButton.getActionMap().put("farmerButton",
+	        	new AbstractAction() {
+	            public void actionPerformed(ActionEvent e) {
+	        	game.createFarmer();
+	            }
 	        });
 	        farmerButton.setBackground(Color.LIGHT_GRAY);
 	        farmerButton.setEnabled(false);
@@ -227,10 +249,19 @@ public class AntiTowerDefenceController {
 	        JButton soldierButton = new JButton("Soldier",
 	    	    new ImageIcon(images[20]));
 	        soldierButton.addActionListener(new ActionListener() {
-	    	@Override
-	    	public void actionPerformed(ActionEvent arg0) {
-	    	    game.createSoldier();
-	    	}
+	            @Override
+	            public void actionPerformed(ActionEvent arg0) {
+	        	game.createSoldier();
+	            }
+	        });
+	        soldierButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+			.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0),
+				"soldierButton");
+	        soldierButton.getActionMap().put("soldierButton",
+	        	new AbstractAction() {
+	            public void actionPerformed(ActionEvent e) {
+	        	game.createSoldier();
+	            }
 	        });
 	        soldierButton.setBackground(Color.LIGHT_GRAY);
 	        soldierButton.setEnabled(false);
@@ -242,10 +273,19 @@ public class AntiTowerDefenceController {
 	        JButton wizardButton = new JButton("Wizard",
 	    	    new ImageIcon(images[21]));
 	        wizardButton.addActionListener(new ActionListener() {
-	    	@Override
-	    	public void actionPerformed(ActionEvent arg0) {
-	    	    game.createTeleporter();
-	    	}
+	            @Override
+	            public void actionPerformed(ActionEvent arg0) {
+	        	game.createTeleporter();
+	            }
+	        });
+	        wizardButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+			.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0),
+				"wizardButton");
+	        wizardButton.getActionMap().put("wizardButton",
+	        	new AbstractAction() {
+	            public void actionPerformed(ActionEvent e) {
+	        	game.createTeleporter();
+	            }
 	        });
 	        wizardButton.setBackground(Color.LIGHT_GRAY);
 	        wizardButton.setEnabled(false);
@@ -255,14 +295,27 @@ public class AntiTowerDefenceController {
 	        JButton portalButton = new JButton("Portal",
 	    	    new ImageIcon(images[13]));
 	        portalButton.addActionListener(new ActionListener() {
-	    	@Override
-	    	public void actionPerformed(ActionEvent arg0) {
-	    	    for (Unit u : game.getLevel().getUnits()) {
-	    		if (u instanceof TeleporterUnit) {
-	    		    ((TeleporterUnit) u).placePortal();
-	    		}
-	    	    }
-	    	}
+	            @Override
+	            public void actionPerformed(ActionEvent arg0) {
+	        	for (Unit u : game.getLevel().getUnits()) {
+	        	    if (u instanceof TeleporterUnit) {
+	        		((TeleporterUnit) u).placePortal();
+	        	    }
+	        	}
+	            }
+	        });
+	        portalButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+			.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0),
+				"portalButton");
+	        portalButton.getActionMap().put("portalButton",
+	        	new AbstractAction() {
+	            public void actionPerformed(ActionEvent e) {
+	        	for (Unit u : game.getLevel().getUnits()) {
+	        	    if (u instanceof TeleporterUnit) {
+	        		((TeleporterUnit) u).placePortal();
+	        	    }
+	        	}
+	            }
 	        });
 	        portalButton.setBackground(Color.LIGHT_GRAY);
 	        portalButton.setEnabled(false);
@@ -333,7 +386,6 @@ public class AntiTowerDefenceController {
 			@Override
 			public void run() {
 			    enableButtons();
-			    gui.setTowers(game.getLevel().getTowers());
 			    if (game.hasErrors()) {
 				gui.showErrorFrame(game.getErrorMessage());
 				gui.showLosePanel("Game Error!");
