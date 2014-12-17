@@ -128,6 +128,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    @SuppressWarnings("serial")
     private void setMenuListeners() {
 	gui.restart.addActionListener(new ActionListener() {
 	    @Override
@@ -166,25 +167,14 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	gui.pause.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		if (paused) {
-		    paused = false;
-		    SwingWorker<Void, Void> worker =
-			    new SwingWorker<Void, Void>() {
-			@Override
-			protected Void doInBackground() throws Exception {
-			    runGame();
-			    return null;
-			}
-		    };
-		    worker.execute();
-		} else {
-		    paused = true;
-		    if (gameTimer != null) {
-			gameTimer.cancel();
-		    }
-		    gui.getGameForeground().stop();
-		    gui.showPausePanel("Paused");
-		}
+		pauseAction();
+	    }
+	});
+	gui.pause.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+		KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "pause");
+	gui.pause.getActionMap().put("pause", new AbstractAction() {
+	    public void actionPerformed(ActionEvent e) {
+		pauseAction();
 	    }
 	});
 
@@ -215,6 +205,27 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 		gui.showHighscoreFrame(game.getHighScore());
 	    }
 	});
+    }
+
+    private void pauseAction() {
+	if (paused) {
+	    paused = false;
+	    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+		@Override
+		protected Void doInBackground() throws Exception {
+		    runGame();
+		    return null;
+		}
+	    };
+	    worker.execute();
+	} else {
+	    paused = true;
+	    if (gameTimer != null) {
+		gameTimer.cancel();
+	    }
+	    gui.getGameForeground().stop();
+	    gui.showPausePanel("Paused");
+	}
     }
 
     @SuppressWarnings("serial")
