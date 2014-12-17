@@ -8,7 +8,7 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 /**
  * Create a define number of tower and place them on define position.
  * 
- * @author Peter Bjuhr & id10abk Andreas Bolzyk
+ * @author Peter Bjuhr(id10pbn) & id10abk Andreas Bolzyk
  *
  */
 public class TowerPlacerAI {
@@ -53,7 +53,6 @@ public class TowerPlacerAI {
 	    if (towers.isEmpty()) {
 		towers.add(new Tower(possiblePositions[index].getPosition(),
 			stepsPerSecond));
-
 	    } else if (!towers.isEmpty()) {
 		while (containsPosition(towers,
 			possiblePositions[index].getPosition())) {
