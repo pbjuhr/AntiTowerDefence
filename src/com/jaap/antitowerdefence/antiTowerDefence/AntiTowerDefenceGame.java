@@ -225,7 +225,7 @@ public class AntiTowerDefenceGame {
      * Return if the game has generated any errors
      * @return hasError, true if an error has been generated, otherwise false
      */
-    private boolean hasErrors() {
+    public boolean hasErrors() {
 	return hasError;
     }
     
