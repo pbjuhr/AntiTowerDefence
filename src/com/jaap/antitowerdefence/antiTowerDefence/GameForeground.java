@@ -3,22 +3,18 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Semaphore;
 
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
 import com.jaap.antitowerdefence.level.LevelStats;
-import com.jaap.antitowerdefence.terrain.Portal;
-import com.jaap.antitowerdefence.terrain.Switch;
-import com.jaap.antitowerdefence.terrain.Terrain;
-import com.jaap.antitowerdefence.unit.Unit;
+import com.jaap.antitowerdefence.terrain.*;
+import com.jaap.antitowerdefence.unit.*;
 
 /**
  * @author Joakim Sandman (tm08jsn)
@@ -26,6 +22,7 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class GameForeground extends JComponent {
 
     private static final long serialVersionUID = 1L;
+    private Image[] images;
     private CopyOnWriteArrayList<Unit> units;
     private CopyOnWriteArrayList<Tower> towers;
     private CopyOnWriteArrayList<Terrain> road;
@@ -33,7 +30,8 @@ public class GameForeground extends JComponent {
     private Timer timer;
     private Semaphore towersBusy;
 
-    public GameForeground(int fps) {
+    public GameForeground(Image[] images, int fps) {
+	this.images = images;
 	towersBusy = new Semaphore(1);
 	timer = new Timer(Math.round(1000/fps), new ActionListener() {
 	    @Override
@@ -44,7 +42,8 @@ public class GameForeground extends JComponent {
 	timer.setRepeats(true);
     }
 
-    public void setTerrainAndUnits(CopyOnWriteArrayList<Unit> units, CopyOnWriteArrayList<Terrain> road) {
+    public void setTerrainAndUnits(CopyOnWriteArrayList<Unit> units,
+	    CopyOnWriteArrayList<Terrain> road) {
 	this.units = units;
 	this.road = road;
     }
@@ -78,48 +77,77 @@ public class GameForeground extends JComponent {
 	drawRoadObjects(g);
 	drawTowers(g);
 	drawUnits(g);
-	g.setFont(new Font("Courier new", Font.BOLD, 14));
 	g.setColor(Color.WHITE);
-	g.drawString("Score: " + stats.getScore() + "/" + stats.getWinScore(), 10, 15);
+	g.setFont(new Font("Courier new", Font.BOLD, 14));
+	g.drawString("Score: " + stats.getScore() + "/" + stats.getWinScore(),
+		10, 15);
 	g.drawString("Credits: " + stats.getCredits(), 10, 30);
     }
 
     private void drawRoadObjects(Graphics g) {
 	for (Terrain t : road) {
-	    BufferedImage roadObjectImg = null;
-	    BufferedImage dirImg = null;
-	    try {
-		switch (t.getClass().getSimpleName()) {
-		case "Start":
-		    roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Start.png"));
-		    dirImg = ImageIO.read(ResourcesLoader.load("img/DirSmall/" + ((Switch) t).getDirection() + ".png"));
-		    break;
-		case "Goal":
-		    roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Goal.png"));
-		    break;
-		case "Portal":
-		    if (((Portal) t).hasReciever()) {
-			roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Portal_start.png"));
-		    } else if (((Portal) t).getDirection() == null) {
-			roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Portal.png"));
-		    } else {
-			roadObjectImg = ImageIO.read(ResourcesLoader.load("img/Portal_end.png"));
-			dirImg = ImageIO.read(ResourcesLoader.load("img/DirSmall/" + ((Portal) t).getDirection() + ".png"));
-		    }
-		    break;
-		case "Switch":
-		    roadObjectImg = ImageIO.read(ResourcesLoader.load("img/DirBig/" + ((Switch) t).getDirection() + ".png"));
-		    break;
+	    int x = t.getPosition().getX()*32;
+	    int y = t.getPosition().getY()*32;
+	    if (t instanceof Start) {
+		Image dirImg = smallDirImage(((Switch) t).getDirection());
+		g.drawImage(images[8], x, y, null);
+		g.drawImage(dirImg, x, y, null);
+	    } else if (t instanceof Goal) {
+		g.drawImage(images[9], x, y, null);
+	    } else if (t instanceof Portal) {
+		Portal portal = (Portal) t;
+		Direction dir = portal.getDirection();
+		if (portal.hasReciever()) {
+		    g.drawImage(images[14], x, y, null);
+		} else if (dir == null) {
+		    g.drawImage(images[13], x, y, null);
+		} else {
+		    g.drawImage(images[15], x, y, null);
+		    g.drawImage(smallDirImage(dir), x, y, null);
 		}
-		g.drawImage(roadObjectImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
-		if (dirImg != null) {
-		    g.drawImage(dirImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
-		}
-	    }
-	    catch (IOException e) {
-		//e.printStackTrace();
+	    } else if (t instanceof Switch) {
+		Image dirImg = bigDirImage(((Switch) t).getDirection());
+		g.drawImage(dirImg, x, y, null);
 	    }
 	}
+    }
+
+    private Image bigDirImage(Direction dir) {
+	Image dirImg = null;
+	switch (dir) {
+	case EAST:
+	    dirImg = images[0];
+	    break;
+	case NORTH:
+	    dirImg = images[1];
+	    break;
+	case SOUTH:
+	    dirImg = images[2];
+	    break;
+	case WEST:
+	    dirImg = images[3];
+	    break;
+	}
+	return dirImg;
+    }
+
+    private Image smallDirImage(Direction dir) {
+	Image dirImg = null;
+	switch (dir) {
+	case EAST:
+	    dirImg = images[4];
+	    break;
+	case NORTH:
+	    dirImg = images[5];
+	    break;
+	case SOUTH:
+	    dirImg = images[6];
+	    break;
+	case WEST:
+	    dirImg = images[7];
+	    break;
+	}
+	return dirImg;
     }
 
     private void drawTowers(Graphics g) {
@@ -129,39 +157,29 @@ public class GameForeground extends JComponent {
 	    //e.printStackTrace();
 	}
 	for (Tower t : towers) {
-	    BufferedImage towerImg = null;
-	    BufferedImage shootImg = null;
-	    try {
-		Position shootPos = t.getShootPosition();
-		if (shootPos == null) {
-		    towerImg = ImageIO.read(ResourcesLoader.load("img/" + t.getClass().getSimpleName() + ".png"));
-		} else {
-		    towerImg = ImageIO.read(ResourcesLoader.load("img/Tower_shoot.png"));
-		    shootImg = ImageIO.read(ResourcesLoader.load("img/red.png"));
-		    g.setColor(Color.RED);
-		    g.drawLine(t.getPosition().getX()*32 + 16, t.getPosition().getY()*32 + 16,
-			    shootPos.getX()*32 + 16, shootPos.getY()*32 + 16);
-		    g.drawImage(shootImg, shootPos.getX()*32, shootPos.getY()*32, null);
-		}
-	    } catch (IOException e) {
-		//e.printStackTrace();
+	    int x = t.getPosition().getX()*32;
+	    int y = t.getPosition().getY()*32;
+	    Position shootPos = t.getShootPosition();
+	    if (shootPos == null) {
+		g.drawImage(images[16], x, y, null);
+	    } else {
+		int shootX = shootPos.getX()*32;
+		int shootY = shootPos.getY()*32;
+		g.setColor(Color.RED);
+		g.drawLine(x + 16, y + 16, shootX + 18, shootY + 30);
+		g.drawImage(images[18], shootX, shootY, null);
+		g.drawImage(images[17], x, y, null);
 	    }
-	    g.drawImage(towerImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
 	}
 	towersBusy.release();
     }
 
     private void drawUnits(Graphics g) {
 	for (Unit u : units) {
-	    BufferedImage unitImg = null;
-	    try {
-		unitImg = ImageIO.read(ResourcesLoader.load("img/" + u.getClass().getSimpleName() + ".png"));
-	    } catch (IOException e) {
-		//e.printStackTrace();
-	    }
 	    int x = 0;
 	    int y = 0;
-	    int animationOffset = (int) (32 * (1 - (double) u.getCoolDown()/u.getMaxCoolDown()));
+	    int animationOffset = (int)
+		    (32 * (1- (double) u.getCoolDown()/u.getMaxCoolDown()));
 	    switch (u.getDirection()) {
 	    case EAST:
 		x = u.getPosition().getX()*32 + animationOffset;
@@ -180,7 +198,13 @@ public class GameForeground extends JComponent {
 		y = u.getPosition().getY()*32;
 		break;
 	    }
-	    g.drawImage(unitImg, x, y, null);
+	    if (u instanceof FarmerUnit) {
+		g.drawImage(images[19], x, y, null);
+	    } else if (u instanceof SoldierUnit) {
+		g.drawImage(images[20], x, y, null);
+	    } else if (u instanceof TeleporterUnit) {
+		g.drawImage(images[21], x, y, null);
+	    }
 	}
     }
 

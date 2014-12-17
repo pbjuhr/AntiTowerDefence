@@ -1,6 +1,7 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -38,12 +39,14 @@ public class AntiTowerDefenceController {
     private JButton soldierButton;
     private JButton wizardButton;
     private JButton portalButton;
+    private Image[] images;
     private boolean firstRun;
 
     public AntiTowerDefenceController(String level) {
+	loadImages();
 	firstRun = true;
-	stepsPerSec = 20;
-	fps = 40;
+	stepsPerSec = 32;
+	fps = 64;
 	levelName = level;
 	paused = false;
 	newGame();
@@ -58,7 +61,7 @@ public class AntiTowerDefenceController {
 		SwingUtilities.invokeAndWait(new Runnable() {
 		    @Override
 		    public void run() {
-			gui = new AntiTowerDefenceGUI(fps,
+			gui = new AntiTowerDefenceGUI(images, fps,
 				game.getLevelReader().getXDimension(),
 				game.getLevelReader().getYDimension());
 			setMenuListeners();
@@ -215,70 +218,66 @@ public class AntiTowerDefenceController {
     private void setButtons() {
 	gui.emptyButtons();
 	for (String unit : game.getPossibleUnits()) {
-	    try {
-		if (unit.equals("FarmerUnit")) {
-		    JButton farmerButton = new JButton("Farmer",
-			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/FarmerUnit.png"))));
-		    farmerButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			    game.createFarmer();
-			}
-		    });
-		    farmerButton.setBackground(Color.LIGHT_GRAY);
-		    farmerButton.setEnabled(false);
-		    this.farmerButton = farmerButton;
-		    gui.addButton(farmerButton);
-		}
+	    if (unit.equals("FarmerUnit")) {
+	        JButton farmerButton = new JButton("Farmer",
+	    	    new ImageIcon(images[19]));
+	        farmerButton.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0) {
+	    	    game.createFarmer();
+	    	}
+	        });
+	        farmerButton.setBackground(Color.LIGHT_GRAY);
+	        farmerButton.setEnabled(false);
+	        this.farmerButton = farmerButton;
+	        gui.addButton(farmerButton);
+	    }
 
-		if (unit.equals("SoldierUnit")) {
-		    JButton soldierButton = new JButton("Soldier",
-			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/SoldierUnit.png"))));
-		    soldierButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			    game.createSoldier();
-			}
-		    });
-		    soldierButton.setBackground(Color.LIGHT_GRAY);
-		    soldierButton.setEnabled(false);
-		    this.soldierButton = soldierButton;
-		    gui.addButton(soldierButton);
-		}
+	    if (unit.equals("SoldierUnit")) {
+	        JButton soldierButton = new JButton("Soldier",
+	    	    new ImageIcon(images[20]));
+	        soldierButton.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0) {
+	    	    game.createSoldier();
+	    	}
+	        });
+	        soldierButton.setBackground(Color.LIGHT_GRAY);
+	        soldierButton.setEnabled(false);
+	        this.soldierButton = soldierButton;
+	        gui.addButton(soldierButton);
+	    }
 
-		if (unit.equals("TeleporterUnit")) {
-		    JButton wizardButton = new JButton("Wizard",
-			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/TeleporterUnit.png"))));
-		    wizardButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			    game.createTeleporter();
-			}
-		    });
-		    wizardButton.setBackground(Color.LIGHT_GRAY);
-		    wizardButton.setEnabled(false);
-		    this.wizardButton = wizardButton;
-		    gui.addButton(wizardButton);
+	    if (unit.equals("TeleporterUnit")) {
+	        JButton wizardButton = new JButton("Wizard",
+	    	    new ImageIcon(images[21]));
+	        wizardButton.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0) {
+	    	    game.createTeleporter();
+	    	}
+	        });
+	        wizardButton.setBackground(Color.LIGHT_GRAY);
+	        wizardButton.setEnabled(false);
+	        this.wizardButton = wizardButton;
+	        gui.addButton(wizardButton);
 
-		    JButton portalButton = new JButton("Portal",
-			    new ImageIcon(ImageIO.read(ResourcesLoader.load("img/Portal.png"))));
-		    portalButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			    for (Unit u : game.getLevel().getUnits()) {
-				if (u instanceof TeleporterUnit) {
-				    ((TeleporterUnit) u).placePortal();
-				}
-			    }
-			}
-		    });
-		    portalButton.setBackground(Color.LIGHT_GRAY);
-		    portalButton.setEnabled(false);
-		    this.portalButton = portalButton;
-		    gui.addButton(portalButton);
-		}
-	    } catch (IOException e) {
-		//e.printStackTrace();
+	        JButton portalButton = new JButton("Portal",
+	    	    new ImageIcon(images[13]));
+	        portalButton.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0) {
+	    	    for (Unit u : game.getLevel().getUnits()) {
+	    		if (u instanceof TeleporterUnit) {
+	    		    ((TeleporterUnit) u).placePortal();
+	    		}
+	    	    }
+	    	}
+	        });
+	        portalButton.setBackground(Color.LIGHT_GRAY);
+	        portalButton.setEnabled(false);
+	        this.portalButton = portalButton;
+	        gui.addButton(portalButton);
 	    }
 	}
     }
@@ -436,6 +435,42 @@ public class AntiTowerDefenceController {
 	    }
 	} else {
 	    //ERROR
+	}
+    }
+
+    private void loadImages() {
+	images = new Image[22];
+	try {
+	    images[0] = ImageIO.read(ResourcesLoader.load("img/DirBig/EAST.png"));
+	    images[1] = ImageIO.read(ResourcesLoader.load("img/DirBig/NORTH.png"));
+	    images[2] = ImageIO.read(ResourcesLoader.load("img/DirBig/SOUTH.png"));
+	    images[3] = ImageIO.read(ResourcesLoader.load("img/DirBig/WEST.png"));
+
+	    images[4] = ImageIO.read(ResourcesLoader.load("img/DirSmall/EAST.png"));
+	    images[5] = ImageIO.read(ResourcesLoader.load("img/DirSmall/NORTH.png"));
+	    images[6] = ImageIO.read(ResourcesLoader.load("img/DirSmall/SOUTH.png"));
+	    images[7] = ImageIO.read(ResourcesLoader.load("img/DirSmall/WEST.png"));
+
+	    images[8] = ImageIO.read(ResourcesLoader.load("img/Start.png"));
+	    images[9] = ImageIO.read(ResourcesLoader.load("img/Goal.png"));
+
+	    images[10] = ImageIO.read(ResourcesLoader.load("img/Water.png"));
+	    images[11] = ImageIO.read(ResourcesLoader.load("img/Grass.png"));
+	    images[12] = ImageIO.read(ResourcesLoader.load("img/Road.png"));
+
+	    images[13] = ImageIO.read(ResourcesLoader.load("img/Portal.png"));
+	    images[14] = ImageIO.read(ResourcesLoader.load("img/Portal_start.png"));
+	    images[15] = ImageIO.read(ResourcesLoader.load("img/Portal_end.png"));
+
+	    images[16] = ImageIO.read(ResourcesLoader.load("img/Tower.png"));
+	    images[17] = ImageIO.read(ResourcesLoader.load("img/Tower_shoot.png"));
+	    images[18] = ImageIO.read(ResourcesLoader.load("img/red.png"));
+
+	    images[19] = ImageIO.read(ResourcesLoader.load("img/FarmerUnit.png"));
+	    images[20] = ImageIO.read(ResourcesLoader.load("img/SoldierUnit.png"));
+	    images[21] = ImageIO.read(ResourcesLoader.load("img/TeleporterUnit.png"));
+	} catch (IOException e) {
+	    //e.printStackTrace();
 	}
     }
 

@@ -50,7 +50,7 @@ public class Tower{
 	if(coolDown > 0) {
 	    if(coolDown < 
 		    ((stepsPerSecond * shootInterval) - 
-			    ((3/4) * stepsPerSecond))){
+			    ((1.0/6) * stepsPerSecond))){
 		shootPosition = null;
 	    }
 	    coolDown--;

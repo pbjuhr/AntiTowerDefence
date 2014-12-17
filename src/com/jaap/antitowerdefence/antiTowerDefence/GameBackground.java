@@ -1,11 +1,9 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.Image;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import com.jaap.antitowerdefence.terrain.Terrain;
@@ -16,12 +14,14 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 public class GameBackground extends JComponent {
 
     private static final long serialVersionUID = 1L;
+    private Image[] images;
     private int width;
     private int height;
     private Terrain[] grass;
     private CopyOnWriteArrayList<Terrain> road;
 
-    public GameBackground(int width, int height) {
+    public GameBackground(Image[] images, int width, int height) {
+	this.images = images;
 	this.width = width;
 	this.height = height;
     }
@@ -41,40 +41,22 @@ public class GameBackground extends JComponent {
     }
 
     private void drawWater(Graphics g) {
-	BufferedImage waterImg = null;
-	try {
-	    waterImg = ImageIO.read(ResourcesLoader.load("img/Water.png"));
-	} catch (IOException e) {
-	    //e.printStackTrace();
-	}
 	for (int row = 0; row < height; row++) {
 	    for (int col = 0; col < width; col++) {
-		g.drawImage(waterImg, col*32, row*32, null);
+		g.drawImage(images[10], col*32, row*32, null);
 	    }
 	}
     }
 
     private void drawGrass(Graphics g) {
 	for (Terrain t : grass) {
-	    BufferedImage grassImg = null;
-	    try {
-		grassImg = ImageIO.read(ResourcesLoader.load("img/Grass.png"));
-	    } catch (IOException e) {
-		//e.printStackTrace();
-	    }
-	    g.drawImage(grassImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
+	    g.drawImage(images[11], t.getPosition().getX()*32, t.getPosition().getY()*32, null);
 	}
     }
 
     private void drawRoad(Graphics g) {
 	for (Terrain t : road) {
-	    BufferedImage roadImg = null;
-	    try {
-		roadImg = ImageIO.read(ResourcesLoader.load("img/Road.png"));
-	    } catch (IOException e) {
-		//e.printStackTrace();
-	    }
-	    g.drawImage(roadImg, t.getPosition().getX()*32, t.getPosition().getY()*32, null);
+	    g.drawImage(images[12], t.getPosition().getX()*32, t.getPosition().getY()*32, null);
 	}
     }
 
