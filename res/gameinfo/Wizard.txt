@@ -1,6 +1,4 @@
+Health: 100         Cost: 200           HotKey: D           Set of portals: 1
 The wizard is expensive to buy. They are the fastest unit in the game, but their
 health is low. Wizards have a special ability: They can place portals to teleport
 units from a start portal to an end portal. 
-Health:100
-Cost:200
-Set of portals: 1
