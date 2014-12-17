@@ -48,9 +48,6 @@ public class AntiTowerDefenceGame {
 	    setError(e.toString());
 	}
 	highScore = new HighScoreDB();
-	if (!highScore.connectToDB()) {
-	    setError("Could not connect to highscore database");
-	}
 	newLevel();
     }
     

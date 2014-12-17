@@ -336,7 +336,6 @@ public class AntiTowerDefenceController {
 			    gui.setTowers(game.getLevel().getTowers());
 			    if (game.hasErrors()) {
 				gui.showErrorFrame(game.getErrorMessage());
-				stopTime();
 			    }
 			}
 		    });
