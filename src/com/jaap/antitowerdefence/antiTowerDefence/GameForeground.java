@@ -96,8 +96,8 @@ public class GameForeground extends JComponent {
     public void paintComponent(Graphics g) {
 	super.paintComponent(g);
 	drawRoadObjects(g);
-	drawTowers(g);
 	drawUnits(g);
+	drawTowers(g);
 	g.setColor(Color.WHITE);
 	g.setFont(new Font("Courier new", Font.BOLD, 14));
 	g.drawString("Score: " + stats.getScore() + "/" + stats.getWinScore(),
@@ -179,6 +179,21 @@ public class GameForeground extends JComponent {
 	return dirImg;
     }
 
+    private void drawUnits(Graphics g) {
+	for (Unit u : units) {
+	    Position pos = animatedPosition(u);
+	    int x = pos.getX();
+	    int y = pos.getY();
+	    if (u instanceof FarmerUnit) {
+		g.drawImage(images[19], x, y, null);
+	    } else if (u instanceof SoldierUnit) {
+		g.drawImage(images[20], x, y, null);
+	    } else if (u instanceof TeleporterUnit) {
+		g.drawImage(images[21], x, y, null);
+	    }
+	}
+    }
+
     private void drawTowers(Graphics g) {
 	try {
 	    towersBusy.acquire();
@@ -188,12 +203,13 @@ public class GameForeground extends JComponent {
 	for (Tower t : towers) {
 	    int x = t.getPosition().getX()*32;
 	    int y = t.getPosition().getY()*32;
-	    Position shootPos = t.getShootPosition();
-	    if (shootPos == null) {
+	    Unit unitShot = t.getUnitShot();
+	    if (unitShot == null) {
 		g.drawImage(images[16], x, y, null);
 	    } else {
-		int shootX = shootPos.getX()*32;
-		int shootY = shootPos.getY()*32;
+		Position pos = animatedPosition(unitShot);
+		int shootX = pos.getX();
+		int shootY = pos.getY();
 		g.setColor(Color.RED);
 		g.drawLine(x + 16, y + 16, shootX + 18, shootY + 30);
 		g.drawImage(images[18], shootX, shootY, null);
@@ -203,38 +219,26 @@ public class GameForeground extends JComponent {
 	towersBusy.release();
     }
 
-    private void drawUnits(Graphics g) {
-	for (Unit u : units) {
-	    int x = 0;
-	    int y = 0;
-	    int animationOffset = (int)
-		    (32 * (1- (double) u.getCoolDown()/u.getMaxCoolDown()));
-	    switch (u.getDirection()) {
-	    case EAST:
-		x = u.getPosition().getX()*32 + animationOffset;
-		y = u.getPosition().getY()*32;
-		break;
-	    case NORTH:
-		x = u.getPosition().getX()*32;
-		y = u.getPosition().getY()*32 - animationOffset;
-		break;
-	    case SOUTH:
-		x = u.getPosition().getX()*32;
-		y = u.getPosition().getY()*32 + animationOffset;
-		break;
-	    case WEST:
-		x = u.getPosition().getX()*32 - animationOffset;
-		y = u.getPosition().getY()*32;
-		break;
-	    }
-	    if (u instanceof FarmerUnit) {
-		g.drawImage(images[19], x, y, null);
-	    } else if (u instanceof SoldierUnit) {
-		g.drawImage(images[20], x, y, null);
-	    } else if (u instanceof TeleporterUnit) {
-		g.drawImage(images[21], x, y, null);
-	    }
+    private Position animatedPosition(Unit u) {
+	int x = u.getPosition().getX()*32;
+	int y = u.getPosition().getY()*32;
+	int animationOffset = (int)
+		(32 * (1- (double) u.getCoolDown()/u.getMaxCoolDown()));
+	switch (u.getDirection()) {
+	case EAST:
+	    x += animationOffset;
+	    break;
+	case NORTH:
+	    y -= animationOffset;
+	    break;
+	case SOUTH:
+	    y += animationOffset;
+	    break;
+	case WEST:
+	    x -= animationOffset;
+	    break;
 	}
+	return new Position(x, y);
     }
 
 }

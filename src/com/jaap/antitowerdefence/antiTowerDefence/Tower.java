@@ -1,4 +1,6 @@
 package com.jaap.antitowerdefence.antiTowerDefence;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.jaap.antitowerdefence.unit.Unit;
@@ -10,7 +12,7 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class Tower{
 
     private Position position;		// position of the tower
-    private Position shootPosition;	// last shooting position
+    private Unit unitShot;		// last unit shot
     private int range = 2; 		// how far away the tower can see
     private int shootInterval = 2;	// time between ever shot (seconds)
     private int coolDown;		// how many steps until we can shoot
@@ -25,7 +27,7 @@ public class Tower{
     public Tower(Position position, int stepsPerSecond) {
 	this.position = new Position(position.getX(), position.getY());
 	this.stepsPerSecond = stepsPerSecond;
-	shootPosition = null;
+	unitShot = null;
 	resetCoolDown();
     }
     
@@ -50,16 +52,15 @@ public class Tower{
 	if(coolDown > 0) {
 	    if(coolDown < 
 		    ((stepsPerSecond * shootInterval) - 
-			    ((1.0/6) * stepsPerSecond))){
-		shootPosition = null;
+			    ((1.0/4) * stepsPerSecond))) {
+		unitShot = null;
 	    }
 	    coolDown--;
 	} else {
 	    Unit u = findUnitInRange();
 	    if(u != null) {
 		//FIRE!!
-		shootPosition = new Position(u.getPosition().getX(), 
-			u.getPosition().getY());
+		unitShot = u;
 		u.takeDamage(); 
 		resetCoolDown();
 	    }
@@ -67,24 +68,29 @@ public class Tower{
     }
 
     /**
-     * Finds the first unit in range of the Tower
+     * Finds a random unit in range of the Tower
      * @return unit, the Unit object that was found, or null
      */
     private Unit findUnitInRange(){
+	ArrayList<Unit> unitsInRange = new ArrayList<Unit>();
 	for(Unit u : units) {
 	    if(u.getPosition().distanceTo(this.position) <= range) {
-		return u;
+		unitsInRange.add(u);
 	    }
 	}
-	return null;
+	if (!unitsInRange.isEmpty()) {
+	    return unitsInRange.get(new Random().nextInt(unitsInRange.size()));
+	} else {
+	    return null;
+	}
     }
     
     /**
-     * Gets the position of the latest shot
-     * @return Position the postion, or null
+     * Gets the unit hit by the latest shot
+     * @return Unit, the unit, or null
      */
-    public Position getShootPosition() {
-	return shootPosition;
+    public Unit getUnitShot() {
+	return unitShot;
     }
     
     /**
