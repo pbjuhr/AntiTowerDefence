@@ -26,7 +26,8 @@ public class GameBackground extends JComponent {
 	this.height = height;
     }
 
-    public void setTerrain(Terrain[] grass, CopyOnWriteArrayList<Terrain> road) {
+    public void setTerrain(Terrain[] grass,
+	    CopyOnWriteArrayList<Terrain> road) {
 	this.grass = grass;
 	this.road = road;
 	repaint();
@@ -50,13 +51,15 @@ public class GameBackground extends JComponent {
 
     private void drawGrass(Graphics g) {
 	for (Terrain t : grass) {
-	    g.drawImage(images[11], t.getPosition().getX()*32, t.getPosition().getY()*32, null);
+	    g.drawImage(images[11], t.getPosition().getX()*32,
+		    t.getPosition().getY()*32, null);
 	}
     }
 
     private void drawRoad(Graphics g) {
 	for (Terrain t : road) {
-	    g.drawImage(images[12], t.getPosition().getX()*32, t.getPosition().getY()*32, null);
+	    g.drawImage(images[12], t.getPosition().getX()*32,
+		    t.getPosition().getY()*32, null);
 	}
     }
 
