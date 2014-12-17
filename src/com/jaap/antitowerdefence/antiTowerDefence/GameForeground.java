@@ -28,11 +28,16 @@ public class GameForeground extends JComponent {
     private CopyOnWriteArrayList<Terrain> road;
     private LevelStats stats;
     private Timer timer;
+    private Timer levelTime;
+    private long time;
+    private Semaphore timeBusy;
     private Semaphore towersBusy;
 
     public GameForeground(Image[] images, int fps) {
 	this.images = images;
 	towersBusy = new Semaphore(1);
+	timeBusy = new Semaphore(1);
+	time = 0;
 	timer = new Timer(Math.round(1000/fps), new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -40,6 +45,19 @@ public class GameForeground extends JComponent {
 	    }
 	});
 	timer.setRepeats(true);
+	levelTime = new Timer(1000, new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		try {
+		    timeBusy.acquire();
+		} catch (InterruptedException e) {
+		    //e.printStackTrace();
+		}
+		time++;
+		timeBusy.release();
+	    }
+	});
+	levelTime.setRepeats(true);
     }
 
     public void setTerrainAndUnits(CopyOnWriteArrayList<Unit> units,
@@ -60,15 +78,18 @@ public class GameForeground extends JComponent {
 
     public void setStats(LevelStats stats) {
 	this.stats = stats;
+	time = 0;
 	repaint();
     }
 
     public void start() {
 	timer.start();
+	levelTime.start();
     }
 
     public void stop() {
 	timer.stop();
+	levelTime.stop();
     }
 
     @Override
@@ -82,6 +103,14 @@ public class GameForeground extends JComponent {
 	g.drawString("Score: " + stats.getScore() + "/" + stats.getWinScore(),
 		10, 15);
 	g.drawString("Credits: " + stats.getCredits(), 10, 30);
+	try {
+	    timeBusy.acquire();
+	} catch (InterruptedException e) {
+	    // e.printStackTrace();
+	}
+	String timeString = String.format("%02d:%02d", time/60, time%60);
+	timeBusy.release();
+	g.drawString("Time: " + timeString, 10, 45);
     }
 
     private void drawRoadObjects(Graphics g) {
