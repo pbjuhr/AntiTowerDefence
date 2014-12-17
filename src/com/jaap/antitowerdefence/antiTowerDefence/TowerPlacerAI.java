@@ -8,19 +8,24 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 /**
  * Create a define number of tower and place them on define position.
  * 
- * @author Peter Bjuhr(id10pbn) & id10abk Andreas Bolzyk
+ * @author Peter Bjuhr (id10pbn)
+ * @author Andreas Bolzyk id10abk
+ * @author Joakim Sandman (tm08jsn)
  *
  */
 public class TowerPlacerAI {
 
     private int nrOfTowers;
-    private int updateInterval;
+    private int updateTime;
+    private long lastChangeTimeStep;
+    private boolean first;
     private int stepsPerSecond;
     private Terrain[] possiblePositions;
+    private Random rand;
 
     /**
      * This class get a map of buildable terrain and how many tower are allowed
-     * to build. Setup a updateInterval.
+     * to build. Setup an updateTime.
      * 
      * @param possiblePositions
      *            - A array of all buildable terrain.
@@ -31,7 +36,11 @@ public class TowerPlacerAI {
      */
     public TowerPlacerAI(Terrain[] possiblePositions, int nrOfTowers,
 	    int stepsPerSecond) {
-	updateInterval = 20 * stepsPerSecond; // Should update every 20 sec
+	// Should update every 10-20 sec
+	updateTime = stepsPerSecond * (10 + new Random().nextInt(11));
+	lastChangeTimeStep = 0;
+	first = true;
+	rand = new Random();
 	this.stepsPerSecond = stepsPerSecond;
 	this.possiblePositions = possiblePositions;
 	this.nrOfTowers = nrOfTowers;
@@ -44,7 +53,6 @@ public class TowerPlacerAI {
     public CopyOnWriteArrayList<Tower> getNewTowers() {
 	CopyOnWriteArrayList<Tower> towers = new CopyOnWriteArrayList<Tower>();
 
-	Random rand = new Random();
 	int index;
 
 	for (int i = 0; i < nrOfTowers; i++) {
@@ -89,8 +97,25 @@ public class TowerPlacerAI {
      *            - what timestep we are on
      * @return true if it's time to change, otherwise false
      */
-    public boolean timeToChange(int timeStep) {
-	return (timeStep % updateInterval == 0);
+    public boolean timeToChange(long timeStep) {
+	if (timeStep == 0) { // Prevents errors on loop-around of timeStep.
+	    if (!first) {
+		long timePassedSoFar = Long.MAX_VALUE - lastChangeTimeStep + 1;
+		if (timePassedSoFar != Long.MIN_VALUE) {
+		    updateTime -= (int) timePassedSoFar;
+		    lastChangeTimeStep = - timePassedSoFar;
+		}
+	    } else {
+		first = false;
+	    }
+	}
+	if ((timeStep - lastChangeTimeStep) == updateTime) {
+	    updateTime = stepsPerSecond * (10 + rand.nextInt(11));
+	    lastChangeTimeStep = timeStep;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
 }

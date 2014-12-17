@@ -21,7 +21,7 @@ public class AntiTowerDefenceGame {
     
     private boolean hasError;		// Has the game any errors?
     private String errorMessage;	// Error message
-    private int currentStep;	 	// How many steps we've taken
+    private long currentStep;	 	// How many steps we've taken
     private int currentLevelNumber;	// The current level number
     private int stepsPerSecond;		// Steps per second
     private LevelReader theLevelReader;	// The XML reader
@@ -64,6 +64,7 @@ public class AntiTowerDefenceGame {
      * Resets necessary variables and sets new level & towerplacer objects
      */
     public void restartLevel() {
+	currentStep = 0;
 	currentLevel = new Level(theLevelReader.getRoad(currentLevelNumber), 
 		theLevelReader.getGrass(currentLevelNumber), 
 		theLevelReader.getLevelStats(currentLevelNumber));
@@ -101,7 +102,11 @@ public class AntiTowerDefenceGame {
 	    } 
 	}
 
-	currentStep++;
+	if (currentStep == Long.MAX_VALUE) {
+	    currentStep = 0;
+	} else {
+	    currentStep++;
+	}
     }
     
     /**
