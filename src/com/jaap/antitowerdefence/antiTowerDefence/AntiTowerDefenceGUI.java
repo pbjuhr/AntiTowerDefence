@@ -21,11 +21,9 @@ import com.jaap.antitowerdefence.unit.Unit;
 public class AntiTowerDefenceGUI {
 
     private JFrame frame;
-//    private int width;
     private int height;
     private Image[] images;
 
-//    private JLayeredPane gamePanels;
     private GameBackground gameBackground;
     private GameForeground gameForeground;
     private JComponent cover;
@@ -36,18 +34,15 @@ public class AntiTowerDefenceGUI {
 
     private JPanel buttonPanel;
 
-    private JMenuItem restart;
-    private JMenuItem restartLevel;
-    private JMenuItem pause;
-    private JMenuItem quit;
-
-    private JMenuItem help;
-    private JMenuItem about;
-
-    private JMenuItem hightscore;
+    protected JMenuItem restart;
+    protected JMenuItem restartLevel;
+    protected JMenuItem pause;
+    protected JMenuItem quit;
+    protected JMenuItem help;
+    protected JMenuItem about;
+    protected JMenuItem highscore;
 
     public AntiTowerDefenceGUI(Image[] images, int fps, int width, int height) {
-//	this.width = width;
 	this.height = height;
 	this.images = images;
 	frame = new JFrame("Anti Tower Defence");
@@ -143,38 +138,10 @@ public class AntiTowerDefenceGUI {
 
 	JMenu highscoreMenu = new JMenu("Highscore");
 	menuBar.add(highscoreMenu);
-	hightscore = new JMenuItem("Highscore");
-	highscoreMenu.add(hightscore);
+	highscore = new JMenuItem("Highscore");
+	highscoreMenu.add(highscore);
 
 	return menuBar;
-    }
-
-    public JMenuItem getMenuItemRestart() {
-	return restart;
-    }
-
-    public JMenuItem getMenuItemRestartLevel() {
-	return restartLevel;
-    }
-
-    public JMenuItem getMenuItemPause() {
-	return pause;
-    }
-
-    public JMenuItem getMenuItemQuit() {
-	return quit;
-    }
-
-    public JMenuItem getMenuItemHelp() {
-	return help;
-    }
-
-    public JMenuItem getMenuItemAbout() {
-	return about;
-    }
-
-    public JMenuItem getMenuItemHighscore() {
-	return hightscore;
     }
 
     public void addButton(JButton button) {
@@ -485,7 +452,7 @@ public class AntiTowerDefenceGUI {
 		    try {
 			super.insertString(offset, str, attr);
 		    } catch (BadLocationException e) {
-			//e.printStackTrace();
+			// Do nothing and hope it works.
 		    }
 		}
 	    }

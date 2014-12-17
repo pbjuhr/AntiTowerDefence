@@ -14,7 +14,6 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
@@ -69,7 +68,7 @@ public class AntiTowerDefenceController {
 		    }
 		});
 	    } catch (InvocationTargetException | InterruptedException e) {
-		//e.printStackTrace();
+		System.exit(0);
 	    }
 	}
 	updateGUI();
@@ -95,7 +94,7 @@ public class AntiTowerDefenceController {
 		}
 	    });
 	} catch (InvocationTargetException | InterruptedException e) {
-	    //e.printStackTrace();
+	    System.exit(0);
 	}
     }
 
@@ -112,23 +111,13 @@ public class AntiTowerDefenceController {
 		    }
 		});
 	    } catch (InvocationTargetException | InterruptedException e) {
-		//e.printStackTrace();
+		// Do nothing and hope it works.
 	    }
 	}
     }
 
     private void setMenuListeners() {
-	JMenuItem restart = gui.getMenuItemRestart();
-	JMenuItem restartLevel = gui.getMenuItemRestartLevel();
-	JMenuItem pause = gui.getMenuItemPause();
-	JMenuItem quit = gui.getMenuItemQuit();
-
-	JMenuItem help = gui.getMenuItemHelp();
-	JMenuItem about = gui.getMenuItemAbout();
-
-	JMenuItem highscore = gui.getMenuItemHighscore();
-
-	restart.addActionListener(new ActionListener() {
+	gui.restart.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		paused = false;
@@ -144,7 +133,7 @@ public class AntiTowerDefenceController {
 	    }
 	});
 
-	restartLevel.addActionListener(new ActionListener() {
+	gui.restartLevel.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		paused = false;
@@ -162,12 +151,13 @@ public class AntiTowerDefenceController {
 	    }
 	});
 
-	pause.addActionListener(new ActionListener() {
+	gui.pause.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		if (paused) {
 		    paused = false;
-		    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+		    SwingWorker<Void, Void> worker =
+			    new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
 			    runGame();
@@ -186,28 +176,28 @@ public class AntiTowerDefenceController {
 	    }
 	});
 
-	quit.addActionListener(new ActionListener() {
+	gui.quit.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		System.exit(0);
 	    }
 	});
 
-	help.addActionListener(new ActionListener() {
+	gui.help.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		gui.showHelpFrame();
 	    }
 	});
 
-	about.addActionListener(new ActionListener() {
+	gui.about.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		gui.showAboutFrame();
 	    }
 	});
 
-	highscore.addActionListener(new ActionListener() {
+	gui.highscore.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		gui.showHighscoreFrame(game.getHighScore());
@@ -344,6 +334,10 @@ public class AntiTowerDefenceController {
 			public void run() {
 			    enableButtons();
 			    gui.setTowers(game.getLevel().getTowers());
+			    if (game.hasErrors()) {
+				gui.showErrorFrame(game.getErrorMessage());
+				stopTime();
+			    }
 			}
 		    });
 		}
@@ -430,26 +424,35 @@ public class AntiTowerDefenceController {
 		} else if (isHighScore.equals("false")) {
 		    gui.showHighscoreFrame(db);
 		} else {
-		    //ERROR
+		    gui.showErrorFrame("ERROR 1764.\n"
+			    + "Failed to compare sore to current highscore!");
 		}
 	    }
 	} else {
-	    //ERROR
+	    gui.showHighscoreFrame(db);
 	}
     }
 
     private void loadImages() {
 	images = new Image[22];
 	try {
-	    images[0] = ImageIO.read(ResourcesLoader.load("img/DirBig/EAST.png"));
-	    images[1] = ImageIO.read(ResourcesLoader.load("img/DirBig/NORTH.png"));
-	    images[2] = ImageIO.read(ResourcesLoader.load("img/DirBig/SOUTH.png"));
-	    images[3] = ImageIO.read(ResourcesLoader.load("img/DirBig/WEST.png"));
+	    images[0] = ImageIO.read(ResourcesLoader
+		    .load("img/DirBig/EAST.png"));
+	    images[1] = ImageIO.read(ResourcesLoader
+		    .load("img/DirBig/NORTH.png"));
+	    images[2] = ImageIO.read(ResourcesLoader
+		    .load("img/DirBig/SOUTH.png"));
+	    images[3] = ImageIO.read(ResourcesLoader
+		    .load("img/DirBig/WEST.png"));
 
-	    images[4] = ImageIO.read(ResourcesLoader.load("img/DirSmall/EAST.png"));
-	    images[5] = ImageIO.read(ResourcesLoader.load("img/DirSmall/NORTH.png"));
-	    images[6] = ImageIO.read(ResourcesLoader.load("img/DirSmall/SOUTH.png"));
-	    images[7] = ImageIO.read(ResourcesLoader.load("img/DirSmall/WEST.png"));
+	    images[4] = ImageIO.read(ResourcesLoader
+		    .load("img/DirSmall/EAST.png"));
+	    images[5] = ImageIO.read(ResourcesLoader
+		    .load("img/DirSmall/NORTH.png"));
+	    images[6] = ImageIO.read(ResourcesLoader
+		    .load("img/DirSmall/SOUTH.png"));
+	    images[7] = ImageIO.read(ResourcesLoader
+		    .load("img/DirSmall/WEST.png"));
 
 	    images[8] = ImageIO.read(ResourcesLoader.load("img/Start.png"));
 	    images[9] = ImageIO.read(ResourcesLoader.load("img/Goal.png"));
@@ -459,18 +462,24 @@ public class AntiTowerDefenceController {
 	    images[12] = ImageIO.read(ResourcesLoader.load("img/Road.png"));
 
 	    images[13] = ImageIO.read(ResourcesLoader.load("img/Portal.png"));
-	    images[14] = ImageIO.read(ResourcesLoader.load("img/Portal_start.png"));
-	    images[15] = ImageIO.read(ResourcesLoader.load("img/Portal_end.png"));
+	    images[14] = ImageIO.read(ResourcesLoader
+		    .load("img/Portal_start.png"));
+	    images[15] = ImageIO.read(ResourcesLoader
+		    .load("img/Portal_end.png"));
 
 	    images[16] = ImageIO.read(ResourcesLoader.load("img/Tower.png"));
-	    images[17] = ImageIO.read(ResourcesLoader.load("img/Tower_shoot.png"));
+	    images[17] = ImageIO.read(ResourcesLoader
+		    .load("img/Tower_shoot.png"));
 	    images[18] = ImageIO.read(ResourcesLoader.load("img/red.png"));
 
-	    images[19] = ImageIO.read(ResourcesLoader.load("img/FarmerUnit.png"));
-	    images[20] = ImageIO.read(ResourcesLoader.load("img/SoldierUnit.png"));
-	    images[21] = ImageIO.read(ResourcesLoader.load("img/TeleporterUnit.png"));
+	    images[19] = ImageIO.read(ResourcesLoader
+		    .load("img/FarmerUnit.png"));
+	    images[20] = ImageIO.read(ResourcesLoader
+		    .load("img/SoldierUnit.png"));
+	    images[21] = ImageIO.read(ResourcesLoader
+		    .load("img/TeleporterUnit.png"));
 	} catch (IOException e) {
-	    //e.printStackTrace();
+	    System.exit(0);
 	}
     }
 
