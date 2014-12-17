@@ -4,6 +4,7 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
 
 /**
+ * Terrain element that check if unit has land on.
  * 
  * @author Andreas Bolzyk id10abk
  *
@@ -17,7 +18,7 @@ public class Goal extends Terrain implements LandOnInterface {
     }
 
     @Override
-    public void landOn(Unit u){
+    public void landOn(Unit u) {
 	u.setReachedGoal(true);
     }
 }

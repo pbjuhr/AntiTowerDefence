@@ -3,6 +3,7 @@ package com.jaap.antitowerdefence.terrain;
 import com.jaap.antitowerdefence.antiTowerDefence.Position;
 
 /**
+ * Terrain element that allow to build tower on.
  * 
  * @author Andreas Bolzyk id10abk
  * 
