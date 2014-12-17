@@ -32,10 +32,10 @@ import com.jaap.antitowerdefence.terrain.Terrain;
  * LevelReader.java
  * 
  * A XML-reader that takes a level file (xml) for the game Anti Tower Defence,
- * checks if the file is valid and, if so, parse the file. The file is validated
- * with a xml-schema, "levelsSchema.xsd".The class contains functions for
- * retrieving information about the game levels. If the given xml-file is not
- * valid a default file is used.
+ * checks if the file is valid and, if so, parse the file. The file is 
+ * validated with a xml-schema, "levelsSchema.xsd".The class contains functions 
+ * for retrieving information about the game levels. If the given xml-file is 
+ * not valid a default file is used.
  * 
  * @author Anna Osterlund, id10aod
  *
@@ -57,14 +57,11 @@ public class LevelReader {
      * Validates ande parse the file. Sets nrOfLevels and the level maps
      * dimensions.
      * 
-     * @param levelFile
-     *            - file containing valid Anti Tower Defence levels
-     * @throws ParserConfigurationException
-     *             - Error while parsing the level file
-     * @throws IOException
-     *             - Error while creating the docBuilder
-     * @throws SAXException
-     *             - Error while creating the docBuilder
+     * @param levelFile - file containing valid Anti Tower Defence levels
+     * 
+     * @throws ParserConfigurationException - Error while parsing the level file
+     * @throws IOException - Error while creating the docBuilder
+     * @throws SAXException - Error while creating the docBuilder
      */
     public LevelReader(String levelFile) throws ParserConfigurationException,
     SAXException, IOException {
@@ -88,9 +85,10 @@ public class LevelReader {
     }
 
     /**
-     * validateInputFile validates levelfiles given as input by the user. This
-     * is done so that no invalid files are used by the game. If the given
-     * file is invalid the default xml file (levels.xml) is used.
+     * validateInputFile creates a scema with a xsd file (levelsSchema.xsd) and 
+     * validates levelfiles given as input by the user  using this schema. This 
+     * is done so that no invalid files are used by the game. If the given file 
+     * is invalid the default xml file (levels.xml) is used.
      */
     private void validateInputFile() {
 
@@ -127,18 +125,16 @@ public class LevelReader {
      * parseLevelFile uses a DocumentBuilder to parse the level file making it
      * possible to read from the file.
      * 
-     * @throws ParserConfigurationException
-     *             - Error while parsing the level file
-     * @throws IOException
-     *             - Error while creating the docBuilder
-     * @throws SAXException
-     *             - Error while creating the docBuilder
+     * @throws ParserConfigurationException - Error while parsing the level file
+     * @throws IOException - Error while creating the docBuilder
+     * @throws SAXException - Error while creating the docBuilder
      */
     private void parseLevelFile() throws ParserConfigurationException,
     SAXException, IOException {
 
 	DocumentBuilder dBuilder;
-	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilderFactory dbFactory = 
+		DocumentBuilderFactory.newInstance();
 
 	dBuilder = dbFactory.newDocumentBuilder();
 
@@ -177,8 +173,7 @@ public class LevelReader {
      * positions, saves the objects in a Terrain ArrayList and returns the
      * array.
      * 
-     * @param currentLevel
-     *            - the level to extract the positions from
+     * @param currentLevel - the level to extract the positions from
      * @return an ArrayList with walkable Terrain objects or null
      */
     public CopyOnWriteArrayList<Terrain> getRoad(int currentLevel) {
@@ -198,7 +193,8 @@ public class LevelReader {
 		positions = terrainRoad.getElementsByTagName("position");
 		road = new CopyOnWriteArrayList<Terrain>();
 		for (int m = 0; m < (positions.getLength()); m++) {
-		    road.add(getRoadObject("road", (Element) positions.item(m)));
+		    road.add(
+			    getRoadObject("road", (Element) positions.item(m)));
 		}
 		terrainRoad = (Element) level.getElementsByTagName("start")
 			.item(0);
@@ -218,10 +214,8 @@ public class LevelReader {
      * getRoadObject creates and returns an instance of a Terrain object with a
      * given position and type.
      * 
-     * @param type
-     *            - road, goal or start
-     * @param position
-     *            - the position to give to the Terrain object
+     * @param type - road, goal or start
+     * @param position - the position to give to the Terrain object
      * @return - a Terrain object
      */
     private Terrain getRoadObject(String type, Element position) {
@@ -242,13 +236,12 @@ public class LevelReader {
     }
 
     /**
-     * getGrass extracts all the grass positions of a given level from the level
-     * file. Constructs grass objects using these positions and saves the
+     * getGrass extracts all the grass positions of a given level from the 
+     * level file. Constructs grass objects using these positions and saves the
      * objects in a Terrain array and returns the array.
      * 
-     * @param currentLevel
-     *            - the level to extract the positions from
-     * @return an array of Grass objects or null
+     * @param currentLevel - the level to extract the positions from
+     * @return - an array of Grass objects or null
      */
     public Terrain[] getGrass(int currentLevel) {
 	Terrain[] grass;
@@ -285,10 +278,9 @@ public class LevelReader {
      * constructs a LevelStat object with the extracte information and returns
      * this object.
      * 
-     * @param currentLevel
-     *            - the level to extract information about
-     * @return - A LevelStat object containing the start conditions of the level
-     *         or null
+     * @param currentLevel - the level to extract information about
+     * @return - A LevelStat object containing the start conditions of the 
+     * level or null
      */
     public LevelStats getLevelStats(int currentLevel) {
 	LevelStats levelStats;
@@ -317,8 +309,7 @@ public class LevelReader {
      * gerNrOfTowers extracts information from the level file about the nr of
      * towers to be implemented in the given level.
      * 
-     * @param currentLevel
-     *            - the level to extract information about
+     * @param currentLevel - the level to extract information about
      * @return - number of towers in the level
      */
     public int getNrOfTowers(int currentLevel) {
@@ -359,9 +350,9 @@ public class LevelReader {
 		hasUnits = new String[units.getLength()];
 		for (int m = 0; m < units.getLength(); m++) {
 		    unitName = units.item(m).getTextContent();
-		    if (unitName.equals("FarmerUnit")
-			    || unitName.equals("SoldierUnit")
-			    || unitName.equals("TeleporterUnit")) {
+		    if (unitName.equals("FarmerUnit") || 
+			    unitName.equals("SoldierUnit") || 
+			    unitName.equals("TeleporterUnit")) {
 			hasUnits[m] = unitName;
 		    }
 		}

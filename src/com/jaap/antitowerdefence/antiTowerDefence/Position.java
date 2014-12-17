@@ -9,8 +9,8 @@ package com.jaap.antitowerdefence.antiTowerDefence;
  */
 public class Position {
 
-    private int x;	//The x-coorinate of the position
-    private int y;	//The y-coorinate of the position
+    private int x;	//The x-coordinate of the position
+    private int y;	//The y-coordinate of the position
 
     /**
      * Constructor that is used when a Position is initiated. Sets the values
@@ -57,12 +57,13 @@ public class Position {
 
     /**
      * distanceTo calculates the Manhattan/taxi cab distance between two
-     * positions
+     * positions. Manhattan distance isthe sum of the absolute value of the 
+     * distance along the x-axis and the absolute value of the distance along
+     * the y-axis.
      * @param position - the position to mesure the distance to.
      * @return the distance to the position
      */
     public int distanceTo(Position position) {
-	// (avstånd = |x1 - x2| + |y1 - y2|)
 	int distance = ((Math.abs(position.getX() - x) + 
 		(Math.abs(position.getY() - y))));
 	return distance;
