@@ -1,0 +1,2 @@
+Health: 40          Cost: 50            HotKey: A
+The farmer is cheap to buy, but they move slow and have low health.

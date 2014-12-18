@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<levels dimensionX="20" dimensionY="15" nrOfLevels="6">
+	
+	<!-- LEVEL 1 -->
+	<level levelNumber="1">
+		<towers>2</towers>
+		<credits>500</credits>
+		<winScore>150</winScore>
+		<units>
+			<unit>FarmerUnit</unit>
+		</units>
+		<terrain>
+			<grass>
+				<position x="3" y="1"></position>
+				<position x="4" y="1"></position>
+				<position x="1" y="2"></position>
+				<position x="4" y="2"></position>
+				<position x="5" y="2"></position>
+				<position x="1" y="3"></position>
+				<position x="2" y="3"></position>
+				<position x="4" y="3"></position>
+				<position x="5" y="3"></position>
+				<position x="6" y="3"></position>
+				<position x="7" y="3"></position>
+				<position x="8" y="3"></position>
+				<position x="2" y="4"></position>
+				<position x="8" y="4"></position>
+				<position x="2" y="5"></position>
+				<position x="3" y="5"></position>
+				<position x="4" y="5"></position>
+				<position x="5" y="5"></position>
+				<position x="6" y="5"></position>
+				<position x="8" y="5"></position>
+				<position x="9" y="5"></position>
+				<position x="5" y="6"></position>
+				<position x="6" y="6"></position>
+				<position x="6" y="7"></position>
+				<position x="7" y="7"></position>
+				<position x="8" y="7"></position>
+				<position x="13" y="8"></position>
+				<position x="14" y="8"></position>
+				<position x="15" y="8"></position>
+				<position x="16" y="8"></position>
+				<position x="16" y="9"></position>
+				<position x="17" y="9"></position>
+				<position x="18" y="9"></position>
+				<position x="12" y="10"></position>
+				<position x="13" y="10"></position>
+				<position x="14" y="10"></position>
+				<position x="18" y="10"></position>
+				<position x="19" y="10"></position>
+				<position x="13" y="11"></position>
+				<position x="14" y="11"></position>
+				<position x="15" y="11"></position>
+				<position x="16" y="11"></position>
+				<position x="18" y="11"></position>
+				<position x="19" y="11"></position>
+				<position x="16" y="12"></position>
+				<position x="18" y="12"></position>
+			</grass>
+			<road>
+				<position x="2" y="1"></position>
+				<position x="2" y="2"></position>
+				<position x="3" y="2"></position>
+				<position x="3" y="3"></position>
+				<position x="3" y="4"></position>
+				<position x="4" y="4"></position>
+				<position x="5" y="4"></position>
+				<position x="6" y="4"></position>
+				<position x="7" y="4"></position>
+				<position x="7" y="5"></position>		
+				<position x="7" y="6"></position>
+				<position x="8" y="6"></position>
+				<position x="9" y="6"></position>
+				<position x="9" y="7"></position>
+				<position x="10" y="7"></position>	
+				<position x="10" y="8"></position>
+				<position x="10" y="9"></position>
+				<position x="11" y="9"></position>
+				<position x="12" y="9"></position>
+				<position x="13" y="9"></position>	
+				<position x="14" y="9"></position>
+				<position x="15" y="9"></position>
+				<position x="15" y="10"></position>
+				<position x="16" y="10"></position>
+				<position x="17" y="10"></position>
+				<position x="17" y="11"></position>
+				<position x="17" y="12"></position>
+				<position x="17" y="13"></position>
+			</road>
+			<start>
+				<position x="17" y="14"></position>
+			</start>
+			<goal>
+				<position x="2" y="0"></position>
+			</goal>
+		</terrain>
+	</level>
+
+	<!-- LEVEL 2 -->
+	<level levelNumber="2">
+		<towers>6</towers>
+		<credits>700</credits>
+		<winScore>250</winScore>
+		<units>
+			<unit>FarmerUnit</unit>
+			<unit>SoldierUnit</unit>
+		</units>
+		<terrain>
+			<grass>
+				<position x="3" y="0"></position>
+				<position x="5" y="0"></position>
+				<position x="6" y="0"></position>
+				<position x="7" y="0"></position>
+				<position x="1" y="1"></position>
+				<position x="2" y="1"></position>
+				<position x="2" y="2"></position>
+				<position x="4" y="2"></position>
+				<position x="5" y="2"></position>
+				<position x="6" y="2"></position>
+				<position x="7" y="2"></position>
+				<position x="8" y="2"></position>
+				<position x="9" y="2"></position>
+				<position x="13" y="2"></position>
+				<position x="14" y="2"></position>
+				<position x="15" y="2"></position>
+				<position x="4" y="3"></position>
+				<position x="5" y="3"></position>
+				<position x="8" y="3"></position>
+				<position x="9" y="3"></position>
+				<position x="15" y="3"></position>
+				<position x="16" y="3"></position>
+				<position x="13" y="4"></position>
+				<position x="15" y="4"></position>
+				<position x="16" y="4"></position>
+				<position x="12" y="5"></position>
+				<position x="13" y="5"></position>
+				<position x="3" y="6"></position>
+				<position x="4" y="6"></position>
+				<position x="12" y="6"></position>
+				<position x="13" y="6"></position>
+				<position x="15" y="6"></position>
+				<position x="16" y="6"></position>
+				<position x="17" y="6"></position>
+				<position x="18" y="6"></position>
+				<position x="2" y="7"></position>
+				<position x="3" y="7"></position>
+				<position x="4" y="7"></position>
+				<position x="6" y="7"></position>
+				<position x="13" y="7"></position>
+				<position x="15" y="7"></position>
+				<position x="6" y="8"></position>
+				<position x="15" y="8"></position>
+				<position x="3" y="9"></position>
+				<position x="4" y="9"></position>
+				<position x="6" y="9"></position>
+				<position x="8" y="9"></position>
+				<position x="10" y="9"></position>
+				<position x="11" y="9"></position>
+				<position x="12" y="9"></position>
+				<position x="6" y="10"></position>
+				<position x="7" y="10"></position>
+				<position x="8" y="10"></position>
+				<position x="10" y="10"></position>
+				<position x="11" y="10"></position>
+				<position x="4" y="11"></position>
+				<position x="6" y="11"></position>
+				<position x="7" y="11"></position>
+				<position x="8" y="11"></position>
+				<position x="10" y="11"></position>
+				<position x="4" y="12"></position>
+				<position x="10" y="12"></position>
+				<position x="4" y="13"></position>
+				<position x="5" y="13"></position>
+				<position x="6" y="13"></position>
+				<position x="7" y="13"></position>
+				<position x="8" y="13"></position>
+				<position x="9" y="13"></position>
+				<position x="10" y="13"></position>
+			</grass>
+			<road>
+				<position x="3" y="1"></position>
+				<position x="4" y="1"></position>
+				<position x="5" y="1"></position>
+				<position x="6" y="1"></position>
+				<position x="7" y="1"></position>
+				<position x="8" y="1"></position>
+				<position x="9" y="1"></position>
+				<position x="10" y="1"></position>
+				<position x="3" y="2"></position>
+				<position x="10" y="2"></position>
+				<position x="3" y="3"></position>
+				<position x="10" y="3"></position>
+				<position x="11" y="3"></position>
+				<position x="12" y="3"></position>
+				<position x="13" y="3"></position>
+				<position x="14" y="3"></position>
+				<position x="3" y="4"></position>
+				<position x="4" y="4"></position>
+				<position x="5" y="4"></position>
+				<position x="14" y="4"></position>
+				<position x="5" y="5"></position>
+				<position x="14" y="5"></position>
+				<position x="15" y="5"></position>
+				<position x="16" y="5"></position>
+				<position x="17" y="5"></position>
+				<position x="18" y="5"></position>
+				<position x="5" y="6"></position>
+				<position x="14" y="6"></position>
+				<position x="5" y="7"></position>
+				<position x="14" y="7"></position>
+				<position x="1" y="8"></position>
+				<position x="2" y="8"></position>
+				<position x="3" y="8"></position>
+				<position x="4" y="8"></position>
+				<position x="5" y="8"></position>
+				<position x="9" y="8"></position>
+				<position x="10" y="8"></position>
+				<position x="11" y="8"></position>
+				<position x="12" y="8"></position>
+				<position x="13" y="8"></position>
+				<position x="14" y="8"></position>
+				<position x="5" y="9"></position>
+				<position x="9" y="9"></position>
+				<position x="5" y="10"></position>
+				<position x="9" y="10"></position>
+				<position x="5" y="11"></position>
+				<position x="9" y="11"></position>
+				<position x="5" y="12"></position>
+				<position x="6" y="12"></position>
+				<position x="7" y="12"></position>
+				<position x="8" y="12"></position>
+				<position x="9" y="12"></position>
+			</road>
+			<start>
+				<position x="0" y="8"></position>
+			</start>
+			<goal>
+				<position x="19" y="5"></position>
+			</goal>
+		</terrain>
+	</level>
+	
+	<!-- LEVEL 3 -->
+	<level levelNumber="3">
+		<towers>10</towers>
+		<credits>800</credits>
+		<winScore>600</winScore>
+		<units>
+			<unit>FarmerUnit</unit>
+			<unit>TeleporterUnit</unit>
+		</units>
+		<terrain>
+			<grass>
+				<position x="11" y="2"></position>
+				<position x="16" y="2"></position>
+				<position x="17" y="2"></position>
+				<position x="17" y="3"></position>
+				<position x="18" y="3"></position>
+				<position x="5" y="4"></position>
+				<position x="6" y="4"></position>
+				<position x="9" y="4"></position>
+				<position x="11" y="4"></position>
+				<position x="14" y="4"></position>
+				<position x="15" y="4"></position>
+				<position x="17" y="4"></position>
+				<position x="3" y="5"></position>
+				<position x="4" y="5"></position>
+				<position x="5" y="5"></position>
+				<position x="6" y="5"></position>
+				<position x="7" y="5"></position>
+				<position x="8" y="5"></position>
+				<position x="9" y="5"></position>
+				<position x="11" y="5"></position>
+				<position x="12" y="5"></position>
+				<position x="15" y="5"></position>
+				<position x="11" y="6"></position>
+				<position x="12" y="6"></position>
+				<position x="1" y="7"></position>
+				<position x="3" y="7"></position>
+				<position x="4" y="7"></position>
+				<position x="5" y="7"></position>
+				<position x="8" y="7"></position>
+				<position x="9" y="7"></position>
+				<position x="15" y="7"></position>
+				<position x="0" y="8"></position>
+				<position x="1" y="8"></position>
+				<position x="3" y="8"></position>
+				<position x="9" y="8"></position>
+				<position x="10" y="8"></position>
+				<position x="11" y="8"></position>
+				<position x="12" y="8"></position>
+				<position x="14" y="8"></position>
+				<position x="15" y="8"></position>
+				<position x="1" y="9"></position>
+				<position x="11" y="9"></position>
+				<position x="12" y="9"></position>
+				<position x="15" y="9"></position>
+				<position x="17" y="9"></position>
+				<position x="1" y="10"></position>
+				<position x="2" y="10"></position>
+				<position x="3" y="10"></position>
+				<position x="4" y="10"></position>
+				<position x="6" y="10"></position>
+				<position x="7" y="10"></position>
+				<position x="8" y="10"></position>
+				<position x="12" y="10"></position>
+				<position x="17" y="10"></position>
+				<position x="18" y="10"></position>
+				<position x="4" y="11"></position>
+				<position x="6" y="11"></position>
+				<position x="7" y="11"></position>
+				<position x="14" y="11"></position>
+				<position x="17" y="11"></position>
+				<position x="4" y="12"></position>
+				<position x="6" y="12"></position>
+				<position x="11" y="12"></position>
+				<position x="12" y="12"></position>
+				<position x="6" y="13"></position>
+				<position x="12" y="13"></position>
+			</grass>
+			<road>
+				<position x="12" y="1"></position>
+				<position x="12" y="2"></position>
+				<position x="10" y="3"></position>
+				<position x="11" y="3"></position>
+				<position x="12" y="3"></position>
+				<position x="13" y="3"></position>
+				<position x="14" y="3"></position>
+				<position x="15" y="3"></position>
+				<position x="16" y="3"></position>
+				<position x="10" y="4"></position>
+				<position x="16" y="4"></position>
+				<position x="10" y="5"></position>
+				<position x="16" y="5"></position>
+				<position x="2" y="6"></position>
+				<position x="3" y="6"></position>
+				<position x="4" y="6"></position>
+				<position x="5" y="6"></position>
+				<position x="6" y="6"></position>
+				<position x="7" y="6"></position>
+				<position x="8" y="6"></position>
+				<position x="9" y="6"></position>
+				<position x="10" y="6"></position>
+				<position x="16" y="6"></position>
+				<position x="2" y="7"></position>
+				<position x="10" y="7"></position>
+				<position x="11" y="7"></position>
+				<position x="12" y="7"></position>
+				<position x="13" y="7"></position>
+				<position x="16" y="7"></position>
+				<position x="2" y="8"></position>
+				<position x="13" y="8"></position>
+				<position x="16" y="8"></position>
+				<position x="2" y="9"></position>
+				<position x="3" y="9"></position>
+				<position x="4" y="9"></position>
+				<position x="5" y="9"></position>
+				<position x="6" y="9"></position>
+				<position x="7" y="9"></position>
+				<position x="8" y="9"></position>
+				<position x="9" y="9"></position>
+				<position x="13" y="9"></position>
+				<position x="16" y="9"></position>
+				<position x="5" y="10"></position>
+				<position x="9" y="10"></position>
+				<position x="13" y="10"></position>
+				<position x="16" y="10"></position>
+				<position x="5" y="11"></position>
+				<position x="9" y="11"></position>
+				<position x="10" y="11"></position>
+				<position x="11" y="11"></position>
+				<position x="12" y="11"></position>
+				<position x="13" y="11"></position>
+				<position x="16" y="11"></position>
+				<position x="5" y="12"></position>
+				<position x="13" y="12"></position>
+				<position x="14" y="12"></position>
+				<position x="15" y="12"></position>
+				<position x="16" y="12"></position>
+				<position x="2" y="13"></position>
+				<position x="3" y="13"></position>
+				<position x="4" y="13"></position>
+				<position x="5" y="13"></position>
+			</road>
+			<start>
+				<position x="2" y="14"></position>
+			</start>
+			<goal>
+				<position x="12" y="0"></position>
+			</goal>
+		</terrain>
+	</level>
+	
+	<!-- LEVEL 4 -->
+	<level levelNumber="4">
+		<towers>10</towers>
+		<credits>1400</credits>
+		<winScore>600</winScore>
+		<units>
+			<unit>FarmerUnit</unit>
+			<unit>SoldierUnit</unit>
+			<unit>TeleporterUnit</unit>
+		</units>
+		<terrain>
+			<grass>
+				<position x="10" y="0"></position>
+				<position x="11" y="0"></position>
+				<position x="15" y="0"></position>
+				<position x="16" y="0"></position>
+				<position x="3" y="1"></position>
+				<position x="16" y="1"></position>
+				<position x="17" y="1"></position>
+				<position x="3" y="2"></position>
+				<position x="4" y="2"></position>
+				<position x="7" y="2"></position>
+				<position x="8" y="2"></position>
+				<position x="9" y="2"></position>
+				<position x="10" y="2"></position>
+				<position x="14" y="2"></position>
+				<position x="16" y="2"></position>
+				<position x="1" y="3"></position>
+				<position x="3" y="3"></position>
+				<position x="8" y="3"></position>
+				<position x="0" y="4"></position>
+				<position x="1" y="4"></position>
+				<position x="5" y="4"></position>
+				<position x="10" y="4"></position>
+				<position x="11" y="4"></position>
+				<position x="12" y="4"></position>
+				<position x="13" y="4"></position>
+				<position x="14" y="4"></position>
+				<position x="0" y="5"></position>
+				<position x="1" y="5"></position>
+				<position x="3" y="5"></position>
+				<position x="4" y="5"></position>
+				<position x="5" y="5"></position>
+				<position x="6" y="5"></position>
+				<position x="8" y="5"></position>
+				<position x="10" y="5"></position>
+				<position x="14" y="5"></position>
+				<position x="15" y="5"></position>
+				<position x="16" y="5"></position>
+				<position x="1" y="6"></position>
+				<position x="4" y="6"></position>
+				<position x="6" y="7"></position>
+				<position x="7" y="7"></position>
+				<position x="8" y="7"></position>
+				<position x="9" y="7"></position>
+				<position x="10" y="7"></position>
+				<position x="11" y="7"></position>
+				<position x="15" y="7"></position>
+				<position x="16" y="7"></position>
+				<position x="18" y="7"></position>
+				<position x="1" y="8"></position>
+				<position x="6" y="8"></position>
+				<position x="10" y="8"></position>
+				<position x="11" y="8"></position>
+				<position x="12" y="8"></position>
+				<position x="16" y="8"></position>
+				<position x="0" y="9"></position>
+				<position x="1" y="9"></position>
+				<position x="3" y="9"></position>
+				<position x="4" y="9"></position>
+				<position x="12" y="9"></position>
+				<position x="3" y="10"></position>
+				<position x="4" y="10"></position>
+				<position x="5" y="10"></position>
+				<position x="6" y="10"></position>
+				<position x="7" y="10"></position>
+				<position x="10" y="10"></position>
+				<position x="16" y="10"></position>
+				<position x="1" y="11"></position>
+				<position x="2" y="11"></position>
+				<position x="3" y="11"></position>
+				<position x="7" y="11"></position>
+				<position x="15" y="11"></position>
+				<position x="16" y="11"></position>
+				<position x="18" y="11"></position>
+				<position x="1" y="12"></position>
+				<position x="6" y="12"></position>
+				<position x="7" y="12"></position>
+				<position x="8" y="12"></position>
+				<position x="13" y="12"></position>
+				<position x="14" y="12"></position>
+				<position x="15" y="12"></position>
+				<position x="16" y="12"></position>
+				<position x="18" y="12"></position>
+				<position x="19" y="12"></position>
+				<position x="18" y="13"></position>
+				<position x="0" y="14"></position>
+				<position x="4" y="14"></position>
+				<position x="5" y="14"></position>
+				<position x="6" y="14"></position>
+				<position x="7" y="14"></position>
+				<position x="12" y="14"></position>
+				<position x="13" y="14"></position>
+				<position x="14" y="14"></position>
+			</grass>
+			<road>
+				<position x="2" y="1"></position>
+				<position x="8" y="1"></position>
+				<position x="9" y="1"></position>
+				<position x="10" y="1"></position>
+				<position x="11" y="1"></position>
+				<position x="12" y="1"></position>
+				<position x="13" y="1"></position>
+				<position x="14" y="1"></position>
+				<position x="15" y="1"></position>
+				<position x="2" y="2"></position>
+				<position x="15" y="2"></position>
+				<position x="2" y="3"></position>
+				<position x="9" y="3"></position>
+				<position x="10" y="3"></position>
+				<position x="11" y="3"></position>
+				<position x="12" y="3"></position>
+				<position x="13" y="3"></position>
+				<position x="14" y="3"></position>
+				<position x="15" y="3"></position>
+				<position x="2" y="4"></position>
+				<position x="9" y="4"></position>
+				<position x="2" y="5"></position>
+				<position x="9" y="5"></position>
+				<position x="2" y="6"></position>
+				<position x="5" y="6"></position>
+				<position x="6" y="6"></position>
+				<position x="7" y="6"></position>
+				<position x="8" y="6"></position>
+				<position x="9" y="6"></position>
+				<position x="10" y="6"></position>
+				<position x="11" y="6"></position>
+				<position x="12" y="6"></position>
+				<position x="13" y="6"></position>
+				<position x="14" y="6"></position>
+				<position x="15" y="6"></position>
+				<position x="16" y="6"></position>
+				<position x="17" y="6"></position>
+				<position x="2" y="7"></position>
+				<position x="5" y="7"></position>
+				<position x="17" y="7"></position>
+				<position x="2" y="8"></position>
+				<position x="5" y="8"></position>
+				<position x="17" y="8"></position>
+				<position x="2" y="9"></position>
+				<position x="5" y="9"></position>
+				<position x="6" y="9"></position>
+				<position x="7" y="9"></position>
+				<position x="8" y="9"></position>
+				<position x="9" y="9"></position>
+				<position x="10" y="9"></position>
+				<position x="11" y="9"></position>
+				<position x="17" y="9"></position>
+				<position x="0" y="10"></position>
+				<position x="1" y="10"></position>
+				<position x="2" y="10"></position>
+				<position x="11" y="10"></position>
+				<position x="17" y="10"></position>
+				<position x="0" y="11"></position>
+				<position x="11" y="11"></position>
+				<position x="17" y="11"></position>
+				<position x="0" y="12"></position>
+				<position x="11" y="12"></position>
+				<position x="17" y="12"></position>
+				<position x="0" y="13"></position>
+				<position x="1" y="13"></position>
+				<position x="2" y="13"></position>
+				<position x="3" y="13"></position>
+				<position x="4" y="13"></position>
+				<position x="5" y="13"></position>
+				<position x="6" y="13"></position>
+				<position x="7" y="13"></position>
+				<position x="8" y="13"></position>
+				<position x="9" y="13"></position>
+				<position x="10" y="13"></position>
+				<position x="11" y="13"></position>
+				<position x="12" y="13"></position>
+				<position x="13" y="13"></position>
+				<position x="14" y="13"></position>
+				<position x="15" y="13"></position>
+				<position x="16" y="13"></position>
+				<position x="17" y="13"></position>
+			</road>
+			<start>
+				<position x="2" y="0"></position>
+			</start>
+			<goal>
+				<position x="8" y="0"></position>
+			</goal>
+		</terrain>
+	</level>
+	
+		<!-- LEVEL 5 -->
+	<level levelNumber="5">
+		<towers>14</towers>
+		<credits>1600</credits>
+		<winScore>800</winScore>
+		<units>
+			<unit>FarmerUnit</unit>
+			<unit>SoldierUnit</unit>
+			<unit>TeleporterUnit</unit>
+		</units>
+		<terrain>
+			<grass>
+				<position x="7" y="0"></position>
+				<position x="8" y="0"></position>
+				<position x="9" y="0"></position>
+				<position x="6" y="1"></position>
+				<position x="7" y="1"></position>
+				<position x="8" y="1"></position>
+				<position x="9" y="1"></position>
+				<position x="10" y="1"></position>
+				<position x="11" y="1"></position>
+				<position x="12" y="1"></position>
+				<position x="2" y="3"></position>
+				<position x="4" y="3"></position>
+				<position x="5" y="3"></position>
+				<position x="6" y="3"></position>
+				<position x="7" y="3"></position>
+				<position x="8" y="3"></position>
+				<position x="9" y="3"></position>
+				<position x="10" y="3"></position>
+				<position x="11" y="3"></position>
+				<position x="12" y="3"></position>
+				<position x="13" y="3"></position>
+				<position x="14" y="3"></position>
+				<position x="15" y="3"></position>
+				<position x="16" y="3"></position>
+				<position x="1" y="4"></position>
+				<position x="2" y="4"></position>
+				<position x="4" y="4"></position>
+				<position x="5" y="4"></position>
+				<position x="6" y="4"></position>
+				<position x="7" y="4"></position>
+				<position x="8" y="4"></position>
+				<position x="9" y="4"></position>
+				<position x="10" y="4"></position>
+				<position x="11" y="4"></position>
+				<position x="12" y="4"></position>
+				<position x="13" y="4"></position>
+				<position x="14" y="4"></position>
+				<position x="15" y="4"></position>
+				<position x="16" y="4"></position>
+				<position x="1" y="5"></position>
+				<position x="2" y="5"></position>
+				<position x="4" y="5"></position>
+				<position x="5" y="5"></position>
+				<position x="15" y="5"></position>
+				<position x="16" y="5"></position>
+				<position x="2" y="6"></position>
+				<position x="4" y="6"></position>
+				<position x="5" y="6"></position>
+				<position x="7" y="6"></position>
+				<position x="11" y="6"></position>
+				<position x="12" y="6"></position>
+				<position x="13" y="6"></position>
+				<position x="15" y="6"></position>
+				<position x="16" y="6"></position>
+				<position x="2" y="7"></position>
+				<position x="7" y="7"></position>
+				<position x="15" y="7"></position>
+				<position x="16" y="7"></position>
+				<position x="4" y="8"></position>
+				<position x="5" y="8"></position>
+				<position x="7" y="8"></position>
+				<position x="11" y="8"></position>
+				<position x="12" y="8"></position>
+				<position x="13" y="8"></position>
+				<position x="15" y="8"></position>
+				<position x="16" y="8"></position>
+				<position x="18" y="8"></position>
+				<position x="4" y="9"></position>
+				<position x="5" y="9"></position>
+				<position x="15" y="9"></position>
+				<position x="16" y="9"></position>
+				<position x="18" y="9"></position>
+				<position x="19" y="9"></position>
+				<position x="4" y="10"></position>
+				<position x="5" y="10"></position>
+				<position x="6" y="10"></position>
+				<position x="7" y="10"></position>
+				<position x="8" y="10"></position>
+				<position x="9" y="10"></position>
+				<position x="10" y="10"></position>
+				<position x="11" y="10"></position>
+				<position x="12" y="10"></position>
+				<position x="13" y="10"></position>
+				<position x="14" y="10"></position>
+				<position x="15" y="10"></position>
+				<position x="16" y="10"></position>
+				<position x="18" y="10"></position>
+				<position x="19" y="10"></position>
+				<position x="2" y="11"></position>
+				<position x="4" y="11"></position>
+				<position x="5" y="11"></position>
+				<position x="6" y="11"></position>
+				<position x="7" y="11"></position>
+				<position x="8" y="11"></position>
+				<position x="9" y="11"></position>
+				<position x="10" y="11"></position>
+				<position x="11" y="11"></position>
+				<position x="12" y="11"></position>
+				<position x="13" y="11"></position>
+				<position x="14" y="11"></position>
+				<position x="15" y="11"></position>
+				<position x="16" y="11"></position>
+				<position x="18" y="11"></position>
+				<position x="1" y="12"></position>
+				<position x="2" y="12"></position>
+				<position x="2" y="13"></position>
+				<position x="3" y="13"></position>
+				<position x="4" y="13"></position>
+				<position x="9" y="13"></position>
+				<position x="10" y="13"></position>
+				<position x="11" y="13"></position>
+				<position x="12" y="13"></position>
+				<position x="3" y="14"></position>
+				<position x="10" y="14"></position>
+				<position x="11" y="14"></position>
+			</grass>
+			<road>
+				<position x="3" y="2"></position>
+				<position x="4" y="2"></position>
+				<position x="5" y="2"></position>
+				<position x="6" y="2"></position>
+				<position x="7" y="2"></position>
+				<position x="8" y="2"></position>
+				<position x="9" y="2"></position>
+				<position x="10" y="2"></position>
+				<position x="11" y="2"></position>
+				<position x="12" y="2"></position>
+				<position x="13" y="2"></position>
+				<position x="14" y="2"></position>
+				<position x="15" y="2"></position>
+				<position x="16" y="2"></position>
+				<position x="17" y="2"></position>
+				<position x="3" y="3"></position>
+				<position x="17" y="3"></position>
+				<position x="3" y="4"></position>
+				<position x="17" y="4"></position>
+				<position x="3" y="5"></position>
+				<position x="6" y="5"></position>
+				<position x="7" y="5"></position>
+				<position x="8" y="5"></position>
+				<position x="9" y="5"></position>
+				<position x="10" y="5"></position>
+				<position x="11" y="5"></position>
+				<position x="12" y="5"></position>
+				<position x="13" y="5"></position>
+				<position x="14" y="5"></position>
+				<position x="17" y="5"></position>
+				<position x="3" y="6"></position>
+				<position x="6" y="6"></position>
+				<position x="14" y="6"></position>
+				<position x="17" y="6"></position>
+				<position x="18" y="6"></position>
+				<position x="3" y="7"></position>
+				<position x="4" y="7"></position>
+				<position x="5" y="7"></position>
+				<position x="6" y="7"></position>
+				<position x="10" y="7"></position>
+				<position x="11" y="7"></position>
+				<position x="12" y="7"></position>
+				<position x="13" y="7"></position>
+				<position x="14" y="7"></position>
+				<position x="17" y="7"></position>
+				<position x="3" y="8"></position>
+				<position x="6" y="8"></position>
+				<position x="14" y="8"></position>
+				<position x="17" y="8"></position>
+				<position x="3" y="9"></position>
+				<position x="6" y="9"></position>
+				<position x="7" y="9"></position>
+				<position x="8" y="9"></position>
+				<position x="9" y="9"></position>
+				<position x="10" y="9"></position>
+				<position x="11" y="9"></position>
+				<position x="12" y="9"></position>
+				<position x="13" y="9"></position>
+				<position x="14" y="9"></position>
+				<position x="17" y="9"></position>
+				<position x="3" y="10"></position>
+				<position x="17" y="10"></position>
+				<position x="3" y="11"></position>
+				<position x="17" y="11"></position>
+				<position x="3" y="12"></position>
+				<position x="4" y="12"></position>
+				<position x="5" y="12"></position>
+				<position x="6" y="12"></position>
+				<position x="7" y="12"></position>
+				<position x="8" y="12"></position>
+				<position x="9" y="12"></position>
+				<position x="10" y="12"></position>
+				<position x="11" y="12"></position>
+				<position x="12" y="12"></position>
+				<position x="13" y="12"></position>
+				<position x="14" y="12"></position>
+				<position x="15" y="12"></position>
+				<position x="16" y="12"></position>
+				<position x="17" y="12"></position>
+			</road>
+			<start>
+				<position x="19" y="6"></position>
+			</start>
+			<goal>
+				<position x="9" y="7"></position>
+			</goal>
+		</terrain>
+	</level>
+	
+		<!-- LEVEL 6 -->
+	<level levelNumber="6">
+		<towers>24</towers>
+		<credits>2000</credits>
+		<winScore>1000</winScore>
+		<units>
+			<unit>FarmerUnit</unit>
+			<unit>SoldierUnit</unit>
+			<unit>TeleporterUnit</unit>
+		</units>
+		<terrain>
+			<grass>
+				<position x="1" y="0"></position>
+				<position x="17" y="0"></position>
+				<position x="0" y="1"></position>
+				<position x="1" y="1"></position>
+				<position x="3" y="1"></position>
+				<position x="4" y="1"></position>
+				<position x="14" y="1"></position>
+				<position x="15" y="1"></position>
+				<position x="17" y="1"></position>
+				<position x="0" y="2"></position>
+				<position x="1" y="2"></position>
+				<position x="3" y="2"></position>
+				<position x="6" y="2"></position>
+				<position x="7" y="2"></position>
+				<position x="12" y="2"></position>
+				<position x="13" y="2"></position>
+				<position x="14" y="2"></position>
+				<position x="15" y="2"></position>
+				<position x="1" y="3"></position>
+				<position x="3" y="4"></position>
+				<position x="5" y="4"></position>
+				<position x="6" y="4"></position>
+				<position x="11" y="4"></position>
+				<position x="12" y="4"></position>
+				<position x="14" y="4"></position>
+				<position x="15" y="4"></position>
+				<position x="2" y="5"></position>
+				<position x="3" y="5"></position>
+				<position x="12" y="5"></position>
+				<position x="14" y="5"></position>
+				<position x="17" y="5"></position>
+				<position x="18" y="5"></position>
+				<position x="1" y="6"></position>
+				<position x="2" y="6"></position>
+				<position x="18" y="6"></position>
+				<position x="19" y="6"></position>
+				<position x="1" y="7"></position>
+				<position x="2" y="7"></position>
+				<position x="6" y="7"></position>
+				<position x="10" y="7"></position>
+				<position x="11" y="7"></position>
+				<position x="12" y="7"></position>
+				<position x="13" y="7"></position>
+				<position x="16" y="7"></position>
+				<position x="18" y="7"></position>
+				<position x="1" y="8"></position>
+				<position x="2" y="8"></position>
+				<position x="4" y="8"></position>
+				<position x="5" y="8"></position>
+				<position x="6" y="8"></position>
+				<position x="7" y="8"></position>
+				<position x="11" y="8"></position>
+				<position x="12" y="8"></position>
+				<position x="15" y="8"></position>
+				<position x="16" y="8"></position>
+				<position x="2" y="9"></position>
+				<position x="18" y="9"></position>
+				<position x="0" y="10"></position>
+				<position x="1" y="10"></position>
+				<position x="5" y="10"></position>
+				<position x="7" y="10"></position>
+				<position x="8" y="10"></position>
+				<position x="12" y="10"></position>
+				<position x="13" y="10"></position>
+				<position x="15" y="10"></position>
+				<position x="16" y="10"></position>
+				<position x="17" y="10"></position>
+				<position x="18" y="10"></position>
+				<position x="0" y="11"></position>
+				<position x="16" y="11"></position>
+				<position x="17" y="11"></position>
+				<position x="0" y="12"></position>
+				<position x="2" y="12"></position>
+				<position x="3" y="12"></position>
+				<position x="4" y="12"></position>
+				<position x="5" y="12"></position>
+				<position x="6" y="12"></position>
+				<position x="10" y="12"></position>
+				<position x="11" y="12"></position>
+				<position x="12" y="12"></position>
+				<position x="13" y="12"></position>
+				<position x="14" y="12"></position>
+				<position x="16" y="12"></position>
+				<position x="2" y="13"></position>
+				<position x="3" y="13"></position>
+				<position x="13" y="13"></position>
+				<position x="14" y="13"></position>
+			</grass>
+			<road>
+				<position x="2" y="0"></position>
+				<position x="3" y="0"></position>
+				<position x="4" y="0"></position>
+				<position x="5" y="0"></position>
+				<position x="6" y="0"></position>
+				<position x="7" y="0"></position>
+				<position x="8" y="0"></position>
+				<position x="10" y="0"></position>
+				<position x="11" y="0"></position>
+				<position x="12" y="0"></position>
+				<position x="13" y="0"></position>
+				<position x="14" y="0"></position>
+				<position x="15" y="0"></position>
+				<position x="16" y="0"></position>
+				<position x="2" y="1"></position>
+				<position x="16" y="1"></position>
+				<position x="2" y="2"></position>
+				<position x="16" y="2"></position>
+				<position x="2" y="3"></position>
+				<position x="3" y="3"></position>
+				<position x="4" y="3"></position>
+				<position x="5" y="3"></position>
+				<position x="6" y="3"></position>
+				<position x="7" y="3"></position>
+				<position x="8" y="3"></position>
+				<position x="9" y="3"></position>
+				<position x="10" y="3"></position>
+				<position x="11" y="3"></position>
+				<position x="12" y="3"></position>
+				<position x="13" y="3"></position>
+				<position x="14" y="3"></position>
+				<position x="15" y="3"></position>
+				<position x="16" y="3"></position>
+				<position x="4" y="4"></position>
+				<position x="13" y="4"></position>
+				<position x="4" y="5"></position>
+				<position x="13" y="5"></position>
+				<position x="3" y="6"></position>
+				<position x="4" y="6"></position>
+				<position x="5" y="6"></position>
+				<position x="6" y="6"></position>
+				<position x="7" y="6"></position>
+				<position x="8" y="6"></position>
+				<position x="9" y="6"></position>
+				<position x="10" y="6"></position>
+				<position x="11" y="6"></position>
+				<position x="12" y="6"></position>
+				<position x="13" y="6"></position>
+				<position x="14" y="6"></position>
+				<position x="15" y="6"></position>
+				<position x="16" y="6"></position>
+				<position x="17" y="6"></position>
+				<position x="3" y="7"></position>
+				<position x="17" y="7"></position>
+				<position x="3" y="8"></position>
+				<position x="17" y="8"></position>
+				<position x="3" y="9"></position>
+				<position x="4" y="9"></position>
+				<position x="5" y="9"></position>
+				<position x="6" y="9"></position>
+				<position x="7" y="9"></position>
+				<position x="8" y="9"></position>
+				<position x="9" y="9"></position>
+				<position x="10" y="9"></position>
+				<position x="11" y="9"></position>
+				<position x="12" y="9"></position>
+				<position x="13" y="9"></position>
+				<position x="14" y="9"></position>
+				<position x="15" y="9"></position>
+				<position x="16" y="9"></position>
+				<position x="17" y="9"></position>
+				<position x="6" y="10"></position>
+				<position x="14" y="10"></position>
+				<position x="1" y="11"></position>
+				<position x="2" y="11"></position>
+				<position x="3" y="11"></position>
+				<position x="4" y="11"></position>
+				<position x="5" y="11"></position>
+				<position x="6" y="11"></position>
+				<position x="7" y="11"></position>
+				<position x="8" y="11"></position>
+				<position x="9" y="11"></position>
+				<position x="10" y="11"></position>
+				<position x="11" y="11"></position>
+				<position x="12" y="11"></position>
+				<position x="13" y="11"></position>
+				<position x="14" y="11"></position>
+				<position x="15" y="11"></position>
+				<position x="1" y="12"></position>
+				<position x="15" y="12"></position>
+				<position x="1" y="13"></position>
+				<position x="15" y="13"></position>
+				<position x="1" y="14"></position>
+				<position x="2" y="14"></position>
+				<position x="3" y="14"></position>
+				<position x="4" y="14"></position>
+				<position x="5" y="14"></position>
+				<position x="6" y="14"></position>
+				<position x="7" y="14"></position>
+				<position x="8" y="14"></position>
+				<position x="10" y="14"></position>
+				<position x="11" y="14"></position>
+				<position x="12" y="14"></position>
+				<position x="13" y="14"></position>
+				<position x="14" y="14"></position>
+				<position x="15" y="14"></position>
+			</road>
+			<start>
+				<position x="9" y="0"></position>
+			</start>
+			<goal>
+				<position x="9" y="14"></position>
+			</goal>
+		</terrain>
+	</level>
+</levels>

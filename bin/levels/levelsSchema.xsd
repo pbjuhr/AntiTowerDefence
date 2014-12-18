@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="levels">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="level" maxOccurs="unbounded" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation> LEVEL 1  LEVEL 2  LEVEL 3  LEVEL 4  LEVEL 5  LEVEL 6 </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="towers"/>
+              <xs:element type="xs:short" name="credits"/>
+              <xs:element type="xs:short" name="winScore"/>
+              <xs:element name="units">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="unit" maxOccurs="unbounded" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="terrain">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="grass">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="position" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="road">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="position" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="start">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="position">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="goal">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="position">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:byte" name="x" use="optional"/>
+                                  <xs:attribute type="xs:byte" name="y" use="optional"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:byte" name="levelNumber" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:byte" name="dimensionX"/>
+      <xs:attribute type="xs:byte" name="dimensionY"/>
+      <xs:attribute type="xs:byte" name="nrOfLevels"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
