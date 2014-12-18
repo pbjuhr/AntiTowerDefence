@@ -6,7 +6,8 @@ import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * 
- * @author Andreas Bolzyk id10abk, Peter Bjuhr (id10pbn)
+ * @author Andreas Bolzyk id10abk
+ * @author Peter Bjuhr id10pbn
  *
  */
 public class Portal extends Terrain implements LandOnInterface {
@@ -14,7 +15,11 @@ public class Portal extends Terrain implements LandOnInterface {
     private Direction direction;
     private Portal receiver;
     private boolean hasReceiver;
-
+    
+    /**
+     * Creates an instance of a Portal
+     * @param position - the position of the portal
+     */
     public Portal(Position position) {
 	super(position);
 	this.walkable = true;
@@ -36,9 +41,9 @@ public class Portal extends Terrain implements LandOnInterface {
     }
     
     /**
-     * Sets the portals reciever
+     * Sets the portals receiver
      * @author Peter Bjuhr (id10pbn)
-     * @param p, the reciever position
+     * @param p, the receiver position
      */
     public void setReciever(Portal p) {
 	this.receiver = p;
@@ -46,7 +51,7 @@ public class Portal extends Terrain implements LandOnInterface {
     }
     
     /**
-     * Gets the portals reciever
+     * Gets the portals receiver
      * @author Peter Bjuhr (id10pbn)
      * @return Portal, the portal object
      */
@@ -55,16 +60,16 @@ public class Portal extends Terrain implements LandOnInterface {
     }
     
     /**
-     * Does the portal have a reciever
+     * Does the portal have a receiver
      * @author Peter Bjuhr (id10pbn)
-     * @return true if portal have reciever, otherwise false
+     * @return true if portal have receiver, otherwise false
      */
     public boolean hasReciever() {
 	return hasReceiver;
     }
     
     /**
-     * Sets the direction of recieving portal
+     * Sets the direction of receiving portal
      * @return void
      */
     public void setDirection(Direction dir) {
@@ -72,7 +77,8 @@ public class Portal extends Terrain implements LandOnInterface {
     }
     
     /**
-     * Returns the direction of the recieving portal
+     * Returns the direction of the receiving portal
+     * @return direction - the direction of the receiving portal
      */
     public Direction getDirection() {
 	return this.direction;

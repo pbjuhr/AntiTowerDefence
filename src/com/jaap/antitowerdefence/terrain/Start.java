@@ -9,6 +9,7 @@ import com.jaap.antitowerdefence.unit.Unit;
 /**
  * 
  * @author Andreas Bolzyk id10abk
+ * @author Peter Bjuhr id10pbn
  *
  */
 public class Start extends Switch implements LandOnInterface{

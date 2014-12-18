@@ -8,12 +8,18 @@ import com.jaap.antitowerdefence.unit.Unit;
 
 /**
  * @author Andreas Bolzyk id10abk
+ * @author Peter Bjuhr id10pbn
  */
 public class Switch extends Terrain implements LandOnInterface {
 
     protected Direction direction;
     protected ArrayList<Direction> possibleDirections;
-
+    
+    /**
+     * Creates instance of a Swith
+     * @param position - the position of the switch
+     * @param possibleDirections - An array of possible switch directions
+     */
     public Switch(Position position, ArrayList<Direction> possibleDirections) {
 	super(position);
 	walkable = true;
@@ -22,11 +28,13 @@ public class Switch extends Terrain implements LandOnInterface {
 	    direction = possibleDirections.get(0);
 	}
 	this.possibleDirections = possibleDirections;
-	// findNewDirection(dir);
-	// Direction.getRandomDirection();
     }
-
-    @Override
+    
+    /**
+     * Sets the direction of the unit
+     * @author Peter Bjuhr id10pbn
+     * @param u - 
+     */
     public void landOn(Unit u) {
 	u.setDirection(this.direction);
     }
