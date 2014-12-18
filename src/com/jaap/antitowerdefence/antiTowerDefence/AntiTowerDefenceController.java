@@ -181,6 +181,11 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 		pauseAction();
 	    }
 	});
+	// Disable <space> activating focused buttons.
+	InputMap im = (InputMap)UIManager.get("Button.focusInputMap");
+	im.put(KeyStroke.getKeyStroke("pressed SPACE"), "none");
+	im.put(KeyStroke.getKeyStroke("released SPACE"), "none");
+	// Set <space> as hotKey for pause.
 	gui.pause.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
 		KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "pause");
 	gui.pause.getActionMap().put("pause", new AbstractAction() {
