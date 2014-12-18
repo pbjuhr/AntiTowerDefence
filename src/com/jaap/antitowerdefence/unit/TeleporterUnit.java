@@ -26,8 +26,8 @@ public class TeleporterUnit extends Unit {
     public TeleporterUnit(CopyOnWriteArrayList<Terrain> walkable, 
 	    int stepsPerSec) {
 	super(walkable, stepsPerSec);
-	health = 100;
-	speed = 3;
+	health = 40;
+	speed = 2;
 	placedPortals = 0;
 	resetCoolDown();
     }

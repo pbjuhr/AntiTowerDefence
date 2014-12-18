@@ -473,6 +473,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 		wizardButton.setEnabled(false);
 	    } else {
 		wizardButton.setEnabled(true);
+		portalButton.setEnabled(false);
 	    }
 	}
 	if (soldierButton != null) {

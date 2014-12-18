@@ -17,8 +17,8 @@ public class SoldierUnit extends Unit{
      */
     public SoldierUnit(CopyOnWriteArrayList<Terrain> walkable, int stepsPerSec){
 	super(walkable, stepsPerSec);
-	health = 200;
-	speed = 2;
+	health = 80;
+	speed = 1.2;
 	resetCoolDown();
     }
     
