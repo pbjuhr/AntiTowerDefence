@@ -5,10 +5,9 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
 import com.jaap.antitowerdefence.unit.Unit;
 
 /**
- * 
+ * Portal.java
  * @author Andreas Bolzyk id10abk
  * @author Peter Bjuhr id10pbn
- *
  */
 public class Portal extends Terrain implements LandOnInterface {
 
