@@ -18,16 +18,16 @@ public abstract class Unit {
 
     /* Variables */
     public static int cost;
-    protected double speed; // How often does the unit move
-    protected int health; // The unit's current health
-    protected long coolDown; // Steps until next move
-    protected int stepsPerSec; // steps per second in game
-    protected Direction direction; // The units direction
-    protected Position position; // The units current position
+    protected double speed; 		// How often does the unit move
+    protected int health; 		// The unit's current health
+    protected long coolDown; 		// Steps until next move
+    protected int stepsPerSec; 		// steps per second in game
+    protected Direction direction; 	// The units direction
+    protected Position position; 	// The units current position
     protected CopyOnWriteArrayList<Terrain> walkable; // All walkable terrain
 						      // objects in level
-    private boolean reachedGoal; // Has the unit reached the goal
-    private int nextPositionIndex; // Index (in walkable) of next position
+    private boolean reachedGoal; 	// Has the unit reached the goal
+    private int nextPositionIndex; 	// Index (in walkable) of next position
 
     /**
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
