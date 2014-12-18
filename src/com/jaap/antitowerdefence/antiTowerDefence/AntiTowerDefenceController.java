@@ -2,11 +2,7 @@ package com.jaap.antitowerdefence.antiTowerDefence;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -15,13 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
 import com.jaap.antitowerdefence.level.Level;
 import com.jaap.antitowerdefence.terrain.Switch;
@@ -29,24 +19,33 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.*;
 
 /**
+ * This class represents the main initializer and controller (communicator)
+ * of a game. It is responsible for starting up the game and the GUI and then
+ * running the main game loop. It is also responsible for synchronizing the
+ * game back end with the GUI front end.
  * @author Joakim Sandman (tm08jsn)
  */
 public class AntiTowerDefenceController implements PropertyChangeListener {
 
-    private String levelName;
-    private boolean paused;
-    private AntiTowerDefenceGame game;
-    private AntiTowerDefenceGUI gui;
-    private Timer gameTimer;
-    private int stepsPerSec;
-    private int fps;
-    private JButton farmerButton;
-    private JButton soldierButton;
-    private JButton wizardButton;
-    private JButton portalButton;
-    private Image[] images;
-    private boolean firstRun;
+    private String levelName;		// Name of the level file.
+    private boolean paused;		// Pause state of the game.
+    private AntiTowerDefenceGame game;	// Game back end.
+    private AntiTowerDefenceGUI gui;	// GUI front end.
+    private Timer gameTimer;		// Timer for running the game.
+    private int stepsPerSec;		// Back end steps per second.
+    private int fps;			// Front end frames per second.
+    private JButton farmerButton;	// FarmerButton reference.
+    private JButton soldierButton;	// SoldierButton reference.
+    private JButton wizardButton;	// WizardButton reference.
+    private JButton portalButton;	// PortalButton reference.
+    private Image[] images;		// Images to draw.
+    private boolean firstRun;		// If the constructor is running.
 
+    /**
+     * Initializes a new AntiTowerDefenceController, including loading
+     * all the images, starting a new game and showing the GUI.
+     * @param level
+     */
     public AntiTowerDefenceController(String level) {
 	loadImages();
 	firstRun = true;
@@ -55,9 +54,18 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	levelName = level;
 	paused = false;
 	newGame();
+	firstRun = false;
 	gui.showLosePanel("Anti Tower Defence");
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent arg0) {
+	gui.setTowers(game.getLevel().getTowers());
+    }
+
+    /**
+     * Initializes a new game (and GUI if firstRun).
+     */
     private void newGame() {
 	stopTime();
 	game = new AntiTowerDefenceGame(levelName, stepsPerSec);
@@ -77,12 +85,14 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 		System.exit(0);
 	    }
 	}
-	updateGUI();
+	newLevel();
     }
 
-    private void updateGUI() {
+    /**
+     * Initializes a new level.
+     */
+    private void newLevel() {
 	stopTime();
-	firstRun = false;
 	farmerButton = null;
 	soldierButton = null;
 	wizardButton = null;
@@ -105,11 +115,9 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent arg0) {
-	gui.setTowers(game.getLevel().getTowers());
-    }
-
+    /**
+     * Stops all timers.
+     */
     private void stopTime() {
 	if (!firstRun) {
 	    if (gameTimer != null) {
@@ -128,6 +136,9 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    /**
+     * Sets the listeners for the menu items.
+     */
     @SuppressWarnings("serial")
     private void setMenuListeners() {
 	gui.restart.addActionListener(new ActionListener() {
@@ -155,7 +166,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 		    protected Void doInBackground() throws Exception {
 			stopTime();
 			game.restartLevel();
-			updateGUI();
+			newLevel();
 			runGame();
 			return null;
 		    }
@@ -207,6 +218,9 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	});
     }
 
+    /**
+     * Actions to perform when the pause button is activated.
+     */
     private void pauseAction() {
 	if (paused) {
 	    paused = false;
@@ -220,6 +234,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	    worker.execute();
 	} else {
 	    paused = true;
+	    // Stop all timers from within the EDT. 
 	    if (gameTimer != null) {
 		gameTimer.cancel();
 	    }
@@ -228,6 +243,10 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    /**
+     * Sets the buttonPanel buttons for the current level, depending
+     * on which unit are available. Adds hotKeys to the buttons.
+     */
     @SuppressWarnings("serial")
     private void setButtons() {
 	gui.emptyButtons();
@@ -336,12 +355,16 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    /**
+     * Sets the mouse listeners for observing when switches are clicked. 
+     */
     private void setSwitchListeners() {
 	for (Terrain t : game.getLevel().getSwitches()) {
 	    gui.getGameForeground().addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 		    if (!gui.isPaused()) {
+			// Within the borders of the switch tile.
 			if ((e.getX() >= t.getPosition().getX()*32)
 				&& (e.getX() < (t.getPosition().getX()+1)*32)
 				&& (e.getY() >= t.getPosition().getY()*32)
@@ -354,6 +377,9 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    /**
+     * Sets the Actions to perform when the nextLevelButton is clicked.
+     */
     private void setNextLevelButtonListener() {
 	gui.getNextLevelButton().addActionListener(new ActionListener() {
 	    @Override
@@ -363,7 +389,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 		    protected Void doInBackground() throws Exception {
 			stopTime();
 			game.newLevel();
-			updateGUI();
+			newLevel();
 			runGame();
 			return null;
 		    }
@@ -373,6 +399,10 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	});
     }
 
+    /**
+     * The main loop of the game. Loops the game.step() method until the
+     * game is lost, won or paused.
+     */
     private void runGame() {
 	SwingUtilities.invokeLater(new Runnable() {
 	    @Override
@@ -411,6 +441,10 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}, 0, 1000/stepsPerSec);
     }
 
+    /**
+     * Determines which unit buttons should be enabled this step
+     * and sets them accordingly. 
+     */
     private void enableButtons() {
 	int currentCredits = game.getLevel().getLevelStats().getCredits();
 	if (wizardButton != null) {
@@ -448,6 +482,9 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    /**
+     * Stops the timers and shows the appropriate panels and highscore frames.
+     */
     private void gameLost() {
 	stopTime();
 	SwingUtilities.invokeLater(new Runnable() {
@@ -459,6 +496,9 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	});
     }
 
+    /**
+     * Stops the timers and shows the appropriate panels and highscore frames.
+     */
     private void gameWon() {
 	stopTime();
 	if (game.getCurrentLevelNumber() < game.getLevelReader().getNrOfLevels()) {
@@ -479,6 +519,10 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    /**
+     * Shows the current highscore frame if no highscore was achieved.
+     * Otherwise shows the frame for entering a new highscore.
+     */
     private void handlePossibleHighscore() {
 	HighScoreDB db = game.getHighScore();
 	if (db.connectToDB()) {
@@ -499,6 +543,9 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	}
     }
 
+    /**
+     * Loads all the necessary images for the GUI.
+     */
     private void loadImages() {
 	images = new Image[22];
 	try {

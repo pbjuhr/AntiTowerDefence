@@ -16,32 +16,42 @@ import com.jaap.antitowerdefence.terrain.Terrain;
 import com.jaap.antitowerdefence.unit.Unit;
 
 /**
+ * This class is responsible for the graphics elements of a game,
+ * including the background, foreground, menu and other frames etc.
  * @author Joakim Sandman (tm08jsn)
  */
 public class AntiTowerDefenceGUI {
 
-    private JFrame frame;
-    private int height;
-    private Image[] images;
+    private JFrame frame;			// The game frame.
+    private int height;		// The Height of the gamePanel (in tiles).
+    private Image[] images;			// The images to draw.
 
-    private GameBackground gameBackground;
-    private GameForeground gameForeground;
-    private JComponent cover;
-    private JComponent coverTitel;
-    private JComponent options;
-    private JLabel titelText;
-    private JButton nextLevelButton;
+    private GameBackground gameBackground;	// Foreground graphics.
+    private GameForeground gameForeground;	// Background graphics.
+    private JComponent cover;			// Transparent cover panel.
+    private JComponent coverTitel;		// Title panel of cover panel.
+    private JComponent options;			// Button panel of cover panel.
+    private JLabel titelText;			// Text of coverTitle.
+    private JButton nextLevelButton;		// Button to go to next level.
 
-    private JPanel buttonPanel;
+    private JPanel buttonPanel;			// Panel for unit buttons.
 
-    protected JMenuItem restart;
-    protected JMenuItem restartLevel;
-    protected JMenuItem pause;
-    protected JMenuItem quit;
-    protected JMenuItem help;
-    protected JMenuItem about;
-    protected JMenuItem highscore;
+    protected JMenuItem restart;		// New game/restart button.
+    protected JMenuItem restartLevel;		// Restart level button.
+    protected JMenuItem pause;			// Pause button.
+    protected JMenuItem quit;			// Quit button.
+    protected JMenuItem help;			// Help button.
+    protected JMenuItem about;			// About button.
+    protected JMenuItem highscore;		// Highscore button.
 
+    /**
+     * Initializes a new AntiTowerDefenceGUI, including the main frame with
+     * menu and game panels.
+     * @param images The images to draw.
+     * @param fps The update speed of the foreground in frames per second.
+     * @param width Width of the gamePanel (in tiles).
+     * @param height Height of the gamePanel (in tiles).
+     */
     public AntiTowerDefenceGUI(Image[] images, int fps, int width, int height) {
 	this.height = height;
 	this.images = images;
@@ -113,6 +123,10 @@ public class AntiTowerDefenceGUI {
 	frame.setVisible(true);
     }
 
+    /**
+     * Creates a menu bar.
+     * @return The menu bar.
+     */
     private JMenuBar buildMenuBar() {
 	JMenuBar menuBar = new JMenuBar();
 
@@ -144,29 +158,57 @@ public class AntiTowerDefenceGUI {
 	return menuBar;
     }
 
+    /**
+     * Adds a button to the buttonPanel.
+     * @param button Button to add.
+     */
     public void addButton(JButton button) {
 	buttonPanel.add(button);
 	frame.pack();
 	frame.setVisible(true);
     }
 
+    /**
+     * Gets the buttonPanel.
+     * @return The buttonPanel.
+     */
     public JPanel getButtons() {
 	return buttonPanel;
     }
 
+    /**
+     * Empties the buttonPanel.
+     */
     public void emptyButtons() {
 	buttonPanel.removeAll();
 	buttonPanel.repaint();
     }
 
+    /**
+     * Gets the nextLevelButton.
+     * @return The nextLevelButton.
+     */
     public JButton getNextLevelButton() {
 	return nextLevelButton;
     }
 
+    /**
+     * Gets the gameForeground.
+     * @return THe gameForeground.
+     */
     public GameForeground getGameForeground() {
 	return gameForeground;
     }
 
+    /**
+     * Initializes the background and foreground components with the
+     * necessary data to draw a new level.
+     * @param grass Grass array to draw.
+     * @param road Road array to draw.
+     * @param units Unit array to draw.
+     * @param towers Tower array to draw.
+     * @param stats Stats for current level.
+     */
     public void newLevelGUI(Terrain[] grass,
 	    CopyOnWriteArrayList<Terrain> road,
 	    CopyOnWriteArrayList<Unit> units,
@@ -177,14 +219,25 @@ public class AntiTowerDefenceGUI {
 	gameForeground.setStats(stats);
     }
 
+    /**
+     * Sets the towers to draw in the foreground.
+     * @param towers Tower array to draw.
+     */
     public void setTowers(CopyOnWriteArrayList<Tower> towers) {
 	gameForeground.setTowers(towers);
     }
 
+    /**
+     * Finds whether the GUI is paused or not.
+     * @return TRUE if the cover is visible (GUI paused), otherwise FALSE.
+     */
     public boolean isPaused() {
 	return cover.isVisible();
     }
 
+    /**
+     * Hides the cover panel and related components.
+     */
     public void hidePausePanel() {
 	cover.setVisible(false);
 	coverTitel.setVisible(false);
@@ -196,16 +249,14 @@ public class AntiTowerDefenceGUI {
 	pause.setEnabled(true);
     }
 
+    /**
+     * Shows the cover panel and related components, including
+     * a resume button. Disables the buttons in the buttonPanel.
+     * @param text Text to display.
+     */
     public void showPausePanel(String text) {
 	pause.setText("Resume");
-	for (Component b : buttonPanel.getComponents()) {
-	    b.setEnabled(false);
-	}
-
-	titelText.setText(text);
-	cover.setVisible(true);
-	coverTitel.setVisible(true);
-	options.setVisible(true);
+	showCover(text);
 
 	JButton resumeButton = new JButton("Resume Game");
 	resumeButton.setBackground(Color.LIGHT_GRAY);
@@ -214,18 +265,17 @@ public class AntiTowerDefenceGUI {
 	options.add(resumeButton);
     }
 
+    /**
+     * Shows the cover panel and related components, including
+     * a new game button and a quit button. Disables the buttons
+     * in the buttonPanel.
+     * @param text Text to display.
+     */
     public void showLosePanel(String text) {
 	restart.setText("New Game");
 	restartLevel.setEnabled(false);
 	pause.setEnabled(false);
-	for (Component b : buttonPanel.getComponents()) {
-	    b.setEnabled(false);
-	}
-
-	titelText.setText(text);
-	cover.setVisible(true);
-	coverTitel.setVisible(true);
-	options.setVisible(true);
+	showCover(text);
 
 	JButton newGameButton = new JButton("New Game");
 	newGameButton.setBackground(Color.LIGHT_GRAY);
@@ -240,16 +290,15 @@ public class AntiTowerDefenceGUI {
 	options.add(quitButton);
     }
 
+    /**
+     * Shows the cover panel and related components, including
+     * a next level button and a restart level button. Disables
+     * the buttons in the buttonPanel.
+     * @param text Text to display.
+     */
     public void showWinPanel(String text) {
 	pause.setEnabled(false);
-	for (Component b : buttonPanel.getComponents()) {
-	    b.setEnabled(false);
-	}
-
-	titelText.setText(text);
-	cover.setVisible(true);
-	coverTitel.setVisible(true);
-	options.setVisible(true);
+	showCover(text);
 
 	options.add(nextLevelButton);
 
@@ -262,6 +311,24 @@ public class AntiTowerDefenceGUI {
 	options.add(restartLevelButton);
     }
 
+    /**
+     * Shows the cover panel and related components. Disables
+     * the buttons in the buttonPanel.
+     * @param text Text to display.
+     */
+    private void showCover(String text) {
+	for (Component b : buttonPanel.getComponents()) {
+	    b.setEnabled(false);
+	}
+	titelText.setText(text);
+	cover.setVisible(true);
+	coverTitel.setVisible(true);
+	options.setVisible(true);
+    }
+
+    /**
+     * Shows the help frame.
+     */
     @SuppressWarnings("resource")
     public void showHelpFrame() {
 	JFrame helpFrame = new JFrame("Help");
@@ -359,6 +426,9 @@ public class AntiTowerDefenceGUI {
 	helpFrame.setVisible(true);
     }
 
+    /**
+     * Shows the about frame.
+     */
     @SuppressWarnings("resource")
     public void showAboutFrame() {
 	JFrame aboutFrame = new JFrame("About");
@@ -379,6 +449,10 @@ public class AntiTowerDefenceGUI {
 	aboutFrame.setVisible(true);
     }
 
+    /**
+     * Shows the highscore frame.
+     * @param db The HighScoreDB to read from.
+     */
     public void showHighscoreFrame(HighScoreDB db) {
 	JFrame highscoreFrame = new JFrame("Highscore");
 	highscoreFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -416,6 +490,11 @@ public class AntiTowerDefenceGUI {
 	highscoreFrame.setVisible(true);
     }
 
+    /**
+     * Shows the frame for entering a new highscore.
+     * @param db The HighScoreDB to read from.
+     * @param score The score to enter into the HighScoreDB.
+     */
     public void showNewHighscoreFrame(HighScoreDB db, int score) {
 	JFrame newHighscoreFrame = new JFrame("New Highscore");
 	newHighscoreFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -487,6 +566,10 @@ public class AntiTowerDefenceGUI {
 	newHighscoreFrame.setVisible(true);
     }
 
+    /**
+     * Shows the error frame, which simply displays an error message.
+     * @param message The message to display.
+     */
     public void showErrorFrame(String message) {
 	JFrame errorFrame = new JFrame("Error");
 	errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

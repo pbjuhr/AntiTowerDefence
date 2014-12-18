@@ -17,22 +17,30 @@ import com.jaap.antitowerdefence.terrain.*;
 import com.jaap.antitowerdefence.unit.*;
 
 /**
+ * This class contains the foreground graphics elements of a level,
+ * including units, towers and various road objects.
  * @author Joakim Sandman (tm08jsn)
  */
 public class GameForeground extends JComponent {
 
     private static final long serialVersionUID = 1L;
-    private Image[] images;
-    private CopyOnWriteArrayList<Unit> units;
-    private CopyOnWriteArrayList<Tower> towers;
-    private CopyOnWriteArrayList<Terrain> road;
-    private LevelStats stats;
-    private Timer timer;
-    private Timer levelTime;
-    private long time;
-    private Semaphore timeBusy;
-    private Semaphore towersBusy;
+    private Image[] images;			// Images to draw.
+    private CopyOnWriteArrayList<Unit> units;	// Unit array to draw.
+    private CopyOnWriteArrayList<Tower> towers;	// Tower array to draw.
+    private CopyOnWriteArrayList<Terrain> road;	// Road array to draw.
+    private LevelStats stats;			// Stats for current level.
+    private Timer timer;			// Timer for drawing.
+    private Timer levelTime;			// Timer to show time.
+    private long time;				// Seconds passed in level.
+    private Semaphore timeBusy;			// Semaphore for "time".
+    private Semaphore towersBusy;		// Semaphore for "towers".
 
+    /**
+     * Initializes a new GameForeground, including the timer to draw this
+     * component periodically.
+     * @param images Images to draw.
+     * @param fps The update speed of this component in frames per second.
+     */
     public GameForeground(Image[] images, int fps) {
 	this.images = images;
 	towersBusy = new Semaphore(1);
@@ -51,7 +59,7 @@ public class GameForeground extends JComponent {
 		try {
 		    timeBusy.acquire();
 		} catch (InterruptedException e) {
-		    //e.printStackTrace();
+		    // Do nothing and hope it works.
 		}
 		time++;
 		timeBusy.release();
@@ -60,33 +68,52 @@ public class GameForeground extends JComponent {
 	levelTime.setRepeats(true);
     }
 
+    /**
+     * Sets the road and unit arrays.
+     * @param units Unit array to draw.
+     * @param road Road array to draw.
+     */
     public void setTerrainAndUnits(CopyOnWriteArrayList<Unit> units,
 	    CopyOnWriteArrayList<Terrain> road) {
 	this.units = units;
 	this.road = road;
     }
 
+    /**
+     * Sets the tower array.
+     * @param towers Tower array to draw.
+     */
     public void setTowers(CopyOnWriteArrayList<Tower> towers) {
 	try {
 	    towersBusy.acquire();
 	} catch (InterruptedException e) {
-	    //e.printStackTrace();
+	    // Do nothing and hope it works.
 	}
 	this.towers = towers;
 	towersBusy.release();
     }
 
+    /**
+     *  Sets the level stats, resets time and draws this component.
+     * @param stats Stats for current level.
+     */
     public void setStats(LevelStats stats) {
 	this.stats = stats;
 	time = 0;
 	repaint();
     }
 
+    /**
+     * Starts the timers.
+     */
     public void start() {
 	timer.start();
 	levelTime.start();
     }
 
+    /**
+     * Stops the timers.
+     */
     public void stop() {
 	timer.stop();
 	levelTime.stop();
@@ -98,6 +125,7 @@ public class GameForeground extends JComponent {
 	drawRoadObjects(g);
 	drawUnits(g);
 	drawTowers(g);
+	// Draw score, credits and time in the upper left corner.
 	g.setColor(Color.WHITE);
 	g.setFont(new Font("Courier new", Font.BOLD, 14));
 	g.drawString("Score: " + stats.getScore() + "/" + stats.getWinScore(),
@@ -106,13 +134,17 @@ public class GameForeground extends JComponent {
 	try {
 	    timeBusy.acquire();
 	} catch (InterruptedException e) {
-	    // e.printStackTrace();
+	    // Do nothing and hope it works.
 	}
 	String timeString = String.format("%02d:%02d", time/60, time%60);
 	timeBusy.release();
 	g.drawString("Time: " + timeString, 10, 45);
     }
 
+    /**
+     * Draws the correct road object tiles where there are any.
+     * @param g The Graphics object to draw with.
+     */
     private void drawRoadObjects(Graphics g) {
 	for (Terrain t : road) {
 	    int x = t.getPosition().getX()*32;
@@ -141,6 +173,11 @@ public class GameForeground extends JComponent {
 	}
     }
 
+    /**
+     * Finds the correct "big" image for the given direction.
+     * @param dir The direction.
+     * @return The image.
+     */
     private Image bigDirImage(Direction dir) {
 	Image dirImg = null;
 	switch (dir) {
@@ -160,6 +197,11 @@ public class GameForeground extends JComponent {
 	return dirImg;
     }
 
+    /**
+     * Finds the correct "small" image for the given direction.
+     * @param dir The direction.
+     * @return The image.
+     */
     private Image smallDirImage(Direction dir) {
 	Image dirImg = null;
 	switch (dir) {
@@ -179,6 +221,10 @@ public class GameForeground extends JComponent {
 	return dirImg;
     }
 
+    /**
+     * Draws units where there are units.
+     * @param g The Graphics object to draw with.
+     */
     private void drawUnits(Graphics g) {
 	for (Unit u : units) {
 	    Position pos = animatedPosition(u);
@@ -194,31 +240,40 @@ public class GameForeground extends JComponent {
 	}
     }
 
+    /**
+     * Draws towers where there are towers.
+     * @param g The Graphics object to draw with.
+     */
     private void drawTowers(Graphics g) {
 	try {
 	    towersBusy.acquire();
 	} catch (InterruptedException e) {
-	    //e.printStackTrace();
+	    // Do nothing and hope it works.
 	}
 	for (Tower t : towers) {
 	    int x = t.getPosition().getX()*32;
 	    int y = t.getPosition().getY()*32;
 	    Unit unitShot = t.getUnitShot();
 	    if (unitShot == null) {
-		g.drawImage(images[16], x, y, null);
+		g.drawImage(images[16], x, y, null); // Tower.
 	    } else {
 		Position pos = animatedPosition(unitShot);
 		int shootX = pos.getX();
 		int shootY = pos.getY();
-		g.setColor(Color.RED);
-		g.drawLine(x + 16, y + 16, shootX + 18, shootY + 30);
-		g.drawImage(images[18], shootX, shootY, null);
-		g.drawImage(images[17], x, y, null);
+		g.setColor(Color.RED); // Lazer color.
+		g.drawLine(x + 16, y + 16, shootX + 18, shootY + 30); // Lazer.
+		g.drawImage(images[18], shootX, shootY, null); // Blood.
+		g.drawImage(images[17], x, y, null); // Shooting tower.
 	    }
 	}
 	towersBusy.release();
     }
 
+    /**
+     * Finds the appropriate (pixel) position of a unit in motion.
+     * @param u The unit.
+     * @return The (pixel) position.
+     */
     private Position animatedPosition(Unit u) {
 	int x = u.getPosition().getX()*32;
 	int y = u.getPosition().getY()*32;
