@@ -1,4 +1,5 @@
 package com.jaap.antitowerdefence.test;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -20,6 +21,10 @@ public class TowerPlacerAITest {
     private TowerPlacerAI aitp;
     private Terrain[] possiblePositions;
 
+    /**
+     * Initialize class Tower and TowerPlacerAI Create a position array for
+     * TowerPlacerAI that contains grass terrain
+     */
     @Before
     public void setUp() throws Exception {
 
@@ -34,18 +39,27 @@ public class TowerPlacerAITest {
 
     }
 
+    /**
+     * Check if can place new a tower
+     */
     @Test
     public void testgetNewTowers() {
 	assertNotNull(aitp.getNewTowers());
-	assertTrue(aitp.getNewTowers().size() !=2);
+	assertTrue(aitp.getNewTowers().size() != 2);
     }
 
+    /**
+     * Check if can place new more that one tower
+     */
     @Test
     public void testgetNewTowersTwoTimes() {
 	assertNotNull(aitp.getNewTowers());
 	assertNotNull(aitp.getNewTowers());
     }
 
+    /**
+     * Check if can place new more that one tower and positions are different
+     */
     @Test
     public void testCheckTowerPos() {
 	Position p1 = aitp.getNewTowers().get(0).getPosition();
@@ -55,4 +69,3 @@ public class TowerPlacerAITest {
     }
 
 }
-

@@ -21,6 +21,9 @@ public class StartTest {
 
     private static Start s;
 
+    /**
+     * Initialize class Start
+     */
     @BeforeClass
     public static void setUpBeforeClass() {
 	ArrayList<Direction> dir = new ArrayList<Direction>();
@@ -29,16 +32,25 @@ public class StartTest {
 	s = new Start(new Position(1, 1), dir);
     }
 
+    /**
+     * Check if buildable is false
+     */
     @Test
     public void testBuildable() {
 	assertFalse(s.isBuildable());
     }
 
+    /**
+     * Check if walkable is true
+     */
     @Test
     public void testWalkable() {
 	assertTrue(s.isWalkable());
     }
 
+    /**
+     * Check if the initialize position is the same as expect
+     */
     @Test
     public void testPosition() {
 	assertTrue(new Position(1, 1).equals(s.getPosition()));
