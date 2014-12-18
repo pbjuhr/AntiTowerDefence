@@ -16,37 +16,57 @@ import com.jaap.antitowerdefence.terrain.Portal;
  */
 public class PortalTest {
 
-    private static Portal p;
+    private static Portal sp;
+    private static Portal ep;
 
+    /**
+     * Initialize class Portal Create a start portal Create a end portal
+     */
     @BeforeClass
     public static void setUpBeforeClass() {
-	p = new Portal(new Position(1, 1));
-//	p.setReciever(new Position(2, 1));
+	sp = new Portal(new Position(1, 1));
+	ep = new Portal(new Position(3, 3));
+	sp.setReciever(ep);
     }
 
+    /**
+     * Check if buildable is false
+     */
     @Test
     public void testBuildable() {
-	assertFalse(p.isBuildable());
+	assertFalse(sp.isBuildable());
     }
 
+    /**
+     * Check if walkable is true
+     */
     @Test
     public void testWalkable() {
-	assertTrue(p.isWalkable());
+	assertTrue(sp.isWalkable());
     }
 
+    /**
+     * Check if the initialize position is the same as expect
+     */
     @Test
     public void testPosition() {
-	assertTrue(new Position(1, 1).equals(p.getPosition()));
+	assertTrue(new Position(1, 1).equals(sp.getPosition()));
     }
 
+    /**
+     * Check if the initialize position is the same as expect
+     */
     @Test
     public void testRecieverPosition() {
-	assertTrue(new Position(2, 1).equals(p.getReciever()));
+	assertTrue(ep.equals(sp.getReciever()));
     }
 
+    /**
+     * Check if start portal has a reciver
+     */
     @Test
     public void testHasReciver() {
-	assertTrue(p.hasReciever());
+	assertTrue(sp.hasReciever());
     }
 
 }

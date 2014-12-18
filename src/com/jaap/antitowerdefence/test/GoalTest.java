@@ -18,21 +18,33 @@ public class GoalTest {
 
     private static Goal g;
 
+    /**
+     * Initialize class Goal 
+     */
     @BeforeClass
     public static void setUpBeforeClass() {
 	g = new Goal(new Position(1, 1));
     }
 
+    /**
+     * Check if buildable is false
+     */
     @Test
     public void testBuildable() {
 	assertFalse(g.isBuildable());
     }
 
+    /**
+     * Check if walkable is true
+     */
     @Test
     public void testWalkable() {
 	assertTrue(g.isWalkable());
     }
 
+    /**
+     * Check if the initialize position is the same as expect 
+     */
     @Test
     public void testPosition() {
 	assertTrue(new Position(1, 1).equals(g.getPosition()));

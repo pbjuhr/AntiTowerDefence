@@ -11,6 +11,12 @@ import com.jaap.antitowerdefence.antiTowerDefence.Position;
  */
 public class Grass extends Terrain {
 
+    /**
+     * Constructor for grass initialize buildable = true walkable = false
+     * 
+     * @param position
+     *            where the terrain is place
+     */
     public Grass(Position position) {
 	super(position);
 	buildable = true;
