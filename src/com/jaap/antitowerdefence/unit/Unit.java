@@ -27,11 +27,7 @@ public abstract class Unit {
     protected CopyOnWriteArrayList<Terrain> walkable; // All walkable terrain
 						      // objects in level
     private boolean reachedGoal; // Has the unit reached the goal
-    private boolean wasTeleported; // Has the unit been teleported
-
-    /* TEST */
-    private Position nextPos;
-    private int nextPositionIndex;
+    private int nextPositionIndex; // Index (in walkable) of next position
 
     /**
      * Constructor creates the pathHistory ArrayList and sets reachGoal to
@@ -41,7 +37,6 @@ public abstract class Unit {
 	this.walkable = walkable;
 	this.stepsPerSec = stepsPerSec;
 	position = new Position(0, 0);
-	wasTeleported = false;
 	reachedGoal = false;
 	setStartPosition();
     }
