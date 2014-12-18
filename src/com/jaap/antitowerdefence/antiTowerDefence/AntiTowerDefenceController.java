@@ -265,6 +265,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 			game.createFarmer();
 		    }
 		});
+	        // Set A as hotKey for farmer.
 		farmerButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
 			.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0),
 				"farmerButton");
@@ -289,6 +290,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	        	game.createSoldier();
 	            }
 	        });
+	        // Set S as hotKey for soldier.
 	        soldierButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
 			.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0),
 				"soldierButton");
@@ -313,6 +315,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	        	game.createTeleporter();
 	            }
 	        });
+	        // Set D as hotKey for wizard.
 	        wizardButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
 			.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0),
 				"wizardButton");
@@ -339,6 +342,7 @@ public class AntiTowerDefenceController implements PropertyChangeListener {
 	        	}
 	            }
 	        });
+	        // Set F as hotKey for portal.
 	        portalButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
 			.put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0),
 				"portalButton");
